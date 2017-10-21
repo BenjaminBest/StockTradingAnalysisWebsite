@@ -1,0 +1,11 @@
+﻿@model Dictionary<string, decimal>
+
+@if (Model != null)
+{
+    foreach (KeyValuePair<string, decimal> absValue in Model)
+    {
+        string cssClass = StockTradingAnalysis.Common.ValueFormat.GetCssClass(absValue.Value, StockTradingAnalysis.Common.StatisticsKPIsFormat.Currency, StockTradingAnalysis.Common.StatisticsKPIsStyleCalcFormat.Dynamically);
+    
+        @absValue.Key @string.Format(" {0}", "(")<span class="@cssClass">@string.Format("{0:c}", absValue.Value)</span>@string.Format("{0}", ")")<br />
+    }
+}

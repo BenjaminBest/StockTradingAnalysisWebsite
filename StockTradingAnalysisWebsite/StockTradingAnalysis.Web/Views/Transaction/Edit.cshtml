@@ -1,0 +1,172 @@
+﻿@using StockTradingAnalysis.Web.Models
+@model TransactionViewModel
+@{
+    ViewBag.Title = Resources.ViewTextTransactionsTitle;
+    var feedbacks = (IEnumerable<SelectListItem>)ViewBag.Feedbacks;
+    var strategies = (IEnumerable<SelectListItem>)ViewBag.Strategies;
+
+    var buy = Model as TransactionBuyingViewModel;
+    var sell = Model as TransactionSellingViewModel;
+    var dividend = Model as TransactionDividendViewModel;
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Scripts.Render("~/bundles/validation")
+
+<script type="text/javascript">
+    $(function () { $('#Tag').autocomplete({ source: '@Url.Action("GetTags")', minLength: 1 }); });
+</script>
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.ValidationSummary(true)
+
+    @Html.HiddenFor(model => model.Id)
+    @Html.HiddenFor(model => model.OriginalVersion)
+
+    <h1>@Html.DisplayFor(model => model.Action)</h1>
+
+    <div class="display-left">               
+        <div class="display-label">
+            @Html.LabelFor(model => model.OrderDate)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.OrderDate)
+        </div>
+
+        <div class="display-label">
+            @Html.LabelFor(model => model.Units)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Units)
+        </div>
+
+        <div class="display-label">
+            <div class="greenPerf">
+                @Html.LabelFor(model => model.PricePerUnit)
+            </div>
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.PricePerUnit)
+        </div>
+
+        <div class="display-label">
+            @Html.LabelFor(model => model.OrderCosts)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.OrderCosts)
+        </div>
+
+        @if (sell != null)
+        {
+            <div class="editor-label">
+                @Html.LabelFor(model => sell.Taxes)
+            </div>
+            <div class="editor-field">
+                @Html.DisplayFor(model => sell.Taxes)
+            </div>
+        }
+        else if (dividend != null)
+        {
+            <div class="editor-label">
+                @Html.LabelFor(model => dividend.Taxes)
+            </div>
+            <div class="editor-field">
+                @Html.DisplayFor(model => dividend.Taxes)
+            </div>
+        }
+
+        <div class="display-label">
+            @Html.LabelFor(model => model.Tag)
+        </div>
+        <div class="display-field">
+            @Html.DisplayFor(model => model.Tag)
+        </div>
+
+        @if (buy != null)
+        {
+            <div class="display-label">
+                <div class="bluePerf">
+                    @Html.LabelFor(model => buy.InitialTP)
+                </div>
+            </div>
+            <div class="display-field">
+                @Html.DisplayFor(model => buy.InitialTP)
+            </div>
+            <div class="display-label">
+                <div class="redPerf">
+                    @Html.LabelFor(model => buy.InitialSL)
+                </div>
+            </div>
+            <div class="display-field">
+                @Html.DisplayFor(model => buy.InitialSL)
+            </div>
+        }
+
+        @if (sell != null)
+        {
+            <div class="display-label">
+                @Html.LabelFor(model => sell.MFE)
+            </div>
+            <div class="display-field">
+                @Html.DisplayFor(model => sell.MFE)
+            </div>
+            <div class="display-label">
+                @Html.LabelFor(model => sell.MAE)
+            </div>
+            <div class="display-field">
+                @Html.DisplayFor(model => sell.MAE)
+            </div>
+        }
+    </div>
+
+    <div class="display-left" style="padding-left:15px">
+        <div class="display-label">
+            @Html.LabelFor(model => model.Stock)
+        </div>
+        <div class="display-field">
+            @Html.ActionLink(Model.Stock.StocksShortDescription, "Edit", "Stock", new { id = Model.Stock.Id }, null)
+        </div>
+
+        @if (buy != null)
+        {
+            <div class="editor-label">
+                @Html.LabelFor(model => buy.Strategy)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => buy.Strategy.Id, strategies)
+            </div>
+        }
+
+        @if (sell != null)
+        {
+            <div class="editor-label">
+                @Html.LabelFor(model => sell.Feedback)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => sell.Feedback, feedbacks, new { multiple = "true" })
+            </div>
+        }
+
+    </div>
+
+    <div class="display-left" style="padding-left:15px">
+        @Html.EditorFor(model => model.Image)
+    </div>
+
+    <div class="display-clear"></div>
+    <div class="display-label">
+        @Html.LabelFor(model => model.Description)
+    </div>
+    <div class="display-field">
+        @Html.EditorFor(model => model.Description)
+    </div>
+    <p>
+        <input type="submit" value="@Resources.ViewTextSave" />
+    </p>
+    <div style="clear: both" />
+}
+<p>
+    @Html.ActionLink(Resources.ViewTextBack, "Index")
+</p>

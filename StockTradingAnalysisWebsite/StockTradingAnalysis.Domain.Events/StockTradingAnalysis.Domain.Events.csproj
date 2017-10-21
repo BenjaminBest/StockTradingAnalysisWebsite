@@ -1,0 +1,173 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{07D3490F-B18E-4FA5-804A-7FBB647BE184}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>StockTradingAnalysis.Domain.Events</RootNamespace>
+    <AssemblyName>StockTradingAnalysis.Domain.Events</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Aggregates\AggregateEventApplier.cs" />
+    <Compile Include="Aggregates\AggregateRoot.cs" />
+    <Compile Include="Aggregates\CalculationAggregate.cs" />
+    <Compile Include="Aggregates\TransactionAggregate.cs" />
+    <Compile Include="Aggregates\StrategyAggregate.cs" />
+    <Compile Include="Aggregates\FeedbackAggregate.cs" />
+    <Compile Include="Aggregates\StockAggregate.cs" />
+    <Compile Include="Domain\AccountBalance.cs" />
+    <Compile Include="Domain\BuyingTransaction.cs" />
+    <Compile Include="Domain\BuyingTransactionBookEntry.cs" />
+    <Compile Include="Domain\Calculation.cs" />
+    <Compile Include="Domain\Quotation.cs" />
+    <Compile Include="Domain\SplitTransactionBookEntry.cs" />
+    <Compile Include="Domain\SplitTransaction.cs" />
+    <Compile Include="Domain\Feedback.cs" />
+    <Compile Include="Domain\FeedbackProportion.cs" />
+    <Compile Include="Domain\OpenPosition.cs" />
+    <Compile Include="Domain\DividendTransaction.cs" />
+    <Compile Include="Domain\DividendTransactionBookEntry.cs" />
+    <Compile Include="Domain\TransactionBookEntry.cs" />
+    <Compile Include="Domain\SellingTransactionBookEntry.cs" />
+    <Compile Include="Domain\SellingTransaction.cs" />
+    <Compile Include="Domain\Strategy.cs" />
+    <Compile Include="Domain\Stock.cs" />
+    <Compile Include="Domain\TransactionBook.cs" />
+    <Compile Include="Domain\TransactionPerformance.cs" />
+    <Compile Include="EventHandler\CalculationAddedEventHandler.cs" />
+    <Compile Include="EventHandler\AccountBalanceChangedEventHandler.cs" />
+    <Compile Include="EventHandler\StockQuotationsAddedEventHandler.cs" />
+    <Compile Include="EventHandler\StockQuotationsChangedEventHandler.cs" />
+    <Compile Include="EventHandler\StockOverallPerformanceChangedEventHandler.cs" />
+    <Compile Include="EventHandler\TransactionSplitOrderAddedEventHandler.cs" />
+    <Compile Include="EventHandler\TransactionDividendOrderAddedEventHandler.cs" />
+    <Compile Include="EventHandler\TransactionDividendCalculatedEventHandler.cs" />
+    <Compile Include="EventHandler\TransactionSellingOrderAddedEventHandler.cs" />
+    <Compile Include="EventHandler\TransactionBuyingOrderAddedEventHandler.cs" />
+    <Compile Include="EventHandler\TransactionPerformanceCalculatedEventHandler.cs" />
+    <Compile Include="EventHandler\TransactionUndoEventHandler.cs" />
+    <Compile Include="EventHandler\CalculationWasCopiedEventHandler.cs" />
+    <Compile Include="EventHandler\CalculationDescriptionChangedEventHandler.cs" />
+    <Compile Include="EventHandler\CalculationInitialSlChangedEventHandler.cs" />
+    <Compile Include="EventHandler\CalculationInitialTpChangedEventHandler.cs" />
+    <Compile Include="EventHandler\CalculationIsLongChangedEventHandler.cs" />
+    <Compile Include="EventHandler\CalculationMultiplierChangedEventHandler.cs" />
+    <Compile Include="EventHandler\CalculationNameChangedEventHandler.cs" />
+    <Compile Include="EventHandler\CalculationOrderCostsChangedEventHandler.cs" />
+    <Compile Include="EventHandler\CalculationPricePerUnitChangedEventHandler.cs" />
+    <Compile Include="EventHandler\CalculationStrikePriceChangedEventHandler.cs" />
+    <Compile Include="EventHandler\CalculationUnderlyingChangedEventHandler.cs" />
+    <Compile Include="EventHandler\CalculationUnitsChangedEventHandler.cs" />
+    <Compile Include="EventHandler\CalculationWknChangedEventHandler.cs" />
+    <Compile Include="EventHandler\StrategyAddedEventHandler.cs" />
+    <Compile Include="EventHandler\FeedbackAddedEventHandler.cs" />
+    <Compile Include="EventHandler\StrategyImageChangedEventHandler.cs" />
+    <Compile Include="EventHandler\StrategyDescriptionChangedEventHandler.cs" />
+    <Compile Include="EventHandler\FeedbackDescriptionChangedEventHandler.cs" />
+    <Compile Include="EventHandler\CalculationRemovedEventHandler.cs" />
+    <Compile Include="EventHandler\StrategyNameChangedEventHandler.cs" />
+    <Compile Include="EventHandler\StrategyRemovedEventHandler.cs" />
+    <Compile Include="EventHandler\StockAddedEventHandler.cs" />
+    <Compile Include="EventHandler\StockLongShortChangedEventHandler.cs" />
+    <Compile Include="EventHandler\FeedbackNameChangedEventHandler.cs" />
+    <Compile Include="EventHandler\StockNameChangedEventHandler.cs" />
+    <Compile Include="EventHandler\FeedbackRemovedEventHandler.cs" />
+    <Compile Include="EventHandler\StockRemovedEventHandler.cs" />
+    <Compile Include="EventHandler\StockTypeChangedEventHandler.cs" />
+    <Compile Include="EventHandler\StockWknChangedEventHandler.cs" />
+    <Compile Include="Events\CalculationAddedEvent.cs" />
+    <Compile Include="Events\CalculationDescriptionChangedEvent.cs" />
+    <Compile Include="Events\CalculationWasCopiedEvent.cs" />
+    <Compile Include="Events\CalculationIsLongChangedEvent.cs" />
+    <Compile Include="Events\CalculationUnitsChangedEvent.cs" />
+    <Compile Include="Events\StockQuotationChangedEvent.cs" />
+    <Compile Include="Events\StockQuotationAddedEvent.cs" />
+    <Compile Include="Events\StockOverallPerformanceChangedEvent.cs" />
+    <Compile Include="Events\TransactionDividendCalculatedEvent.cs" />
+    <Compile Include="Events\TransactionSplitOrderAddedEvent.cs" />
+    <Compile Include="Events\TransactionPerformanceCalculatedEvent.cs" />
+    <Compile Include="Events\TransactionDividendOrderAddedEvent.cs" />
+    <Compile Include="Events\TransactionUndoEvent.cs" />
+    <Compile Include="Events\TransactionSellingOrderAddedEvent.cs" />
+    <Compile Include="Events\TransactionBuyingOrderAddedEvent.cs" />
+    <Compile Include="Events\CalculationOrderCostsChangedEvent.cs" />
+    <Compile Include="Events\CalculationMultiplierChangedEvent.cs" />
+    <Compile Include="Events\CalculationInitialSlChangedEvent.cs" />
+    <Compile Include="Events\CalculationInitialTpChangedEvent.cs" />
+    <Compile Include="Events\CalculationNameChangedEvent.cs" />
+    <Compile Include="Events\CalculationUnderlyingChangedEvent.cs" />
+    <Compile Include="Events\CalculationStrikePriceChangedEvent.cs" />
+    <Compile Include="Events\CalculationWknChangedEvent.cs" />
+    <Compile Include="Events\StrategyAddedEvent.cs" />
+    <Compile Include="Events\FeedbackAddedEvent.cs" />
+    <Compile Include="Events\StrategyImageChangedEvent.cs" />
+    <Compile Include="Events\StrategyDescriptionChangedEvent.cs" />
+    <Compile Include="Events\FeedbackDescriptionChangedEvent.cs" />
+    <Compile Include="Events\CalculationPricePerUnitChangedEvent.cs" />
+    <Compile Include="Events\StrategyNameChangedEvent.cs" />
+    <Compile Include="Events\StrategyRemovedEvent.cs" />
+    <Compile Include="Events\StockAddedEvent.cs" />
+    <Compile Include="Events\StockLongShortChangedEvent.cs" />
+    <Compile Include="Events\FeedbackNameChangedEvent.cs" />
+    <Compile Include="Events\StockNameChangedEvent.cs" />
+    <Compile Include="Events\FeedbackRemovedEvent.cs" />
+    <Compile Include="Events\CalculationRemovedEvent.cs" />
+    <Compile Include="Events\StockRemovedEvent.cs" />
+    <Compile Include="Events\StockTypeChangedEvent.cs" />
+    <Compile Include="Events\StockWknChangedEvent.cs" />
+    <Compile Include="Exceptions\EventHandlerException.cs" />
+    <Compile Include="Exceptions\AggregateApplyException.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Snapshots\StockAggregateSnapshot.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\StockTradingAnalysis.Core\StockTradingAnalysis.Core.csproj">
+      <Project>{2D924BA2-EBFC-4675-B435-D346F20A77D1}</Project>
+      <Name>StockTradingAnalysis.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\StockTradingAnalysis.Interfaces\StockTradingAnalysis.Interfaces.csproj">
+      <Project>{3694cf79-fb2d-4f79-8236-a4975a30924d}</Project>
+      <Name>StockTradingAnalysis.Interfaces</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

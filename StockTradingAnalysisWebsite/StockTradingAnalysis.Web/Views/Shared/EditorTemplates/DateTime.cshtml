@@ -1,0 +1,8 @@
+﻿@model System.DateTime?       
+
+@if ( Model.HasValue ) {
+   @Html.TextBox("", String.Format("{0:dd.MM.yyyy HH:mm}", Model.Value), new { data_datepicker = true })
+}
+else {
+   @Html.TextBox("", String.Format("{0:dd.MM.yyyy HH:mm}", DateTime.Now), new { data_datepicker = true })
+}

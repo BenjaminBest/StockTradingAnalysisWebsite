@@ -1,0 +1,59 @@
+﻿@model StockTradingAnalysis.Web.Models.TransactionToolTipViewModel
+
+<div id='toolTip'>
+    <table id="table_small" class="nobr tooltip_table">
+        <thead>
+            <tr>
+                <th colspan="2">
+                    @Model.Title
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Html.LabelFor(modelItem => modelItem.StrategyName)</td>
+                <td>@Html.DisplayFor(modelItem => modelItem.StrategyName)</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(modelItem => modelItem.HoldingPeriod)</td>
+                <td>@Html.DisplayFor(modelItem => modelItem.HoldingPeriod)</td>
+            </tr>
+            <tr>
+                <td><div class="redPerf">@Html.LabelFor(modelItem => modelItem.InitialSL)</div></td>
+                <td>@Html.DisplayFor(modelItem => modelItem.InitialSL)</td>
+            </tr>
+            <tr>
+                <td><div class="bluePerf">@Html.LabelFor(modelItem => modelItem.InitialTP)</div></td>
+                <td>@Html.DisplayFor(modelItem => modelItem.InitialTP)</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(modelItem => modelItem.MAE)</td>
+                <td>@Html.DisplayFor(modelItem => modelItem.MAE)</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(modelItem => modelItem.MAEAbsolute)</td>
+                <td>@Html.DisplayFor(modelItem => modelItem.MAEAbsolute)</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(modelItem => modelItem.MFE)</td>
+                <td>@Html.DisplayFor(modelItem => modelItem.MFE)</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(modelItem => modelItem.MFEAbsolute)</td>
+                <td>@Html.DisplayFor(modelItem => modelItem.MFEAbsolute)</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(modelItem => modelItem.EntryEfficiency)</td>
+                <td>@Html.DisplayFor(modelItem => modelItem.EntryEfficiency)</td>
+            </tr>
+        <tr>
+            <td>@Html.LabelFor(modelItem => modelItem.ExitEfficiency)</td>
+            <td>@Html.DisplayFor(modelItem => modelItem.ExitEfficiency)</td>
+        </tr>
+            <tr>
+                <td>@Html.LabelFor(modelItem => modelItem.CRV)</td>
+                <td>@Html.DisplayFor(modelItem => modelItem.CRV)</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,6 @@
+﻿@model Dictionary<string, decimal>
+         
+@foreach(KeyValuePair<string,decimal> feedback in Model)
+{
+   @string.Format("{0} ({1} %)", feedback.Key,feedback.Value)<br />
+}

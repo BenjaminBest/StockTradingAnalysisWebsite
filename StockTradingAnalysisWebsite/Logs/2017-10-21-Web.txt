@@ -1,0 +1,11 @@
+2017-10-21 15:21:00,928 FATAL [StockTradingAnalysis.Web.Global:34] No Stock found with id: 14784951-dc29-4b62-8ebd-cf5798165006
+   bei StockTradingAnalysis.Domain.Events.EventHandler.TransactionDividendOrderAddedEventHandler.Handle(TransactionDividendOrderAddedEvent eventData) in F:\Development\GitHub\StockTradingAnalysisWebsite\StockTradingAnalysisWebsite\StockTradingAnalysis.Domain.Events\EventHandler\TransactionDividendOrderAddedEventHandler.cs:Zeile 44.
+   bei CallSite.Target(Closure , CallSite , Object , Object )
+   bei System.Dynamic.UpdateDelegates.UpdateAndExecuteVoid2[T0,T1](CallSite site, T0 arg0, T1 arg1)
+   bei CallSite.Target(Closure , CallSite , Object , Object )
+   bei StockTradingAnalysis.EventSourcing.Messaging.EventBus.Publish[TEvent](TEvent domainEvent) in F:\Development\GitHub\StockTradingAnalysisWebsite\StockTradingAnalysisWebsite\StockTradingAnalysis.EventSourcing\Messaging\EventBus.cs:Zeile 35.
+   bei StockTradingAnalysis.EventSourcing.Storage.EventStoreInitializer.Replay() in F:\Development\GitHub\StockTradingAnalysisWebsite\StockTradingAnalysisWebsite\StockTradingAnalysis.EventSourcing\Storage\EventStoreInitializer.cs:Zeile 37.
+   bei StockTradingAnalysis.Web.BootModules.ConfigurationBootModule.Boot() in F:\Development\GitHub\StockTradingAnalysisWebsite\StockTradingAnalysisWebsite\StockTradingAnalysis.Web\App_Start\BootModules\ConfigurationBootModule.cs:Zeile 23.
+   bei StockTradingAnalysis.Core.Common.BootManager.Boot() in F:\Development\GitHub\StockTradingAnalysisWebsite\StockTradingAnalysisWebsite\StockTradingAnalysis.Core\Common\BootManager.cs:Zeile 23.
+   bei StockTradingAnalysis.Web.Global.Application_Start(Object sender, EventArgs e) in F:\Development\GitHub\StockTradingAnalysisWebsite\StockTradingAnalysisWebsite\StockTradingAnalysis.Web\Global.asax.cs:Zeile 26.
+

@@ -1,0 +1,146 @@
+﻿@model StockTradingAnalysis.Models.ViewModelStatisticsComparison
+
+<div class="box">
+<div class="box-inner">
+<table>
+<thead>
+    <tr>
+        <th></th>
+        @foreach (StockTradingAnalysis.Models.ViewModelStatistics stat in Model)
+        {
+            <th>@stat.Caption</th>
+        }
+    </tr>
+</thead>
+
+<tr>
+    <td>@Html.LabelFor(model => model.FirstOrDefault().TimeRangeDescription)</td>
+    @foreach (StockTradingAnalysis.Models.ViewModelStatistics stat in Model)
+    {
+         <td>@Html.DisplayFor(s=>stat.TimeRangeDescription)</td>
+    }
+</tr>
+<tr>
+    <td>@Html.LabelFor(model => model.FirstOrDefault().TradeAbsolute)</td>
+    @foreach (StockTradingAnalysis.Models.ViewModelStatistics stat in Model)
+    {
+         <td><span style="font-size:large">@Html.DisplayFor(m => stat.TradeAbsolute)</span><br />(Ø @Html.DisplayFor(m => stat.TradeAverage),@Html.DisplayFor(m => stat.TradeAveragePercentage))</td>
+    }
+</tr>
+<tr>
+    <td>@Html.LabelFor(model => model.FirstOrDefault().ProfitAbsolute)</td>
+    @foreach (StockTradingAnalysis.Models.ViewModelStatistics stat in Model)
+    {
+         <td>@Html.DisplayFor(m => stat.ProfitAbsolute) (Ø @Html.DisplayFor(m => stat.ProfitAverage),@Html.DisplayFor(m => stat.ProfitAveragePercentage))</td>
+    }
+</tr>
+<tr>
+    <td>@Html.LabelFor(model => model.FirstOrDefault().LossAbsolute)</td>
+    @foreach (StockTradingAnalysis.Models.ViewModelStatistics stat in Model)
+    {
+         <td>@Html.DisplayFor(m => stat.LossAbsolute) (Ø @Html.DisplayFor(m => stat.LossAverage),@Html.DisplayFor(m => stat.LossAveragePercentage))</td>
+    }
+</tr>
+<tr>
+    <td>@StockTradingAnalysis.Resources.Display_StatisticsProfitVsLoss</td>
+    @foreach (StockTradingAnalysis.Models.ViewModelStatistics stat in Model)
+    {
+         <td>@Html.DisplayFor(m => stat.PercentageOfProfitTransactions) (@Html.DisplayFor(m => stat.AmountOfProfitTransactions)) / @Html.DisplayFor(m => stat.PercentageOfLossTransactions) (@Html.DisplayFor(m => stat.AmountOfLossTransactions))</td>
+    }
+</tr>
+<tr>
+    <td>@Html.LabelFor(model => model.FirstOrDefault().PayOffRatio)</td>
+    @foreach (StockTradingAnalysis.Models.ViewModelStatistics stat in Model)
+    {
+         <td>@Html.DisplayFor(m => stat.PayOffRatioDescription) (@Html.DisplayFor(m => stat.PayOffRatio))</td>
+    }
+</tr>
+<tr>
+    <td>@Html.LabelFor(model => model.FirstOrDefault().CRV)</td>
+    @foreach (StockTradingAnalysis.Models.ViewModelStatistics stat in Model)
+    {
+         <td>@Html.DisplayFor(m => stat.CRV)</td>
+    }
+</tr>
+<tr>
+    <td>@Html.LabelFor(model => model.FirstOrDefault().SQN)</td>
+    @foreach (StockTradingAnalysis.Models.ViewModelStatistics stat in Model)
+    {
+         <td>@Html.DisplayFor(m => stat.SQNDescription) (@Html.DisplayFor(m => stat.SQN))</td>
+    }
+</tr>
+<tr>
+    <td>@StockTradingAnalysis.Resources.Display_StatisticsHoldingPeriod</td>
+    @foreach (StockTradingAnalysis.Models.ViewModelStatistics stat in Model)
+    {
+        <td>
+            @Html.LabelFor(m => stat.AmountIntradayTrades) (@Html.DisplayFor(m => stat.AmountIntradayTrades)) / @Html.LabelFor(m => stat.AmountPositionTrades) (@Html.DisplayFor(m => stat.AmountPositionTrades))<br />
+            @Html.LabelFor(m => stat.AmountIntradayTrades) (@Html.DisplayFor(m => stat.AvgHoldingPeriodIntradayTrades) Min) / @Html.LabelFor(m => stat.AmountPositionTrades) (@Html.DisplayFor(m => stat.AvgHoldingPeriodPositionTrades) Tage)
+        </td>
+    }
+</tr>
+<tr>
+    <td>@Html.LabelFor(model => model.FirstOrDefault().AverageBuyVolume)</td>
+    @foreach (StockTradingAnalysis.Models.ViewModelStatistics stat in Model)
+    {
+        <td>@Html.DisplayFor(m => stat.AverageBuyVolume)</td>
+    }
+</tr>
+<tr>
+    <td>@Html.LabelFor(model => model.FirstOrDefault().MaxDrawdown)</td>
+    @foreach (StockTradingAnalysis.Models.ViewModelStatistics stat in Model)
+    {
+        <td>@Html.DisplayFor(m => stat.MaxDrawdown)</td>
+    }
+</tr>
+<tr>
+    <td>@Html.LabelFor(model => model.FirstOrDefault().MostConsecutiveWins)</td>
+    @foreach (StockTradingAnalysis.Models.ViewModelStatistics stat in Model)
+    {
+        <td>@Html.DisplayFor(m => stat.MostConsecutiveWins)</td>
+    }
+</tr>
+<tr>
+    <td>@Html.LabelFor(model => model.FirstOrDefault().MostConsecutiveLosses)</td>
+    @foreach (StockTradingAnalysis.Models.ViewModelStatistics stat in Model)
+    {
+        <td>@Html.DisplayFor(m => stat.MostConsecutiveLosses)</td>
+    }
+</tr>
+<tr>
+    <td>@Html.LabelFor(model => model.FirstOrDefault().AvgEntryEfficiency)</td>
+    @foreach (StockTradingAnalysis.Models.ViewModelStatistics stat in Model)
+    {
+        <td>@Html.DisplayFor(m => stat.AvgEntryEfficiency)</td>
+    }
+</tr>
+<tr>
+    <td>@Html.LabelFor(model => model.FirstOrDefault().AvgExitEfficiency)</td>
+    @foreach (StockTradingAnalysis.Models.ViewModelStatistics stat in Model)
+    {
+        <td>@Html.DisplayFor(m => stat.AvgExitEfficiency)</td>
+    }
+</tr>
+<tr>
+    <td>@Html.LabelFor(model => model.FirstOrDefault().AvgMAEAbsolute)</td>
+    @foreach (StockTradingAnalysis.Models.ViewModelStatistics stat in Model)
+    {
+        <td>@Html.DisplayFor(m => stat.AvgMAEAbsolute)</td>
+    }
+</tr>
+<tr>
+    <td>@Html.LabelFor(model => model.FirstOrDefault().AvgMFEAbsolute)</td>
+    @foreach (StockTradingAnalysis.Models.ViewModelStatistics stat in Model)
+    {
+        <td>@Html.DisplayFor(m => stat.AvgMFEAbsolute)</td>
+    }
+</tr>
+
+<tfoot>
+    <tr>
+
+    </tr>
+</tfoot>
+</table>
+</div>
+</div>

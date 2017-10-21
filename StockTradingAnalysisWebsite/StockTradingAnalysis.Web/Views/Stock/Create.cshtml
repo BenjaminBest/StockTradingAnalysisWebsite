@@ -1,0 +1,59 @@
+﻿@model StockTradingAnalysis.Web.Models.StockViewModel
+
+@{
+    ViewBag.Title = Resources.ViewTextStockTitle;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Scripts.Render("~/bundles/validation")
+
+<script type="text/javascript">
+    $(function () { $('#Name').autocomplete({ source: '@Url.Action("GetStockName")', minLength: 1 }); });
+    $(function () { $('#WKN').autocomplete({ source: '@Url.Action("GetStockWkn")', minLength: 1 }); });
+    $(function () { $('#Type').autocomplete({ source: '@Url.Action("GetStockType")', minLength: 1 }); });
+</script>
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Name)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.Name)
+        @Html.ValidationMessageFor(model => model.Name)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Wkn)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.Wkn)
+        @Html.ValidationMessageFor(model => model.Wkn)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Type)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.Type)
+        @Html.ValidationMessageFor(model => model.Type)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.LongShort)
+    </div>
+    <div class="editor-field">
+        @Html.DropDownListFor(model => model.LongShort, new[] { new SelectListItem() { Text = "Long", Value = "Long" }, new SelectListItem() { Text = "Short", Value = "Short" } })
+        @Html.ValidationMessageFor(model => model.LongShort)
+    </div>
+
+    <p>
+        <input type="submit" value="@Resources.ViewTextAdd" />
+    </p>
+}
+
+<div>
+    @Html.ActionLink(Resources.ViewTextBack, "Index")
+</div>

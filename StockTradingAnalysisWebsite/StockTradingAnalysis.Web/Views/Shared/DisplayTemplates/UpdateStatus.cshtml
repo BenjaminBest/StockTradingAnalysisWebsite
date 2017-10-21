@@ -1,0 +1,15 @@
+﻿@model StockTradingAnalysis.Web.Models.UpdateQuotationStatusViewModel
+
+@if (Model != null)
+{
+<div class="updateStatus">
+@if (Model.Successfull)
+{
+    <img src="@Url.Content("~/Content/Images/StatusOk_24x24.png")" alt="@Model.TimeStamp" /> @Model.Message
+}
+else
+{
+    <img src="@Url.Content("~/Content/Images/StatusFail_24x24.png")" alt="@Model.TimeStamp" /> @Model.Message
+}
+</div>
+}

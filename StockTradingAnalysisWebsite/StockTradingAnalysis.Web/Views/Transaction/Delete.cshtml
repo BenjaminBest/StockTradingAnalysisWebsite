@@ -1,0 +1,64 @@
+﻿@model StockTradingAnalysis.Web.Models.TransactionViewModel
+
+@{
+    ViewBag.Title = Resources.ViewTextTransactionsTitle;
+    Layout = "~/Views/Shared/_Layout.cshtml";    
+}
+
+<h4>@Resources.ViewTextTransactionDeleteInformation</h4>
+<div class="display-field" style="float: right">
+    
+    @Html.DisplayFor(model => model.Image)
+</div>
+<div class="editor-label">
+    @Html.LabelFor(model => model.OrderDate)
+</div>
+<div class="display-field">
+    @Html.DisplayFor(model => model.OrderDate)
+</div>
+<div class="editor-label">
+    @Html.LabelFor(model => model.Units)
+</div>
+<div class="display-field">
+    @Html.DisplayFor(model => model.Units)
+</div>
+<div class="editor-label">
+    @Html.LabelFor(model => model.PricePerUnit)
+</div>
+<div class="display-field">
+    @Html.DisplayFor(model => model.PricePerUnit)
+</div>
+<div class="editor-label">
+    @Html.LabelFor(model => model.OrderCosts)
+</div>
+<div class="display-field">
+    @Html.DisplayFor(model => model.OrderCosts)
+</div>
+<div class="editor-label">
+    @Html.LabelFor(model => model.Stock)
+</div>
+<div class="display-field">
+    @Html.ActionLink(Model.Stock.StocksShortDescription, "Edit", "Stock", new { id = Model.Stock.Id }, null)
+</div>
+<div class="display-label">
+    @Html.LabelFor(model => model.Tag)
+</div>
+<div class="display-field">
+    @Html.DisplayFor(model => model.Tag)
+</div>
+<div class="editor-label">
+    @Html.LabelFor(model => model.Description)
+</div>
+<div class="display-field">
+    @Html.DisplayFor(model => model.Description)
+</div>
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.OriginalVersion)
+    
+    <p>
+        <input type="submit" value="@Resources.ViewTextDelete" />
+        |
+        @Html.ActionLink(Resources.ViewTextBack, "Index")
+    </p>
+}

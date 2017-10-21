@@ -1,0 +1,11 @@
+﻿@model decimal?
+         
+@if (Model.HasValue)
+{    
+    <span class="greenPerf">@string.Format("{0} %", Model.Value)</span>
+}
+else
+{
+    string.Format("{0} %", "0.0");
+}
+

@@ -1,0 +1,19 @@
+﻿@model StockTradingAnalysis.Web.Models.ImageViewModel
+
+@if (Model != null)
+{
+    if (string.IsNullOrEmpty(Model.Description))
+    {
+        <div class="editor-label">
+            @Resources.ViewTextTransactionsImage
+        </div>
+    }
+    else
+    {
+        <div class="editor-label">
+           @Model.Description
+        </div>
+    }
+<br />
+<a title="@Model.Description" href="@string.Format("../GetImage/{0}", Model.Id)" rel="prettyPhoto"><img src="@string.Format("../GetImage/{0}", Model.Id)" class="stockImages" /></a>
+}

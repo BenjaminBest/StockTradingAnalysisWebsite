@@ -1,0 +1,51 @@
+﻿@model StockTradingAnalysis.Web.Models.ImageViewModel
+
+@if (Model != null)
+{        
+    @Html.HiddenFor(model => model.Data)
+    @Html.HiddenFor(model => model.ContentType)
+    @Html.HiddenFor(model => model.OriginalName)
+
+    if (string.IsNullOrEmpty(Model.Description))
+    {
+        <div class="editor-label">
+            @Resources.ViewTextTransactionsImage
+        </div>
+     }
+     else
+     {   <div class="editor-label">
+           @Model.Description
+        </div>
+     }
+    <br />
+    <a title="@Model.Description" href="@string.Format("../GetImage/{0}", Model.Id)" rel="prettyPhoto"><img src="@string.Format("../GetImage/{0}", Model.Id)" class="stockImages" /></a>
+    <br />
+}
+else
+{
+     <div class="editor-label">
+        @Resources.ViewTextTransactionsAddImage
+     </div>
+   <br />
+}
+
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.Description)
+ </div>
+ <div class="editor-field">
+    @Html.EditorFor(model => model.Description)
+</div>
+
+@if (Model != null && !string.IsNullOrEmpty(Model.ContentType))
+{
+    <div class="editor-label">
+        @Resources.Display_ImageDeleteImage
+    </div>
+    <input type="checkbox" value="true" name="deleteImage" />
+}
+    
+<div class="editor-label">
+    @Resources.ViewTextTransactionsImageFile
+</div>
+<input type="file" id="image" name="Image" /> 

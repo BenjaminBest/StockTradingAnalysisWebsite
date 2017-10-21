@@ -1,0 +1,12 @@
+﻿@model decimal?
+         
+
+@if (Model.HasValue)
+{
+    <span class="redPerf">@string.Format("{0:c}", Model.Value)</span>
+}
+else
+{
+    string.Format("{0} €", "0.00");
+}
+

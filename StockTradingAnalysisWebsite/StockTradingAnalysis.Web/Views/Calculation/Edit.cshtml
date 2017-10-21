@@ -1,0 +1,194 @@
+﻿@using StockTradingAnalysis.Web.Models
+@model StockTradingAnalysis.Web.Models.CalculationViewModel
+
+@{
+    ViewBag.Title = Resources.ViewTextCalculationTitle;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var result = (CalculationResultViewModel)ViewBag.CalculationResult;
+}
+
+<script type="text/javascript">
+    function getStatistics() {
+
+        var calculation = new Object();
+            calculation.Multiplier = $("#Multiplier").val();
+            calculation.StrikePrice = $("#StrikePrice").val();
+            calculation.InitialSL = $("#InitialSl").val();
+            calculation.InitialTP = $("#InitialTp").val();
+            calculation.PricePerUnit = $("#PricePerUnit").val();
+            calculation.OrderCosts = $("#OrderCosts").val();
+            calculation.Units = $("#Units").val();
+            calculation.WKN = $("#Wkn").val();
+            calculation.IsLong = document.getElementById("IsLong").checked;
+
+        $.ajax({
+            url: '@Url.Action("GetStatistics", "Calculation")',
+            data: calculation ,
+            dataType: "json",
+            type: "POST",
+            error: function () {
+                alert("An error occurred.");
+            },
+            success: function (data) {
+                document.getElementById('CalculationResults').innerHTML = data.Result;
+            }
+        });
+    }
+
+    function getPriceFromUnderlying(underlyingPrice, multiplier, strikePrice, isLong) {
+        $.ajax({
+            url: '@Url.Action("CalculatePriceFromUnderlying", "Calculation")',
+            data: { 'underlyingPrice': underlyingPrice, 'multiplier': multiplier, 'strikePrice': strikePrice, 'isLong': isLong },
+            dataType: "json",
+            type: "POST",
+            error: function () {
+                alert("An error occurred.");
+            },
+            success: function (data) {
+                document.getElementById('UnderlyingResult').innerHTML = data;
+            }
+        });
+    }
+
+    $(function () { $("#Multiplier").keyup(function () { getStatistics(); }); });
+    $(function () { $("#StrikePrice").keyup(function () { getStatistics(); }); });
+    $(function () { $("#InitialSl").keyup(function () { getStatistics(); }); });
+    $(function () { $("#InitialTp").keyup(function () { getStatistics(); }); });
+    $(function () { $("#PricePerUnit").keyup(function () { getStatistics(); }); });
+    $(function () { $("#OrderCosts").keyup(function () { getStatistics(); }); });
+    $(function () { $("#Units").keyup(function () { getStatistics(); }); });
+    $(function () { $("#IsLong").change(function () { getStatistics(); }); });
+
+    $(function () { $("#UnderlyingCalc").keyup(function () { getPriceFromUnderlying($("#UnderlyingCalc").val(), $("#Multiplier").val(), $("#StrikePrice").val(), document.getElementById("IsLong").checked); }); });
+</script>
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+
+    @Html.HiddenFor(model => model.Id)
+    @Html.HiddenFor(model => model.OriginalVersion)
+
+    <div style="float:left">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Wkn)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Wkn)
+            @Html.ValidationMessageFor(model => model.Wkn)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.IsLong)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.IsLong)
+            @Html.ValidationMessageFor(model => model.IsLong)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Multiplier)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Multiplier)
+            @Html.ValidationMessageFor(model => model.Multiplier)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.StrikePrice)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.StrikePrice)
+            @Html.ValidationMessageFor(model => model.StrikePrice)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Underlying)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Underlying)
+            @Html.ValidationMessageFor(model => model.Underlying)
+        </div>
+
+        <div class="editor-label">
+            <div class="redPerf">
+                @Html.LabelFor(model => model.InitialSl)
+            </div>
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.InitialSl)
+            @Html.ValidationMessageFor(model => model.InitialSl)
+        </div>
+
+        <div class="editor-label">
+            <div class="bluePerf">
+                @Html.LabelFor(model => model.InitialTp)
+            </div>
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.InitialTp)
+            @Html.ValidationMessageFor(model => model.InitialTp)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Units)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Units)
+            @Html.ValidationMessageFor(model => model.Units)
+        </div>
+
+        <div class="editor-label">
+            <div class="greenPerf">
+                @Html.LabelFor(model => model.PricePerUnit)
+            </div>
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PricePerUnit)
+            @Html.ValidationMessageFor(model => model.PricePerUnit)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.OrderCosts)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.OrderCosts)
+            @Html.ValidationMessageFor(model => model.OrderCosts)
+        </div>
+    </div>
+    <div style="float:left;margin:0 10px 0 10px;">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Description)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Description)
+            @Html.ValidationMessageFor(model => model.Description)
+        </div>
+        <div class="editor-label">
+            @Resources.ViewTextCalculationUnderlyingCalc
+        </div>
+        <div class="editor-field">
+            @Html.Editor("UnderlyingCalc")<div id="UnderlyingResult"></div>
+        </div>
+    </div>
+    <div id="CalculationResults" style="padding: 1em 0 0 0;">
+        @Html.Partial("ViewModelCalculationResult", result)
+    </div>
+    <div style="clear:left"></div>
+
+    <p>
+        <input type="submit" value="@Resources.ViewTextSave" />
+    </p>
+}
+
+<div>
+    @Html.ActionLink(Resources.ViewTextBack, "Index")
+</div>

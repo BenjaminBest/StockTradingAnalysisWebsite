@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{AAFAA64B-EBE9-44C3-AD11-ED9070E55374}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>StockTradingAnalysis.Domain.CQRS.Cmd</RootNamespace>
+    <AssemblyName>StockTradingAnalysis.Domain.CQRS.Cmd</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CommandHandler\CalculationAddCommandHandler.cs" />
+    <Compile Include="CommandHandler\CalculationCopyCommandHandler.cs" />
+    <Compile Include="CommandHandler\StockQuotationsAddOrChangeCommandHandler.cs" />
+    <Compile Include="CommandHandler\StockQuotationAddOrChangeCommandHandler.cs" />
+    <Compile Include="CommandHandler\TransactionCalculateCommandHandler.cs" />
+    <Compile Include="CommandHandler\TransactionCalculateDividendCommandHandler.cs" />
+    <Compile Include="CommandHandler\TransactionSplitCommandHandler.cs" />
+    <Compile Include="CommandHandler\TransactionRemoveCommandHandler.cs" />
+    <Compile Include="CommandHandler\TransactionDividendCommandHandler.cs" />
+    <Compile Include="CommandHandler\TransactionSellCommandHandler.cs" />
+    <Compile Include="CommandHandler\TransactionBuyCommandHandler.cs" />
+    <Compile Include="CommandHandler\StrategyAddCommandHandler.cs" />
+    <Compile Include="CommandHandler\FeedbackAddCommandHandler.cs" />
+    <Compile Include="CommandHandler\CalculationChangeCommandHandler.cs" />
+    <Compile Include="CommandHandler\CalculationRemoveCommandHandler.cs" />
+    <Compile Include="CommandHandler\StrategyChangeCommandHandler.cs" />
+    <Compile Include="CommandHandler\StrategyRemoveCommandHandler.cs" />
+    <Compile Include="CommandHandler\StockAddCommandHandler.cs" />
+    <Compile Include="CommandHandler\FeedbackChangeCommandHandler.cs" />
+    <Compile Include="CommandHandler\StockChangeCommandHandler.cs" />
+    <Compile Include="CommandHandler\FeedbackRemoveCommandHandler.cs" />
+    <Compile Include="CommandHandler\StockRemoveCommandHandler.cs" />
+    <Compile Include="Commands\CalculationChangeCommand.cs" />
+    <Compile Include="Commands\CalculationAddCommand.cs" />
+    <Compile Include="Commands\CalculationCopyCommand.cs" />
+    <Compile Include="Commands\StockQuotationsAddOrChangeCommand.cs" />
+    <Compile Include="Commands\StockQuotationAddOrChangeCommand.cs" />
+    <Compile Include="Commands\TransactionCalculateDividendCommand.cs" />
+    <Compile Include="Commands\TransactionCalculateCommand.cs" />
+    <Compile Include="Commands\TransactionSplitCommand.cs" />
+    <Compile Include="Commands\TransactionRemoveCommand.cs" />
+    <Compile Include="Commands\TransactionDividendCommand.cs" />
+    <Compile Include="Commands\TransactionSellCommand.cs" />
+    <Compile Include="Commands\TransactionBuyCommand.cs" />
+    <Compile Include="Commands\StrategyAddCommand.cs" />
+    <Compile Include="Commands\FeedbackAddCommand.cs" />
+    <Compile Include="Commands\CalculationRemoveCommand.cs" />
+    <Compile Include="Commands\StrategyChangeCommand.cs" />
+    <Compile Include="Commands\StrategyRemoveCommand.cs" />
+    <Compile Include="Commands\StockAddCommand.cs" />
+    <Compile Include="Commands\FeedbackChangeCommand.cs" />
+    <Compile Include="Commands\StockChangeCommand.cs" />
+    <Compile Include="Commands\FeedbackRemoveCommand.cs" />
+    <Compile Include="Commands\StockRemoveCommand.cs" />
+    <Compile Include="Exceptions\DomainValidationException.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\StockTradingAnalysis.Domain.Events\StockTradingAnalysis.Domain.Events.csproj">
+      <Project>{07d3490f-b18e-4fa5-804a-7fbb647be184}</Project>
+      <Name>StockTradingAnalysis.Domain.Events</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\StockTradingAnalysis.Interfaces\StockTradingAnalysis.Interfaces.csproj">
+      <Project>{3694cf79-fb2d-4f79-8236-a4975a30924d}</Project>
+      <Name>StockTradingAnalysis.Interfaces</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,56 @@
+﻿@using StockTradingAnalysis.Web.Common.Extensions
+@using StockTradingAnalysis.Web.Models
+@model IEnumerable<StockTradingAnalysis.Web.Models.FeedbackViewModel>
+
+@{
+    ViewBag.Title = Resources.ViewTextFeedbackTitle;
+    var proportion = (Dictionary<Guid, FeedbackProportionViewModel>)ViewBag.Proportion;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<table>
+    <thead>
+        <tr>
+            <th>
+                @Resources.ViewTextFeedbackPercentage
+            </th>
+            <th>
+                @Html.LabelFor(modelItem => Model.FirstOrDefault().Name)
+            </th>
+            <th>
+                @Html.LabelFor(modelItem => Model.FirstOrDefault().Description)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr class="clickableRow" href='@Html.PlainLink("Edit", "Feedback", new { id = item.Id })'>
+                <td>
+                    @if (proportion.ContainsKey(item.Id))
+                    {
+                        if (proportion[item.Id].Proportion != 0)
+                        {
+                            var cssClass = proportion[item.Id].Proportion <= 10 ? "greenPerf" : "redPerf";
+                            <span class="@cssClass">@string.Format("{0} %", proportion[item.Id].Proportion)</span>
+                        }
+                        else
+                        {
+                            string.Format("{0} %", "0.0");
+                        }
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.ActionLink(Resources.ViewTextDelete, "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

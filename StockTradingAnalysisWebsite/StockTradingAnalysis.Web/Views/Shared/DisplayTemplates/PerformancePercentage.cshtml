@@ -1,0 +1,15 @@
+﻿@using StockTradingAnalysis.Web.Common.Enumerations
+@using StockTradingAnalysis.Web.Common.Formatting
+@model decimal?
+         
+@if (Model.HasValue)
+{
+    string cssClass = ValueFormat.GetCssClass(Model.Value, StatisticsKPIsFormat.Percentage, StatisticsKPIsStyleCalcFormat.Dynamically);
+    
+    <span class="@cssClass">@string.Format("{0} %", Model.Value)</span>
+}
+else
+{
+    string.Format("{0} %", "0.0");
+}
+

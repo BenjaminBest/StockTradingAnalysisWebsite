@@ -1,0 +1,11 @@
+﻿@model System.DateTime?
+         
+@if (Model.HasValue)
+{  
+    @Html.TextBox("", Model.Value, new { data_datepicker = true })
+}
+else
+{
+    @Html.TextBox("", "", new { data_datepicker = true })
+}
+

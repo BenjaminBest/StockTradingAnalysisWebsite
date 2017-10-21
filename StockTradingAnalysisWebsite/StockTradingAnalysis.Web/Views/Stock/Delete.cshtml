@@ -1,0 +1,44 @@
+﻿@model StockTradingAnalysis.Web.Models.StockViewModel
+
+@{
+    ViewBag.Title = Resources.ViewTextStockTitle;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.Name)
+</div>
+<div class="display-field">
+    @Html.DisplayFor(model => model.Name)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.Wkn)
+</div>
+<div class="display-field">
+    @Html.DisplayFor(model => model.Wkn)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.Type)
+</div>
+<div class="display-field">
+    @Html.DisplayFor(model => model.Type)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.LongShort)
+</div>
+<div class="display-field">
+    @Html.DisplayFor(model => model.LongShort)
+</div>
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.OriginalVersion)
+    
+    <p>
+        <input type="submit" value="@Resources.ViewTextDelete" /> |
+        @Html.ActionLink(Resources.ViewTextBack, "Index")
+    </p>
+}

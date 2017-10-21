@@ -1,0 +1,100 @@
+﻿@model StockTradingAnalysis.Web.Models.CalculationViewModel
+
+@{
+    ViewBag.Title = Resources.ViewTextCalculationTitle;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="display-label">
+    @Html.LabelFor(model => model.Name)
+</div>
+<div class="display-field">
+    @Html.DisplayFor(model => model.Name)
+</div>
+
+<div class="display-label">
+    @Html.LabelFor(model => model.Wkn)
+</div>
+<div class="display-field">
+    @Html.DisplayFor(model => model.Wkn)
+</div>
+
+<div class="display-label">
+    @Html.LabelFor(model => model.IsLong)
+</div>
+<div class="display-field">
+    @Html.DisplayFor(model => model.IsLong)
+</div>
+
+<div class="display-label">
+    @Html.LabelFor(model => model.Multiplier)
+</div>
+<div class="display-field">
+    @Html.DisplayFor(model => model.Multiplier)
+</div>
+
+<div class="display-label">
+    @Html.LabelFor(model => model.StrikePrice)
+</div>
+<div class="display-field">
+    @Html.DisplayFor(model => model.StrikePrice)
+</div>
+
+<div class="display-label">
+    @Html.LabelFor(model => model.Underlying)
+</div>
+<div class="display-field">
+    @Html.DisplayFor(model => model.Underlying)
+</div>
+
+<div class="display-label">
+    <div class="redPerf">
+        @Html.LabelFor(model => model.InitialSl)
+    </div>
+</div>
+<div class="display-field">
+    @Html.DisplayFor(model => model.InitialSl)
+</div>
+
+<div class="display-label">
+    <div class="bluePerf">
+        @Html.LabelFor(model => model.InitialTp)
+    </div>
+</div>
+<div class="display-field">
+    @Html.DisplayFor(model => model.InitialTp)
+</div>
+
+<div class="editor-label">
+    @Html.LabelFor(model => model.Units)
+</div>
+<div class="editor-field">
+    @Html.EditorFor(model => model.Units)
+    @Html.ValidationMessageFor(model => model.Units)
+</div>
+
+<div class="display-label">
+    <div class="greenPerf">
+        @Html.LabelFor(model => model.PricePerUnit)
+    </div>
+</div>
+<div class="display-field">
+    @Html.DisplayFor(model => model.PricePerUnit)
+</div>
+
+<div class="display-label">
+    @Html.LabelFor(model => model.OrderCosts)
+</div>
+<div class="display-field">
+    @Html.DisplayFor(model => model.OrderCosts)
+</div>
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.OriginalVersion)
+    
+    <p>
+        <input type="submit" value="@Resources.ViewTextDelete" /> |
+        @Html.ActionLink(Resources.ViewTextBack, "Index")
+    </p>
+}

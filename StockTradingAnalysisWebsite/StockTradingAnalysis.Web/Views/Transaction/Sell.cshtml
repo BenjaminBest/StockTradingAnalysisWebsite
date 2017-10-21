@@ -1,0 +1,120 @@
+﻿@model StockTradingAnalysis.Web.Models.TransactionSellingViewModel
+
+@{
+    ViewBag.Title = Resources.ViewTextSell;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var feedbacks = (IEnumerable<SelectListItem>)ViewBag.Feedbacks;
+    var stocks = (IEnumerable<SelectListItem>)ViewBag.Stocks;
+}
+
+@Scripts.Render("~/bundles/validation")
+
+<script type="text/javascript">
+    $(function () { $('#Tag').autocomplete({ source: '@Url.Action("GetTags")', minLength: 1 }); });
+</script>
+
+@using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.ValidationSummary(true)
+
+    <div class="display-left">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.OrderDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.OrderDate)
+            @Html.ValidationMessageFor(model => model.OrderDate)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Units)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Units)
+            @Html.ValidationMessageFor(model => model.Units)
+        </div>
+
+        <div class="editor-label">
+            <div class="greenPerf">
+                @Html.LabelFor(model => model.PricePerUnit)
+            </div>
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PricePerUnit)
+            @Html.ValidationMessageFor(model => model.PricePerUnit)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.OrderCosts)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.OrderCosts)
+            @Html.ValidationMessageFor(model => model.OrderCosts)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Taxes)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Taxes)
+            @Html.ValidationMessageFor(model => model.Taxes)
+        </div>
+        <div class="display-label">
+            @Html.LabelFor(model => model.Tag)
+        </div>
+        <div class="display-field">
+            @Html.EditorFor(model => model.Tag)
+        </div>
+        <div class="display-label">
+            @Html.LabelFor(model => model.MFE)
+        </div>
+        <div class="display-field">
+            @Html.EditorFor(model => model.MFE)
+            @Html.ValidationMessageFor(model => model.MFE)
+        </div>
+        <div class="display-label">
+            @Html.LabelFor(model => model.MAE)
+        </div>
+        <div class="display-field">
+            @Html.EditorFor(model => model.MAE)
+            @Html.ValidationMessageFor(model => model.MAE)
+        </div>
+    </div>
+
+    <div class="display-left" style="padding-left:15px">
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Stock)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.Stock.Id, stocks)
+            @Html.ValidationMessageFor(model => model.Stock.Id)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Feedback)
+        </div>
+        <div class="editor-field">
+            @Html.DropDownListFor(model => model.Feedback, feedbacks, new { multiple = "true" })
+            @Html.ValidationMessageFor(model => model.Feedback)
+        </div>
+</div>
+
+    <div class="display-left" style="padding-left:15px">
+        @Html.EditorFor(model => model.Image)
+        <div class="display-label">
+            @Html.LabelFor(model => model.Description)
+        </div>
+        <div class="display-field">
+            @Html.EditorFor(model => model.Description)
+        </div>
+    </div>
+
+    <div class="display-clear"></div>
+
+    <p>
+        <input type="submit" value="@Resources.ViewTextAdd" />
+    </p>
+}
+<div>
+    @Html.ActionLink(Resources.ViewTextBack, "Index")
+</div>

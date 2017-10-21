@@ -1,0 +1,46 @@
+﻿@model IEnumerable<StockTradingAnalysis.Web.Models.StockViewModel>
+
+@{
+    ViewBag.Title = Resources.ViewTextStockTitle;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@Scripts.Render("~/bundles/custom")
+
+<table>
+    <thead>
+        <tr>
+            <th>
+                @Html.LabelFor(modelItem => Model.FirstOrDefault().Name)
+            </th>
+            <th>
+                @Html.LabelFor(modelItem => Model.FirstOrDefault().Wkn)
+            </th>
+            <th>
+                @Html.LabelFor(modelItem => Model.FirstOrDefault().Type)
+            </th>
+            <th>
+                @Resources.Display_StockUpdateStatus
+            </th>
+        </tr>
+    </thead>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Wkn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Type)
+            </td>
+            <td>
+                <div class="partialContents" data-url="@Url.Action("UpdateQuotation","Stock",new { id = item.Id })"></div>
+            </td>
+        </tr>
+    }
+
+</table>

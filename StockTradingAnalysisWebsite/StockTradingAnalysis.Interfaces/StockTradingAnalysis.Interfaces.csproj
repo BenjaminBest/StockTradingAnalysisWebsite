@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3694CF79-FB2D-4F79-8236-A4975A30924D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>StockTradingAnalysis.Interfaces</RootNamespace>
+    <AssemblyName>StockTradingAnalysis.Interfaces</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Commands\Command.cs" />
+    <Compile Include="Commands\ICommandHandler.cs" />
+    <Compile Include="Commands\ICommandDispatcher.cs" />
+    <Compile Include="Common\IBootModule.cs" />
+    <Compile Include="Common\ILoggingService.cs" />
+    <Compile Include="Configuration\IConfigurationRegistry.cs" />
+    <Compile Include="Common\IPerformanceCounter.cs" />
+    <Compile Include="Common\IPerformanceCounterItem.cs" />
+    <Compile Include="Common\IPerformanceRegistry.cs" />
+    <Compile Include="Data\ISnapshotDatastore.cs" />
+    <Compile Include="Data\IEventDatastore.cs" />
+    <Compile Include="Data\IDatastore.cs" />
+    <Compile Include="DomainContext\ISnapshotableRepository.cs" />
+    <Compile Include="DomainContext\ISnapshotOriginator.cs" />
+    <Compile Include="DomainContext\ISnapshotProcessor.cs" />
+    <Compile Include="DomainContext\SnapshotBase.cs" />
+    <Compile Include="Domain\IAccumulationPlanStatistic.cs" />
+    <Compile Include="Domain\IQuotation.cs" />
+    <Compile Include="Domain\ISplitTransactionBookEntry.cs" />
+    <Compile Include="Domain\IFeedbackProportion.cs" />
+    <Compile Include="Domain\IAccountBalance.cs" />
+    <Compile Include="Domain\IBuyingTransactionBookEntry.cs" />
+    <Compile Include="Domain\IOpenPosition.cs" />
+    <Compile Include="Domain\IDividendTransaction.cs" />
+    <Compile Include="Domain\ISellingTransaction.cs" />
+    <Compile Include="Domain\IBuyingTransaction.cs" />
+    <Compile Include="Domain\ICalculation.cs" />
+    <Compile Include="Domain\ICalculationQuotation.cs" />
+    <Compile Include="Domain\ICalculationResult.cs" />
+    <Compile Include="Domain\IImage.cs" />
+    <Compile Include="Domain\IDividendTransactionBookEntry.cs" />
+    <Compile Include="Domain\ISellingTransactionBookEntry.cs" />
+    <Compile Include="Domain\ISplitTransaction.cs" />
+    <Compile Include="Domain\IStatistic.cs" />
+    <Compile Include="Domain\ITransaction.cs" />
+    <Compile Include="Domain\IStrategy.cs" />
+    <Compile Include="Domain\IFeedback.cs" />
+    <Compile Include="Domain\IStock.cs" />
+    <Compile Include="Domain\ITransactionBook.cs" />
+    <Compile Include="Domain\ITransactionBookEntry.cs" />
+    <Compile Include="Domain\ITransactionFilter.cs" />
+    <Compile Include="Domain\ITransactionPerformance.cs" />
+    <Compile Include="Enumerations\ApproximateResultKindType.cs" />
+    <Compile Include="Enumerations\PerformanceType.cs" />
+    <Compile Include="Enumerations\PositionType.cs" />
+    <Compile Include="Enumerations\StatisticsKPIsFormatType.cs" />
+    <Compile Include="Enumerations\StatisticsKPIsStyleCalcFormatType.cs" />
+    <Compile Include="Events\DomainEvent.cs" />
+    <Compile Include="Events\IDomainEvent.cs" />
+    <Compile Include="Events\IEventHandler.cs" />
+    <Compile Include="DomainContext\IAggregateRoot.cs" />
+    <Compile Include="Events\IEventBus.cs" />
+    <Compile Include="Commands\ICommand.cs" />
+    <Compile Include="Events\IEventStore.cs" />
+    <Compile Include="Events\IEventStoreInitializer.cs" />
+    <Compile Include="Events\IHandle.cs" />
+    <Compile Include="Events\IMessage.cs" />
+    <Compile Include="DomainContext\IAggregateRepository.cs" />
+    <Compile Include="Events\IPersistentStore.cs" />
+    <Compile Include="Events\IPersistentEventStore.cs" />
+    <Compile Include="Events\IPersistentSnapshotStore.cs" />
+    <Compile Include="Events\ISnapshotStore.cs" />
+    <Compile Include="Filter\IFilter.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Queries\IQuery.cs" />
+    <Compile Include="Queries\IQueryDispatcher.cs" />
+    <Compile Include="Queries\IQueryHandler.cs" />
+    <Compile Include="ReadModel\IModelReaderRepository.cs" />
+    <Compile Include="ReadModel\IVersionableModelRepositoryItem.cs" />
+    <Compile Include="ReadModel\IModelRepositoryItem.cs" />
+    <Compile Include="ReadModel\IModelWriterRepository.cs" />
+    <Compile Include="ReadModel\IModelRepository.cs" />
+    <Compile Include="Services\Core\IDateCalculationService.cs" />
+    <Compile Include="Services\Core\IDependencyService.cs" />
+    <Compile Include="Services\Core\ISerializerService.cs" />
+    <Compile Include="Services\Core\IImageService.cs" />
+    <Compile Include="Services\Core\IMathCalculatorService.cs" />
+    <Compile Include="Services\Domain\IInterestRateCalculatorService.cs" />
+    <Compile Include="Services\Domain\IPriceCalculatorService.cs" />
+    <Compile Include="Services\Domain\IAccumulationPlanStatisticService.cs" />
+    <Compile Include="Services\Domain\IStatisticService.cs" />
+    <Compile Include="Services\Domain\IStockQuoteService.cs" />
+    <Compile Include="Services\Domain\ITransactionPerformanceService.cs" />
+    <Compile Include="Services\Core\IPerformanceMeasurementService.cs" />
+    <Compile Include="Types\AlgorithmResult.cs" />
+    <Compile Include="Types\CashFlow.cs" />
+    <Compile Include="Types\HoldingPeriod.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
