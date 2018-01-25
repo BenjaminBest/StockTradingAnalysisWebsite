@@ -9,7 +9,7 @@ namespace StockTradingAnalysis.Domain.Events.Events
         /// <summary>
         /// Gets a stock price for one point in time
         /// </summary>
-        public IQuotation Quotation { get; set; }
+        public IQuotation Quotation { get; private set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="StockQuotationAddedEvent"/> class.

@@ -9,47 +9,47 @@ namespace StockTradingAnalysis.Domain.Events.Events
         /// <summary>
         /// Gets the absolute profit
         /// </summary>
-        public decimal ProfitAbsolute { get; }
+        public decimal ProfitAbsolute { get; private set; }
 
         /// <summary>
         /// Gets the profit (in %)
         /// </summary>
-        public decimal ProfitPercentage { get; }
+        public decimal ProfitPercentage { get; private set; }
 
         /// <summary>
         /// Gets <c>true</c> if profit was made
         /// </summary>
-        public bool ProfitMade { get; }
+        public bool ProfitMade { get; private set; }
 
         /// <summary>
         /// Gets the holding period
         /// </summary>
-        public HoldingPeriod HoldingPeriod { get; }
+        public HoldingPeriod HoldingPeriod { get; private set; }
 
         /// <summary>
         /// Gets the maximum risk per trade
         /// </summary>
-        public decimal R { get; }
+        public decimal R { get; private set; }
 
         /// <summary>
         /// Gets the exit efficiency (based on MAE,MFE)
         /// </summary>
-        public decimal? ExitEfficiency { get; }
+        public decimal? ExitEfficiency { get; private set; }
 
         /// <summary>
         /// Gets the entry efficiency (based on MAE,MFE)
         /// </summary>
-        public decimal? EntryEfficiency { get; }
+        public decimal? EntryEfficiency { get; private set; }
 
         /// <summary>
         /// Gets the maximum loss during trade incl. order costs
         /// </summary>
-        public decimal? MAEAbsolute { get; }
+        public decimal? MAEAbsolute { get; private set; }
 
         /// <summary>
         /// Gets the maximum profit during trade incl. order costs
         /// </summary>
-        public decimal? MFEAbsolute { get; }
+        public decimal? MFEAbsolute { get; private set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TransactionPerformanceCalculatedEvent"/> class.
@@ -93,7 +93,7 @@ namespace StockTradingAnalysis.Domain.Events.Events
         /// </summary>
         protected TransactionPerformanceCalculatedEvent()
         {
-            
+
         }
     }
 }

@@ -59,6 +59,7 @@
     <Compile Include="SnapShotDataStoreTests.cs" />
     <Compile Include="EventDataStoreTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="DeserializationTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

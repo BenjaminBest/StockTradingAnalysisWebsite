@@ -9,27 +9,27 @@ namespace StockTradingAnalysis.Domain.Events.Events
         /// <summary>
         /// Gets the absolute profit
         /// </summary>
-        public decimal ProfitAbsolute { get; }
+        public decimal ProfitAbsolute { get; private set; }
 
         /// <summary>
         /// Gets the profit (in %)
         /// </summary>
-        public decimal ProfitPercentage { get; }
+        public decimal ProfitPercentage { get; private set; }
 
         /// <summary>
         /// Gets <c>true</c> if profit was made
         /// </summary>
-        public bool ProfitMade { get; }
+        public bool ProfitMade { get; private set; }
 
         /// <summary>
         /// Gets the holding period
         /// </summary>
-        public HoldingPeriod HoldingPeriod { get; }
+        public HoldingPeriod HoldingPeriod { get; private set; }
 
         /// <summary>
         /// Gets the maximum risk per trade
         /// </summary>
-        public decimal R { get; }
+        public decimal R { get; private set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="TransactionDividendCalculatedEvent"/> class.
@@ -61,7 +61,7 @@ namespace StockTradingAnalysis.Domain.Events.Events
         /// </summary>
         protected TransactionDividendCalculatedEvent()
         {
-            
+
         }
     }
 }
