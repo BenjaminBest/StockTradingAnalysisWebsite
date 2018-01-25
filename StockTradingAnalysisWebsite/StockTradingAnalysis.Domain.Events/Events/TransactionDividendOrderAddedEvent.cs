@@ -56,6 +56,21 @@ namespace StockTradingAnalysis.Domain.Events.Events
         /// </summary>
         public decimal PositionSize { get; private set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TransactionDividendOrderAddedEvent"/> class.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <param name="aggregateType">Type of the aggregate.</param>
+        /// <param name="orderDate">The order date.</param>
+        /// <param name="shares">The shares.</param>
+        /// <param name="pricePerShare">The price per share.</param>
+        /// <param name="orderCosts">The order costs.</param>
+        /// <param name="description">The description.</param>
+        /// <param name="tag">The tag.</param>
+        /// <param name="image">The image.</param>
+        /// <param name="stockId">The stock identifier.</param>
+        /// <param name="taxes">The taxes.</param>
+        /// <param name="positionSize">Size of the position.</param>
         public TransactionDividendOrderAddedEvent(Guid id, Type aggregateType,
             DateTime orderDate,
             decimal shares,
@@ -79,6 +94,14 @@ namespace StockTradingAnalysis.Domain.Events.Events
             StockId = stockId;
             Taxes = taxes;
             PositionSize = positionSize;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TransactionDividendOrderAddedEvent"/> class.
+        /// </summary>
+        protected TransactionDividendOrderAddedEvent()
+        {
+
         }
     }
 }

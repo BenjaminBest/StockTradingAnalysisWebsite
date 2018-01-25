@@ -1,9 +1,9 @@
-﻿using StockTradingAnalysis.Domain.CQRS.Cmd.Commands;
-using StockTradingAnalysis.Web.Migration.Common;
-using StockTradingAnalysis.Web.Migration.Entities;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using StockTradingAnalysis.Domain.CQRS.Cmd.Commands;
+using StockTradingAnalysis.Web.Migration.Common;
+using StockTradingAnalysis.Web.Migration.Entities;
 
 namespace StockTradingAnalysis.Web.Migration.Importer
 {
@@ -62,7 +62,7 @@ namespace StockTradingAnalysis.Web.Migration.Importer
 
                 CommandDispatcher.Execute(cmd);
 
-                LoggingService.Info($"Stock {item.Value.Name} ({item.Value.OldId})");
+                LoggingService.Info($"Stock {item.Value.Name} (Old ID:{item.Value.OldId}, New ID:{item.Value.Id})");
             }
 
         }

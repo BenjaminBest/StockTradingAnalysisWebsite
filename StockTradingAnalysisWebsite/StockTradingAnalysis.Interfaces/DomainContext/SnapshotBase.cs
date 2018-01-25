@@ -22,6 +22,9 @@ namespace StockTradingAnalysis.Interfaces.DomainContext
         /// </summary>
         public int Version { get; set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SnapshotBase"/> class.
+        /// </summary>
         protected SnapshotBase()
         {
             Id = Guid.NewGuid();

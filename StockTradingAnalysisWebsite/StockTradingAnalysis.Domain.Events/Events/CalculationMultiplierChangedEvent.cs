@@ -15,5 +15,13 @@ namespace StockTradingAnalysis.Domain.Events.Events
         {
             Multiplier = multiplier;
         }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CalculationMultiplierChangedEvent"/> class.
+        /// </summary>
+        protected CalculationMultiplierChangedEvent()
+        {
+            
+        }
     }
 }

@@ -15,5 +15,13 @@ namespace StockTradingAnalysis.Domain.Events.Events
         {
             NewProfitAbsolute = newProfitAbsolute;
         }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="StockOverallPerformanceChangedEvent"/> class.
+        /// </summary>
+        protected StockOverallPerformanceChangedEvent()
+        {
+            
+        }
     }
 }

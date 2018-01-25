@@ -1,11 +1,11 @@
-﻿using Newtonsoft.Json;
-using StockTradingAnalysis.Interfaces.Data;
-using StockTradingAnalysis.Interfaces.Events;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Transactions;
+using Newtonsoft.Json;
+using StockTradingAnalysis.Interfaces.Data;
+using StockTradingAnalysis.Interfaces.Events;
 
 namespace StockTradingAnalysis.Data.MSSQL
 {
@@ -42,8 +42,9 @@ namespace StockTradingAnalysis.Data.MSSQL
                     command.Parameters.AddWithValue("@data", Serialize(item));
                     command.Parameters.AddWithValue("@aggregateId", item.AggregateId);
                     command.Parameters.AddWithValue("@version", item.Version);
+                    command.Parameters.AddWithValue("@timestamp", item.TimeStamp);
 
-                    command.CommandText = $"INSERT INTO {_tableName} ([AggregateId], [Version], [Data]) VALUES (@aggregateId, @version, @data)";
+                    command.CommandText = $"INSERT INTO {_tableName} ([AggregateId], [Version], [Data], [TimeStamp]) VALUES (@aggregateId, @version, @data, @timestamp)";
                     command.ExecuteNonQuery();
                 }
             }
@@ -176,11 +177,13 @@ namespace StockTradingAnalysis.Data.MSSQL
         /// <typeparam name="T">Type</typeparam>
         /// <param name="value">Value</param>
         /// <returns></returns>
-        private static T Deserialize<T>(string value)
+        internal static T Deserialize<T>(string value)
         {
             var settings = new JsonSerializerSettings
             {
-                TypeNameHandling = TypeNameHandling.All
+                TypeNameHandling = TypeNameHandling.All,
+                ConstructorHandling = ConstructorHandling.AllowNonPublicDefaultConstructor,
+                ContractResolver = new JsonPrivateSetterContractResolver()
             };
 
             return string.IsNullOrEmpty(value) ? default(T) : (T)JsonConvert.DeserializeObject(value, settings);
@@ -191,11 +194,13 @@ namespace StockTradingAnalysis.Data.MSSQL
         /// </summary>
         /// <param name="value">Value</param>
         /// <returns></returns>
-        private static string Serialize(object value)
+        internal static string Serialize(object value)
         {
             var settings = new JsonSerializerSettings
             {
-                TypeNameHandling = TypeNameHandling.All
+                TypeNameHandling = TypeNameHandling.All,
+                ConstructorHandling = ConstructorHandling.AllowNonPublicDefaultConstructor,
+                ContractResolver = new JsonPrivateSetterContractResolver()
             };
 
             return value == null ? string.Empty : JsonConvert.SerializeObject(value, settings);

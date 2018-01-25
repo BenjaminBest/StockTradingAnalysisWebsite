@@ -1,5 +1,5 @@
-﻿using StockTradingAnalysis.Interfaces.Domain;
-using System;
+﻿using System;
+using StockTradingAnalysis.Interfaces.Domain;
 
 namespace StockTradingAnalysis.Domain.Events.Domain
 {
@@ -96,13 +96,7 @@ namespace StockTradingAnalysis.Domain.Events.Domain
             if (other == null)
                 return false;
 
-            return
-                Date.Equals(other.Date) &&
-                Changed.Equals(other.Changed) &&
-                Open == other.Open &&
-                Close == other.Close &&
-                High == other.High &&
-                Low == other.Low;
+            return Date.Equals(other.Date);
         }
 
         /// <summary>
@@ -115,13 +109,7 @@ namespace StockTradingAnalysis.Domain.Events.Domain
         {
             unchecked
             {
-                var hashCode = Date.GetHashCode();
-                hashCode = (hashCode * 397) ^ Changed.GetHashCode();
-                hashCode = (hashCode * 397) ^ Open.GetHashCode();
-                hashCode = (hashCode * 397) ^ Close.GetHashCode();
-                hashCode = (hashCode * 397) ^ High.GetHashCode();
-                hashCode = (hashCode * 397) ^ Low.GetHashCode();
-                return hashCode;
+                return Date.GetHashCode();
             }
         }
     }

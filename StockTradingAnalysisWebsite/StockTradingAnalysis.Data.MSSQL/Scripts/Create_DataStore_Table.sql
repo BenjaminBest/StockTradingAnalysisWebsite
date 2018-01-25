@@ -13,7 +13,8 @@ IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[EventD
 CREATE TABLE [dbo].[EventDataStore](
 	[AggregateId] [uniqueidentifier] NOT NULL,
 	[Version] [int] NOT NULL,
-	[Data] [nvarchar](max) NULL
+	[Data] [nvarchar](max) NULL,
+	[TimeStamp] [DateTime] NOT NULL
 ) ON [PRIMARY]
 
 GO

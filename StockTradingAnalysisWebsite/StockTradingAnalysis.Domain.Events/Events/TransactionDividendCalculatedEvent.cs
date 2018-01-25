@@ -31,6 +31,16 @@ namespace StockTradingAnalysis.Domain.Events.Events
         /// </summary>
         public decimal R { get; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TransactionDividendCalculatedEvent"/> class.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <param name="aggregateType">Type of the aggregate.</param>
+        /// <param name="profitAbsolute">The profit absolute.</param>
+        /// <param name="profitPercentage">The profit percentage.</param>
+        /// <param name="profitMade">if set to <c>true</c> [profit made].</param>
+        /// <param name="holdingPeriod">The holding period.</param>
+        /// <param name="r">The r.</param>
         public TransactionDividendCalculatedEvent(Guid id, Type aggregateType,
             decimal profitAbsolute,
             decimal profitPercentage,
@@ -44,6 +54,14 @@ namespace StockTradingAnalysis.Domain.Events.Events
             ProfitMade = profitMade;
             HoldingPeriod = holdingPeriod;
             R = r;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TransactionDividendCalculatedEvent"/> class.
+        /// </summary>
+        protected TransactionDividendCalculatedEvent()
+        {
+            
         }
     }
 }

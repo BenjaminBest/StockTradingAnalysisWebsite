@@ -1,4 +1,6 @@
-﻿using FluentAssertions;
+﻿using System;
+using System.Linq;
+using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using StockTradingAnalysis.EventSourcing.DomainContext;
 using StockTradingAnalysis.EventSourcing.Exceptions;
@@ -6,8 +8,6 @@ using StockTradingAnalysis.EventSourcing.Messaging;
 using StockTradingAnalysis.EventSourcing.Storage;
 using StockTradingAnalysis.Web.Tests.Mocks;
 using StockTradingAnalysis.Web.Tests.Objects;
-using System;
-using System.Linq;
 
 namespace StockTradingAnalysis.Web.Tests
 {
@@ -282,8 +282,8 @@ namespace StockTradingAnalysis.Web.Tests
 
 
         [TestMethod]
-        [Description("Snapshot Processor should correctly calculate when snapshot is needed")]
-        public void SnapshotProcesserShouldCorrectlyCalculateWhenSnapshotIsNeeded()
+        [Description("Snapshot Processor should need snapshot when threashold is exceeded")]
+        public void SnapshotProcesserIsSnapshotNeededShouldReturnTrueWhenThreasholdIsExceeded()
         {
             EventBus eventBus;
             EventStore eventStore;
@@ -304,10 +304,96 @@ namespace StockTradingAnalysis.Web.Tests
             repository.Save(aggregate, 0);
 
             snapshotProcessor.IsSnapshotNeeded(guid, typeof(TestSnapshotAggregate), 5).Should().BeFalse();
+            //Because aggregate version stays 3, every new aggregate version needs a snapshot
             snapshotProcessor.IsSnapshotNeeded(guid, typeof(TestSnapshotAggregate), 6).Should().BeTrue();
-            snapshotProcessor.IsSnapshotNeeded(guid, typeof(TestSnapshotAggregate), 7).Should().BeFalse();
-            snapshotProcessor.IsSnapshotNeeded(guid, typeof(TestSnapshotAggregate), 8).Should().BeFalse();
+            snapshotProcessor.IsSnapshotNeeded(guid, typeof(TestSnapshotAggregate), 7).Should().BeTrue();
+            snapshotProcessor.IsSnapshotNeeded(guid, typeof(TestSnapshotAggregate), 8).Should().BeTrue();
             snapshotProcessor.IsSnapshotNeeded(guid, typeof(TestSnapshotAggregate), 9).Should().BeTrue();
+        }
+
+        [TestMethod]
+        [Description("Snapshot Processor should correctly calculate snapshot intervals")]
+        public void SnapshotProcesserIsSnapshotNeededShouldCorrectlyCalculateThreasholdIntervalsWhenAggregateVersionIsIncreased()
+        {
+            EventBus eventBus;
+            EventStore eventStore;
+            SnapshotStore snapshotStore;
+            SnapshotProcessor snapshotProcessor;
+            InMemorySnapshotStore memorySnapshotStore;
+            var repository = EnvironmentMock.CreateEnvironment<TestSnapshotAggregate>(out eventBus, out eventStore,
+                out snapshotStore, out snapshotProcessor, out memorySnapshotStore, 3);
+
+            var guid = Guid.NewGuid();
+
+            repository.Save(new TestSnapshotAggregate(guid, "Test Snapshot Aggregate v0"), -1);
+
+            var aggregate = repository.GetById(guid);
+            aggregate.ChangeName("Test Snapshot Aggregate v1");
+            aggregate.ChangeName("Test Snapshot Aggregate v2");
+            aggregate.ChangeName("Test Snapshot Aggregate v3 (Snapshot)");
+            repository.Save(aggregate, 0);
+
+            aggregate.ChangeName("Test Snapshot Aggregate v4");
+            repository.Save(aggregate, 3);
+
+            aggregate.ChangeName("Test Snapshot Aggregate v5");
+            repository.Save(aggregate, 4);
+
+            snapshotProcessor.IsSnapshotNeeded(guid, typeof(TestSnapshotAggregate), 5).Should().BeFalse();
+            snapshotProcessor.IsSnapshotNeeded(guid, typeof(TestSnapshotAggregate), 6).Should().BeTrue(); // Needed because last snapshot version is 3
+
+            aggregate.ChangeName("Test Snapshot Aggregate v6 (Snapshot)");
+            repository.Save(aggregate, 5);
+
+            snapshotProcessor.IsSnapshotNeeded(guid, typeof(TestSnapshotAggregate), 6).Should().BeFalse(); //Not needed because snapshot was taken of v5
+
+            aggregate.ChangeName("Test Snapshot Aggregate v7");
+            repository.Save(aggregate, 6);
+
+            snapshotProcessor.IsSnapshotNeeded(guid, typeof(TestSnapshotAggregate), 7).Should().BeFalse();
+
+            aggregate.ChangeName("Test Snapshot Aggregate v8");
+            repository.Save(aggregate, 7);
+
+            snapshotProcessor.IsSnapshotNeeded(guid, typeof(TestSnapshotAggregate), 8).Should().BeFalse();
+            snapshotProcessor.IsSnapshotNeeded(guid, typeof(TestSnapshotAggregate), 9).Should().BeTrue(); // Needed because last snapshot version is 6
+
+            aggregate.ChangeName("Test Snapshot Aggregate v9 (snapshot)");
+            repository.Save(aggregate, 8);
+
+            snapshotProcessor.IsSnapshotNeeded(guid, typeof(TestSnapshotAggregate), 9).Should().BeFalse(); //Not needed because snapshot was taken of v9
+        }
+
+        [TestMethod]
+        [Description("Snapshot Processor should be able to work correctly when multiple events are committed at once")]
+        public void SnapshotProcesserIsSnapshotNeededShouldReturnCorrectValuesWhenMultipleEventsAreCommittedAtOnce()
+        {
+            EventBus eventBus;
+            EventStore eventStore;
+            SnapshotStore snapshotStore;
+            SnapshotProcessor snapshotProcessor;
+            InMemorySnapshotStore memorySnapshotStore;
+            var repository = EnvironmentMock.CreateEnvironment<TestSnapshotAggregate>(out eventBus, out eventStore,
+                out snapshotStore, out snapshotProcessor, out memorySnapshotStore, 3);
+
+            var guid = Guid.NewGuid();
+
+            repository.Save(new TestSnapshotAggregate(guid, "Test Snapshot Aggregate v0"), -1);
+
+            var aggregate = repository.GetById(guid);
+            aggregate.ChangeName("Test Snapshot Aggregate v1");
+            aggregate.ChangeName("Test Snapshot Aggregate v2");
+            aggregate.ChangeName("Test Snapshot Aggregate v3 (Snapshot)");
+            aggregate.ChangeName("Test Snapshot Aggregate v4");
+            aggregate.ChangeName("Test Snapshot Aggregate v5");
+            aggregate.ChangeName("Test Snapshot Aggregate v6 (Snapshot)");
+            aggregate.ChangeName("Test Snapshot Aggregate v7");
+            aggregate.ChangeName("Test Snapshot Aggregate v8");
+            aggregate.ChangeName("Test Snapshot Aggregate v9 (Snapshot)");
+            repository.Save(aggregate, 0);
+
+            aggregate.GetSnapshot().Version.Should().Be(9);
+            memorySnapshotStore.All().Count().Should().Be(1);
         }
     }
 }

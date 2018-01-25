@@ -1,11 +1,11 @@
-﻿using Newtonsoft.Json;
-using StockTradingAnalysis.Interfaces.Data;
-using StockTradingAnalysis.Interfaces.DomainContext;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Transactions;
+using Newtonsoft.Json;
+using StockTradingAnalysis.Interfaces.Data;
+using StockTradingAnalysis.Interfaces.DomainContext;
 
 namespace StockTradingAnalysis.Data.MSSQL
 {
@@ -143,11 +143,12 @@ namespace StockTradingAnalysis.Data.MSSQL
         /// <typeparam name="T">Type</typeparam>
         /// <param name="value">Value</param>
         /// <returns></returns>
-        private static T Deserialize<T>(string value)
+        internal static T Deserialize<T>(string value)
         {
             var settings = new JsonSerializerSettings
             {
-                TypeNameHandling = TypeNameHandling.All
+                TypeNameHandling = TypeNameHandling.All,
+                ContractResolver = new JsonPrivateSetterContractResolver()
             };
 
             return string.IsNullOrEmpty(value) ? default(T) : (T)JsonConvert.DeserializeObject(value, settings);
@@ -158,11 +159,12 @@ namespace StockTradingAnalysis.Data.MSSQL
         /// </summary>
         /// <param name="value">Value</param>
         /// <returns></returns>
-        private static string Serialize(object value)
+        internal static string Serialize(object value)
         {
             var settings = new JsonSerializerSettings
             {
-                TypeNameHandling = TypeNameHandling.All
+                TypeNameHandling = TypeNameHandling.All,
+                ContractResolver = new JsonPrivateSetterContractResolver()
             };
 
             return value == null ? string.Empty : JsonConvert.SerializeObject(value, settings);

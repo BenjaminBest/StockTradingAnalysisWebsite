@@ -1,11 +1,11 @@
-﻿using StockTradingAnalysis.Core.Extensions;
+﻿using System;
+using System.Collections.Generic;
+using StockTradingAnalysis.Core.Extensions;
 using StockTradingAnalysis.Domain.Events.Events;
 using StockTradingAnalysis.Domain.Events.Snapshots;
 using StockTradingAnalysis.Interfaces.Domain;
 using StockTradingAnalysis.Interfaces.DomainContext;
 using StockTradingAnalysis.Interfaces.Events;
-using System;
-using System.Collections.Generic;
 
 namespace StockTradingAnalysis.Domain.Events.Aggregates
 {
@@ -156,7 +156,8 @@ namespace StockTradingAnalysis.Domain.Events.Aggregates
             Type = @event.Type;
             LongShort = @event.LongShort;
 
-            Quotations.AddRange(@event.Quotations);
+            if (@event.Quotations != null)
+                Quotations.AddRange(@event.Quotations);
         }
 
         /// <summary>
@@ -218,9 +219,7 @@ namespace StockTradingAnalysis.Domain.Events.Aggregates
         /// <param name="event">The event</param>
         public void Handle(StockQuotationChangedEvent @event)
         {
-            if (Quotations.Contains(@event.Quotation))
-                return;
-
+            Quotations.RemoveWhere(p => p.Date == @event.Quotation.Date);
             Quotations.Add(@event.Quotation);
         }
 

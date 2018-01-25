@@ -1,6 +1,6 @@
-﻿using StockTradingAnalysis.Interfaces.Domain;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using StockTradingAnalysis.Interfaces.Domain;
 
 namespace StockTradingAnalysis.Domain.Events.Domain
 {
@@ -82,11 +82,17 @@ namespace StockTradingAnalysis.Domain.Events.Domain
         {
             if (_quotations.ContainsKey(quotation.Date))
             {
-                if (!_quotations[quotation.Date].Equals(quotation))
-                {
-                    _quotations.Remove(quotation.Date);
-                    _quotations.Add(quotation.Date, quotation);
-                }
+                var existentQuotation = _quotations[quotation.Date];
+
+                if (existentQuotation.Changed.Equals(quotation.Changed) &&
+                    existentQuotation.Open == quotation.Open &&
+                    existentQuotation.Close == quotation.Close &&
+                    existentQuotation.High == quotation.High &&
+                    existentQuotation.Low == quotation.Low)
+                    return;
+
+                _quotations.Remove(quotation.Date);
+                _quotations.Add(quotation.Date, quotation);
             }
             else
             {

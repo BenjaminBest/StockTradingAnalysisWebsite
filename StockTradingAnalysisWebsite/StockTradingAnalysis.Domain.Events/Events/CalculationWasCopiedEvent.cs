@@ -70,6 +70,24 @@ namespace StockTradingAnalysis.Domain.Events.Events
         /// </summary>
         public bool IsLong { get; private set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CalculationWasCopiedEvent"/> class.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <param name="aggregateType">Type of the aggregate.</param>
+        /// <param name="originalId">The original identifier.</param>
+        /// <param name="name">The name.</param>
+        /// <param name="wkn">The WKN.</param>
+        /// <param name="multiplier">The multiplier.</param>
+        /// <param name="strikePrice">The strike price.</param>
+        /// <param name="underlying">The underlying.</param>
+        /// <param name="initialSl">The initial sl.</param>
+        /// <param name="initialTp">The initial tp.</param>
+        /// <param name="pricePerUnit">The price per unit.</param>
+        /// <param name="orderCosts">The order costs.</param>
+        /// <param name="description">The description.</param>
+        /// <param name="units">The units.</param>
+        /// <param name="isLong">if set to <c>true</c> [is long].</param>
         public CalculationWasCopiedEvent(
             Guid id,
             Type aggregateType,
@@ -101,6 +119,14 @@ namespace StockTradingAnalysis.Domain.Events.Events
             Description = description;
             Units = units;
             IsLong = isLong;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CalculationWasCopiedEvent"/> class.
+        /// </summary>
+        protected CalculationWasCopiedEvent()
+        {
+
         }
     }
 }

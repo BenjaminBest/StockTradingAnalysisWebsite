@@ -1,5 +1,4 @@
 ﻿using System;
-using StockTradingAnalysis.EventSourcing.Events;
 using StockTradingAnalysis.Interfaces.Events;
 
 namespace StockTradingAnalysis.Web.Tests.Objects
@@ -14,6 +13,11 @@ namespace StockTradingAnalysis.Web.Tests.Objects
         {
             IsDividend = isDividend;
             Name = name;
+        }
+
+        protected TestAggregateChangedEvent()
+        {
+
         }
     }
 }

@@ -2,6 +2,10 @@
 
 namespace StockTradingAnalysis.Interfaces.Events
 {
+    /// <summary>
+    /// The DomainEvent is a base class for all events which contains all necessary
+    /// </summary>
+    /// <seealso cref="IDomainEvent" />
     public class DomainEvent : IDomainEvent
     {
         /// <summary>
@@ -48,6 +52,14 @@ namespace StockTradingAnalysis.Interfaces.Events
             EventName = GetType().Name;
             Id = Guid.NewGuid();
             Version = -1;
+        }
+
+        /// <summary>
+        /// Prevents a default instance of the <see cref="DomainEvent"/> class from being created. This ctor is used by JSON serialization.
+        /// </summary>
+        protected DomainEvent()
+        {
+
         }
     }
 }

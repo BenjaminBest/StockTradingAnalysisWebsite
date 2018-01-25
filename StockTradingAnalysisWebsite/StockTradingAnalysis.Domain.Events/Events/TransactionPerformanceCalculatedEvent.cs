@@ -51,6 +51,20 @@ namespace StockTradingAnalysis.Domain.Events.Events
         /// </summary>
         public decimal? MFEAbsolute { get; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TransactionPerformanceCalculatedEvent"/> class.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <param name="aggregateType">Type of the aggregate.</param>
+        /// <param name="profitAbsolute">The profit absolute.</param>
+        /// <param name="profitPercentage">The profit percentage.</param>
+        /// <param name="profitMade">if set to <c>true</c> [profit made].</param>
+        /// <param name="holdingPeriod">The holding period.</param>
+        /// <param name="r">The r.</param>
+        /// <param name="exitEfficiency">The exit efficiency.</param>
+        /// <param name="entryEfficiency">The entry efficiency.</param>
+        /// <param name="maeAbsolute">The mae absolute.</param>
+        /// <param name="mfeAbsolute">The mfe absolute.</param>
         public TransactionPerformanceCalculatedEvent(Guid id, Type aggregateType,
             decimal profitAbsolute,
             decimal profitPercentage,
@@ -72,6 +86,14 @@ namespace StockTradingAnalysis.Domain.Events.Events
             EntryEfficiency = entryEfficiency;
             MAEAbsolute = maeAbsolute;
             MFEAbsolute = mfeAbsolute;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TransactionPerformanceCalculatedEvent"/> class.
+        /// </summary>
+        protected TransactionPerformanceCalculatedEvent()
+        {
+            
         }
     }
 }

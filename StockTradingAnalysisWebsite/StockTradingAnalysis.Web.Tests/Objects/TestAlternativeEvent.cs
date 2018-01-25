@@ -1,5 +1,4 @@
-﻿using StockTradingAnalysis.EventSourcing.Events;
-using System;
+﻿using System;
 using StockTradingAnalysis.Interfaces.Events;
 
 namespace StockTradingAnalysis.Web.Tests.Objects
@@ -8,6 +7,11 @@ namespace StockTradingAnalysis.Web.Tests.Objects
     {
         public TestAlternativeEvent(Guid aggregateId)
             : base(aggregateId, typeof(TestAggregate))
+        {
+
+        }
+
+        protected TestAlternativeEvent()
         {
 
         }

@@ -32,6 +32,16 @@ namespace StockTradingAnalysis.Domain.Events.Events
         /// </summary>
         public IEnumerable<IQuotation> Quotations { get; private set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="StockAddedEvent"/> class.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <param name="aggregateType">Type of the aggregate.</param>
+        /// <param name="name">The name.</param>
+        /// <param name="wkn">The WKN.</param>
+        /// <param name="type">The type.</param>
+        /// <param name="longShort">The long short.</param>
+        /// <param name="quotations">The quotations.</param>
         public StockAddedEvent(Guid id, Type aggregateType, string name, string wkn, string type, string longShort, IEnumerable<IQuotation> quotations)
             : base(id, aggregateType)
         {
@@ -40,6 +50,14 @@ namespace StockTradingAnalysis.Domain.Events.Events
             Type = type;
             LongShort = longShort;
             Quotations = quotations;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="StockAddedEvent"/> class.
+        /// </summary>
+        protected StockAddedEvent()
+        {
+            
         }
     }
 }

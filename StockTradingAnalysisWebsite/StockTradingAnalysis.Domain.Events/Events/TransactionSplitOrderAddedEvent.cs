@@ -25,6 +25,15 @@ namespace StockTradingAnalysis.Domain.Events.Events
         /// </summary>
         public Guid StockId { get; private set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TransactionSplitOrderAddedEvent"/> class.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <param name="aggregateType">Type of the aggregate.</param>
+        /// <param name="orderDate">The order date.</param>
+        /// <param name="shares">The shares.</param>
+        /// <param name="pricePerShare">The price per share.</param>
+        /// <param name="stockId">The stock identifier.</param>
         public TransactionSplitOrderAddedEvent(Guid id, Type aggregateType,
             DateTime orderDate,
             decimal shares,
@@ -36,6 +45,14 @@ namespace StockTradingAnalysis.Domain.Events.Events
             Shares = shares;
             PricePerShare = pricePerShare;
             StockId = stockId;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TransactionSplitOrderAddedEvent"/> class.
+        /// </summary>
+        protected TransactionSplitOrderAddedEvent()
+        {
+            
         }
     }
 }

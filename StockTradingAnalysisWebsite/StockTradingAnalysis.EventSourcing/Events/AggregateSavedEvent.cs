@@ -19,5 +19,13 @@ namespace StockTradingAnalysis.EventSourcing.Events
         {
             Version = version;
         }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AggregateSavedEvent"/> class.
+        /// </summary>
+        protected AggregateSavedEvent()
+        {
+
+        }
     }
 }

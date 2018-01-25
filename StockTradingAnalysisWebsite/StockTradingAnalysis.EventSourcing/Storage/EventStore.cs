@@ -1,11 +1,11 @@
-﻿using StockTradingAnalysis.Core.Common;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using StockTradingAnalysis.Core.Common;
 using StockTradingAnalysis.EventSourcing.Events;
 using StockTradingAnalysis.EventSourcing.Exceptions;
 using StockTradingAnalysis.Interfaces.Events;
 using StockTradingAnalysis.Interfaces.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace StockTradingAnalysis.EventSourcing.Storage
 {

@@ -72,6 +72,24 @@ namespace StockTradingAnalysis.Domain.Events.Events
         /// </summary>
         public decimal PositionSize { get; private set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TransactionSellingOrderAddedEvent"/> class.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <param name="aggregateType">Type of the aggregate.</param>
+        /// <param name="orderDate">The order date.</param>
+        /// <param name="units">The units.</param>
+        /// <param name="pricePerUnit">The price per unit.</param>
+        /// <param name="orderCosts">The order costs.</param>
+        /// <param name="description">The description.</param>
+        /// <param name="tag">The tag.</param>
+        /// <param name="image">The image.</param>
+        /// <param name="stockId">The stock identifier.</param>
+        /// <param name="taxes">The taxes.</param>
+        /// <param name="mae">The mae.</param>
+        /// <param name="mfe">The mfe.</param>
+        /// <param name="feedback">The feedback.</param>
+        /// <param name="positionSize">Size of the position.</param>
         public TransactionSellingOrderAddedEvent(Guid id, Type aggregateType,
             DateTime orderDate,
             decimal units,
@@ -101,6 +119,14 @@ namespace StockTradingAnalysis.Domain.Events.Events
             MFE = mfe;
             Feedback = feedback;
             PositionSize = positionSize;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TransactionSellingOrderAddedEvent"/> class.
+        /// </summary>
+        protected TransactionSellingOrderAddedEvent()
+        {
+            
         }
     }
 }

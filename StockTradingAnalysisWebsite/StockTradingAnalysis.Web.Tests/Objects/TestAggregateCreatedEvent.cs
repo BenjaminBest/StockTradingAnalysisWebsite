@@ -1,5 +1,4 @@
-﻿using StockTradingAnalysis.EventSourcing.Events;
-using System;
+﻿using System;
 using StockTradingAnalysis.Interfaces.Events;
 
 namespace StockTradingAnalysis.Web.Tests.Objects
@@ -12,6 +11,11 @@ namespace StockTradingAnalysis.Web.Tests.Objects
             : base(aggregateId, aggregateType)
         {
             Name = name;
+        }
+
+        protected TestAggregateCreatedEvent()
+        {
+
         }
     }
 }

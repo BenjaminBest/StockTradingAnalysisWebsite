@@ -1,5 +1,5 @@
 bin/
-Log/
+Logs/
 obj/
 .vs/
 packages/

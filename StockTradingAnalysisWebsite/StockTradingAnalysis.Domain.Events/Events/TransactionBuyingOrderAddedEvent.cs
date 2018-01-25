@@ -71,6 +71,24 @@ namespace StockTradingAnalysis.Domain.Events.Events
         /// </summary>
         public decimal CRV { get; private set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TransactionBuyingOrderAddedEvent"/> class.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <param name="aggregateType">Type of the aggregate.</param>
+        /// <param name="orderDate">The order date.</param>
+        /// <param name="units">The units.</param>
+        /// <param name="pricePerUnit">The price per unit.</param>
+        /// <param name="orderCosts">The order costs.</param>
+        /// <param name="description">The description.</param>
+        /// <param name="tag">The tag.</param>
+        /// <param name="image">The image.</param>
+        /// <param name="initialSL">The initial sl.</param>
+        /// <param name="initialTP">The initial tp.</param>
+        /// <param name="stockId">The stock identifier.</param>
+        /// <param name="strategyId">The strategy identifier.</param>
+        /// <param name="positionSize">Size of the position.</param>
+        /// <param name="crv">The CRV.</param>
         public TransactionBuyingOrderAddedEvent(Guid id, Type aggregateType,
             DateTime orderDate,
             decimal units,
@@ -100,6 +118,14 @@ namespace StockTradingAnalysis.Domain.Events.Events
             StrategyId = strategyId;
             PositionSize = positionSize;
             CRV = crv;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TransactionBuyingOrderAddedEvent"/> class.
+        /// </summary>
+        protected TransactionBuyingOrderAddedEvent()
+        {
+            
         }
     }
 }

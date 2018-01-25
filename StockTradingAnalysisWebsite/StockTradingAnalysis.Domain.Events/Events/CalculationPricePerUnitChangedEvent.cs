@@ -10,10 +10,24 @@ namespace StockTradingAnalysis.Domain.Events.Events
         /// </summary>
         public decimal PricePerUnit { get; private set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CalculationPricePerUnitChangedEvent"/> class.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <param name="aggregateType">Type of the aggregate.</param>
+        /// <param name="pricePerUnit">The price per unit.</param>
         public CalculationPricePerUnitChangedEvent(Guid id, Type aggregateType, decimal pricePerUnit)
             : base(id, aggregateType)
         {
             PricePerUnit = pricePerUnit;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CalculationPricePerUnitChangedEvent"/> class.
+        /// </summary>
+        protected CalculationPricePerUnitChangedEvent()
+        {
+
         }
     }
 }
