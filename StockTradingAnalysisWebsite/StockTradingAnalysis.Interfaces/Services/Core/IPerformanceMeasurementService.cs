@@ -27,6 +27,23 @@ namespace StockTradingAnalysis.Interfaces.Services
         void CountCommit(int eventsCount, long elapsedMilliseconds);
 
         /// <summary>
+        /// Measures the performance for reading data from the database 
+        /// </summary>
+        void CountDatabaseReads();
+
+        /// <summary>
+        /// Measures the performance for writing data to the database 
+        /// </summary>
+        void CountDatabaseWrites();
+
+        /// <summary>
+        /// Measures the performance for reading items in the documentdatabase eventstore
+        /// </summary>
+        /// <param name="eventsCount">Number of events commited</param>
+        /// <param name="elapsedMilliseconds">Elapsed time for commit</param>
+        void CountDocumentDatabaseEventStoreRead(int eventsCount, long elapsedMilliseconds);
+
+        /// <summary>
         /// Measures the performance for creating a snapshot
         /// </summary>
         void CountSnapshot();

@@ -1,11 +1,11 @@
-﻿using StockTradingAnalysis.Core.Common;
-using StockTradingAnalysis.Interfaces.Common;
-using System;
+﻿using System;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Routing;
+using StockTradingAnalysis.Core.Common;
+using StockTradingAnalysis.Interfaces.Common;
 using DependencyResolver = System.Web.Mvc.DependencyResolver;
 
 namespace StockTradingAnalysis.Web

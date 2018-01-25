@@ -10,6 +10,15 @@ namespace StockTradingAnalysis.Data.MSSQL
     /// <seealso cref="DefaultContractResolver" />
     public class JsonPrivateSetterContractResolver : DefaultContractResolver
     {
+        protected JsonPrivateSetterContractResolver()
+        { }
+
+        // "Use the parameterless constructor and cache instances of the contract resolver within your application for optimal performance."
+        // Using an explicit static constructor enables lazy initialization.
+        static JsonPrivateSetterContractResolver() { Instance = new JsonPrivateSetterContractResolver(); }
+
+        public static JsonPrivateSetterContractResolver Instance { get; }
+
         /// <summary>
         /// Creates a <see cref="T:Newtonsoft.Json.Serialization.JsonProperty" /> for the given <see cref="T:System.Reflection.MemberInfo" />.
         /// </summary>

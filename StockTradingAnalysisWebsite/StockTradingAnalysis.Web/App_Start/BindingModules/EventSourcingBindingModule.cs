@@ -21,14 +21,15 @@ namespace StockTradingAnalysis.Web.BindingModules
             Bind<IEventBus>().To<EventBus>().InSingletonScope();
             Bind<IEventStore>().To<EventStore>().InSingletonScope();
 
-            Bind<IPersistentEventStore>().To<DocumentDatabaseEventStore>().InSingletonScope();
+            Bind<IPersistentEventStore>().To<DocumentDatabaseEventStore>().WhenInjectedExactlyInto<CachedDocumentDatabaseEventStore>().InSingletonScope();
+            Bind<IPersistentEventStore>().To<CachedDocumentDatabaseEventStore>().InSingletonScope();
             Bind<ISnapshotStore>().To<SnapshotStore>().InSingletonScope();
             Bind<IPersistentSnapshotStore>().To<DocumentDatabaseSnapshotStore>().InSingletonScope();
+            Bind<IDocumentEventStoreCache>().To<DocumentEventStoreSlidingCache>().InSingletonScope().WithConstructorArgument("amountOfAggregatesToCache", 20);
 
             //Bind<IPersistentEventStore>().To<InMemoryEventStore>().InSingletonScope();
             //Bind<IPersistentSnapshotStore>().To<InMemorySnapshotStore>().InSingletonScope();
 
-            //TODO: Make snapshotThreshold configurable per Set-Method (fluent api), use named bindings
             Bind<ISnapshotProcessor>().To<SnapshotProcessor>().WithConstructorArgument("snapshotThreshold", 1000);
             Bind<IEventStoreInitializer>().To<EventStoreInitializer>().InSingletonScope();
 

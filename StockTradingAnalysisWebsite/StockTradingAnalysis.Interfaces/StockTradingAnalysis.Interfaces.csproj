@@ -89,6 +89,7 @@
     <Compile Include="Enumerations\StatisticsKPIsFormatType.cs" />
     <Compile Include="Enumerations\StatisticsKPIsStyleCalcFormatType.cs" />
     <Compile Include="Events\DomainEvent.cs" />
+    <Compile Include="Events\IDocumentEventStoreCache.cs" />
     <Compile Include="Events\IDomainEvent.cs" />
     <Compile Include="Events\IEventHandler.cs" />
     <Compile Include="DomainContext\IAggregateRoot.cs" />

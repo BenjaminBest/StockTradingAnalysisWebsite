@@ -4,8 +4,10 @@ using System.Configuration;
 using System.Data.SqlClient;
 using System.Transactions;
 using Newtonsoft.Json;
+using StockTradingAnalysis.Core.Common;
 using StockTradingAnalysis.Interfaces.Data;
 using StockTradingAnalysis.Interfaces.Events;
+using StockTradingAnalysis.Interfaces.Services;
 
 namespace StockTradingAnalysis.Data.MSSQL
 {
@@ -14,7 +16,19 @@ namespace StockTradingAnalysis.Data.MSSQL
     /// </summary>
     public class EventDatastore : IEventDatastore
     {
+        /// <summary>
+        /// The table name
+        /// </summary>
         private readonly string _tableName;
+
+        /// <summary>
+        /// The performance measurement service
+        /// </summary>
+        private readonly IPerformanceMeasurementService _performanceMeasurementService;
+
+        /// <summary>
+        /// The connection string
+        /// </summary>
         private readonly string _connectionString;
 
         /// <summary>
@@ -22,9 +36,11 @@ namespace StockTradingAnalysis.Data.MSSQL
         /// </summary>
         /// <param name="connectionName">Name of the connection string</param>
         /// <param name="tableName">Name of the database table</param>
-        public EventDatastore(string connectionName, string tableName)
+        /// <param name="performanceMeasurementService">The performance measurement service.</param>
+        public EventDatastore(string connectionName, string tableName, IPerformanceMeasurementService performanceMeasurementService)
         {
             _tableName = tableName;
+            _performanceMeasurementService = performanceMeasurementService;
             _connectionString = ConfigurationManager.ConnectionStrings[connectionName].ConnectionString;
         }
 
@@ -34,18 +50,22 @@ namespace StockTradingAnalysis.Data.MSSQL
         /// <param name="item">The item</param>
         public void Store(IDomainEvent item)
         {
-            using (var connection = new SqlConnection(_connectionString))
+            using (new TimeMeasure(ms => _performanceMeasurementService.CountDatabaseWrites()))
             {
-                connection.Open();
-                using (var command = connection.CreateCommand())
+                using (var connection = new SqlConnection(_connectionString))
                 {
-                    command.Parameters.AddWithValue("@data", Serialize(item));
-                    command.Parameters.AddWithValue("@aggregateId", item.AggregateId);
-                    command.Parameters.AddWithValue("@version", item.Version);
-                    command.Parameters.AddWithValue("@timestamp", item.TimeStamp);
+                    connection.Open();
+                    using (var command = connection.CreateCommand())
+                    {
+                        command.Parameters.AddWithValue("@data", Serialize(item));
+                        command.Parameters.AddWithValue("@aggregateId", item.AggregateId);
+                        command.Parameters.AddWithValue("@version", item.Version);
+                        command.Parameters.AddWithValue("@timestamp", item.TimeStamp);
 
-                    command.CommandText = $"INSERT INTO {_tableName} ([AggregateId], [Version], [Data], [TimeStamp]) VALUES (@aggregateId, @version, @data, @timestamp)";
-                    command.ExecuteNonQuery();
+                        command.CommandText =
+                            $"INSERT INTO {_tableName} ([AggregateId], [Version], [Data], [TimeStamp]) VALUES (@aggregateId, @version, @data, @timestamp)";
+                        command.ExecuteNonQuery();
+                    }
                 }
             }
         }
@@ -73,25 +93,28 @@ namespace StockTradingAnalysis.Data.MSSQL
         /// <returns>All items</returns>
         public IEnumerable<IDomainEvent> Select()
         {
-            var result = new List<IDomainEvent>();
-
-            using (var connection = new SqlConnection(_connectionString))
+            using (new TimeMeasure(ms => _performanceMeasurementService.CountDatabaseReads()))
             {
-                connection.Open();
-                using (var command = connection.CreateCommand())
+                var result = new List<IDomainEvent>();
+
+                using (var connection = new SqlConnection(_connectionString))
                 {
-                    command.CommandText = $"SELECT [Data] FROM {_tableName}";
-                    using (var reader = command.ExecuteReader())
+                    connection.Open();
+                    using (var command = connection.CreateCommand())
                     {
-                        while (reader.Read())
+                        command.CommandText = $"SELECT [Data] FROM {_tableName}";
+                        using (var reader = command.ExecuteReader())
                         {
-                            result.Add(Deserialize<IDomainEvent>(reader.GetString(0)));
+                            while (reader.Read())
+                            {
+                                result.Add(Deserialize<IDomainEvent>(reader.GetString(0)));
+                            }
                         }
                     }
                 }
-            }
 
-            return result;
+                return result;
+            }
         }
 
         /// <summary>
@@ -100,27 +123,30 @@ namespace StockTradingAnalysis.Data.MSSQL
         /// <returns>All items</returns>
         public IEnumerable<IDomainEvent> Select(Guid aggregateId)
         {
-            var result = new List<IDomainEvent>();
-
-            using (var connection = new SqlConnection(_connectionString))
+            using (new TimeMeasure(ms => _performanceMeasurementService.CountDatabaseReads()))
             {
-                connection.Open();
-                using (var command = connection.CreateCommand())
-                {
-                    command.Parameters.AddWithValue("@aggregateId", aggregateId);
+                var result = new List<IDomainEvent>();
 
-                    command.CommandText = $"SELECT [Data] FROM {_tableName} WHERE [AggregateId] = @aggregateId";
-                    using (var reader = command.ExecuteReader())
+                using (var connection = new SqlConnection(_connectionString))
+                {
+                    connection.Open();
+                    using (var command = connection.CreateCommand())
                     {
-                        while (reader.Read())
+                        command.Parameters.AddWithValue("@aggregateId", aggregateId);
+
+                        command.CommandText = $"SELECT [Data] FROM {_tableName} WHERE [AggregateId] = @aggregateId";
+                        using (var reader = command.ExecuteReader())
                         {
-                            result.Add(Deserialize<IDomainEvent>(reader.GetString(0)));
+                            while (reader.Read())
+                            {
+                                result.Add(Deserialize<IDomainEvent>(reader.GetString(0)));
+                            }
                         }
                     }
                 }
-            }
 
-            return result;
+                return result;
+            }
         }
 
         /// <summary>
@@ -131,28 +157,32 @@ namespace StockTradingAnalysis.Data.MSSQL
         /// <returns>A list with all events</returns>
         public IEnumerable<IDomainEvent> Select(Guid aggregateId, int minVersion)
         {
-            var result = new List<IDomainEvent>();
-
-            using (var connection = new SqlConnection(_connectionString))
+            using (new TimeMeasure(ms => _performanceMeasurementService.CountDatabaseReads()))
             {
-                connection.Open();
-                using (var command = connection.CreateCommand())
-                {
-                    command.Parameters.AddWithValue("@aggregateId", aggregateId);
-                    command.Parameters.AddWithValue("@minVersion", minVersion);
+                var result = new List<IDomainEvent>();
 
-                    command.CommandText = $"SELECT [Data] FROM {_tableName} WHERE [AggregateId] = @aggregateId AND [Version] > @minVersion";
-                    using (var reader = command.ExecuteReader())
+                using (var connection = new SqlConnection(_connectionString))
+                {
+                    connection.Open();
+                    using (var command = connection.CreateCommand())
                     {
-                        while (reader.Read())
+                        command.Parameters.AddWithValue("@aggregateId", aggregateId);
+                        command.Parameters.AddWithValue("@minVersion", minVersion);
+
+                        command.CommandText =
+                            $"SELECT [Data] FROM {_tableName} WHERE [AggregateId] = @aggregateId AND [Version] > @minVersion";
+                        using (var reader = command.ExecuteReader())
                         {
-                            result.Add(Deserialize<IDomainEvent>(reader.GetString(0)));
+                            while (reader.Read())
+                            {
+                                result.Add(Deserialize<IDomainEvent>(reader.GetString(0)));
+                            }
                         }
                     }
                 }
-            }
 
-            return result;
+                return result;
+            }
         }
 
         /// <summary>
@@ -160,13 +190,16 @@ namespace StockTradingAnalysis.Data.MSSQL
         /// </summary>
         public void DeleteAll()
         {
-            using (var connection = new SqlConnection(_connectionString))
+            using (new TimeMeasure(ms => _performanceMeasurementService.CountDatabaseWrites()))
             {
-                connection.Open();
-                using (var command = connection.CreateCommand())
+                using (var connection = new SqlConnection(_connectionString))
                 {
-                    command.CommandText = $"DELETE FROM [dbo].[EventDataStore]";
-                    command.ExecuteNonQuery();
+                    connection.Open();
+                    using (var command = connection.CreateCommand())
+                    {
+                        command.CommandText = $"DELETE FROM [dbo].[EventDataStore]";
+                        command.ExecuteNonQuery();
+                    }
                 }
             }
         }
@@ -183,7 +216,7 @@ namespace StockTradingAnalysis.Data.MSSQL
             {
                 TypeNameHandling = TypeNameHandling.All,
                 ConstructorHandling = ConstructorHandling.AllowNonPublicDefaultConstructor,
-                ContractResolver = new JsonPrivateSetterContractResolver()
+                ContractResolver = JsonPrivateSetterContractResolver.Instance
             };
 
             return string.IsNullOrEmpty(value) ? default(T) : (T)JsonConvert.DeserializeObject(value, settings);
@@ -200,7 +233,7 @@ namespace StockTradingAnalysis.Data.MSSQL
             {
                 TypeNameHandling = TypeNameHandling.All,
                 ConstructorHandling = ConstructorHandling.AllowNonPublicDefaultConstructor,
-                ContractResolver = new JsonPrivateSetterContractResolver()
+                ContractResolver = JsonPrivateSetterContractResolver.Instance
             };
 
             return value == null ? string.Empty : JsonConvert.SerializeObject(value, settings);

@@ -51,6 +51,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\StockTradingAnalysis.Core\StockTradingAnalysis.Core.csproj">
+      <Project>{2D924BA2-EBFC-4675-B435-D346F20A77D1}</Project>
+      <Name>StockTradingAnalysis.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\StockTradingAnalysis.Interfaces\StockTradingAnalysis.Interfaces.csproj">
       <Project>{3694CF79-FB2D-4F79-8236-A4975A30924D}</Project>
       <Name>StockTradingAnalysis.Interfaces</Name>

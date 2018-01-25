@@ -51,6 +51,8 @@
     <Compile Include="Exceptions\ConcurrencyException.cs" />
     <Compile Include="Messaging\EventBus.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Storage\CachedDocumentDatabaseEventStore.cs" />
+    <Compile Include="Storage\DocumentEventStoreSlidingCache.cs" />
     <Compile Include="Storage\EventStore.cs" />
     <Compile Include="Storage\DocumentDatabaseEventStore.cs" />
     <Compile Include="Storage\EventStoreInitializer.cs" />

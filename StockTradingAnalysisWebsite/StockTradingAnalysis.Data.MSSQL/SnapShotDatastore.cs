@@ -148,7 +148,7 @@ namespace StockTradingAnalysis.Data.MSSQL
             var settings = new JsonSerializerSettings
             {
                 TypeNameHandling = TypeNameHandling.All,
-                ContractResolver = new JsonPrivateSetterContractResolver()
+                ContractResolver = JsonPrivateSetterContractResolver.Instance
             };
 
             return string.IsNullOrEmpty(value) ? default(T) : (T)JsonConvert.DeserializeObject(value, settings);
@@ -164,7 +164,7 @@ namespace StockTradingAnalysis.Data.MSSQL
             var settings = new JsonSerializerSettings
             {
                 TypeNameHandling = TypeNameHandling.All,
-                ContractResolver = new JsonPrivateSetterContractResolver()
+                ContractResolver = JsonPrivateSetterContractResolver.Instance
             };
 
             return value == null ? string.Empty : JsonConvert.SerializeObject(value, settings);

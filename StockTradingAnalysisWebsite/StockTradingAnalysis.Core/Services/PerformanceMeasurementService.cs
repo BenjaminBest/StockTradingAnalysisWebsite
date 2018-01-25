@@ -38,13 +38,17 @@ namespace StockTradingAnalysis.Core.Services
             Initialize("Snapshots/ms", PerformanceType.RateOfCountsPerMillisecond);
             Initialize("Events/ms", PerformanceType.RateOfCountsPerMillisecond);
             Initialize("Commits/ms", PerformanceType.RateOfCountsPerMillisecond);
-            Initialize("Average Commit Duration", PerformanceType.AverageTimer);
+            Initialize("Average Commit Duration (ms)", PerformanceType.AverageTimer);
             Initialize("Total Queries", PerformanceType.NumberOfItems);
             Initialize("Queries/ms", PerformanceType.RateOfCountsPerMillisecond);
-            Initialize("Average Queries Duration", PerformanceType.AverageTimer);
+            Initialize("Average Queries Duration (ms)", PerformanceType.AverageTimer);
             Initialize("Total Commands", PerformanceType.NumberOfItems);
             Initialize("Commands/ms", PerformanceType.RateOfCountsPerMillisecond);
-            Initialize("Average Commands Duration", PerformanceType.AverageTimer);
+            Initialize("Average Commands Duration (ms)", PerformanceType.AverageTimer);
+            Initialize("Events/ms read [DocumentDatabaseEventStore]", PerformanceType.RateOfCountsPerMillisecond);
+            Initialize("Total Events read [DocumentDatabaseEventStore]", PerformanceType.NumberOfItems);
+            Initialize("Total Database reads", PerformanceType.NumberOfItems);
+            Initialize("Total Database writes", PerformanceType.NumberOfItems);
 
             //TODO: Maybe use const string
             //TODO: Possible counters (absolute time for dehydration)
@@ -98,7 +102,34 @@ namespace StockTradingAnalysis.Core.Services
             _counters["Total Events"].IncrementBy(eventsCount);
             _counters["Commits/ms"].Increment();
             _counters["Events/ms"].IncrementBy(eventsCount);
-            _counters["Average Commit Duration"].IncrementBy(elapsedMilliseconds);
+            _counters["Average Commit Duration (ms)"].IncrementBy(elapsedMilliseconds);
+        }
+
+        /// <summary>
+        /// Measures the performance for reading items in the documentdatabase eventstore
+        /// </summary>
+        /// <param name="eventsCount">Number of events commited</param>
+        /// <param name="elapsedMilliseconds">Elapsed time for commit</param>
+        public void CountDocumentDatabaseEventStoreRead(int eventsCount, long elapsedMilliseconds)
+        {
+            _counters["Events/ms read [DocumentDatabaseEventStore]"].Increment();
+            _counters["Total Events read [DocumentDatabaseEventStore]"].IncrementBy(eventsCount);
+        }
+
+        /// <summary>
+        /// Measures the performance for reading data from the database 
+        /// </summary>
+        public void CountDatabaseReads()
+        {
+            _counters["Total Database reads"].Increment();
+        }
+
+        /// <summary>
+        /// Measures the performance for writing data to the database 
+        /// </summary>
+        public void CountDatabaseWrites()
+        {
+            _counters["Total Database writes"].Increment();
         }
 
         /// <summary>
@@ -118,7 +149,7 @@ namespace StockTradingAnalysis.Core.Services
         {
             _counters["Total Queries"].Increment();
             _counters["Queries/ms"].Increment();
-            _counters["Average Queries Duration"].IncrementBy(elapsedMilliseconds);
+            _counters["Average Queries Duration (ms)"].IncrementBy(elapsedMilliseconds);
         }
 
         /// <summary>
@@ -129,7 +160,7 @@ namespace StockTradingAnalysis.Core.Services
         {
             _counters["Total Commands"].Increment();
             _counters["Commands/ms"].Increment();
-            _counters["Average Commands Duration"].IncrementBy(elapsedMilliseconds);
+            _counters["Average Commands Duration (ms)"].IncrementBy(elapsedMilliseconds);
         }
 
         //TODO: ToString to write all to console

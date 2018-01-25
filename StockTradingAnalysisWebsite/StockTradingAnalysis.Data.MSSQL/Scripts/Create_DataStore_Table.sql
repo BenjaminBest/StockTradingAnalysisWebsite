@@ -14,7 +14,7 @@ CREATE TABLE [dbo].[EventDataStore](
 	[AggregateId] [uniqueidentifier] NOT NULL,
 	[Version] [int] NOT NULL,
 	[Data] [nvarchar](max) NULL,
-	[TimeStamp] [DateTime] NOT NULL
+	[TimeStamp] [DateTime] NOT NULL --Only for testing purposes
 ) ON [PRIMARY]
 
 GO
