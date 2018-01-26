@@ -2,6 +2,7 @@
 using StockTradingAnalysis.CQRS.Exceptions;
 using StockTradingAnalysis.Interfaces.Commands;
 using StockTradingAnalysis.Interfaces.Services;
+using StockTradingAnalysis.Interfaces.Services.Core;
 
 namespace StockTradingAnalysis.CQRS.CommandDispatcher
 {

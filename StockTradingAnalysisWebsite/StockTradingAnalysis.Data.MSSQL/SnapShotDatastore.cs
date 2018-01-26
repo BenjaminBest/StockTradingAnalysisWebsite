@@ -3,18 +3,31 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Transactions;
-using Newtonsoft.Json;
+using StockTradingAnalysis.Core.Common;
 using StockTradingAnalysis.Interfaces.Data;
 using StockTradingAnalysis.Interfaces.DomainContext;
+using StockTradingAnalysis.Interfaces.Services.Core;
 
 namespace StockTradingAnalysis.Data.MSSQL
 {
     /// <summary>
     /// Datastore the entry class for the raven db database
     /// </summary>
-    public class SnapShotDatastore : ISnapshotDatastore
+    public class SnapShotDatastore : DatastoreBase, ISnapshotDatastore
     {
+        /// <summary>
+        /// The table name
+        /// </summary>
         private readonly string _tableName;
+
+        /// <summary>
+        /// The performance measurement service
+        /// </summary>
+        private readonly IPerformanceMeasurementService _performanceMeasurementService;
+
+        /// <summary>
+        /// The connection string
+        /// </summary>
         private readonly string _connectionString;
 
         /// <summary>
@@ -22,10 +35,13 @@ namespace StockTradingAnalysis.Data.MSSQL
         /// </summary>
         /// <param name="connectionName">Name of the connection string</param>
         /// <param name="tableName">Name of the table</param>
-        public SnapShotDatastore(string connectionName, string tableName)
+        /// <param name="performanceMeasurementService">The performance measurement service.</param>
+        public SnapShotDatastore(string connectionName, string tableName, IPerformanceMeasurementService performanceMeasurementService)
+            : base(performanceMeasurementService)
         {
             _tableName = tableName;
             _connectionString = ConfigurationManager.ConnectionStrings[connectionName].ConnectionString;
+            _performanceMeasurementService = performanceMeasurementService;
         }
 
         /// <summary>
@@ -34,16 +50,20 @@ namespace StockTradingAnalysis.Data.MSSQL
         /// <param name="item">The item</param>
         public void Store(SnapshotBase item)
         {
-            using (var connection = new SqlConnection(_connectionString))
+            using (new TimeMeasure(ms => _performanceMeasurementService.CountDatabaseWrites()))
             {
-                connection.Open();
-                using (var command = connection.CreateCommand())
+                using (var connection = new SqlConnection(_connectionString))
                 {
-                    command.Parameters.AddWithValue("@data", Serialize(item));
-                    command.Parameters.AddWithValue("@aggregateId", item.AggregateId);
+                    connection.Open();
+                    using (var command = connection.CreateCommand())
+                    {
+                        command.Parameters.AddWithValue("@data", Serialize(item));
+                        command.Parameters.AddWithValue("@aggregateId", item.AggregateId);
 
-                    command.CommandText = $"INSERT INTO {_tableName} ([AggregateId],[Data]) VALUES (@aggregateId, @data)";
-                    command.ExecuteNonQuery();
+                        command.CommandText =
+                            $"INSERT INTO {_tableName} ([AggregateId],[Data]) VALUES (@aggregateId, @data)";
+                        command.ExecuteNonQuery();
+                    }
                 }
             }
         }
@@ -71,25 +91,28 @@ namespace StockTradingAnalysis.Data.MSSQL
         /// <returns>All items</returns>
         public IEnumerable<SnapshotBase> Select()
         {
-            var result = new List<SnapshotBase>();
-
-            using (var connection = new SqlConnection(_connectionString))
+            using (new TimeMeasure(ms => _performanceMeasurementService.CountDatabaseReads()))
             {
-                connection.Open();
-                using (var command = connection.CreateCommand())
+                var result = new List<SnapshotBase>();
+
+                using (var connection = new SqlConnection(_connectionString))
                 {
-                    command.CommandText = $"SELECT [Data] FROM {_tableName}";
-                    using (var reader = command.ExecuteReader())
+                    connection.Open();
+                    using (var command = connection.CreateCommand())
                     {
-                        while (reader.Read())
+                        command.CommandText = $"SELECT [Data] FROM {_tableName}";
+                        using (var reader = command.ExecuteReader())
                         {
-                            result.Add(Deserialize<SnapshotBase>(reader.GetString(0)));
+                            while (reader.Read())
+                            {
+                                result.Add(Deserialize<SnapshotBase>(reader.GetString(0)));
+                            }
                         }
                     }
                 }
-            }
 
-            return result;
+                return result;
+            }
         }
 
         /// <summary>
@@ -98,27 +121,30 @@ namespace StockTradingAnalysis.Data.MSSQL
         /// <returns>All items</returns>
         public IEnumerable<SnapshotBase> Select(Guid aggregateId)
         {
-            var result = new List<SnapshotBase>();
-
-            using (var connection = new SqlConnection(_connectionString))
+            using (new TimeMeasure(ms => _performanceMeasurementService.CountDatabaseReads()))
             {
-                connection.Open();
-                using (var command = connection.CreateCommand())
-                {
-                    command.Parameters.AddWithValue("@aggregateId", aggregateId);
+                var result = new List<SnapshotBase>();
 
-                    command.CommandText = $"SELECT [Data] FROM {_tableName} WHERE [AggregateId] = @aggregateId";
-                    using (var reader = command.ExecuteReader())
+                using (var connection = new SqlConnection(_connectionString))
+                {
+                    connection.Open();
+                    using (var command = connection.CreateCommand())
                     {
-                        while (reader.Read())
+                        command.Parameters.AddWithValue("@aggregateId", aggregateId);
+
+                        command.CommandText = $"SELECT [Data] FROM {_tableName} WHERE [AggregateId] = @aggregateId";
+                        using (var reader = command.ExecuteReader())
                         {
-                            result.Add(Deserialize<SnapshotBase>(reader.GetString(0)));
+                            while (reader.Read())
+                            {
+                                result.Add(Deserialize<SnapshotBase>(reader.GetString(0)));
+                            }
                         }
                     }
                 }
-            }
 
-            return result;
+                return result;
+            }
         }
 
         /// <summary>
@@ -126,48 +152,18 @@ namespace StockTradingAnalysis.Data.MSSQL
         /// </summary>
         public void DeleteAll()
         {
-            using (var connection = new SqlConnection(_connectionString))
+            using (new TimeMeasure(ms => _performanceMeasurementService.CountDatabaseWrites()))
             {
-                connection.Open();
-                using (var command = connection.CreateCommand())
+                using (var connection = new SqlConnection(_connectionString))
                 {
-                    command.CommandText = $"DELETE FROM [dbo].[SnapshotDataStore]";
-                    command.ExecuteNonQuery();
+                    connection.Open();
+                    using (var command = connection.CreateCommand())
+                    {
+                        command.CommandText = $"DELETE FROM [dbo].[SnapshotDataStore]";
+                        command.ExecuteNonQuery();
+                    }
                 }
             }
-        }
-
-        /// <summary>
-        /// Deserializes the given <param name="value">value</param> into the type T.
-        /// </summary>
-        /// <typeparam name="T">Type</typeparam>
-        /// <param name="value">Value</param>
-        /// <returns></returns>
-        internal static T Deserialize<T>(string value)
-        {
-            var settings = new JsonSerializerSettings
-            {
-                TypeNameHandling = TypeNameHandling.All,
-                ContractResolver = JsonPrivateSetterContractResolver.Instance
-            };
-
-            return string.IsNullOrEmpty(value) ? default(T) : (T)JsonConvert.DeserializeObject(value, settings);
-        }
-
-        /// <summary>
-        /// Serializes the given <param name="value">value</param> into a string
-        /// </summary>
-        /// <param name="value">Value</param>
-        /// <returns></returns>
-        internal static string Serialize(object value)
-        {
-            var settings = new JsonSerializerSettings
-            {
-                TypeNameHandling = TypeNameHandling.All,
-                ContractResolver = JsonPrivateSetterContractResolver.Instance
-            };
-
-            return value == null ? string.Empty : JsonConvert.SerializeObject(value, settings);
         }
     }
 }

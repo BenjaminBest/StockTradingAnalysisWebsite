@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using StockTradingAnalysis.Core.Common;
 using StockTradingAnalysis.Interfaces.Events;
-using StockTradingAnalysis.Interfaces.Services;
+using StockTradingAnalysis.Interfaces.Services.Core;
 
 namespace StockTradingAnalysis.EventSourcing.Storage
 {
@@ -20,7 +20,7 @@ namespace StockTradingAnalysis.EventSourcing.Storage
         /// <summary>
         /// The document event store cache
         /// </summary>
-        private readonly IDocumentEventStoreCache _documentEventStoreCache;
+        private readonly IDocumentStoreCache<IDomainEvent> _documentStoreCache;
 
         /// <summary>
         /// The performance measurement service
@@ -31,16 +31,16 @@ namespace StockTradingAnalysis.EventSourcing.Storage
         /// Initializes this object
         /// </summary>
         /// <param name="persistentEventStore">The persistent event store.</param>
-        /// <param name="documentEventStoreCache">The caching strategy used</param>
-        /// <param name="_performanceMeasurementService">The performance measurement service.</param>
+        /// <param name="documentStoreCache">The caching strategy used</param>
+        /// <param name="performanceMeasurementService">The performance measurement service.</param>
         public CachedDocumentDatabaseEventStore(
             IPersistentEventStore persistentEventStore,
-            IDocumentEventStoreCache documentEventStoreCache,
-            IPerformanceMeasurementService _performanceMeasurementService)
+            IDocumentStoreCache<IDomainEvent> documentStoreCache,
+            IPerformanceMeasurementService performanceMeasurementService)
         {
             _persistentEventStore = persistentEventStore;
-            _documentEventStoreCache = documentEventStoreCache;
-            this._performanceMeasurementService = _performanceMeasurementService;
+            _documentStoreCache = documentStoreCache;
+            _performanceMeasurementService = performanceMeasurementService;
         }
 
         /// <summary>
@@ -49,7 +49,7 @@ namespace StockTradingAnalysis.EventSourcing.Storage
         /// <param name="event">The event</param>
         public void Add(IDomainEvent @event)
         {
-            _documentEventStoreCache.Add(@event);
+            _documentStoreCache.Add(@event);
             _persistentEventStore.Add(@event);
         }
 
@@ -61,7 +61,7 @@ namespace StockTradingAnalysis.EventSourcing.Storage
         {
             var domainEvents = events.ToList();
 
-            _documentEventStoreCache.Add(domainEvents);
+            _documentStoreCache.Add(domainEvents);
             _persistentEventStore.Add(domainEvents);
         }
 
@@ -82,9 +82,9 @@ namespace StockTradingAnalysis.EventSourcing.Storage
         public IEnumerable<IDomainEvent> Find(Guid aggregateId)
         {
             List<IDomainEvent> events = null;
-            using (new TimeMeasure(ms => _performanceMeasurementService.CountDocumentDatabaseEventStoreRead(events.Count, ms)))
+            using (new TimeMeasure(ms => _performanceMeasurementService.CountDocumentDatabaseEventStoreRead(events.Count)))
             {
-                events = _documentEventStoreCache.Get(aggregateId).ToList();
+                events = _documentStoreCache.Get(aggregateId).ToList();
 
                 if (!events.Any())
                     events = _persistentEventStore.Find(aggregateId).ToList();
@@ -102,9 +102,9 @@ namespace StockTradingAnalysis.EventSourcing.Storage
         public IEnumerable<IDomainEvent> Find(Guid aggregateId, int minVersion)
         {
             List<IDomainEvent> events = null;
-            using (new TimeMeasure(ms => _performanceMeasurementService.CountDocumentDatabaseEventStoreRead(events.Count, ms)))
+            using (new TimeMeasure(ms => _performanceMeasurementService.CountDocumentDatabaseEventStoreRead(events.Count)))
             {
-                events = _documentEventStoreCache.Get(aggregateId).ToList();
+                events = _documentStoreCache.Get(aggregateId).ToList();
 
                 if (!events.Any())
                     events = _persistentEventStore.Find(aggregateId).ToList();

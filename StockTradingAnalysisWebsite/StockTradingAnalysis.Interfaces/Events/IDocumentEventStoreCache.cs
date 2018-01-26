@@ -4,27 +4,29 @@ using System.Collections.Generic;
 namespace StockTradingAnalysis.Interfaces.Events
 {
     /// <summary>
-    /// The IDocumentEventStoreCache is a cache for the document store to improve performance
+    /// The IDocumentStoreCache is a cache for the document store to improve performance
     /// </summary>
-    public interface IDocumentEventStoreCache
+    public interface IDocumentStoreCache<TType>
     {
         /// <summary>
-        /// Adds the given <paramref name="@event" /> to the internal cache
+        /// Adds the given <paramref name="item" /> to the internal cache
         /// </summary>
-        /// <param name="event">The event</param>
-        void Add(IDomainEvent @event);
+        /// <param name="item">The event</param>
+        void Add(TType item);
 
         /// <summary>
-        /// Adds the given <paramref name="@events" /> to the internal cache
+        /// Adds the given <paramref name="item" /> to the internal cache
         /// </summary>
-        /// <param name="events">A list of events</param>
-        void Add(IEnumerable<IDomainEvent> @events);
+        /// <param name="item">A list of items</param>
+        void Add(IEnumerable<TType> item);
 
         /// <summary>
-        /// Returns all events which matches the given <paramref name="aggregateId" /> from the internal storage
+        /// Returns all items which matches the given <paramref name="aggregateId" /> from the internal storage
         /// </summary>
         /// <param name="aggregateId">The Id of the aggreate to query the document data store</param>
-        /// <returns>A list with all events</returns>
-        IEnumerable<IDomainEvent> Get(Guid aggregateId);
+        /// <returns>
+        /// A list with all events
+        /// </returns>
+        IEnumerable<TType> Get(Guid aggregateId);
     }
 }

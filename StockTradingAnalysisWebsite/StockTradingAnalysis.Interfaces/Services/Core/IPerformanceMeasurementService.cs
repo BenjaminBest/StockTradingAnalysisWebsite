@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using StockTradingAnalysis.Interfaces.Common;
 
-namespace StockTradingAnalysis.Interfaces.Services
+namespace StockTradingAnalysis.Interfaces.Services.Core
 {
     /// <summary>
     /// The interface IPerformanceMeasurementService defines a service to measure performance / throughput
@@ -40,8 +40,13 @@ namespace StockTradingAnalysis.Interfaces.Services
         /// Measures the performance for reading items in the documentdatabase eventstore
         /// </summary>
         /// <param name="eventsCount">Number of events commited</param>
-        /// <param name="elapsedMilliseconds">Elapsed time for commit</param>
-        void CountDocumentDatabaseEventStoreRead(int eventsCount, long elapsedMilliseconds);
+        void CountDocumentDatabaseEventStoreRead(int eventsCount);
+
+        /// <summary>
+        /// Measures the performance for reading items in the documentdatabase snapshotstore
+        /// </summary>
+        /// <param name="eventsCount">Number of events commited</param>
+        void CountDocumentDatabaseSnapshotStoreRead(int eventsCount);
 
         /// <summary>
         /// Measures the performance for creating a snapshot
@@ -59,5 +64,17 @@ namespace StockTradingAnalysis.Interfaces.Services
         /// </summary>
         /// <param name="elapsedMilliseconds">Elapsed time for running a command</param>
         void CountCommand(long elapsedMilliseconds);
+
+        /// <summary>
+        /// Measures the performance of serialization
+        /// </summary>
+        /// <param name="elapsedMilliseconds">Elapsed time for serialization</param>
+        void CountSerializedObjects(long elapsedMilliseconds);
+
+        /// <summary>
+        /// Measures the performance of deserialization
+        /// </summary>
+        /// <param name="elapsedMilliseconds">Elapsed time for deserialization</param>
+        void CountDeserializedObjects(long elapsedMilliseconds);
     }
 }

@@ -5,6 +5,7 @@ using StockTradingAnalysis.Interfaces.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using StockTradingAnalysis.Interfaces.Services.Core;
 
 namespace StockTradingAnalysis.EventSourcing.DomainContext
 {

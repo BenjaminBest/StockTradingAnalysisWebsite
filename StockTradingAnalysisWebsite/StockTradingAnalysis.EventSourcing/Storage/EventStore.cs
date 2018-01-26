@@ -6,6 +6,7 @@ using StockTradingAnalysis.EventSourcing.Events;
 using StockTradingAnalysis.EventSourcing.Exceptions;
 using StockTradingAnalysis.Interfaces.Events;
 using StockTradingAnalysis.Interfaces.Services;
+using StockTradingAnalysis.Interfaces.Services.Core;
 
 namespace StockTradingAnalysis.EventSourcing.Storage
 {

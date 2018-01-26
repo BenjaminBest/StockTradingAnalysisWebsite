@@ -1,6 +1,7 @@
 ﻿using StockTradingAnalysis.Core.Common;
 using StockTradingAnalysis.Interfaces.Common;
 using StockTradingAnalysis.Interfaces.Services;
+using StockTradingAnalysis.Interfaces.Services.Core;
 
 namespace StockTradingAnalysis.Web.Migration.Common
 {

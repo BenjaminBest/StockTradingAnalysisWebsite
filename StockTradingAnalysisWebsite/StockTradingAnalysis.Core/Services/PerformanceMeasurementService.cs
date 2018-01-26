@@ -3,7 +3,7 @@ using System.Linq;
 using StockTradingAnalysis.Core.Performance;
 using StockTradingAnalysis.Interfaces.Common;
 using StockTradingAnalysis.Interfaces.Enumerations;
-using StockTradingAnalysis.Interfaces.Services;
+using StockTradingAnalysis.Interfaces.Services.Core;
 
 namespace StockTradingAnalysis.Core.Services
 {
@@ -47,8 +47,14 @@ namespace StockTradingAnalysis.Core.Services
             Initialize("Average Commands Duration (ms)", PerformanceType.AverageTimer);
             Initialize("Events/ms read [DocumentDatabaseEventStore]", PerformanceType.RateOfCountsPerMillisecond);
             Initialize("Total Events read [DocumentDatabaseEventStore]", PerformanceType.NumberOfItems);
+            Initialize("Events/ms read [DocumentDatabaseSnapshotStore]", PerformanceType.RateOfCountsPerMillisecond);
+            Initialize("Total Events read [DocumentDatabaseSnapshotStore]", PerformanceType.NumberOfItems);
             Initialize("Total Database reads", PerformanceType.NumberOfItems);
             Initialize("Total Database writes", PerformanceType.NumberOfItems);
+            Initialize("Average serialization duration (ms)", PerformanceType.AverageTimer);
+            Initialize("Total Serialized objects", PerformanceType.NumberOfItems);
+            Initialize("Average deserialization duration (ms)", PerformanceType.AverageTimer);
+            Initialize("Total Deserialized objects", PerformanceType.NumberOfItems);
 
             //TODO: Maybe use const string
             //TODO: Possible counters (absolute time for dehydration)
@@ -109,11 +115,20 @@ namespace StockTradingAnalysis.Core.Services
         /// Measures the performance for reading items in the documentdatabase eventstore
         /// </summary>
         /// <param name="eventsCount">Number of events commited</param>
-        /// <param name="elapsedMilliseconds">Elapsed time for commit</param>
-        public void CountDocumentDatabaseEventStoreRead(int eventsCount, long elapsedMilliseconds)
+        public void CountDocumentDatabaseEventStoreRead(int eventsCount)
         {
-            _counters["Events/ms read [DocumentDatabaseEventStore]"].Increment();
+            _counters["Events/ms read [DocumentDatabaseEventStore]"].IncrementBy(eventsCount);
             _counters["Total Events read [DocumentDatabaseEventStore]"].IncrementBy(eventsCount);
+        }
+
+        /// <summary>
+        /// Measures the performance for reading items in the documentdatabase snapshotstore
+        /// </summary>
+        /// <param name="eventsCount">Number of events commited</param>
+        public void CountDocumentDatabaseSnapshotStoreRead(int eventsCount)
+        {
+            _counters["Events/ms read [DocumentDatabaseSnapshotStore]"].IncrementBy(eventsCount);
+            _counters["Total Events read [DocumentDatabaseSnapshotStore]"].IncrementBy(eventsCount);
         }
 
         /// <summary>
@@ -161,6 +176,26 @@ namespace StockTradingAnalysis.Core.Services
             _counters["Total Commands"].Increment();
             _counters["Commands/ms"].Increment();
             _counters["Average Commands Duration (ms)"].IncrementBy(elapsedMilliseconds);
+        }
+
+        /// <summary>
+        /// Measures the performance of serialization
+        /// </summary>
+        /// <param name="elapsedMilliseconds">Elapsed time for serialization</param>
+        public void CountSerializedObjects(long elapsedMilliseconds)
+        {
+            _counters["Average serialization duration (ms)"].IncrementBy(elapsedMilliseconds);
+            _counters["Total Serialized objects"].Increment();
+        }
+
+        /// <summary>
+        /// Measures the performance of deserialization
+        /// </summary>
+        /// <param name="elapsedMilliseconds">Elapsed time for deserialization</param>
+        public void CountDeserializedObjects(long elapsedMilliseconds)
+        {
+            _counters["Average deserialization duration (ms)"].IncrementBy(elapsedMilliseconds);
+            _counters["Total Deserialized objects"].Increment();
         }
 
         //TODO: ToString to write all to console

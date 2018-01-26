@@ -1,7 +1,9 @@
 ﻿using System;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 using StockTradingAnalysis.Interfaces.Events;
+using StockTradingAnalysis.Interfaces.Services.Core;
 
 namespace StockTradingAnalysis.Data.MSSQL.Tests
 {
@@ -19,7 +21,7 @@ namespace StockTradingAnalysis.Data.MSSQL.Tests
         [Description("MSSQL Eventdatastore should serialize a domain event in such a manor, that it can be correctly deserialized")]
         public void MssqlEventDataStoreSerializeShouldCreateCorrectStringWhenCalledWithADomainEvent()
         {
-            var serializedEvent = EventDatastore.Serialize(_testEvent);
+            var serializedEvent = new EventDatastore("connection", "tableName", new Mock<IPerformanceMeasurementService>().Object).Serialize(_testEvent);
             serializedEvent.Should().Contain("StockTradingAnalysis.Data.MSSQL.Tests.EventDataStoreTests+TestEvent, StockTradingAnalysis.Data.MSSQL.Tests");
             serializedEvent.Should().Contain("Name");
             serializedEvent.Should().Contain("WKN");
@@ -33,7 +35,7 @@ namespace StockTradingAnalysis.Data.MSSQL.Tests
         [Description("MSSQL Eventdatastore should deserialize an aggregate with all properties correctly filled")]
         public void MssqlEventDataStoreDeserializeShouldCreateCorrectDomainEventWhenCalledWithAValidString()
         {
-            var deserializedEvent = EventDatastore.Deserialize<TestEvent>(_testEventSerialized);
+            var deserializedEvent = new EventDatastore("connection", "tableName", new Mock<IPerformanceMeasurementService>().Object).Deserialize<TestEvent>(_testEventSerialized);
 
             deserializedEvent.AggregateId.Should().Be(Guid.Parse("b02386b2-0884-4143-9a1c-3d508c572bb4"));
             deserializedEvent.Id.Should().Be(Guid.Parse("be02c64a-2f9c-43b1-af21-1140f94f6ba4"));

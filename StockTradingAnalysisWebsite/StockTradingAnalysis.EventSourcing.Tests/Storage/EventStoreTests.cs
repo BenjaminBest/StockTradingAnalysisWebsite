@@ -6,6 +6,7 @@ using StockTradingAnalysis.EventSourcing.Storage;
 using StockTradingAnalysis.EventSourcing.Tests.Mocks;
 using StockTradingAnalysis.Interfaces.Events;
 using StockTradingAnalysis.Interfaces.Services;
+using StockTradingAnalysis.Interfaces.Services.Core;
 
 namespace StockTradingAnalysis.EventSourcing.Tests.Storage
 {

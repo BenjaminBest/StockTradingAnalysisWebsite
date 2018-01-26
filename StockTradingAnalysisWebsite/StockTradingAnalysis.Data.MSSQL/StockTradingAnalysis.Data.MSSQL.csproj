@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DatastoreBase.cs" />
     <Compile Include="JsonPrivateSetterContractResolver.cs" />
     <Compile Include="SnapShotDatastore.cs" />
     <Compile Include="EventDatastore.cs" />

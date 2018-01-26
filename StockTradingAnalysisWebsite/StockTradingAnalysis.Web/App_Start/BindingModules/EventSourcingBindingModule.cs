@@ -24,8 +24,11 @@ namespace StockTradingAnalysis.Web.BindingModules
             Bind<IPersistentEventStore>().To<DocumentDatabaseEventStore>().WhenInjectedExactlyInto<CachedDocumentDatabaseEventStore>().InSingletonScope();
             Bind<IPersistentEventStore>().To<CachedDocumentDatabaseEventStore>().InSingletonScope();
             Bind<ISnapshotStore>().To<SnapshotStore>().InSingletonScope();
-            Bind<IPersistentSnapshotStore>().To<DocumentDatabaseSnapshotStore>().InSingletonScope();
-            Bind<IDocumentEventStoreCache>().To<DocumentEventStoreSlidingCache>().InSingletonScope().WithConstructorArgument("amountOfAggregatesToCache", 20);
+            Bind<IPersistentSnapshotStore>().To<DocumentDatabaseSnapshotStore>().WhenInjectedExactlyInto<CachedDocumentDatabaseSnapshotStore>().InSingletonScope();
+            Bind<IPersistentSnapshotStore>().To<CachedDocumentDatabaseSnapshotStore>().InSingletonScope();
+
+            Bind<IDocumentStoreCache<IDomainEvent>>().To<DocumentEventStoreSlidingCache>().InSingletonScope().WithConstructorArgument("amountOfAggregatesToCache", 100);
+            Bind<IDocumentStoreCache<SnapshotBase>>().To<DocumentSnapshotStoreSlidingCache>().InSingletonScope().WithConstructorArgument("amountOfAggregatesToCache", 100);
 
             //Bind<IPersistentEventStore>().To<InMemoryEventStore>().InSingletonScope();
             //Bind<IPersistentSnapshotStore>().To<InMemorySnapshotStore>().InSingletonScope();

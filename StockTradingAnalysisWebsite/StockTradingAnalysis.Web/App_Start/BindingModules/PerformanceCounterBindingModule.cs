@@ -4,6 +4,7 @@ using StockTradingAnalysis.Core.Services;
 using StockTradingAnalysis.Interfaces.Common;
 using StockTradingAnalysis.Interfaces.Enumerations;
 using StockTradingAnalysis.Interfaces.Services;
+using StockTradingAnalysis.Interfaces.Services.Core;
 
 namespace StockTradingAnalysis.Web.BindingModules
 {

@@ -3,18 +3,17 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.Transactions;
-using Newtonsoft.Json;
 using StockTradingAnalysis.Core.Common;
 using StockTradingAnalysis.Interfaces.Data;
 using StockTradingAnalysis.Interfaces.Events;
-using StockTradingAnalysis.Interfaces.Services;
+using StockTradingAnalysis.Interfaces.Services.Core;
 
 namespace StockTradingAnalysis.Data.MSSQL
 {
     /// <summary>
     /// Datastore the entry class for the raven db database
     /// </summary>
-    public class EventDatastore : IEventDatastore
+    public class EventDatastore : DatastoreBase, IEventDatastore
     {
         /// <summary>
         /// The table name
@@ -38,6 +37,7 @@ namespace StockTradingAnalysis.Data.MSSQL
         /// <param name="tableName">Name of the database table</param>
         /// <param name="performanceMeasurementService">The performance measurement service.</param>
         public EventDatastore(string connectionName, string tableName, IPerformanceMeasurementService performanceMeasurementService)
+            : base(performanceMeasurementService)
         {
             _tableName = tableName;
             _performanceMeasurementService = performanceMeasurementService;
@@ -202,41 +202,6 @@ namespace StockTradingAnalysis.Data.MSSQL
                     }
                 }
             }
-        }
-
-        /// <summary>
-        /// Deserializes the given <param name="value">value</param> into the type T.
-        /// </summary>
-        /// <typeparam name="T">Type</typeparam>
-        /// <param name="value">Value</param>
-        /// <returns></returns>
-        internal static T Deserialize<T>(string value)
-        {
-            var settings = new JsonSerializerSettings
-            {
-                TypeNameHandling = TypeNameHandling.All,
-                ConstructorHandling = ConstructorHandling.AllowNonPublicDefaultConstructor,
-                ContractResolver = JsonPrivateSetterContractResolver.Instance
-            };
-
-            return string.IsNullOrEmpty(value) ? default(T) : (T)JsonConvert.DeserializeObject(value, settings);
-        }
-
-        /// <summary>
-        /// Serializes the given <param name="value">value</param> into a string
-        /// </summary>
-        /// <param name="value">Value</param>
-        /// <returns></returns>
-        internal static string Serialize(object value)
-        {
-            var settings = new JsonSerializerSettings
-            {
-                TypeNameHandling = TypeNameHandling.All,
-                ConstructorHandling = ConstructorHandling.AllowNonPublicDefaultConstructor,
-                ContractResolver = JsonPrivateSetterContractResolver.Instance
-            };
-
-            return value == null ? string.Empty : JsonConvert.SerializeObject(value, settings);
         }
     }
 }

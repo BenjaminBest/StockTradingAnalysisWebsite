@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 using StockTradingAnalysis.Domain.Events.Domain;
 using StockTradingAnalysis.Domain.Events.Snapshots;
 using StockTradingAnalysis.Interfaces.Domain;
+using StockTradingAnalysis.Interfaces.Services.Core;
 
 namespace StockTradingAnalysis.Data.MSSQL.Tests
 {
@@ -25,7 +27,7 @@ namespace StockTradingAnalysis.Data.MSSQL.Tests
         [Description("MSSQL SnapShotDatastore should serialize an aggregate in such a manor, that it can be correctly deserialized")]
         public void MssqlSnapShotDataStoreSerializeShouldCreateCorrectStringWhenCalledWithADomainEvent()
         {
-            var serialized = SnapShotDatastore.Serialize(_testAggregate);
+            var serialized = new SnapShotDatastore("connection", "tableName", new Mock<IPerformanceMeasurementService>().Object).Serialize(_testAggregate);
             serialized.Should().Contain("StockTradingAnalysis.Domain.Events.Snapshots.StockAggregateSnapshot, StockTradingAnalysis.Domain.Events");
             serialized.Should().Contain("Name");
             serialized.Should().Contain("WKN");
@@ -39,7 +41,7 @@ namespace StockTradingAnalysis.Data.MSSQL.Tests
         [Description("MSSQL SnapShotDatastore should deserialize an aggregate with all properties correctly filled")]
         public void MssqlSnapShotDataStoreDeserializeShouldCreateCorrectDomainEventWhenCalledWithAValidString()
         {
-            var deserialized = SnapShotDatastore.Deserialize<StockAggregateSnapshot>(_testAggregateSerialized);
+            var deserialized = new SnapShotDatastore("connection", "tableName", new Mock<IPerformanceMeasurementService>().Object).Deserialize<StockAggregateSnapshot>(_testAggregateSerialized);
 
             deserialized.AggregateId.Should().Be(Guid.Parse("a750f2cc-2452-4bce-b720-e9bd647b936b"));
             deserialized.Id.Should().Be(Guid.Parse("9745ad72-cca6-4701-9090-11d829d9ad4c"));

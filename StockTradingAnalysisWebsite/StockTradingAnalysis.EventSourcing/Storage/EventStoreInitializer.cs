@@ -2,6 +2,7 @@
 using StockTradingAnalysis.EventSourcing.Exceptions;
 using StockTradingAnalysis.Interfaces.Common;
 using StockTradingAnalysis.Interfaces.Events;
+using StockTradingAnalysis.Interfaces.Services.Core;
 
 namespace StockTradingAnalysis.EventSourcing.Storage
 {
@@ -26,6 +27,11 @@ namespace StockTradingAnalysis.EventSourcing.Storage
         private readonly ILoggingService _loggingService;
 
         /// <summary>
+        /// The performance measurement service
+        /// </summary>
+        private readonly IPerformanceMeasurementService _performanceMeasurementService;
+
+        /// <summary>
         /// The is initialized
         /// </summary>
         private static bool _isInitialized;
@@ -36,11 +42,17 @@ namespace StockTradingAnalysis.EventSourcing.Storage
         /// <param name="eventStore">The event store.</param>
         /// <param name="eventBus">The event bus.</param>
         /// <param name="loggingService">The logging service.</param>
-        public EventStoreInitializer(IEventStore eventStore, IEventBus eventBus, ILoggingService loggingService)
+        /// <param name="performanceMeasurementService">The performance measurement service.</param>
+        public EventStoreInitializer(
+            IEventStore eventStore,
+            IEventBus eventBus,
+            ILoggingService loggingService,
+            IPerformanceMeasurementService performanceMeasurementService)
         {
             _eventStore = eventStore;
             _eventBus = eventBus;
             _loggingService = loggingService;
+            _performanceMeasurementService = performanceMeasurementService;
         }
 
         /// <summary>
@@ -66,7 +78,11 @@ namespace StockTradingAnalysis.EventSourcing.Storage
                 }
             }
 
+            //Logging performance
             _loggingService.Debug($"Replayed {count} events in {msec / 1000} seconds");
+
+            foreach (var result in _performanceMeasurementService.GetResults())
+                _loggingService.Info(result.Display);
 
             _isInitialized = true;
         }
