@@ -6,7 +6,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<table>
+<table class="table table-hover table-striped">
     <thead>
         <tr>
             <th>
@@ -29,7 +29,7 @@
                     @Html.DisplayFor(modelItem => item.Description)
                 </td>
                 <td>
-                    @Html.ActionLink(Resources.ViewTextDelete, "Delete", new { id = item.Id })
+                    @Html.ActionLink(Resources.ViewTextDelete, "Delete", new { id = item.Id }, new {@class = "btn btn-danger btn-sm" })
                 </td>
             </tr>
         }

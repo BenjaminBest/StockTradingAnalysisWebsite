@@ -1266,4 +1266,7 @@
   <data name="ViewTextSplit" xml:space="preserve">
     <value>Split/Reverse Split</value>
   </data>
+  <data name="ViewTextWarning" xml:space="preserve">
+    <value>Warning!</value>
+  </data>
 </root>

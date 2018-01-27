@@ -2,117 +2,23 @@
 <html>
 <head>
     <title>@ViewBag.Title</title>
-    @Styles.Render("~/Content/css")
+    @Styles.Render("~/bundles/css")    
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/jqueryui")
     @Scripts.Render("~/bundles/custom")
     @RenderSection("head", false)
 </head>
 <body>
-    <div class="page">
-        <div id="header">
-            <div id="title"><h1>@Resources.ViewTextLayoutTitle</h1></div>
-            <div id="menu-trigger">Menu</div>
-            <ul id="menu">
-                <li>
-                    @Html.ActionLink(Resources.ViewTextMainDashboard, "Index", "Dashboard")
-                    <ul>
-                    <li>@Html.ActionLink(Resources.ViewTextInfoStatisticsOverTrades, "StatisticsOverTrades", "Dashboard", null, null)</li>
-                    <li>
-                        <a href="">@Resources.ViewTextMainDashboardPerformance</a>
-                        <ul>
-                            <li>@Html.ActionLink(Resources.ViewTextInfoPerformancePerStocktype, "PerformancePerStocktype", "Dashboard", null, null)</li>
-                            <li>@Html.ActionLink(Resources.ViewTextInfoPerformancePerLongShort, "PerformancePerLongShort", "Dashboard", null, null)</li>
-                            <li>@Html.ActionLink(Resources.ViewTextInfoPerformancePerStrategy, "PerformancePerStrategy", "Dashboard", null, null)</li>
-                            <li>@Html.ActionLink(Resources.ViewTextInfoTradeAveragePerMonth, "TradeAveragePerMonth", "Dashboard", null, null)</li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="">@Resources.ViewTextMainDashboardPotential</a>
-                        <ul>
-                            <li>@Html.ActionLink(Resources.ViewTextInfoMAE, "MaximumAdverseExcursion", "Dashboard", null, null)</li>
-                            <li>@Html.ActionLink(Resources.ViewTextInfoMFE, "MaximumFavorableExcursion", "Dashboard", null, null)</li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="">@Resources.ViewTextMainDashboardGV</a>
-                        <ul>
-                            <li>@Html.ActionLink(Resources.ViewTextInfoExpectedEarningsPerTrade, "ExpectedEarningsPerTrade", "Dashboard", null, null)</li>
-                            <li>@Html.ActionLink(Resources.ViewTextInfoTradeStability, "TradeStability", "Dashboard", null, null)</li>
-                            <li>@Html.ActionLink(Resources.ViewTextInfoGVDistribution, "GVDistribution", "Dashboard", null, null)</li>
-                            <li>@Html.ActionLink(Resources.ViewTextInfoSumPL, "DepotSumPL", "Dashboard", null, null)</li>
-                            <li>@Html.ActionLink(Resources.ViewTextInfoPerformanceProfitLossTrades, "PerformanceProfitLossTrades", "Dashboard", null, null)</li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="">@Resources.ViewTextMainDashboardRisk</a>
-                        <ul>
-                            <li>@Html.ActionLink(Resources.ViewTextInfoClusterAnalysis, "ClusterAnalysis", "Dashboard", null, null)</li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="">@Resources.ViewTextMainDashboardRetirementPlanning</a>
-                        <ul>
-                            <li>@Html.ActionLink(Resources.ViewTextInfoStatisticsTags, "Tags", "Dashboard", null, null)</li>
-                            <li>@Html.ActionLink(Resources.ViewTextInfoStatisticsProducts, "TagsProducts", "Dashboard", null, null)</li>
-                            <li>@Html.ActionLink(Resources.ViewTextInfoStaticticsTagsExportExcel, "ExportTagsToExcel", "Export", new { tag = "Altersvorsorge" }, null)</li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>
-            <li>@Html.ActionLink(Resources.ViewTextStatistics, "Index", "Statistics")</li>
-            <li>
-                @Html.ActionLink(Resources.ViewTextTransactions, "Index", "Transaction")
-                <ul>
-                    <li>@Html.ActionLink(Resources.ViewTextBuy, "Buy", "Transaction", null, null)</li>
-                    <li>@Html.ActionLink(Resources.ViewTextSell, "Sell", "Transaction", null, null)</li>
-                    <li>@Html.ActionLink(Resources.ViewTextDividend, "Dividend", "Transaction", null, null)</li>
-                    <li>@Html.ActionLink(Resources.ViewTextSplit, "Split", "Transaction", null, null)</li>
-                <li>@Html.ActionLink(Resources.ViewTextExportExcel, "ExportTransactionsToExcel", "Export", null, null)</li>
-            </ul>
-        </li>
-        <li>
-            @Html.ActionLink(Resources.ViewTextStock, "Index", "Stock")
-            <ul>
-            <li>@Html.ActionLink(Resources.ViewTextNew, "Create", "Stock", null, null)</li>
-            <li>@Html.ActionLink(Resources.ViewTextStocksUpdate, "UpdateQuotations", "Stock", null, null)</li>
-            <li>
-                <a href="">@Resources.ViewTextStocksQuotations</a>
-                <ul>
-                    <li>@Html.ActionLink(Resources.ViewTextStocksQuotationsIndex, "StockQuotations", "Stock", new { assetClass = "Index" }, null)</li>
-                    <li>@Html.ActionLink(Resources.ViewTextStocksQuotationsETF, "StockQuotations", "Stock", new { assetClass = "ETF" }, null)</li>
-                    <li>@Html.ActionLink(Resources.ViewTextStocksQuotationsStocks, "StockQuotations", "Stock", new { assetClass = "Aktien" }, null)</li>
-                    <li>@Html.ActionLink(Resources.ViewTextStocksQuotationsCertificates, "StockQuotations", "Stock", new { assetClass = "Optionsscheine" }, null)</li>
-                </ul>
-            </li>
-        </ul>
-    </li>
-    <li>
-        @Html.ActionLink(Resources.ViewTextFeedback, "Index", "Feedback")
-        <ul>
-        <li>@Html.ActionLink(Resources.ViewTextNew, "Create", "Feedback", null, null)</li>
-    </ul>
-</li>
-<li>
-    @Html.ActionLink(Resources.ViewTextStrategy, "Index", "Strategy")
-    <ul>
-    <li>@Html.ActionLink(Resources.ViewTextNew, "Create", "Strategy", null, null)</li>
-</ul>
-</li>
-<li>
-    @Html.ActionLink(Resources.ViewTextCalculation, "Index", "Calculation")
-    <ul>
-    <li>@Html.ActionLink(Resources.ViewTextNew, "Create", "Calculation", null, null)</li>
-</ul>
-</li>
-</ul>
+@{ Html.RenderPartial("Navigation"); }
+    
+<div class="page">
+    <div id="main">
+        @RenderBody()
+    </div>
+    <div id="footer">
+    </div>
 </div>
-<div id="main">
-    @RenderBody()
-</div>
-<div id="footer">
-</div>
-</div>
-       @RenderSection("scripts", false)
+@RenderSection("scripts", false)
+@Scripts.Render("~/bundles/js")
 </body>
 </html>

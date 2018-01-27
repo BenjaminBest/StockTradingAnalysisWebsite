@@ -24,7 +24,7 @@
     @Html.HiddenFor(model => model.OriginalVersion)
     
     <p>
-        <input type="submit" value="@Resources.ViewTextDelete" /> |
+        <input type="submit" value="@Resources.ViewTextDelete" class= "btn btn-danger btn-sm" />
         @Html.ActionLink(Resources.ViewTextBack, "Index")
     </p>
 }

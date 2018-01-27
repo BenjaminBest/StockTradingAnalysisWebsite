@@ -28,8 +28,8 @@
 {
     @Html.HiddenFor(model => model.OriginalVersion)
     
-    <p>
-        <input type="submit" value="@Resources.ViewTextDelete" /> |
-        @Html.ActionLink(Resources.ViewTextBack, "Index")
-    </p>
+<p>
+    <input type="submit" value="@Resources.ViewTextDelete" class="btn btn-danger" /> |
+    @Html.ActionLink(Resources.ViewTextBack, "Index", null, new { @class = "btn btn-info" })
+</p>
 }

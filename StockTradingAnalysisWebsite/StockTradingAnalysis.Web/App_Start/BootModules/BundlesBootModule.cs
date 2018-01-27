@@ -14,14 +14,18 @@ namespace StockTradingAnalysis.Web.BootModules
 
         private static void RegisterBundles(BundleCollection bundles)
         {
-            bundles.Add(new StyleBundle("~/Content/css").Include(
-                "~/Content/Css/Site.css",
+            bundles.Add(new StyleBundle("~/bundles/css").Include(
+                "~/Content/Css/bootstrap.css", //-->https://bootswatch.com/slate/
                 "~/Content/Css/prettyPhoto.css",
-                "~/Content/themes/dark-hive/jquery-ui.dark-hive.css"));
+                "~/Content/Css/site.css"
+                ));
+
+            bundles.Add(new ScriptBundle("~/bundles/js").Include(
+                "~/Content/Js/custom.js",
+                "~/Content/Js/bootstrap.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/custom").Include(
                 "~/Scripts/jquery.dateandtimepicker.js",
-                "~/Scripts/custom.js",
                 "~/Scripts/jquery.prettyPhoto.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/validation").Include(

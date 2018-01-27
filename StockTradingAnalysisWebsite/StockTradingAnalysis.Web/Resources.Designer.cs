@@ -19,7 +19,7 @@ namespace StockTradingAnalysis.Web {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Resources {
@@ -3486,6 +3486,15 @@ namespace StockTradingAnalysis.Web {
         public static string ViewTextTransactionsTitle {
             get {
                 return ResourceManager.GetString("ViewTextTransactionsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Warning!.
+        /// </summary>
+        public static string ViewTextWarning {
+            get {
+                return ResourceManager.GetString("ViewTextWarning", resourceCulture);
             }
         }
         

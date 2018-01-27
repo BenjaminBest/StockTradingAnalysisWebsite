@@ -35,10 +35,10 @@
     </div>
 
     <p>
-        <input type="submit" value="@Resources.ViewTextSave" />
+        <input type="submit" value="@Resources.ViewTextSave" class="btn btn-success" />
     </p>
 }
 
 <div>
-    @Html.ActionLink(Resources.ViewTextBack, "Index")
+    @Html.ActionLink(Resources.ViewTextBack, "Index", null, new {@class = "btn btn-info" })
 </div>
