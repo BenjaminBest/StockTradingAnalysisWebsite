@@ -129,17 +129,17 @@
                         @Html.ValidationMessageFor(model => buy.Strategy)
                     </div>
                 }
-
-            </div>
-            <div class="col-lg-3">
-
-                @Html.EditorFor(model => model.Image)
-
+                
                 <div class="form-group">
                     @Html.LabelFor(model => model.Description)
                     @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", rows = 15 } })
                     @Html.ValidationMessageFor(model => model.Description)
                 </div>
+
+            </div>
+            <div class="col-lg-3">
+
+                @Html.EditorFor(model => model.Image)
 
             </div>
         </div>

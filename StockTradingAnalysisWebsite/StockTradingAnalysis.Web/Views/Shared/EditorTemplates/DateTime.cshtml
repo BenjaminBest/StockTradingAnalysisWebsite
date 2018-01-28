@@ -13,11 +13,19 @@
 
         @if (isWriteProtected)
         {
-            <input type='text' class="form-control" readonly="" />
+            @Html.TextBox("", String.Format("{0:dd.MM.yyyy HH:mm}", Model.Value), new { @class = "form-control", @readonly = "" })
         }
         else
         {
-            <input type='text' class="form-control" />
+            if (@Model.HasValue)
+            {
+                @Html.TextBox("", String.Format("{0:dd.MM.yyyy HH:mm}", Model.Value), new { @class = "form-control" })
+
+            }
+            else
+            {
+                @Html.TextBox("", String.Format("{0:dd.MM.yyyy HH:mm}", DateTime.Now), new { @class = "form-control"})
+            }
         }
     </div>
 </div>
