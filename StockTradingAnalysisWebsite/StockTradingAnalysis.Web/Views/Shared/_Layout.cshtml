@@ -2,10 +2,10 @@
 <html>
 <head>
     <title>@ViewBag.Title</title>
-    @Styles.Render("~/bundles/css")    
+    @Styles.Render("~/bundles/css")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/jqueryui")
-    @Scripts.Render("~/bundles/custom")
+    @Scripts.Render("~/bundles/js")
     @RenderSection("head", false)
 </head>
 <body>
@@ -19,6 +19,5 @@
     </div>
 </div>
 @RenderSection("scripts", false)
-@Scripts.Render("~/bundles/js")
 </body>
 </html>

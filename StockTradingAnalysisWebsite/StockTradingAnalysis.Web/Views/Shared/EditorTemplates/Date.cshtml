@@ -1,11 +1,32 @@
-﻿@model System.DateTime?
-         
-@if (Model.HasValue)
-{  
-    @Html.TextBox("", Model.Value, new { data_datepicker = true })
-}
-else
-{
-    @Html.TextBox("", "", new { data_datepicker = true })
+﻿@model DateTime?
+
+@{
+    var isReadonly = (bool?)ViewData["readonly"] ?? false; isReadonly = false;
+     var id = Guid.NewGuid();
 }
 
+<div class="form-group">
+    <div class='input-group date' id='@id'>
+        <div class="input-group-prepend input-group-addon">
+            <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+        </div>
+
+        @if (isReadonly)
+        {
+            <input type='text' class="form-control" readonly="" />
+        }
+        else
+        {
+            <input type='text' class="form-control" />
+        }
+    </div>
+</div>
+
+
+    <script type="text/javascript">
+        $(function() {
+            $('#@id').datetimepicker({
+                locale: 'de'
+            });
+        });
+    </script>

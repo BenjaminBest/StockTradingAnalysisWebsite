@@ -1,4 +1,8 @@
-﻿using AutoMapper;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web.Mvc;
+using AutoMapper;
 using StockTradingAnalysis.Domain.CQRS.Cmd.Commands;
 using StockTradingAnalysis.Domain.CQRS.Cmd.Exceptions;
 using StockTradingAnalysis.Domain.CQRS.Query.Queries;
@@ -9,10 +13,6 @@ using StockTradingAnalysis.Interfaces.Services;
 using StockTradingAnalysis.Web.Common;
 using StockTradingAnalysis.Web.Common.Interfaces;
 using StockTradingAnalysis.Web.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Mvc;
 
 namespace StockTradingAnalysis.Web.Controllers
 {
@@ -284,58 +284,6 @@ namespace StockTradingAnalysis.Web.Controllers
             var items = _queryDispatcher.Execute(new TransactionTagSearchQuery(term));
 
             return Json(items.Take(10), JsonRequestBehavior.AllowGet);
-        }
-
-        // GET: /Transactions/ToolTip/5
-        /// <summary>
-        /// Returns a tooltip for the given transaction
-        /// </summary>
-        /// <param name="id">Id of transaction</param>
-        /// <returns></returns>
-        public ActionResult ToolTip(Guid id)
-        {
-            var toolTip = new TransactionToolTipViewModel();
-
-            var transaction = _queryDispatcher.Execute(new TransactionByIdQuery(id));
-            var performance = _queryDispatcher.Execute(new TransactionPerformanceByIdQuery(id));
-
-            toolTip.Id = transaction.Id;
-            toolTip.Title = $"{transaction.Action} von {transaction.Stock.Name}";
-
-            if (performance != null)
-            {
-                toolTip.EntryEfficiency = performance.EntryEfficiency;
-                toolTip.ExitEfficiency = performance.ExitEfficiency;
-                toolTip.HoldingPeriod = performance.HoldingPeriod.IsIntradayTrade ?
-                    $"{performance.HoldingPeriod.ToMinutes():00} {Resources.DisplayTooltipMinutes}" : $"{performance.HoldingPeriod.ToDays():00} {Resources.DisplayTooltipDays}";
-
-                toolTip.MAEAbsolute = performance.MAEAbsolute;
-                toolTip.MFEAbsolute = performance.MFEAbsolute;
-            }
-
-            var buying = transaction as IBuyingTransaction;
-            if (buying != null)
-            {
-                toolTip.StrategyName = buying.Strategy.Name;
-                toolTip.InitialSL = buying.InitialSL;
-                toolTip.InitialTP = buying.InitialTP;
-                toolTip.CRV = buying.CRV;
-            }
-
-            var dividend = transaction as IDividendTransaction;
-            if (dividend != null)
-            {
-                //TODO: CHeck if its right that a dividend has no mae/mfe
-            }
-
-            var selling = transaction as ISellingTransaction;
-            if (selling != null)
-            {
-                toolTip.MAE = selling.MAE;
-                toolTip.MFE = selling.MFE;
-            }
-
-            return PartialView(toolTip);
         }
 
         /// <summary>

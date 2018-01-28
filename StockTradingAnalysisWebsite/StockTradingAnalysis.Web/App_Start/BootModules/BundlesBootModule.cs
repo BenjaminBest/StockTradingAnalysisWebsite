@@ -16,17 +16,15 @@ namespace StockTradingAnalysis.Web.BootModules
         {
             bundles.Add(new StyleBundle("~/bundles/css").Include(
                 "~/Content/Css/bootstrap.css", //-->https://bootswatch.com/slate/
-                "~/Content/Css/prettyPhoto.css",
-                "~/Content/Css/site.css"
-                ));
+                "~/Content/Css/site.css",
+                "~/Content/Css/font-awesome.min.css",
+                "~/Content/Css/bootstrap-datetimepicker.min.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/js").Include(
                 "~/Content/Js/custom.js",
-                "~/Content/Js/bootstrap.js"));
-
-            bundles.Add(new ScriptBundle("~/bundles/custom").Include(
-                "~/Scripts/jquery.dateandtimepicker.js",
-                "~/Scripts/jquery.prettyPhoto.js"));
+                "~/Content/Js/bootstrap.js",
+                "~/Content/Js/moment-with-locales.js",
+                "~/Content/Js/bootstrap-datetimepicker.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/validation").Include(
                 "~/Scripts/jquery.validate.min.js",

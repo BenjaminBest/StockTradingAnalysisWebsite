@@ -2,67 +2,70 @@
 
 @{
     ViewBag.Title = Resources.ViewTextTransactionsTitle;
-    Layout = "~/Views/Shared/_Layout.cshtml";    
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="alert alert-dismissible alert-warning">
-    <button type="button" class="close" data-dismiss="alert">&times;</button>
-    <h4 class="alert-heading">@Resources.ViewTextWarning</h4>
-    <p class="mb-0">@Resources.ViewTextTransactionDeleteInformation</p>
+<div class="container-fluid">
+    <div class="alert alert-dismissible alert-warning">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <h4 class="alert-heading">@Resources.ViewTextWarning</h4>
+        <p class="mb-0">@Resources.ViewTextTransactionDeleteInformation</p>
+    </div>
 </div>
 
-<div class="display-field" style="float: right">
-    
-    @Html.DisplayFor(model => model.Image)
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-3">
+            <div class="form-group">
+                @Html.LabelFor(model => model.OrderDate)
+                @Html.EditorFor(model => model.OrderDate, new { @readonly = true })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Units)
+                @Html.EditorFor(model => model.Units, new { htmlAttributes = new { @class = "form-control", @readonly = "" } })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.PricePerUnit)
+                @Html.EditorFor(model => model.PricePerUnit, new { htmlAttributes = new { @class = "form-control", @readonly = "" } })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.OrderCosts)
+                @Html.EditorFor(model => model.OrderCosts, new { htmlAttributes = new { @class = "form-control", @readonly = "" } })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Stock)
+                @Html.ActionLink(Model.Stock.StocksShortDescription, "Edit", "Stock", new { id = Model.Stock.Id }, new { @class = "form-control btn btn-primary" })
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Tag)
+                @Html.EditorFor(model => model.Tag, new { htmlAttributes = new { @class = "form-control", @readonly = "" } })
+            </div>
+
+        </div>
+        <div class="col-lg-3">
+            <div class="form-group">
+                @Html.LabelFor(model => model.Description)
+                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", @readonly = "", rows = 15 } })
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <div class="form-group">
+                @Html.DisplayFor(model => model.Image)
+            </div>
+        </div>
+    </div>
 </div>
-<div class="editor-label">
-    @Html.LabelFor(model => model.OrderDate)
-</div>
-<div class="display-field">
-    @Html.DisplayFor(model => model.OrderDate)
-</div>
-<div class="editor-label">
-    @Html.LabelFor(model => model.Units)
-</div>
-<div class="display-field">
-    @Html.DisplayFor(model => model.Units)
-</div>
-<div class="editor-label">
-    @Html.LabelFor(model => model.PricePerUnit)
-</div>
-<div class="display-field">
-    @Html.DisplayFor(model => model.PricePerUnit)
-</div>
-<div class="editor-label">
-    @Html.LabelFor(model => model.OrderCosts)
-</div>
-<div class="display-field">
-    @Html.DisplayFor(model => model.OrderCosts)
-</div>
-<div class="editor-label">
-    @Html.LabelFor(model => model.Stock)
-</div>
-<div class="display-field">
-    @Html.ActionLink(Model.Stock.StocksShortDescription, "Edit", "Stock", new { id = Model.Stock.Id }, null)
-</div>
-<div class="display-label">
-    @Html.LabelFor(model => model.Tag)
-</div>
-<div class="display-field">
-    @Html.DisplayFor(model => model.Tag)
-</div>
-<div class="editor-label">
-    @Html.LabelFor(model => model.Description)
-</div>
-<div class="display-field">
-    @Html.DisplayFor(model => model.Description)
-</div>
+
 @using (Html.BeginForm())
 {
     @Html.HiddenFor(model => model.OriginalVersion)
-    
-    <p>
-        <input type="submit" value="@Resources.ViewTextDelete" class= "btn btn-danger" />
-        @Html.ActionLink(Resources.ViewTextBack, "Index", null, new {@class = "btn btn-info" })
-    </p>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-3">
+                <input type="submit" value="@Resources.ViewTextDelete" class="btn btn-danger" />
+                @Html.ActionLink(Resources.ViewTextBack, "Index", null, new { @class = "btn btn-info" })
+            </div>
+        </div>
+    </div>
 }

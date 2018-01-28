@@ -31,9 +31,9 @@ namespace StockTradingAnalysis.Domain.CQRS.Query.QueryHandler
             var items = _modelReaderRepository.GetAll().Select(t => t.Tag);
 
             if (!query.SearchTerm.Equals(" "))
-                items = items.Where(i => i.StartsWith(query.SearchTerm, StringComparison.InvariantCultureIgnoreCase));
+                items = items.Where(i => i != null && i.StartsWith(query.SearchTerm, StringComparison.InvariantCultureIgnoreCase));
 
-            return items.Select(i => i).Distinct();
+            return items.Select(i => i).Where(i => !string.IsNullOrEmpty(i)).Distinct();
         }
     }
 }

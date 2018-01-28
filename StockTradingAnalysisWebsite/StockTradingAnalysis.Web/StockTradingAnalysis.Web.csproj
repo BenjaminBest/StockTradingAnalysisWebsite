@@ -153,14 +153,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Css\bootstrap-datetimepicker.min.css" />
     <Content Include="Content\Css\bootstrap.css" />
-    <Content Include="Content\Css\prettyPhoto.css" />
+    <Content Include="Content\Css\font-awesome.min.css" />
     <Content Include="Content\Css\site.css" />
+    <Content Include="Content\Fonts\fontawesome-webfont.svg" />
     <Content Include="Content\Images\bg.png" />
     <Content Include="Content\Images\Sell_22x22.png" />
     <Content Include="Content\Images\StatusFail_24x24.png" />
     <Content Include="Content\Images\StatusOk_24x24.png" />
     <Content Include="Content\Images\Web_22x22.png" />
+    <Content Include="Content\Js\bootstrap-datetimepicker.min.js" />
     <Content Include="Content\Js\bootstrap.js" />
     <Content Include="Global.asax" />
     <Content Include="Content\Js\custom.js" />
@@ -171,13 +174,21 @@
     <Content Include="log4net.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="Scripts\jquery-2.1.4.intellisense.js" />
-    <Content Include="Scripts\jquery-2.1.4.js" />
-    <Content Include="Scripts\jquery-2.1.4.min.js" />
-    <Content Include="Scripts\jquery-ui-1.11.1.js" />
-    <Content Include="Scripts\jquery-ui.min-1.11.1.js" />
-    <Content Include="Scripts\jquery.dateandtimepicker.js" />
-    <Content Include="Scripts\jquery.prettyPhoto.js" />
+    <Content Include="Content\Js\moment-with-locales.js" />
+    <Content Include="Content\Fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\Fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\Fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\Fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\Fonts\FontAwesome.otf" />
+    <None Include="Scripts\jquery-3.1.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.1.1.js" />
+    <Content Include="Scripts\jquery-3.1.1.min.js" />
+    <Content Include="Scripts\jquery-3.1.1.slim.js" />
+    <Content Include="Scripts\jquery-3.1.1.slim.min.js" />
+    <Content Include="Scripts\jquery-ui-1.12.1.js" />
+    <Content Include="Scripts\jquery-ui-1.12.1.min.js" />
+    <Content Include="Scripts\jquery-3.1.1.min.map" />
+    <Content Include="Scripts\jquery-3.1.1.slim.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
@@ -275,7 +286,6 @@
     </Content>
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Dashboard\Index.cshtml" />
-    <Content Include="Scripts\jquery-2.1.4.min.map" />
     <Content Include="Views\Shared\DisplayTemplates\ATR.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\ListAbsolute.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\ListPercentage.cshtml" />
@@ -314,7 +324,6 @@
     <Content Include="Views\Transaction\Edit.cshtml" />
     <Content Include="Views\Transaction\Sell.cshtml" />
     <Content Include="Views\Transaction\Index.cshtml" />
-    <Content Include="Views\Transaction\ToolTip.cshtml" />
     <Content Include="Views\Transaction\Buy.cshtml" />
     <Content Include="Views\Transaction\Dividend.cshtml" />
     <Content Include="Views\Transaction\Split.cshtml" />

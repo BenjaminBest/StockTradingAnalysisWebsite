@@ -12,54 +12,51 @@
     $(function () { $('#Tag').autocomplete({ source: '@Url.Action("GetTags")', minLength: 1 }); });
 </script>
 
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="alert alert-dismissible alert-success">
+                @Html.DisplayFor(model => model.Action) @Resources.ViewTextTransactions
+            </div>
+        </div>
+    </div>
+</div>
+
 @using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.ValidationSummary(true)
 
-    <div class="display-left">
-        <div class="editor-label">
-            @Html.LabelFor(model => model.OrderDate)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.OrderDate)
-            @Html.ValidationMessageFor(model => model.OrderDate)
-        </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.OrderDate)
+                    @Html.EditorFor(model => model.OrderDate)
+                    @Html.ValidationMessageFor(model => model.OrderDate)
+                </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Units)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Units)
-            @Html.ValidationMessageFor(model => model.Units)
-        </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Units)
+                    @Html.EditorFor(model => model.Units, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Units)
+                </div>
 
-        <div class="editor-label">
-            <div class="greenPerf">
-                @Html.LabelFor(model => model.PricePerUnit)
+                <div class="form-group greenPerf">
+                    @Html.LabelFor(model => model.PricePerUnit)
+                    @Html.EditorFor(model => model.PricePerUnit, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.PricePerUnit)
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Stock)
+                    @Html.DropDownListFor(model => model.Stock.Id, stocks, new { @class = "custom-select" })
+                    @Html.ValidationMessageFor(model => model.Stock.Id)
+                </div>
             </div>
         </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.PricePerUnit)
-            @Html.ValidationMessageFor(model => model.PricePerUnit)
-        </div>
-    </div>
 
-    <div class="display-left" style="padding-left:15px">
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Stock)
-        </div>
-        <div class="editor-field">
-            @Html.DropDownListFor(model => model.Stock.Id, stocks)
-            @Html.ValidationMessageFor(model => model.Stock.Id)
-        </div>
-    </div>
-
-    <div class="display-clear"></div>
-
-    <p>
         <input type="submit" value="@Resources.ViewTextAdd" class="btn btn-success" />
-    </p>
+        @Html.ActionLink(Resources.ViewTextBack, "Index", null, new { @class = "btn btn-info" })
+
+    </div>
 }
-<div>
-    @Html.ActionLink(Resources.ViewTextBack, "Index", null, new { @class= "btn btn-info" })
-</div>

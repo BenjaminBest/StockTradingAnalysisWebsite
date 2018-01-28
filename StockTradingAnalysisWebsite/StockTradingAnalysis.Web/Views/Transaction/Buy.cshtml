@@ -13,105 +13,92 @@
     $(function () { $('#Tag').autocomplete({ source: '@Url.Action("GetTags")', minLength: 1 }); });
 </script>
 
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="alert alert-dismissible alert-success">
+                @Resources.ViewTextTransactions
+            </div>
+        </div>
+    </div>
+</div>
+
 @using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.ValidationSummary(true)
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.OrderDate)
+                    @Html.EditorFor(model => model.OrderDate)
+                    @Html.ValidationMessageFor(model => model.OrderDate)
+                </div>
 
-    <div class="display-left">
-        <div class="editor-label">
-            @Html.LabelFor(model => model.OrderDate)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.OrderDate)
-            @Html.ValidationMessageFor(model => model.OrderDate)
-        </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Units)
+                    @Html.EditorFor(model => model.Units, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Units)
+                </div>
 
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Units)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.Units)
-            @Html.ValidationMessageFor(model => model.Units)
-        </div>
+                <div class="form-group greenPerf">
+                    @Html.LabelFor(model => model.PricePerUnit)
+                    @Html.EditorFor(model => model.PricePerUnit, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.PricePerUnit)
+                </div>
 
-        <div class="editor-label">
-            <div class="greenPerf">
-                @Html.LabelFor(model => model.PricePerUnit)
+                <div class="form-group">
+                    @Html.LabelFor(model => model.OrderCosts)
+                    @Html.EditorFor(model => model.OrderCosts, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.OrderCosts)
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Tag)
+                    @Html.EditorFor(model => model.Tag, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Tag)
+                </div>
+
+                <div class="form-group bluePerf">
+                    @Html.LabelFor(model => model.InitialTP)
+                    @Html.EditorFor(model => model.InitialTP, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.InitialTP)
+                </div>
+
+                <div class="form-group redPerf">
+                    @Html.LabelFor(model => model.InitialSL)
+                    @Html.EditorFor(model => model.InitialSL, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.InitialSL)
+                </div>
+
+            </div>
+            <div class="col-lg-4">
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Stock)
+                    @Html.DropDownListFor(model => model.Stock.Id, stocks, new { @class = "custom-select" })
+                    @Html.ValidationMessageFor(model => model.Stock.Id)
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Strategy)
+                    @Html.DropDownListFor(model => model.Strategy.Id, strategies, new { @class = "custom-select" })
+                    @Html.ValidationMessageFor(model => model.Strategy.Id)
+                </div>
+
+                @Html.EditorFor(model => model.Image)
+
+            </div>
+            <div class="col-lg-3">
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Description)
+                    @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", rows = 15 } })
+                    @Html.ValidationMessageFor(model => model.Description)
+                </div>
             </div>
         </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.PricePerUnit)
-            @Html.ValidationMessageFor(model => model.PricePerUnit)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.OrderCosts)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.OrderCosts)
-            @Html.ValidationMessageFor(model => model.OrderCosts)
-        </div>
-
-        <div class="display-label">
-            @Html.LabelFor(model => model.Tag)
-        </div>
-        <div class="display-field">
-            @Html.EditorFor(model => model.Tag)
-        </div>
-        <div class="display-label">
-            <div class="bluePerf">
-                @Html.LabelFor(model => model.InitialTP)
-            </div>
-        </div>
-        <div class="display-field">
-            @Html.EditorFor(model => model.InitialTP)
-            @Html.ValidationMessageFor(model => model.InitialTP)
-        </div>
-        <div class="display-label">
-            <div class="redPerf">
-                @Html.LabelFor(model => model.InitialSL)
-            </div>
-        </div>
-        <div class="display-field">
-            @Html.EditorFor(model => model.InitialSL)
-            @Html.ValidationMessageFor(model => model.InitialSL)
-        </div>
-    </div>
-
-    <div class="display-left" style="padding-left:15px">
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Stock)
-        </div>
-        <div class="editor-field">
-            @Html.DropDownListFor(model => model.Stock.Id, stocks)
-            @Html.ValidationMessageFor(model => model.Stock.Id)
-        </div>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.Strategy)
-        </div>
-        <div class="editor-field">
-            @Html.DropDownListFor(model => model.Strategy.Id, strategies)
-            @Html.ValidationMessageFor(model => model.Strategy.Id)
-        </div>
-</div>
-
-    <div class="display-left" style="padding-left:15px">
-        @Html.EditorFor(model => model.Image)
-        <div class="display-label">
-            @Html.LabelFor(model => model.Description)
-        </div>
-        <div class="display-field">
-            @Html.EditorFor(model => model.Description)
-        </div>
-    </div>
-
-    <div class="display-clear"></div>
-
-    <p>
         <input type="submit" value="@Resources.ViewTextAdd" class="btn btn-success" />
-    </p>
+        @Html.ActionLink(Resources.ViewTextBack, "Index", null, new { @class = "btn btn-info" })
+    </div>
 }
-<div>
-    @Html.ActionLink(Resources.ViewTextBack, "Index", null, new { @class= "btn btn-info" })
-</div>

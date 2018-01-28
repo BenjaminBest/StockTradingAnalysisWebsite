@@ -3,31 +3,6 @@
 }
 
 
-/* Tables
-----------------------------------------------------------*/
-
-#toolTip {
-    position: absolute;
-}
-
-.tooltip_table {    
-    white-space: nowrap;
-    width: auto;
-}
-
-.tooltip_table {
-    width: auto;
-}
-
-.tooltip_table td {
-    line-height: normal;
-    padding: 0px 0px 0px 10px;
-}
-
-.tooltip_table th {
-     padding: 0px 0px 0px 10px;
-}
-
 /* Performance indicators
 ----------------------------------------------------------*/
 
@@ -58,4 +33,47 @@
 {
     color:#0080FF;
     font-weight:bold
+}
+
+/* JQuery UI stypes to look like bootstrap
+----------------------------------------------------------*/
+.ui-autocomplete {
+    position: absolute;
+    z-index: 1000;
+    cursor: default;
+    padding: 0;
+    margin-top: 2px;
+    list-style: none;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+.ui-autocomplete > li {
+    padding: 3px 20px;
+}
+.ui-autocomplete > li.ui-state-focus {
+    background-color: #DDD;
+}
+.ui-helper-hidden-accessible {
+    display: none;
+}
+
+/* Additional styles for small tables
+----------------------------------------------------------*/
+.row.no-gutters {
+    font-weight: lighter;
+    font-size: 13px;
+}
+
+.row.no-gutters td span{
+    font-weight: lighter;
+}
+
+.row.no-gutters td {
+    padding: 0;
 }
