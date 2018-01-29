@@ -1,12 +1,13 @@
-﻿using StockTradingAnalysis.Domain.CQRS.Query.Queries;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using StockTradingAnalysis.Domain.CQRS.Query.Queries;
 using StockTradingAnalysis.Interfaces.Domain;
 using StockTradingAnalysis.Interfaces.Queries;
 using StockTradingAnalysis.Interfaces.Services;
+using StockTradingAnalysis.Interfaces.Services.Core;
 using StockTradingAnalysis.Interfaces.Types;
 using StockTradingAnalysis.Services.Domain;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace StockTradingAnalysis.Services.Services
 {

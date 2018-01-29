@@ -1,0 +1,33 @@
+﻿@model string
+
+@{
+    var cssClass = string.Empty;
+    if (!string.IsNullOrEmpty(Model))
+     {
+         if (Model.Equals("Kauf"))
+         {
+             cssClass = "badge-success";
+         }
+         else if (Model.Equals("Verkauf"))
+         {
+             cssClass = "badge-danger";
+         }
+         else if (Model.Equals("Dividende"))
+         {
+             cssClass = "badge-info";
+         }
+         else if (Model.Equals("Split/Reverse Split"))
+         {
+             cssClass = "badge-warning";
+         }
+         else
+         {
+             cssClass = "badge-primary";
+         }
+     }
+}
+
+@if (!string.IsNullOrEmpty(Model))
+{
+    <span class="badge badge-pill @cssClass">@Model</span>
+}

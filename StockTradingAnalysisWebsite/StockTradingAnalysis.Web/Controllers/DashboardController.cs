@@ -1,12 +1,13 @@
-﻿using StockTradingAnalysis.Domain.CQRS.Query.Queries;
-using StockTradingAnalysis.Interfaces.Queries;
-using StockTradingAnalysis.Interfaces.Services;
-using StockTradingAnalysis.Web.Common.Filter;
-using StockTradingAnalysis.Web.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using StockTradingAnalysis.Domain.CQRS.Query.Queries;
+using StockTradingAnalysis.Interfaces.Queries;
+using StockTradingAnalysis.Interfaces.Services;
+using StockTradingAnalysis.Interfaces.Services.Core;
+using StockTradingAnalysis.Web.Common.Filter;
+using StockTradingAnalysis.Web.Models;
 
 namespace StockTradingAnalysis.Web.Controllers
 {

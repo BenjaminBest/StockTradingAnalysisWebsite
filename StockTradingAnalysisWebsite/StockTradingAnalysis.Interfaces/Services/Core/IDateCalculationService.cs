@@ -1,7 +1,10 @@
 using System;
 
-namespace StockTradingAnalysis.Interfaces.Services
+namespace StockTradingAnalysis.Interfaces.Services.Core
 {
+    /// <summary>
+    /// The interface IDateCalculationService defines a service which is used to calculate time ranges based on given dates
+    /// </summary>
     public interface IDateCalculationService
     {
         /// <summary>

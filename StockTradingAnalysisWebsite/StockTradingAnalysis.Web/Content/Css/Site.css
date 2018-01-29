@@ -77,3 +77,10 @@
 .row.no-gutters td {
     padding: 0;
 }
+
+
+/* Tables
+----------------------------------------------------------*/
+.clickableRow {
+    cursor: pointer;
+}

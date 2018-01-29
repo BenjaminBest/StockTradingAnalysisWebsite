@@ -3,7 +3,7 @@
 
 @if (Model.HasValue)
 {
-    <span class="greenPerf">@($"{Model.Value:c}")</span>
+    <span class="greenPerf">@string.Format("{0:c}", Model.Value)</span>
 }
 else
 {

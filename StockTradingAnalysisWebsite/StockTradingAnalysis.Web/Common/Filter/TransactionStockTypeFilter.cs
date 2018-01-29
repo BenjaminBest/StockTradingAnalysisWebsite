@@ -5,22 +5,22 @@ using StockTradingAnalysis.Interfaces.Domain;
 namespace StockTradingAnalysis.Web.Common.Filter
 {
     /// <summary>
-    /// The class TransactionEndDateFilter filters a list of transactions based if its a dividend transaction
+    /// The class TransactionStockTypeFilter filters a list of transactions over the given stock type
     /// </summary>
-    public class TransactionDividendFilter : ITransactionFilter
+    public class TransactionStockTypeFilter : ITransactionFilter
     {
         /// <summary>
-        /// The use dividends
+        /// The stock type
         /// </summary>
-        private readonly bool _useDividends;
+        private readonly string _stockType;
 
         /// <summary>
         /// Initialize this class with the given arguments
         /// </summary>
-        /// <param name="useDividends"><c>True</c> if dividends should be used</param>
-        public TransactionDividendFilter(bool useDividends)
+        /// <param name="stockType">Type of the stock.</param>
+        public TransactionStockTypeFilter(string stockType)
         {
-            _useDividends = useDividends; ;
+            _stockType = stockType; ;
         }
 
         /// <summary>
@@ -30,7 +30,7 @@ namespace StockTradingAnalysis.Web.Common.Filter
         /// <returns>Result after filtering</returns>
         public IEnumerable<ITransaction> Apply(IEnumerable<ITransaction> input)
         {
-            return !_useDividends ? input.Where(i => !(i is IDividendTransaction)) : input;
+            return !string.IsNullOrEmpty(_stockType) ? input.Where(i => i.Stock.Type.Equals(_stockType)) : input;
         }
     }
 }

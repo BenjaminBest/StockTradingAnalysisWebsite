@@ -75,6 +75,7 @@ namespace StockTradingAnalysis.Web.Models
         /// Gets a transaction description if this was a buy, sell or dividend
         /// </summary>        
         [Display(Name = "Display_TransactionsAction", ResourceType = typeof(Resources))]
+        [UIHint("Action")]
         public string Action { get; set; }
     }
 }

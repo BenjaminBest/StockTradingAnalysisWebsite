@@ -226,6 +226,7 @@
     <Compile Include="Common\Enumerations\StatisticsKPIsFormat.cs" />
     <Compile Include="Common\Enumerations\StatisticsKPIsStyleCalcFormat.cs" />
     <Compile Include="Common\Extensions\HtmlExtensions.cs" />
+    <Compile Include="Common\Filter\TransactionStockTypeFilter.cs" />
     <Compile Include="Common\Filter\TransactionDividendFilter.cs" />
     <Compile Include="Common\Filter\TransactionTagFilter.cs" />
     <Compile Include="Common\Filter\TransactionEndDateFilter.cs" />
@@ -298,8 +299,6 @@
     <Content Include="Views\Shared\DisplayTemplates\PerformanceRedPercentage.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\UpdateStatus.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\ViewModelImage.cshtml" />
-    <Content Include="Views\Shared\DisplayTemplates\ViewModelStatistics.cshtml" />
-    <Content Include="Views\Shared\DisplayTemplates\ViewModelStatisticsComparison.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Date.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\DateTime.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\ViewModelImage.cshtml" />
@@ -330,6 +329,7 @@
     <Content Include="Views\Dashboard\Tags.cshtml" />
     <Content Include="Views\Stock\UpdateQuotations.cshtml" />
     <Content Include="Views\Shared\Navigation.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\Action.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

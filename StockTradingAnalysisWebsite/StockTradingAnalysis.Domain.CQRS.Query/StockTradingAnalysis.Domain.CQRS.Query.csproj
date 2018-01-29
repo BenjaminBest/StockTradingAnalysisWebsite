@@ -48,6 +48,7 @@
     <Compile Include="Queries\FeedbackProportionAllQuery.cs" />
     <Compile Include="Queries\StockQuotationsCountByIdQuery.cs" />
     <Compile Include="Queries\StockQuotationsByIdQuery.cs" />
+    <Compile Include="Queries\StockTypeInUseSearchQuery.cs" />
     <Compile Include="Queries\StockWknSearchQuery.cs" />
     <Compile Include="Queries\StockTypeSearchQuery.cs" />
     <Compile Include="Queries\StockNameSearchQuery.cs" />
@@ -75,6 +76,7 @@
     <Compile Include="QueryHandler\CalculationAllQueryHandler.cs" />
     <Compile Include="QueryHandler\StockQuotationsCountByIdQueryHandler.cs" />
     <Compile Include="QueryHandler\StockQuotationsByIdQueryHandler.cs" />
+    <Compile Include="QueryHandler\StockTypeInUseSearchQueryHandler.cs" />
     <Compile Include="QueryHandler\StockWknSearchQueryHandler.cs" />
     <Compile Include="QueryHandler\StockTypeSearchQueryHandler.cs" />
     <Compile Include="QueryHandler\StockNameSearchQueryHandler.cs" />

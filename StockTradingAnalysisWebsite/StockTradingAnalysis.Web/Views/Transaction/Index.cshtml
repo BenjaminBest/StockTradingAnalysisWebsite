@@ -44,7 +44,7 @@
                         @Html.LabelFor(m => performance.FirstOrDefault().Value.R)
                     </th>
                     <th>
-                        @Resources.ViewTextLongShort
+                        <label>@Resources.ViewTextLongShort</label>                        
                     </th>
                     <th>
                         @Html.LabelFor(m => performance.FirstOrDefault().Value.ProfitAbsolute)
@@ -57,7 +57,7 @@
             <tbody>
                 @foreach (var item in Model)
                 {
-                    <tr class="ToolTipTransaction clickableRow" scope="row" id="@item.Id" href='@Html.PlainLink("Edit", "Transaction", new { id = item.Id })'>
+                    <tr class="clickableRow" scope="row" id="@item.Id" href='@Html.PlainLink("Edit", "Transaction", new { id = item.Id })'>
                         <td>
                             @if (item.AccountBalance != decimal.Zero)
                             {
@@ -116,7 +116,7 @@
 
 @using (Html.BeginForm())
 {
-    <table class="table table-info fixed-bottom">
+    <table class="table-sm table-info fixed-bottom" style="opacity: 0.8">
         <tr>
             <td>
                 <span>@Resources.ViewTextFilterTime</span>
@@ -127,10 +127,10 @@
         </tr>
         <tr>
             <td>
-                @Html.DropDownList("TimeFilter", (List<SelectListItem>)ViewBag.TimeFilter, new { onchange = "this.form.submit();" })
+                @Html.DropDownList("TimeFilter", (List<SelectListItem>)ViewBag.TimeFilter, new { onchange = "this.form.submit();", @class= "custom-select" })
             </td>
             <td>
-                @Html.DropDownList("StockTypeFilter", (List<SelectListItem>)ViewBag.StockTypeFilter, new { onchange = "this.form.submit();" })
+                @Html.DropDownList("StockTypeFilter", (List<SelectListItem>)ViewBag.StockTypeFilter, new { onchange = "this.form.submit();", @class = "custom-select" })
             </td>
         </tr>
     </table>

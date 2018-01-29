@@ -1,11 +1,11 @@
-﻿using StockTradingAnalysis.Interfaces.Services;
-using System;
+﻿using System;
 using System.Globalization;
+using StockTradingAnalysis.Interfaces.Services.Core;
 
 namespace StockTradingAnalysis.Core.Services
 {
     /// <summary>
-    /// The service DateCalculationService is used for date calculations
+    /// The service DateCalculationService is used to calculate time ranges and special dates based on given dates.
     /// </summary>
     public class DateCalculationService : IDateCalculationService
     {

@@ -1,13 +1,13 @@
-﻿using StockTradingAnalysis.Core.Types;
-using StockTradingAnalysis.Domain.CQRS.Cmd.Commands;
-using StockTradingAnalysis.Interfaces.Domain;
-using StockTradingAnalysis.Web.Migration.Common;
-using StockTradingAnalysis.Web.Migration.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using StockTradingAnalysis.Core.Types;
+using StockTradingAnalysis.Domain.CQRS.Cmd.Commands;
+using StockTradingAnalysis.Interfaces.Domain;
+using StockTradingAnalysis.Web.Migration.Common;
+using StockTradingAnalysis.Web.Migration.Entities;
 
 namespace StockTradingAnalysis.Web.Migration.Importer
 {
@@ -300,7 +300,7 @@ namespace StockTradingAnalysis.Web.Migration.Importer
                         {
                             image = new Image(id);
 
-                            image.Data = GetImage(reader["Data"].ToString());
+                            image.Data = (byte[])reader["Data"];
                             image.ContentType = reader["ContentType"].ToString();
                             image.OriginalName = reader["OriginalName"].ToString();
                             image.Description = reader["Description"].ToString();
@@ -311,14 +311,6 @@ namespace StockTradingAnalysis.Web.Migration.Importer
             }
 
             return image;
-        }
-
-        private static byte[] GetImage(string data)
-        {
-            var bytes = new byte[data.Length * sizeof(char)];
-            Buffer.BlockCopy(data.ToCharArray(), 0, bytes, 0, bytes.Length);
-
-            return bytes;
         }
     }
 }

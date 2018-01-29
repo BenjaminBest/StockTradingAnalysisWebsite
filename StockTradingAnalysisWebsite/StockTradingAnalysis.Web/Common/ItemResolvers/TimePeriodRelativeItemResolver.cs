@@ -1,5 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
+using StockTradingAnalysis.Interfaces.Domain;
+using StockTradingAnalysis.Interfaces.Services.Core;
+using StockTradingAnalysis.Web.Common.Filter;
 using StockTradingAnalysis.Web.Common.Interfaces;
 
 namespace StockTradingAnalysis.Web.Common.ItemResolvers
@@ -34,6 +39,64 @@ namespace StockTradingAnalysis.Web.Common.ItemResolvers
             };
 
             return items;
+        }
+
+        /// <summary>
+        /// Resolves the actual filter bases on the item value which is used in the sectionlist items
+        /// </summary>
+        /// <param name="itemValue">The item key.</param>
+        /// <returns>Filter for transations</returns>
+        public static IEnumerable<ITransactionFilter> ResolveFilter(string itemValue)
+        {
+            if (string.IsNullOrEmpty(itemValue))
+                return Enumerable.Empty<ITransactionFilter>();
+
+            if (itemValue.Equals("FilterAll"))
+                return Enumerable.Empty<ITransactionFilter>();
+
+            var dateService = DependencyResolver.Current.GetService<IDateCalculationService>();
+
+            var startDate = DateTime.MinValue;
+            var endDate = DateTime.MaxValue;
+
+            if (itemValue.Equals("FilterCurrentMonth"))
+            {
+                startDate = dateService.GetStartAndEndDateOfMonth(DateTime.Now, out endDate);
+            }
+            else if (itemValue.Equals("FilterCurrentWeek"))
+            {
+                startDate = dateService.GetStartAndEndDateOfWeek(DateTime.Now, out endDate);
+            }
+            else if (itemValue.Equals("Filter2Weeks"))
+            {
+                startDate = dateService.GetStartAndEndDateOf2Weeks(DateTime.Now, out endDate);
+            }
+            else if (itemValue.Equals("Filter2Months"))
+            {
+                startDate = dateService.GetStartAndEndDateOfMonth(DateTime.Now, out endDate).AddMonths(-1);
+            }
+            else if (itemValue.Equals("Filter3Months"))
+            {
+                startDate = dateService.GetStartAndEndDateOfMonth(DateTime.Now, out endDate).AddMonths(-2);
+            }
+            else if (itemValue.Equals("FilterCurrentQuarter"))
+            {
+                startDate = dateService.GetStartAndEndDateOfQuarter(DateTime.Now, out endDate);
+            }
+            else if (itemValue.Equals("FilterCurrentYear"))
+            {
+                startDate = dateService.GetStartAndEndDateOfYear(DateTime.Now, out endDate);
+            }
+            else if (itemValue.Equals("FilterLastYear"))
+            {
+                startDate = dateService.GetStartAndEndDateOfYear(DateTime.Now.AddYears(-1), out endDate);
+            }
+
+            return new List<ITransactionFilter>
+            {
+                new TransactionStartDateFilter(startDate),
+                new TransactionEndDateFilter(endDate)
+            };
         }
     }
 }

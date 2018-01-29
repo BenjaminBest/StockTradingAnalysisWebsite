@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using AutoMapper;
+using Raven.Abstractions.Extensions;
 using StockTradingAnalysis.Domain.CQRS.Cmd.Commands;
 using StockTradingAnalysis.Domain.CQRS.Cmd.Exceptions;
 using StockTradingAnalysis.Domain.CQRS.Query.Queries;
@@ -12,6 +13,7 @@ using StockTradingAnalysis.Interfaces.Queries;
 using StockTradingAnalysis.Interfaces.Services;
 using StockTradingAnalysis.Web.Common;
 using StockTradingAnalysis.Web.Common.Interfaces;
+using StockTradingAnalysis.Web.Common.ItemResolvers;
 using StockTradingAnalysis.Web.Models;
 
 namespace StockTradingAnalysis.Web.Controllers
@@ -36,7 +38,7 @@ namespace StockTradingAnalysis.Web.Controllers
         }
 
         // GET: Transaction
-        public ActionResult Index()
+        public ActionResult Index(string timeFilter, string stockTypeFilter)
         {
             ViewBag.TimeFilter = _selectItemResolverRegistry.GetItems("TimePeriodRelative");
             ViewBag.StockTypeFilter = _selectItemResolverRegistry.GetItems("StockType");
@@ -44,9 +46,15 @@ namespace StockTradingAnalysis.Web.Controllers
             ViewBag.Performance = Mapper.Map<IEnumerable<TransactionPerformanceViewModel>>(
                 _queryDispatcher.Execute(new TransactionPerformanceAllQuery())).ToDictionary(p => p.Id, p => p);
 
-            //TODO: Apply filter here
+            //Filters
+            var filters = new List<ITransactionFilter>();
+            if (!string.IsNullOrEmpty(timeFilter))
+                filters.AddRange(TimePeriodRelativeItemResolver.ResolveFilter(timeFilter));
 
-            return View(GetIndexTransactions());
+            if (!string.IsNullOrEmpty(stockTypeFilter))
+                filters.AddRange(StockTypeItemResolver.ResolveFilter(stockTypeFilter));
+
+            return View(GetIndexTransactions(filters));
         }
 
         // GET: Transaction/Buy
@@ -323,12 +331,18 @@ namespace StockTradingAnalysis.Web.Controllers
         /// <summary>
         /// Returns all transactions
         /// </summary>
-        /// <returns>Transaction</returns>
-        private IEnumerable<TransactionIndexViewModel> GetIndexTransactions()
+        /// <param name="filters">The filters which should be applied to filter the transactions.</param>
+        /// <returns>Transactions</returns>
+        private IEnumerable<TransactionIndexViewModel> GetIndexTransactions(IEnumerable<ITransactionFilter> filters)
         {
             var balances = _queryDispatcher.Execute(new AccountBalanceAllQuery()).ToDictionary(a => a.TransactionId, a => a);
 
-            var models = Mapper.Map<IEnumerable<TransactionIndexViewModel>>(_queryDispatcher.Execute(new TransactionAllQuery())).ToList();
+            var query = new TransactionAllQuery();
+
+            if (filters.Any())
+                filters.ForEach(f => query.Register(f));
+
+            var models = Mapper.Map<IEnumerable<TransactionIndexViewModel>>(_queryDispatcher.Execute(query)).ToList();
 
             models.ForEach(m =>
             {
