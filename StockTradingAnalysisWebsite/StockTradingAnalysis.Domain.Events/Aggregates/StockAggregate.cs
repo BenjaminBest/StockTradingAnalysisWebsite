@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using StockTradingAnalysis.Core.Extensions;
 using StockTradingAnalysis.Domain.Events.Events;
 using StockTradingAnalysis.Domain.Events.Snapshots;
@@ -124,6 +125,15 @@ namespace StockTradingAnalysis.Domain.Events.Aggregates
         {
             if (Quotations.Contains(quotation))
             {
+                var existentQuotation = Quotations.FirstOrDefault(q => q.Date.Equals(quotation.Date));
+
+                if (existentQuotation != null &&
+                    existentQuotation.Open == quotation.Open &&
+                    existentQuotation.Close == quotation.Close &&
+                    existentQuotation.High == quotation.High &&
+                    existentQuotation.Low == quotation.Low)
+                    return;
+
                 ApplyChange(new StockQuotationChangedEvent(Id, typeof(StockAggregate), quotation));
             }
             else

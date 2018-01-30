@@ -4,7 +4,6 @@ site.baseUrl = site.baseUrl || "";
 jQuery(document).ready(function () {
     changeValidationToWorkWithBootstrap();
     initdynamicrow();
-    initfiledynamicrow();
     initasyncload();
     clickableTable();
     fixDateValidation();
@@ -77,21 +76,6 @@ function initdynamicrow() {
 
     $(document).on('click', 'a.deleteRow', function () {
         $(this).parents("div.texteditorRow:first").remove();
-    });
-}
-
-function initfiledynamicrow() {
-    $("#addFileItem").click(function () {
-        $.ajax({
-            url: this.href,
-            cache: false,
-            success: function (html) { $("#fileEditorRow").append(html); }
-        });
-        return false;
-    });
-
-    $(document).on('click', 'a.deleteFileRow', function() {
-        $(this).parents("div.fileEditorRow:first").remove();
     });
 }
 

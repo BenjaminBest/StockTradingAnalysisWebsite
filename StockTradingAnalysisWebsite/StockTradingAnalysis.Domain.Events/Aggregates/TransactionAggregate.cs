@@ -1,11 +1,11 @@
-﻿using StockTradingAnalysis.Core.Common;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using StockTradingAnalysis.Core.Common;
 using StockTradingAnalysis.Domain.Events.Events;
 using StockTradingAnalysis.Interfaces.Domain;
 using StockTradingAnalysis.Interfaces.Events;
 using StockTradingAnalysis.Interfaces.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace StockTradingAnalysis.Domain.Events.Aggregates
 {
@@ -210,7 +210,7 @@ namespace StockTradingAnalysis.Domain.Events.Aggregates
                 performance.MAEAbsolute,
                 performance.MFEAbsolute));
 
-            ApplyChange(new StockOverallPerformanceChangedEvent(StockId, typeof(TransactionAggregate), performance.ProfitAbsolute));
+            ApplyChange(new StockOverallPerformanceChangedEvent(Id, typeof(TransactionAggregate), performance.ProfitAbsolute, StockId));
         }
 
         /// <summary>
@@ -233,7 +233,7 @@ namespace StockTradingAnalysis.Domain.Events.Aggregates
                 performance.HoldingPeriod,
                 performance.R));
 
-            ApplyChange(new StockOverallPerformanceChangedEvent(StockId, typeof(TransactionAggregate), performance.ProfitAbsolute));
+            ApplyChange(new StockOverallPerformanceChangedEvent(Id, typeof(TransactionAggregate), performance.ProfitAbsolute, StockId));
         }
 
         /// <summary>

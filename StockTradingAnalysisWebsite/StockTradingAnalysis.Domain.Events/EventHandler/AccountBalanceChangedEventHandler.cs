@@ -10,7 +10,7 @@ namespace StockTradingAnalysis.Domain.Events.EventHandler
 {
     public class AccountBalanceChangedEventHandler : IEventHandler<TransactionDividendCalculatedEvent>, IEventHandler<TransactionPerformanceCalculatedEvent>
     {
-        private readonly IModelRepository<IAccountBalance> _writerRepository;
+        private readonly IModelRepository<IAccountBalance> _modelRepository;
         private readonly IModelReaderRepository<ITransaction> _transactionRepository;
 
         /// <summary>
@@ -20,7 +20,7 @@ namespace StockTradingAnalysis.Domain.Events.EventHandler
         /// <param name="transactionRepository">The transaction repositiory</param>
         public AccountBalanceChangedEventHandler(IModelRepository<IAccountBalance> modelRepository, IModelReaderRepository<ITransaction> transactionRepository)
         {
-            _writerRepository = modelRepository;
+            _modelRepository = modelRepository;
             _transactionRepository = transactionRepository;
         }
 
@@ -44,18 +44,18 @@ namespace StockTradingAnalysis.Domain.Events.EventHandler
 
         private void AddItem(Guid aggregateId, decimal profitAbsolute)
         {
-            if (_writerRepository.GetById(aggregateId) != null)
+            if (_modelRepository.GetById(aggregateId) != null)
                 return;
 
             //Get date from transaction
             var balanceDate = _transactionRepository.GetById(aggregateId).OrderDate;
 
             //Get previous balance
-            var lastBalance = _writerRepository.GetAll().OrderByDescending(a => a.Date).FirstOrDefault(a => a.Date < balanceDate);
+            var lastBalance = _modelRepository.GetAll().OrderByDescending(a => a.Date).FirstOrDefault(a => a.Date < balanceDate);
 
             var item = new AccountBalance(aggregateId, lastBalance?.Balance + profitAbsolute ?? profitAbsolute, balanceDate);
 
-            _writerRepository.Add(item);
+            _modelRepository.Add(item);
         }
     }
 }

@@ -131,6 +131,7 @@
                 </div>
 
                 <input type="submit" value="@Resources.ViewTextSave" class="btn btn-success" />
+                @Html.ActionLink("Update Quotations", "UpdateQuotationByWkn", "Stock", new { wkn = Model.Wkn }, new { @class = "btn btn-secondary" })
                 @Html.ActionLink(Resources.ViewTextBack, "Index", null, new { @class = "btn btn-info" })
 
             </div>

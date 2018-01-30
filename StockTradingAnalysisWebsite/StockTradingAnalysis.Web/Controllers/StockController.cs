@@ -1,19 +1,15 @@
-﻿using AutoMapper;
-using StockTradingAnalysis.Core.Common;
-using StockTradingAnalysis.Domain.CQRS.Cmd.Commands;
-using StockTradingAnalysis.Domain.CQRS.Cmd.Exceptions;
-using StockTradingAnalysis.Domain.CQRS.Query.Queries;
-using StockTradingAnalysis.Domain.Events.Domain;
-using StockTradingAnalysis.Interfaces.Commands;
-using StockTradingAnalysis.Interfaces.Configuration;
-using StockTradingAnalysis.Interfaces.Queries;
-using StockTradingAnalysis.Interfaces.Services;
-using StockTradingAnalysis.Web.Common.Configuration;
-using StockTradingAnalysis.Web.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using AutoMapper;
+using StockTradingAnalysis.Domain.CQRS.Cmd.Commands;
+using StockTradingAnalysis.Domain.CQRS.Cmd.Exceptions;
+using StockTradingAnalysis.Domain.CQRS.Query.Queries;
+using StockTradingAnalysis.Interfaces.Commands;
+using StockTradingAnalysis.Interfaces.Queries;
+using StockTradingAnalysis.Web.Common.Interfaces;
+using StockTradingAnalysis.Web.Models;
 
 namespace StockTradingAnalysis.Web.Controllers
 {
@@ -21,19 +17,16 @@ namespace StockTradingAnalysis.Web.Controllers
     {
         private readonly IQueryDispatcher _queryDispatcher;
         private readonly ICommandDispatcher _commandDispatcher;
-        private readonly ISerializerService _serializerService;
-        private readonly IConfigurationRegistry _configurationRegistry;
+        private readonly IQuotationServiceClient _quotationServiceClient;
 
         public StockController(
             IQueryDispatcher queryDispatcher,
             ICommandDispatcher commandDispatcher,
-            ISerializerService serializerService,
-            IConfigurationRegistry configurationRegistry)
+            IQuotationServiceClient quotationServiceClient)
         {
             _queryDispatcher = queryDispatcher;
             _commandDispatcher = commandDispatcher;
-            _serializerService = serializerService;
-            _configurationRegistry = configurationRegistry;
+            _quotationServiceClient = quotationServiceClient;
         }
 
         // GET: Stock
@@ -118,9 +111,33 @@ namespace StockTradingAnalysis.Web.Controllers
             return View(model);
         }
 
+        // GET: UpdateQuotations
         public ActionResult UpdateQuotations()
         {
-            return View(Mapper.Map<IEnumerable<StockViewModel>>(_queryDispatcher.Execute(new StockAllQuery())));
+            var model = new UpdateQuotationsViewModel
+            {
+                IsServiceAvailable = _quotationServiceClient.IsOnline(),
+                Stocks = Mapper.Map<IEnumerable<StockViewModel>>(_queryDispatcher.Execute(new StockAllQuery()))
+            };
+
+            return View(model);
+        }
+
+        // GET: Stock/UpdateQuotationByWkn/BASF11
+        public ActionResult UpdateQuotationByWkn(string wkn)
+        {
+            var stock = _queryDispatcher.Execute(new StockByWknQuery(wkn));
+
+            if (stock == null)
+            {
+                return PartialView("DisplayTemplates/UpdateStatus", new UpdateQuotationStatusViewModel()
+                {
+                    Message = Resources.NoSuchStock,
+                    Successfull = false
+                });
+            }
+
+            return UpdateQuotation(stock.Id);
         }
 
         // GET: Stock/UpdateQuotation/5
@@ -140,18 +157,7 @@ namespace StockTradingAnalysis.Web.Controllers
             //Quotations before
             var quotationsBefore = _queryDispatcher.Execute(new StockQuotationsCountByIdQuery(id));
 
-            var result = HtmlDownload.CreateHttpClientSync(new Uri(_configurationRegistry.GetValue<string>(ConfigurationKeys.StockQuoteServiceBaseUrl) + $"/{stock.Wkn}"));
-
-            if (string.IsNullOrEmpty(result))
-            {
-                return PartialView("DisplayTemplates/UpdateStatus", new UpdateQuotationStatusViewModel()
-                {
-                    Message = Resources.NoSuchStock,
-                    Successfull = false
-                });
-            }
-
-            var quotations = _serializerService.Deserialize<IEnumerable<Quotation>>(result).ToList();
+            var quotations = _quotationServiceClient.Get(stock.Id).ToList();
 
             if (quotations.Any())
             {

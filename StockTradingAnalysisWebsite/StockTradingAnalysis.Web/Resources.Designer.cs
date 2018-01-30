@@ -1681,7 +1681,7 @@ namespace StockTradingAnalysis.Web {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tagesendkurse: {0}, Neu oder aktualisiert: {1}.
+        ///   Looks up a localized string similar to Tagesendkurse: {0}, Neu hinzugefügt: {1}.
         /// </summary>
         public static string StatusQuotations {
             get {
@@ -3486,6 +3486,24 @@ namespace StockTradingAnalysis.Web {
         public static string ViewTextTransactionsTitle {
             get {
                 return ResourceManager.GetString("ViewTextTransactionsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The stock quotations service seems to be &lt;strong&gt;offline&lt;/strong&gt;. Quotations cannot be updated!.
+        /// </summary>
+        public static string ViewTextUpdateQuotationsServiceOffline {
+            get {
+                return ResourceManager.GetString("ViewTextUpdateQuotationsServiceOffline", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The stock quotation service is &lt;strong&gt;online&lt;/string&gt;. Quotations will be updated..
+        /// </summary>
+        public static string ViewTextUpdateQuotationsServiceOnline {
+            get {
+                return ResourceManager.GetString("ViewTextUpdateQuotationsServiceOnline", resourceCulture);
             }
         }
         

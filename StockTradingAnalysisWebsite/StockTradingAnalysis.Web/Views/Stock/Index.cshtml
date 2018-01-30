@@ -48,10 +48,7 @@
                         @Html.DisplayFor(modelItem => item.LongShort)
                     </td>
                     <td>
-                        @{
-                            var cssClass = ValueFormat.GetCssClass(item.Performance, StatisticsKPIsFormat.Currency, StatisticsKPIsStyleCalcFormat.Dynamically);
-                        }
-                        <span class="@cssClass">@string.Format("{0} €", item.Performance)</span>
+                        @Html.DisplayFor(modelItem => item.Performance)
                     </td>
                     <td>
                         @Html.ActionLink(Resources.ViewTextDelete, "Delete", new { id = item.Id }, new { @class = "btn btn-danger btn-sm" })

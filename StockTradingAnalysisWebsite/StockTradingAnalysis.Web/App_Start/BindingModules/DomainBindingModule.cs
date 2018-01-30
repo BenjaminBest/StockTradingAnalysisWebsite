@@ -6,6 +6,7 @@ using StockTradingAnalysis.Interfaces.Domain;
 using StockTradingAnalysis.Interfaces.DomainContext;
 using StockTradingAnalysis.Interfaces.ReadModel;
 using StockTradingAnalysis.Interfaces.Services;
+using StockTradingAnalysis.Interfaces.Services.Domain;
 using StockTradingAnalysis.Services.Services;
 
 namespace StockTradingAnalysis.Web.BindingModules
@@ -49,6 +50,9 @@ namespace StockTradingAnalysis.Web.BindingModules
 
             Kernel.Bind<IModelReaderRepository<IFeedbackProportion>, IModelWriterRepository<IFeedbackProportion>, IModelRepository<IFeedbackProportion>>()
                 .To<FeedbackProportionModelRepository>().InSingletonScope();
+
+            Kernel.Bind<IModelReaderRepository<IStockStatistics>, IModelWriterRepository<IStockStatistics>, IModelRepository<IStockStatistics>>()
+                .To<StockStatisticsModelRepository>().InSingletonScope();
 
             //Repository
             Kernel.Bind(i => i

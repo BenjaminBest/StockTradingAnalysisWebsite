@@ -5,6 +5,7 @@ using StockTradingAnalysis.Interfaces.Services;
 using StockTradingAnalysis.Interfaces.Services.Core;
 using StockTradingAnalysis.Web.Common.Interfaces;
 using StockTradingAnalysis.Web.Common.ItemResolvers;
+using StockTradingAnalysis.Web.Common.Services;
 
 namespace StockTradingAnalysis.Web.BindingModules
 {
@@ -32,6 +33,8 @@ namespace StockTradingAnalysis.Web.BindingModules
             Kernel.Bind<ISelectItemResolver>().To<StrategyItemResolver>().InSingletonScope();
 
             Kernel.Bind<ISelectItemResolverRegistry>().To<ItemResolverRegistry>().InSingletonScope();
+
+            Kernel.Bind<IQuotationServiceClient>().To<QuotationServiceClient>().InSingletonScope();
         }
     }
 }

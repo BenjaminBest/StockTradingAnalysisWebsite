@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using HtmlAgilityPack;
-using Microsoft.Extensions.Logging;
 using StockTradingAnalysis.Services.StockQuoteService.Common;
 
 namespace StockTradingAnalysis.Services.StockQuoteService.Providers
@@ -48,7 +47,7 @@ namespace StockTradingAnalysis.Services.StockQuoteService.Providers
             {
                 //.ChildNodes[0].Attributes["class"].Value != "right first num"
                 if (node.ChildNodes.Count() != 6 || node.ParentNode.Name != "tbody")
-                    continue;                
+                    continue;
 
                 decimal open;
                 decimal low;
@@ -58,32 +57,37 @@ namespace StockTradingAnalysis.Services.StockQuoteService.Providers
 
                 var validQuote = true;
 
-                if (!DateTime.TryParseExact(node.ChildNodes[0].InnerText, "dd'.'MM'.'yyyy",CultureInfo.InvariantCulture,DateTimeStyles.None, out date))
+                var formatting = new NumberFormatInfo
+                {
+                    CurrencyDecimalSeparator = ","
+                };
+
+                if (!DateTime.TryParseExact(node.ChildNodes[0].InnerText, "dd'.'MM'.'yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out date))
                 {
                     validQuote = false;
                 }
-                if (!decimal.TryParse(node.ChildNodes[1].ChildNodes[0].InnerText, out open))
+                if (!decimal.TryParse(node.ChildNodes[1].ChildNodes[0].InnerText, NumberStyles.Currency, formatting, out open))
                 {
                     validQuote = false;
                 }
-                if (!decimal.TryParse(node.ChildNodes[2].ChildNodes[0].InnerText, out high))
+                if (!decimal.TryParse(node.ChildNodes[2].ChildNodes[0].InnerText, NumberStyles.Currency, formatting, out high))
                 {
                     validQuote = false;
                 }
-                if (!decimal.TryParse(node.ChildNodes[3].ChildNodes[0].InnerText, out low))
+                if (!decimal.TryParse(node.ChildNodes[3].ChildNodes[0].InnerText, NumberStyles.Currency, formatting, out low))
                 {
                     validQuote = false;
                 }
-                if (!decimal.TryParse(node.ChildNodes[4].ChildNodes[0].InnerText, out close))
+                if (!decimal.TryParse(node.ChildNodes[4].ChildNodes[0].InnerText, NumberStyles.Currency, formatting, out close))
                 {
                     validQuote = false;
                 }
                 //Volume
 
-                if(!validQuote)
+                if (!validQuote)
                     continue;
 
-                var quote = new Quotation(Wkn, isin )
+                var quote = new Quotation(Wkn, isin)
                 {
                     Date = date,
                     Open = open,

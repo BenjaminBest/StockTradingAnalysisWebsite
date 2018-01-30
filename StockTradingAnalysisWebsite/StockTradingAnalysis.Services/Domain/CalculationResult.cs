@@ -50,7 +50,7 @@ namespace StockTradingAnalysis.Services.Domain
                     result = BreakEven.Quotation - Buy.Quotation;
 
                 if (result < 0)
-                    result = result*-1;
+                    result = result * -1;
 
                 return result;
             }
@@ -77,7 +77,7 @@ namespace StockTradingAnalysis.Services.Domain
                     result = Buy.Quotation - StoppLoss.Quotation;
 
                 if (result < 0)
-                    result = result*-1;
+                    result = result * -1;
 
                 return result;
             }
@@ -104,7 +104,7 @@ namespace StockTradingAnalysis.Services.Domain
                     result = TakeProfit.Quotation - Buy.Quotation;
 
                 if (result < 0)
-                    result = result*-1;
+                    result = result * -1;
 
                 return result;
             }
@@ -125,7 +125,7 @@ namespace StockTradingAnalysis.Services.Domain
                 if (Quotation == null || Quotation.Count == 0)
                     return new List<ICalculationQuotation>();
 
-                var half = Quotation.Count/2;
+                var half = Quotation.Count / 2;
 
                 return Quotation.GetRange(0, half);
             }
@@ -141,7 +141,7 @@ namespace StockTradingAnalysis.Services.Domain
                 if (Quotation == null || Quotation.Count == 0)
                     return new List<ICalculationQuotation>();
 
-                var half = Quotation.Count/2;
+                var half = Quotation.Count / 2;
 
                 return Quotation.GetRange(half, Quotation.Count - half);
             }
@@ -157,7 +157,7 @@ namespace StockTradingAnalysis.Services.Domain
         /// </summary>
         public ICalculationQuotation BreakEven
         {
-            get { return Quotation == null ? null : Quotation.FirstOrDefault(q => q.IsBreakEven); }
+            get { return Quotation?.FirstOrDefault(q => q.IsBreakEven); }
         }
 
         /// <summary>
@@ -165,7 +165,7 @@ namespace StockTradingAnalysis.Services.Domain
         /// </summary>
         public ICalculationQuotation Buy
         {
-            get { return Quotation == null ? null : Quotation.FirstOrDefault(q => q.IsBuy); }
+            get { return Quotation?.FirstOrDefault(q => q.IsBuy); }
         }
 
         /// <summary>
@@ -173,7 +173,7 @@ namespace StockTradingAnalysis.Services.Domain
         /// </summary>
         public ICalculationQuotation StoppLoss
         {
-            get { return Quotation == null ? null : Quotation.FirstOrDefault(q => q.IsStoppLoss); }
+            get { return Quotation?.FirstOrDefault(q => q.IsStoppLoss); }
         }
 
         /// <summary>
@@ -181,7 +181,7 @@ namespace StockTradingAnalysis.Services.Domain
         /// </summary>
         public ICalculationQuotation TakeProfit
         {
-            get { return Quotation == null ? null : Quotation.FirstOrDefault(q => q.IsTakeProfit); }
+            get { return Quotation?.FirstOrDefault(q => q.IsTakeProfit); }
         }
 
         /// <summary>
@@ -189,7 +189,7 @@ namespace StockTradingAnalysis.Services.Domain
         /// </summary>
         public ICalculationQuotation CurrentQuotation
         {
-            get { return Quotation == null ? null : Quotation.FirstOrDefault(q => q.IsCurrentQuotation); }
+            get { return Quotation?.FirstOrDefault(q => q.IsCurrentQuotation); }
         }
 
         /// <summary>

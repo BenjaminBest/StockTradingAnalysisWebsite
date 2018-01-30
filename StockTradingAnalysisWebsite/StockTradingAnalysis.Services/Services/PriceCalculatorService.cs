@@ -1,6 +1,7 @@
 ﻿using System;
 using StockTradingAnalysis.Interfaces.Domain;
 using StockTradingAnalysis.Interfaces.Services;
+using StockTradingAnalysis.Interfaces.Services.Domain;
 using StockTradingAnalysis.Services.Domain;
 
 namespace StockTradingAnalysis.Services.Services
@@ -50,12 +51,12 @@ namespace StockTradingAnalysis.Services.Services
             decimal result = 0;
 
             if (isLong.Value)
-                result = (underlyingPrice.Value - strikePrice.Value)*multiplier.Value;
+                result = (underlyingPrice.Value - strikePrice.Value) * multiplier.Value;
             else
-                result = (strikePrice.Value - underlyingPrice.Value)*multiplier.Value;
+                result = (strikePrice.Value - underlyingPrice.Value) * multiplier.Value;
 
             //Round or trunk based on the number of digits after the decimal point
-            var amountOfDigits = Math.Floor(Math.Log10((double) result) + 1);
+            var amountOfDigits = Math.Floor(Math.Log10((double)result) + 1);
 
             if (amountOfDigits >= 4.0)
             {
@@ -100,26 +101,27 @@ namespace StockTradingAnalysis.Services.Services
             //CRV
             result.Crv =
                 decimal.Round(
-                    (parameters.InitialTp - parameters.PricePerUnit - (parameters.OrderCosts/parameters.Units))/
-                    (parameters.PricePerUnit - parameters.InitialSl + (parameters.OrderCosts/parameters.Units)), 2);
+                    (parameters.InitialTp - parameters.PricePerUnit - (parameters.OrderCosts / parameters.Units)) /
+                    (parameters.PricePerUnit - parameters.InitialSl + (parameters.OrderCosts / parameters.Units)), 2);
 
             //Posion size
-            result.PositionSize = parameters.Units*parameters.PricePerUnit;
+            result.PositionSize = parameters.Units * parameters.PricePerUnit;
 
             //Is underlying used
             result.IsUnderlyingUsed = parameters.Multiplier != 1;
 
             //Break Even
-            var be = decimal.Round(((2*parameters.OrderCosts)/parameters.Units) + parameters.PricePerUnit, 2);
+            var be = decimal.Round(((2 * parameters.OrderCosts) / parameters.Units) + parameters.PricePerUnit, 2);
 
             //Current quotation
             var cur = _stockQuoteService.GetQuote(parameters.Wkn);
 
             //Step size for list
-            var maxValue = parameters.InitialTp;
-            var stepSize = (maxValue - parameters.InitialSl)*Convert.ToDecimal(0.015);
+            var maxValue = parameters.InitialTp < cur ? cur : parameters.InitialTp;
+            var minValue = parameters.InitialSl > cur ? cur : parameters.InitialSl;
+            var stepSize = (maxValue - minValue) * Convert.ToDecimal(0.015);
 
-            if ((maxValue/stepSize)%2 != 0)
+            if ((maxValue / stepSize) % 2 != 0)
                 maxValue = maxValue + stepSize;
 
 
@@ -139,9 +141,9 @@ namespace StockTradingAnalysis.Services.Services
 
                 quote.PlAbsolute =
                     decimal.Round(
-                        (quote.Quotation*parameters.Units) - (2*parameters.OrderCosts) -
-                        (parameters.Units*parameters.PricePerUnit), 2);
-                quote.PlPercentage = decimal.Round((quote.PlAbsolute/result.PositionSize)*100, 2);
+                        (quote.Quotation * parameters.Units) - (2 * parameters.OrderCosts) -
+                        (parameters.Units * parameters.PricePerUnit), 2);
+                quote.PlPercentage = decimal.Round((quote.PlAbsolute / result.PositionSize) * 100, 2);
 
                 quote.IsStoppLoss = value == parameters.InitialSl;
                 quote.IsTakeProfit = value == parameters.InitialTp;

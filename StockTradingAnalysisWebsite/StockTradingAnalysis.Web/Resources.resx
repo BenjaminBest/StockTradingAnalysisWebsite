@@ -646,7 +646,7 @@
     <value />
   </data>
   <data name="StatusQuotations" xml:space="preserve">
-    <value>Tagesendkurse: {0}, Neu oder aktualisiert: {1}</value>
+    <value>Tagesendkurse: {0}, Neu hinzugefügt: {1}</value>
   </data>
   <data name="TagsInpaymentVsOutpayment" xml:space="preserve">
     <value>Einzahlung vs Auszahlung</value>
@@ -1268,5 +1268,11 @@
   </data>
   <data name="ViewTextWarning" xml:space="preserve">
     <value>Warning!</value>
+  </data>
+  <data name="ViewTextUpdateQuotationsServiceOffline" xml:space="preserve">
+    <value>The stock quotations service seems to be &lt;strong&gt;offline&lt;/strong&gt;. Quotations cannot be updated!</value>
+  </data>
+  <data name="ViewTextUpdateQuotationsServiceOnline" xml:space="preserve">
+    <value>The stock quotation service is &lt;strong&gt;online&lt;/string&gt;. Quotations will be updated.</value>
   </data>
 </root>

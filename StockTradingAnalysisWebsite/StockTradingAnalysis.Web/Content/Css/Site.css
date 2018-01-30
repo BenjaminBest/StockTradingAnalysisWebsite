@@ -84,3 +84,12 @@
 .clickableRow {
     cursor: pointer;
 }
+
+table tr.table-active td span,
+table tr.table-info td span,
+table tr.table-warning td span,
+table tr.table-success td span,
+table tr.table-danger td span {
+    opacity: 0.7;
+    color: #FFFFFF;
+}

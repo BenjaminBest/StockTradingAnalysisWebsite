@@ -158,11 +158,6 @@
     <Content Include="Content\Css\font-awesome.min.css" />
     <Content Include="Content\Css\site.css" />
     <Content Include="Content\Fonts\fontawesome-webfont.svg" />
-    <Content Include="Content\Images\bg.png" />
-    <Content Include="Content\Images\Sell_22x22.png" />
-    <Content Include="Content\Images\StatusFail_24x24.png" />
-    <Content Include="Content\Images\StatusOk_24x24.png" />
-    <Content Include="Content\Images\Web_22x22.png" />
     <Content Include="Content\Js\bootstrap-datetimepicker.min.js" />
     <Content Include="Content\Js\bootstrap.js" />
     <Content Include="Global.asax" />
@@ -231,6 +226,7 @@
     <Compile Include="Common\Filter\TransactionTagFilter.cs" />
     <Compile Include="Common\Filter\TransactionEndDateFilter.cs" />
     <Compile Include="Common\Filter\TransactionStartDateFilter.cs" />
+    <Compile Include="Common\Interfaces\IQuotationServiceClient.cs" />
     <Compile Include="Common\ItemResolvers\ItemResolverRegistry.cs" />
     <Compile Include="Common\ItemResolvers\FeedbackItemResolver.cs" />
     <Compile Include="Common\ItemResolvers\StrategyItemResolver.cs" />
@@ -243,6 +239,7 @@
     <Compile Include="Common\ImageResult.cs" />
     <Compile Include="Common\Interfaces\ISelectItemResolverRegistry.cs" />
     <Compile Include="Common\ModelBinders\ImageViewModelBinder.cs" />
+    <Compile Include="Common\Services\QuotationServiceClient.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\CalculationController.cs" />
     <Compile Include="Controllers\TransactionController.cs" />
@@ -273,6 +270,7 @@
     <Compile Include="Models\TransactionSplitViewModel.cs" />
     <Compile Include="Models\TransactionViewModel.cs" />
     <Compile Include="Models\UpdateQuotationStatusViewModel.cs" />
+    <Compile Include="Models\UpdateQuotationsViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -330,6 +328,7 @@
     <Content Include="Views\Stock\UpdateQuotations.cshtml" />
     <Content Include="Views\Shared\Navigation.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\Action.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\LongShort.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

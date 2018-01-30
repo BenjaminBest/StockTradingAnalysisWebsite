@@ -47,6 +47,7 @@
     <Compile Include="Aggregates\StrategyAggregate.cs" />
     <Compile Include="Aggregates\FeedbackAggregate.cs" />
     <Compile Include="Aggregates\StockAggregate.cs" />
+    <Compile Include="Domain\StockStatistics.cs" />
     <Compile Include="Domain\AccountBalance.cs" />
     <Compile Include="Domain\BuyingTransaction.cs" />
     <Compile Include="Domain\BuyingTransactionBookEntry.cs" />

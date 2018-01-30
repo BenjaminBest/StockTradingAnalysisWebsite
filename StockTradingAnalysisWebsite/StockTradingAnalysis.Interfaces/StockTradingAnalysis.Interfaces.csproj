@@ -57,6 +57,7 @@
     <Compile Include="DomainContext\ISnapshotOriginator.cs" />
     <Compile Include="DomainContext\ISnapshotProcessor.cs" />
     <Compile Include="DomainContext\SnapshotBase.cs" />
+    <Compile Include="Domain\IStockStatistics.cs" />
     <Compile Include="Domain\IAccumulationPlanStatistic.cs" />
     <Compile Include="Domain\IQuotation.cs" />
     <Compile Include="Domain\ISplitTransactionBookEntry.cs" />

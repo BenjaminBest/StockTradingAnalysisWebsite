@@ -1,7 +1,6 @@
 ﻿using System.IO;
 using Microsoft.AspNetCore.Hosting;
 using NLog;
-using StockTradingAnalysis.Services.StockQuoteService.Common;
 
 namespace StockTradingAnalysis.Services.StockQuoteService
 {

@@ -1,4 +1,4 @@
-﻿namespace StockTradingAnalysis.Interfaces.Services
+﻿namespace StockTradingAnalysis.Interfaces.Services.Domain
 {
     /// <summary>
     /// The interface IStockQuoteService defines a service to access current stock quotes

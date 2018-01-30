@@ -12,27 +12,27 @@ namespace StockTradingAnalysis.Web.Models
         /// <summary>
         /// WKN
         /// </summary>
-        [Display(Name = "Display_CalculationResultWKN", ResourceType = typeof (Resources))]
+        [Display(Name = "Display_CalculationResultWKN", ResourceType = typeof(Resources))]
         public string Wkn { get; set; }
 
         /// <summary>
         /// Average true range
         /// </summary>
-        [Display(Name = "Display_CalculationResultATR", ResourceType = typeof (Resources))]
+        [Display(Name = "Display_CalculationResultATR", ResourceType = typeof(Resources))]
         [DisplayFormat(DataFormatString = "{0:F2}", ApplyFormatInEditMode = true, NullDisplayText = "-")]
         public decimal Atr { get; set; }
 
         /// <summary>
         /// Chance risk ratio
         /// </summary>
-        [Display(Name = "Display_CalculationResultCRV", ResourceType = typeof (Resources))]
+        [Display(Name = "Display_CalculationResultCRV", ResourceType = typeof(Resources))]
         [DisplayFormat(DataFormatString = "{0:F2}", ApplyFormatInEditMode = true, NullDisplayText = "0,00")]
         public decimal Crv { get; set; }
 
         /// <summary>
         /// Chance risk ratio
         /// </summary>
-        [Display(Name = "Display_CalculationResultPositionSize", ResourceType = typeof (Resources))]
+        [Display(Name = "Display_CalculationResultPositionSize", ResourceType = typeof(Resources))]
         [DisplayFormat(DataFormatString = "{0:F2} €", ApplyFormatInEditMode = true, NullDisplayText = "0,00 €")]
         public decimal PositionSize { get; set; }
 
@@ -42,7 +42,7 @@ namespace StockTradingAnalysis.Web.Models
         /// <remarks>
         /// if <seealso cref="IsUnderlyingUsed"/> is <c>true</c> then the underlying is used
         /// </remarks>
-        [Display(Name = "Display_CalculationResultPointsToBE", ResourceType = typeof (Resources))]
+        [Display(Name = "Display_CalculationResultPointsToBE", ResourceType = typeof(Resources))]
         [DisplayFormat(DataFormatString = "{0:F2}", ApplyFormatInEditMode = true, NullDisplayText = "0,00")]
         public decimal PointsToBe
         {
@@ -59,7 +59,7 @@ namespace StockTradingAnalysis.Web.Models
                     result = BreakEven.Quotation - Buy.Quotation;
 
                 if (result < 0)
-                    result = result*-1;
+                    result = result * -1;
 
                 return result;
             }
@@ -71,7 +71,7 @@ namespace StockTradingAnalysis.Web.Models
         /// <remarks>
         /// if <seealso cref="IsUnderlyingUsed"/> is <c>true</c> then the underlying is used
         /// </remarks>
-        [Display(Name = "Display_CalculationResultPointsToSL", ResourceType = typeof (Resources))]
+        [Display(Name = "Display_CalculationResultPointsToSL", ResourceType = typeof(Resources))]
         [DisplayFormat(DataFormatString = "{0:F2}", ApplyFormatInEditMode = true, NullDisplayText = "0,00")]
         public decimal PointsToSl
         {
@@ -88,7 +88,7 @@ namespace StockTradingAnalysis.Web.Models
                     result = Buy.Quotation - StoppLoss.Quotation;
 
                 if (result < 0)
-                    result = result*-1;
+                    result = result * -1;
 
                 return result;
             }
@@ -100,7 +100,7 @@ namespace StockTradingAnalysis.Web.Models
         /// <remarks>
         /// if <seealso cref="IsUnderlyingUsed"/> is <c>true</c> then the underlying is used
         /// </remarks>
-        [Display(Name = "Display_CalculationResultPointsToTP", ResourceType = typeof (Resources))]
+        [Display(Name = "Display_CalculationResultPointsToTP", ResourceType = typeof(Resources))]
         [DisplayFormat(DataFormatString = "{0:F2}", ApplyFormatInEditMode = true, NullDisplayText = "0,00")]
         public decimal PointsToTp
         {
@@ -117,7 +117,7 @@ namespace StockTradingAnalysis.Web.Models
                     result = TakeProfit.Quotation - Buy.Quotation;
 
                 if (result < 0)
-                    result = result*-1;
+                    result = result * -1;
 
                 return result;
             }
@@ -138,7 +138,7 @@ namespace StockTradingAnalysis.Web.Models
                 if (Quotation == null || Quotation.Count == 0)
                     return new List<CalculationQuotationViewModel>();
 
-                var half = Quotation.Count/2;
+                var half = Quotation.Count / 2;
 
                 return Quotation.GetRange(0, half);
             }
@@ -154,7 +154,7 @@ namespace StockTradingAnalysis.Web.Models
                 if (Quotation == null || Quotation.Count == 0)
                     return new List<CalculationQuotationViewModel>();
 
-                var half = Quotation.Count/2;
+                var half = Quotation.Count / 2;
 
                 return Quotation.GetRange(half, Quotation.Count - half);
             }
@@ -170,7 +170,7 @@ namespace StockTradingAnalysis.Web.Models
         /// </summary>
         public CalculationQuotationViewModel BreakEven
         {
-            get { return Quotation == null ? null : Quotation.FirstOrDefault(q => q.IsBreakEven); }
+            get { return Quotation?.FirstOrDefault(q => q.IsBreakEven); }
         }
 
         /// <summary>
@@ -178,7 +178,7 @@ namespace StockTradingAnalysis.Web.Models
         /// </summary>
         public CalculationQuotationViewModel Buy
         {
-            get { return Quotation == null ? null : Quotation.FirstOrDefault(q => q.IsBuy); }
+            get { return Quotation?.FirstOrDefault(q => q.IsBuy); }
         }
 
         /// <summary>
@@ -186,7 +186,7 @@ namespace StockTradingAnalysis.Web.Models
         /// </summary>
         public CalculationQuotationViewModel StoppLoss
         {
-            get { return Quotation == null ? null : Quotation.FirstOrDefault(q => q.IsStoppLoss); }
+            get { return Quotation?.FirstOrDefault(q => q.IsStoppLoss); }
         }
 
         /// <summary>
@@ -194,7 +194,7 @@ namespace StockTradingAnalysis.Web.Models
         /// </summary>
         public CalculationQuotationViewModel TakeProfit
         {
-            get { return Quotation == null ? null : Quotation.FirstOrDefault(q => q.IsTakeProfit); }
+            get { return Quotation?.FirstOrDefault(q => q.IsTakeProfit); }
         }
 
         /// <summary>
@@ -202,7 +202,7 @@ namespace StockTradingAnalysis.Web.Models
         /// </summary>
         public CalculationQuotationViewModel CurrentQuotation
         {
-            get { return Quotation == null ? null : Quotation.FirstOrDefault(q => q.IsCurrentQuotation); }
+            get { return Quotation?.FirstOrDefault(q => q.IsCurrentQuotation); }
         }
 
         /// <summary>

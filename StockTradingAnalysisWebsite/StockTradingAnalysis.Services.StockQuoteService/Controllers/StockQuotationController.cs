@@ -1,9 +1,6 @@
 ﻿using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Text;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using StockTradingAnalysis.Services.StockQuoteService.Common;
 using StockTradingAnalysis.Services.StockQuoteService.Providers;
 
@@ -35,18 +32,22 @@ namespace StockTradingAnalysis.Services.StockQuoteService.Controllers
 
             var result = provider
                 .Initialize(wkn, $"http://www.boerse-duesseldorf.de/aktien/wkn/{wkn}/historische_kurse")
-                .Download()                
+                .Download()
                 .ExtractInformation().ToList();
 
-            if (result == null || !result.Any())
+            if (!result.Any())
             {
-                Response.StatusCode = provider.Status.HttpResponseCode;                
+                Response.StatusCode = provider.Status.HttpResponseCode;
             }
 
             return result;
         }
 
+        [HttpGet("isonline")]
+        public bool Get()
+        {
+            return true;
+        }
 
-        //TODO: Validate: https://www.wmdaten.de/index.php?mid=70
     }
 }

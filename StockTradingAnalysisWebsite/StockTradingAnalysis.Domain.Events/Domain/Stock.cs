@@ -60,11 +60,6 @@ namespace StockTradingAnalysis.Domain.Events.Domain
         public string LongShort { get; set; }
 
         /// <summary>
-        /// Gets/sets the current overall performance for this stock
-        /// </summary>
-        public decimal Performance { get; set; }
-
-        /// <summary>
         /// Initializes this object
         /// </summary>
         /// <param name="id">The id of a stock</param>
@@ -84,8 +79,7 @@ namespace StockTradingAnalysis.Domain.Events.Domain
             {
                 var existentQuotation = _quotations[quotation.Date];
 
-                if (existentQuotation.Changed.Equals(quotation.Changed) &&
-                    existentQuotation.Open == quotation.Open &&
+                if (existentQuotation.Open == quotation.Open &&
                     existentQuotation.Close == quotation.Close &&
                     existentQuotation.High == quotation.High &&
                     existentQuotation.Low == quotation.Low)

@@ -31,9 +31,10 @@ namespace StockTradingAnalysis.Web.Models
         [Required(ErrorMessageResourceName = "Validation_StockLongShortRequired",
             ErrorMessageResourceType = typeof(Resources), AllowEmptyStrings = false)]
         [Display(Name = "Display_LongShort", ResourceType = typeof(Resources))]
+        [UIHint("LongShort")]
         public string LongShort { get; set; }
 
-        //TODO: Performance must be filled in StockViewModel
+        [UIHint("PerformanceAbsolute")]
         public decimal Performance { get; set; }
     }
 }

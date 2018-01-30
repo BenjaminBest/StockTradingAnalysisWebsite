@@ -1,7 +1,7 @@
-﻿using Ninject.Modules;
+﻿using System.Configuration;
+using Ninject.Modules;
 using StockTradingAnalysis.Core.Configuration;
 using StockTradingAnalysis.Interfaces.Configuration;
-using System.Configuration;
 
 namespace StockTradingAnalysis.Web.BindingModules
 {
@@ -20,6 +20,7 @@ namespace StockTradingAnalysis.Web.BindingModules
                 var registry = new ConfigurationRegistry();
 
                 registry.AddValue("StockQuoteServiceBaseUrl", configurationManager["StockQuoteServiceBaseUrl"]);
+                registry.AddValue("StockQuoteOnlineCheckUrl", configurationManager["StockQuoteOnlineCheckUrl"]);
 
                 return registry;
 

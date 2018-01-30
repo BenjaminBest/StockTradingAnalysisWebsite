@@ -1,5 +1,5 @@
-﻿using StockTradingAnalysis.Interfaces.ReadModel;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using StockTradingAnalysis.Interfaces.ReadModel;
 
 namespace StockTradingAnalysis.Interfaces.Domain
 {
@@ -37,11 +37,6 @@ namespace StockTradingAnalysis.Interfaces.Domain
         /// Gets if this stock is for buying or selling
         /// </summary>
         string LongShort { get; }
-
-        /// <summary>
-        /// Gets the current overall performance for this stock
-        /// </summary>
-        decimal Performance { get; }
 
         /// <summary>
         /// List of quotations for this stock
