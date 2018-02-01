@@ -47,6 +47,9 @@ namespace StockTradingAnalysis.Web.BootModules
                 "~/Scripts/jquery-{version}.js",
                 "~/Scripts/jquery-ui-{version}.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/signalr").Include(
+                "~/Scripts/jquery.signalR-{version}.js"));
+
             BundleTable.EnableOptimizations = false;
         }
     }

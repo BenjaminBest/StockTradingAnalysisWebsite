@@ -7,19 +7,21 @@
     @Scripts.Render("~/bundles/validation")
     @Scripts.Render("~/bundles/js")
     @Scripts.Render("~/bundles/react")
+    @Scripts.Render("~/bundles/signalr")
+    @Scripts.Render("/SignalR/hubs")
     @RenderSection("head", false)
 </head>
 <body>
     @{ Html.RenderPartial("Navigation"); }
 
-    <div>
-        <div id="main">
-            @RenderBody()
-        </div>
-        <div id="popup"></div>
-        <div id="footer">
-        </div>
+<div>
+    <div id="main">
+        @RenderBody()
     </div>
+    <div id="popup"></div>
+    <div id="footer">
+    </div>
+</div>
     @RenderSection("scripts", false)
 </body>
 </html>

@@ -12,7 +12,7 @@
                 <div className="row">
                     <div className="col-lg-12">
                         <div className={`alert alert-${this.props.type}`}>
-                            <button type="button" className="close" data-dismiss="alert">&times;</button>
+                            <button type="button" className="close"></button>
                             {this.props.message}
                         </div>
                     </div>

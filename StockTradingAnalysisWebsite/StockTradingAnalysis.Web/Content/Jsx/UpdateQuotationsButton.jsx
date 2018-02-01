@@ -15,7 +15,16 @@ class UpdateQuotationsButton extends React.Component {
             popup: { message: '', type: '' }
         };
 
-        this.updateServiceAvailability();
+        /* Enable status push of service */
+        var hub = $.connection.quotationHub;
+
+        /*$.connection.hub.logging = true;*/
+        $.connection.hub.start();
+
+        hub.client.SendQuotationServiceStatus = function (status) {
+            this.setState({ serviceAvailable: status });
+            console.log(status);
+        }.bind(this);
     }
 
     componentDidMount() {
@@ -61,7 +70,7 @@ class UpdateQuotationsButton extends React.Component {
     render() {
         let disabled = this.state.serviceAvailable ? '' : 'disabled';
         return (
-            <div>
+            <div className="btn-group">
                 <Popup message={this.state.popup.message} type={this.state.popup.type} />
                 <button className="btn btn-secondary" type="button" {... { disabled } } onClick={this.handleClick.bind(this)}>Aktienkurse aktualisieren</button>
             </div>
