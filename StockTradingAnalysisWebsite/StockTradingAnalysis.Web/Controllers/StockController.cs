@@ -111,7 +111,7 @@ namespace StockTradingAnalysis.Web.Controllers
             return View(model);
         }
 
-        // GET: UpdateQuotations
+        // GET: Stock/UpdateQuotations
         public ActionResult UpdateQuotations()
         {
             var model = new UpdateQuotationsViewModel
@@ -121,23 +121,6 @@ namespace StockTradingAnalysis.Web.Controllers
             };
 
             return View(model);
-        }
-
-        // GET: Stock/UpdateQuotationByWkn/BASF11
-        public ActionResult UpdateQuotationByWkn(string wkn)
-        {
-            var stock = _queryDispatcher.Execute(new StockByWknQuery(wkn));
-
-            if (stock == null)
-            {
-                return PartialView("DisplayTemplates/UpdateStatus", new UpdateQuotationStatusViewModel()
-                {
-                    Message = Resources.NoSuchStock,
-                    Successfull = false
-                });
-            }
-
-            return UpdateQuotation(stock.Id);
         }
 
         // GET: Stock/UpdateQuotation/5
@@ -179,7 +162,6 @@ namespace StockTradingAnalysis.Web.Controllers
                 Successfull = quotations.Any()
             });
         }
-
 
         /// <summary>
         /// Returns a list with all found stock names

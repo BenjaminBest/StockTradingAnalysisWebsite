@@ -12,8 +12,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@Scripts.Render("~/bundles/validation")
-
 <script type="text/javascript">
     $(function () { $('#Tag').autocomplete({ source: '@Url.Action("GetTags")', minLength: 1 }); });
 </script>

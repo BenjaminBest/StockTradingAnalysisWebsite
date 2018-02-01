@@ -5,7 +5,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@Scripts.Render("~/bundles/validation")
+@section scripts
+{
+    @Scripts.Render("~/bundles/jsx")
+}
 
 <script type="text/javascript">
     $(function () { $('#Name').autocomplete({ source: '@Url.Action("GetStockName")', minLength: 1 }); });
@@ -21,7 +24,7 @@
             </div>
         </div>
     </div>
-</div>    
+</div>
 
 <div class="container-fluid">
     <div class="row">
@@ -58,11 +61,11 @@
                     @Html.ValidationMessageFor(model => model.LongShort)
                 </div>
 
-                @Html.ActionLink("Update Quotations", "UpdateQuotation", "Stock", new { id = Model.Id }, new { @class = "btn btn-secondary" })
                 <input type="submit" value="@Resources.ViewTextSave" class="btn btn-success" />
+                <span id="button-update-quotations" data-id="@Model.Id"></span>
                 @Html.ActionLink(Resources.ViewTextBack, "Index", null, new { @class = "btn btn-info" })
             }
 
         </div>
     </div>
-    </div>
+</div>

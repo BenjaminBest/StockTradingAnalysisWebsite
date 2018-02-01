@@ -5,8 +5,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@Scripts.Render("~/bundles/validation")
-
 <script type="text/javascript">
     $(function () { $('#Name').autocomplete({ source: '@Url.Action("GetFeedbackName")', minLength: 1 }); });
 </script>

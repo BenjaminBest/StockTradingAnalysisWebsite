@@ -71,9 +71,19 @@ namespace StockTradingAnalysis.Web.Common.Services
         /// </returns>
         public bool IsOnline()
         {
-            var result = HtmlDownload.CreateHttpClientSync(new Uri(_configurationRegistry.GetValue<string>(ConfigurationKeys.StockQuoteOnlineCheckUrl)));
+            var result = false;
 
-            return _serializerService.Deserialize<bool>(result);
+            try
+            {
+                result = _serializerService.Deserialize<bool>(HtmlDownload.CreateHttpClientSync(new Uri(
+                    _configurationRegistry.GetValue<string>(ConfigurationKeys.StockQuoteOnlineCheckUrl)), new TimeSpan(0, 0, 0, 0, 150)));
+            }
+            catch (Exception)
+            {
+                // ignored
+            }
+
+            return result;
         }
     }
 }

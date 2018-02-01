@@ -6,33 +6,28 @@
 /* Performance indicators
 ----------------------------------------------------------*/
 
-.standardPerf
-{
-    font-weight:bold;
+.standardPerf {
+    font-weight: bold;
 }
 
-.redPerf
-{
-    color:#f15755;
-    font-weight:bold;
+.redPerf {
+    color: #f15755;
+    font-weight: bold;
 }
 
-.greenPerf
-{
-    color:#5bb75b;
-    font-weight:bold;
+.greenPerf {
+    color: #5bb75b;
+    font-weight: bold;
 }
 
-.orangePerf
-{
-    color:Orange;
-    font-weight:bold
+.orangePerf {
+    color: Orange;
+    font-weight: bold
 }
 
-.bluePerf
-{
-    color:#0080FF;
-    font-weight:bold
+.bluePerf {
+    color: #0080FF;
+    font-weight: bold
 }
 
 /* JQuery UI stypes to look like bootstrap
@@ -53,12 +48,15 @@
     -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 }
-.ui-autocomplete > li {
-    padding: 3px 20px;
-}
-.ui-autocomplete > li.ui-state-focus {
-    background-color: #DDD;
-}
+
+    .ui-autocomplete > li {
+        padding: 3px 20px;
+    }
+
+        .ui-autocomplete > li.ui-state-focus {
+            background-color: #DDD;
+        }
+
 .ui-helper-hidden-accessible {
     display: none;
 }
@@ -70,13 +68,13 @@
     font-size: 13px;
 }
 
-.row.no-gutters td span{
-    font-weight: lighter;
-}
+    .row.no-gutters td span {
+        font-weight: lighter;
+    }
 
-.row.no-gutters td {
-    padding: 0;
-}
+    .row.no-gutters td {
+        padding: 0;
+    }
 
 
 /* Tables

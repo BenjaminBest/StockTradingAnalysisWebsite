@@ -5,8 +5,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@Scripts.Render("~/bundles/validation")
-
 <script type="text/javascript">
     $(function () { $('#Name').autocomplete({ source: '@Url.Action("GetStockName")', minLength: 1 }); });
     $(function () { $('#WKN').autocomplete({ source: '@Url.Action("GetStockWkn")', minLength: 1 }); });

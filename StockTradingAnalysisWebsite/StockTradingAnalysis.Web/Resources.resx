@@ -640,13 +640,13 @@
     <value>MM\\yyyy</value>
   </data>
   <data name="NoSuchStock" xml:space="preserve">
-    <value>Finanzprodukt nicht gefunden</value>
+    <value>Das Finanzprodukt konnte nicht gefunden werden, bitte überprüfen Sie die ID, WKN oder ISIN.</value>
   </data>
   <data name="StatusOK" xml:space="preserve">
     <value />
   </data>
   <data name="StatusQuotations" xml:space="preserve">
-    <value>Tagesendkurse: {0}, Neu hinzugefügt: {1}</value>
+    <value>Insgesamt sind {0} Tagesendkurse in der Datenbank gespeichern. Neu hinzugefügt wurde n  {1} Kursdatensätze.</value>
   </data>
   <data name="TagsInpaymentVsOutpayment" xml:space="preserve">
     <value>Einzahlung vs Auszahlung</value>

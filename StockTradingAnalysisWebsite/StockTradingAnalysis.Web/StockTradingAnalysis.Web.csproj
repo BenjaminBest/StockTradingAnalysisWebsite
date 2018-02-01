@@ -48,11 +48,32 @@
     <Reference Include="AutoMapper">
       <HintPath>..\packages\AutoMapper.4.1.1\lib\net45\AutoMapper.dll</HintPath>
     </Reference>
+    <Reference Include="ClearScript, Version=5.4.9.0, Culture=neutral, PublicKeyToken=935d0c957da47c73, processorArchitecture=MSIL">
+      <HintPath>..\packages\JavaScriptEngineSwitcher.V8.2.4.2\lib\net45\ClearScript.dll</HintPath>
+    </Reference>
+    <Reference Include="JavaScriptEngineSwitcher.ChakraCore, Version=2.4.8.0, Culture=neutral, PublicKeyToken=c608b2a8cc9e4472, processorArchitecture=MSIL">
+      <HintPath>..\packages\JavaScriptEngineSwitcher.ChakraCore.2.4.8\lib\net45\JavaScriptEngineSwitcher.ChakraCore.dll</HintPath>
+    </Reference>
+    <Reference Include="JavaScriptEngineSwitcher.Core, Version=2.4.9.0, Culture=neutral, PublicKeyToken=c608b2a8cc9e4472, processorArchitecture=MSIL">
+      <HintPath>..\packages\JavaScriptEngineSwitcher.Core.2.4.9\lib\net45\JavaScriptEngineSwitcher.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="JavaScriptEngineSwitcher.Msie, Version=2.4.9.0, Culture=neutral, PublicKeyToken=c608b2a8cc9e4472, processorArchitecture=MSIL">
+      <HintPath>..\packages\JavaScriptEngineSwitcher.Msie.2.4.9\lib\net45\JavaScriptEngineSwitcher.Msie.dll</HintPath>
+    </Reference>
+    <Reference Include="JavaScriptEngineSwitcher.V8, Version=2.4.2.0, Culture=neutral, PublicKeyToken=c608b2a8cc9e4472, processorArchitecture=MSIL">
+      <HintPath>..\packages\JavaScriptEngineSwitcher.V8.2.4.2\lib\net45\JavaScriptEngineSwitcher.V8.dll</HintPath>
+    </Reference>
+    <Reference Include="JSPool, Version=3.0.1.0, Culture=neutral, PublicKeyToken=2fc7775f73072640, processorArchitecture=MSIL">
+      <HintPath>..\packages\JSPool.3.0.1\lib\net451\JSPool.dll</HintPath>
+    </Reference>
     <Reference Include="log4net, Version=1.2.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.2.0.5\lib\net45-full\log4net.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="MsieJavaScriptEngine, Version=2.2.2.0, Culture=neutral, PublicKeyToken=a3a2846a37ac0d3e, processorArchitecture=MSIL">
+      <HintPath>..\packages\MsieJavaScriptEngine.2.2.2\lib\net45\MsieJavaScriptEngine.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -82,6 +103,15 @@
       <HintPath>..\packages\RavenDB.Database.3.5.0\lib\net45\Raven.Database.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="React.Core, Version=3.2.0.0, Culture=neutral, PublicKeyToken=9aed67b161f7db78, processorArchitecture=MSIL">
+      <HintPath>..\packages\React.Core.3.2.0\lib\net40\React.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="React.Web, Version=3.2.0.0, Culture=neutral, PublicKeyToken=9aed67b161f7db78, processorArchitecture=MSIL">
+      <HintPath>..\packages\React.Web.3.2.0\lib\net40\React.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="React.Web.Mvc4, Version=3.2.0.0, Culture=neutral, PublicKeyToken=9aed67b161f7db78, processorArchitecture=MSIL">
+      <HintPath>..\packages\React.Web.Mvc4.3.2.0\lib\net40\React.Web.Mvc4.dll</HintPath>
+    </Reference>
     <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Net.Http" />
@@ -89,6 +119,7 @@
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Runtime.Caching" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -117,6 +148,9 @@
     </Reference>
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Optimization.React, Version=3.2.0.0, Culture=neutral, PublicKeyToken=9aed67b161f7db78, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Web.Optimization.React.3.2.0\lib\net40\System.Web.Optimization.React.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
       <Private>True</Private>
@@ -138,6 +172,9 @@
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
     <Reference Include="System.Xml.Linq" />
+    <Reference Include="VroomJs, Version=1.2.3.0, Culture=neutral, PublicKeyToken=e7c52e67fcb0044f, processorArchitecture=MSIL">
+      <HintPath>..\packages\VroomJs.1.2.3\lib\net45\VroomJs.dll</HintPath>
+    </Reference>
     <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
       <HintPath>..\packages\WebActivatorEx.2.2.0\lib\net40\WebActivatorEx.dll</HintPath>
       <Private>True</Private>
@@ -153,6 +190,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Jsx\Popup.jsx" />
+    <Content Include="Content\Jsx\UpdateQuotationsButton.jsx" />
+    <Content Include="Content\Js\axios.min.js" />
+    <Content Include="Content\Js\calculation.js" />
     <Content Include="Content\Css\bootstrap-datetimepicker.min.css" />
     <Content Include="Content\Css\bootstrap.css" />
     <Content Include="Content\Css\font-awesome.min.css" />
@@ -189,6 +230,8 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Content\Js\react-dom.js" />
+    <Content Include="Content\Js\react.js" />
     <Content Include="Scripts\validate.decimal.fix.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -215,6 +258,7 @@
     <Compile Include="App_Start\BootModules\ConfigurationBootModule.cs" />
     <Compile Include="App_Start\BootModules\BundlesBootModule.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
+    <Compile Include="App_Start\ReactConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Common\Configuration\ConfigurationKeys.cs" />
@@ -242,6 +286,7 @@
     <Compile Include="Common\Services\QuotationServiceClient.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\CalculationController.cs" />
+    <Compile Include="Controllers\QuotationController.cs" />
     <Compile Include="Controllers\TransactionController.cs" />
     <Compile Include="Controllers\StrategyController.cs" />
     <Compile Include="Controllers\FeedbackController.cs" />

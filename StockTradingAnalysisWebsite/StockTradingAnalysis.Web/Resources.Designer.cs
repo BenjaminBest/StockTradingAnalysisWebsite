@@ -1663,7 +1663,7 @@ namespace StockTradingAnalysis.Web {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Finanzprodukt nicht gefunden.
+        ///   Looks up a localized string similar to Das Finanzprodukt konnte nicht gefunden werden, bitte überprüfen Sie die ID, WKN oder ISIN..
         /// </summary>
         public static string NoSuchStock {
             get {
@@ -1681,7 +1681,7 @@ namespace StockTradingAnalysis.Web {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Tagesendkurse: {0}, Neu hinzugefügt: {1}.
+        ///   Looks up a localized string similar to Insgesamt sind {0} Tagesendkurse in der Datenbank gespeichern. Neu hinzugefügt wurde n  {1} Kursdatensätze..
         /// </summary>
         public static string StatusQuotations {
             get {

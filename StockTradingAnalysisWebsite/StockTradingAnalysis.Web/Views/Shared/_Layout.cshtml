@@ -4,20 +4,22 @@
     <title>@ViewBag.Title</title>
     @Styles.Render("~/bundles/css")
     @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/validation")
     @Scripts.Render("~/bundles/js")
+    @Scripts.Render("~/bundles/react")
     @RenderSection("head", false)
 </head>
 <body>
-@{ Html.RenderPartial("Navigation"); }
-    
-<div class="page">
-    <div id="main">
-        @RenderBody()
+    @{ Html.RenderPartial("Navigation"); }
+
+    <div>
+        <div id="main">
+            @RenderBody()
+        </div>
+        <div id="popup"></div>
+        <div id="footer">
+        </div>
     </div>
-    <div id="footer">
-    </div>
-</div>
-@RenderSection("scripts", false)
+    @RenderSection("scripts", false)
 </body>
 </html>
