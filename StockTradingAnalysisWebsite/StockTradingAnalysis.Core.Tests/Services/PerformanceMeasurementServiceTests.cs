@@ -1,9 +1,9 @@
-﻿using FluentAssertions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using StockTradingAnalysis.Core.Tests.Mocks;
-using System;
+﻿using System;
 using System.Linq;
 using System.Threading;
+using FluentAssertions;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using StockTradingAnalysis.Core.Tests.Mocks;
 
 namespace StockTradingAnalysis.Core.Tests.Services
 {
@@ -35,7 +35,7 @@ namespace StockTradingAnalysis.Core.Tests.Services
             results["Total Events"].Value.Should().Be(3);
             results["Commits/ms"].Value.Should().BeApproximately(0.6d, 2);
             results["Events/ms"].Value.Should().BeApproximately(1, 0.5);
-            results["Average Commit Duration"].Value.Should().Be(1000);
+            results["Average Commit Duration (ms)"].Value.Should().Be(1000);
         }
 
         [TestMethod]
@@ -64,7 +64,7 @@ namespace StockTradingAnalysis.Core.Tests.Services
             var results = service.GetResults().ToDictionary(r => r.Key, r => r);
 
             results["Total Queries"].Value.Should().Be(2);
-            results["Average Queries Duration"].Value.Should().Be(1000);
+            results["Average Queries Duration (ms)"].Value.Should().Be(1000);
         }
 
         [TestMethod]
@@ -79,7 +79,7 @@ namespace StockTradingAnalysis.Core.Tests.Services
             var results = service.GetResults().ToDictionary(r => r.Key, r => r);
 
             results["Total Commands"].Value.Should().Be(2);
-            results["Average Commands Duration"].Value.Should().Be(1000);
+            results["Average Commands Duration (ms)"].Value.Should().Be(1000);
         }
 
         [TestMethod]
@@ -88,21 +88,21 @@ namespace StockTradingAnalysis.Core.Tests.Services
         {
             var service = PerformanceCounterMock.GetMock();
 
-            var thread1 = new Thread(new ThreadStart(() =>
+            var thread1 = new Thread(() =>
             {
                 for (var i = 0; i < 100; i++)
                 {
                     service.CountCommand(Convert.ToInt64(new TimeSpan(0, 0, 0, 0, 1000).TotalMilliseconds));
                 }
-            }));
+            });
 
-            var thread2 = new Thread(new ThreadStart(() =>
+            var thread2 = new Thread(() =>
             {
                 for (var i = 0; i < 100; i++)
                 {
                     service.CountCommand(Convert.ToInt64(new TimeSpan(0, 0, 0, 0, 1000).TotalMilliseconds));
                 }
-            }));
+            });
 
             thread1.Start();
             thread2.Start();
@@ -112,7 +112,7 @@ namespace StockTradingAnalysis.Core.Tests.Services
             var results = service.GetResults().ToDictionary(r => r.Key, r => r);
 
             results["Total Commands"].Value.Should().Be(200);
-            results["Average Commands Duration"].Value.Should().Be(1000);
+            results["Average Commands Duration (ms)"].Value.Should().Be(1000);
         }
 
     }

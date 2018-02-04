@@ -1,9 +1,13 @@
-﻿using StockTradingAnalysis.Interfaces.Domain;
+﻿using System;
+using StockTradingAnalysis.Interfaces.Domain;
 using StockTradingAnalysis.Interfaces.Types;
-using System;
 
 namespace StockTradingAnalysis.Services.Domain
 {
+    /// <summary>
+    /// Performance of one transaction
+    /// </summary>
+    /// <seealso cref="ITransactionPerformance" />
     public class TransactionPerformance : ITransactionPerformance
     {
         /// <summary>

@@ -258,6 +258,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\AutoMapperProfiles\SavingsPlanProfile.cs" />
     <Compile Include="App_Start\AutoMapperProfiles\CalculationProfile.cs" />
     <Compile Include="App_Start\AutoMapperProfiles\TransactionProfile.cs" />
     <Compile Include="App_Start\AutoMapperProfiles\ImageProfile.cs" />
@@ -275,22 +276,16 @@
     <Compile Include="App_Start\BootModules\AutoMapperBootModule.cs" />
     <Compile Include="App_Start\BootModules\LoggingBootModule.cs" />
     <Compile Include="App_Start\BootModules\ModelBinderBootModule.cs" />
-    <Compile Include="App_Start\BootModules\ConfigurationBootModule.cs" />
+    <Compile Include="App_Start\BootModules\EventStoreBootModule.cs" />
     <Compile Include="App_Start\BootModules\BundlesBootModule.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\ReactConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Common\Configuration\ConfigurationKeys.cs" />
     <Compile Include="Common\Enumerations\StatisticsKPIsFormat.cs" />
     <Compile Include="Common\Enumerations\StatisticsKPIsStyleCalcFormat.cs" />
     <Compile Include="Common\Extensions\HtmlExtensions.cs" />
-    <Compile Include="Common\Filter\TransactionStockTypeFilter.cs" />
-    <Compile Include="Common\Filter\TransactionDividendFilter.cs" />
-    <Compile Include="Common\Filter\TransactionTagFilter.cs" />
-    <Compile Include="Common\Filter\TransactionEndDateFilter.cs" />
-    <Compile Include="Common\Filter\TransactionStartDateFilter.cs" />
     <Compile Include="Common\Interfaces\IQuotationServiceClient.cs" />
     <Compile Include="Common\ItemResolvers\ItemResolverRegistry.cs" />
     <Compile Include="Common\ItemResolvers\FeedbackItemResolver.cs" />
@@ -326,8 +321,8 @@
     <Compile Include="Models\StockViewModel.cs" />
     <Compile Include="Models\CalculationQuotationViewModel.cs" />
     <Compile Include="Models\CalculationResultViewModel.cs" />
-    <Compile Include="Models\TagPeriodViewModel.cs" />
-    <Compile Include="Models\TagsViewModel.cs" />
+    <Compile Include="Models\SavingsPlanPeriodViewModel.cs" />
+    <Compile Include="Models\SavingsPlanViewModel.cs" />
     <Compile Include="Models\TransactionDividendViewModel.cs" />
     <Compile Include="Models\TransactionPerformanceViewModel.cs" />
     <Compile Include="Models\TransactionSellingViewModel.cs" />
@@ -391,7 +386,7 @@
     <Content Include="Views\Transaction\Buy.cshtml" />
     <Content Include="Views\Transaction\Dividend.cshtml" />
     <Content Include="Views\Transaction\Split.cshtml" />
-    <Content Include="Views\Dashboard\Tags.cshtml" />
+    <Content Include="Views\Dashboard\SavingsPlan.cshtml" />
     <Content Include="Views\Stock\UpdateQuotations.cshtml" />
     <Content Include="Views\Shared\Navigation.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\Action.cshtml" />

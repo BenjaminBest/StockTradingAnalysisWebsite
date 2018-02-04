@@ -5,7 +5,6 @@ using StockTradingAnalysis.Domain.Events.Domain;
 using StockTradingAnalysis.Interfaces.Domain;
 using StockTradingAnalysis.Interfaces.DomainContext;
 using StockTradingAnalysis.Interfaces.ReadModel;
-using StockTradingAnalysis.Interfaces.Services;
 using StockTradingAnalysis.Interfaces.Services.Domain;
 using StockTradingAnalysis.Services.Services;
 
@@ -24,7 +23,8 @@ namespace StockTradingAnalysis.Web.BindingModules
             Kernel.Bind<ITransactionPerformanceService>().To<TransactionPerformanceService>().InSingletonScope();
             Kernel.Bind<ITransactionBook>().To<TransactionBook>().InSingletonScope();
             Kernel.Bind<IAccumulationPlanStatisticService>().To<AccumulationPlanStatisticService>().InSingletonScope();
-            Kernel.Bind<IInterestRateCalculatorService>().To<InterestRateCalculatorService>().InSingletonScope();
+            Kernel.Bind<IInterestRateCalculatorService>().To<InterestRateCalculatorService>();
+            Kernel.Bind<ITransactionCalculationService>().To<TransactionCalculationService>();
 
             //Model repositories
             Kernel.Bind<IModelReaderRepository<IStock>, IModelWriterRepository<IStock>, IModelRepository<IStock>>()

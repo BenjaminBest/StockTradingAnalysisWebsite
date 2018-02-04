@@ -57,8 +57,11 @@
     <Compile Include="DomainContext\ISnapshotOriginator.cs" />
     <Compile Include="DomainContext\ISnapshotProcessor.cs" />
     <Compile Include="DomainContext\SnapshotBase.cs" />
+    <Compile Include="Domain\ISavingsPlan.cs" />
+    <Compile Include="Domain\ISavingsPlanPeriodOverall.cs" />
+    <Compile Include="Domain\ISavingsPlanPeriodCurrent.cs" />
     <Compile Include="Domain\IStockStatistics.cs" />
-    <Compile Include="Domain\IAccumulationPlanStatistic.cs" />
+    <Compile Include="Domain\ISavingsPlanPeriod.cs" />
     <Compile Include="Domain\IQuotation.cs" />
     <Compile Include="Domain\ISplitTransactionBookEntry.cs" />
     <Compile Include="Domain\IFeedbackProportion.cs" />
@@ -82,7 +85,7 @@
     <Compile Include="Domain\IStock.cs" />
     <Compile Include="Domain\ITransactionBook.cs" />
     <Compile Include="Domain\ITransactionBookEntry.cs" />
-    <Compile Include="Domain\ITransactionFilter.cs" />
+    <Compile Include="Filter\ITransactionFilter.cs" />
     <Compile Include="Domain\ITransactionPerformance.cs" />
     <Compile Include="Enumerations\ApproximateResultKindType.cs" />
     <Compile Include="Enumerations\PerformanceType.cs" />
@@ -125,6 +128,7 @@
     <Compile Include="Services\Domain\IAccumulationPlanStatisticService.cs" />
     <Compile Include="Services\Domain\IStatisticService.cs" />
     <Compile Include="Services\Domain\IStockQuoteService.cs" />
+    <Compile Include="Services\Domain\ITransactionCalculationService.cs" />
     <Compile Include="Services\Domain\ITransactionPerformanceService.cs" />
     <Compile Include="Services\Core\IPerformanceMeasurementService.cs" />
     <Compile Include="Types\AlgorithmResult.cs" />

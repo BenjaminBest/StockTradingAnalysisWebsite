@@ -3,6 +3,7 @@ using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using StockTradingAnalysis.Domain.Events.Events;
+using StockTradingAnalysis.Interfaces.Configuration;
 using StockTradingAnalysis.Interfaces.Events;
 using StockTradingAnalysis.Interfaces.Services.Core;
 
@@ -18,7 +19,10 @@ namespace StockTradingAnalysis.Data.MSSQL.Tests
         [Description("The eventstore should deserialize to the correct object type with all properties correctly filled")]
         public void EventDatastoreDeserializeShouldCorrectlyDeserializeTransactionPerformanceCalculatedEvent()
         {
-            var value = new EventDatastore("connection", "tableName", new Mock<IPerformanceMeasurementService>().Object).Deserialize<IDomainEvent>(_transactionPerformanceCalculatedEvent);
+            var configuration = new Mock<IConfigurationRegistry>();
+            configuration.Setup(s => s.GetValue<string>("connection")).Returns("connection");
+
+            var value = new EventDatastore("connection", "tableName", new Mock<IPerformanceMeasurementService>().Object, configuration.Object).Deserialize<IDomainEvent>(_transactionPerformanceCalculatedEvent);
 
             value.EventName.Should().Be("TransactionPerformanceCalculatedEvent");
             value.TimeStamp.Should().Be(DateTime.Parse("2018-01-25T10:07:17.0933351+01:00"));

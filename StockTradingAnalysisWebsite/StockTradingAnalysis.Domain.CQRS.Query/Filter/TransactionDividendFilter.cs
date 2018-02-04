@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using StockTradingAnalysis.Interfaces.Domain;
+using StockTradingAnalysis.Interfaces.Filter;
 
-namespace StockTradingAnalysis.Web.Common.Filter
+namespace StockTradingAnalysis.Domain.CQRS.Query.Filter
 {
     /// <summary>
     /// The class TransactionEndDateFilter filters a list of transactions based if its a dividend transaction

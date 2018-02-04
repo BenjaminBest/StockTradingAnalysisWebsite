@@ -12,15 +12,15 @@ namespace StockTradingAnalysis.Web.BindingModules
         /// </summary>
         public override void Load()
         {
-            var configurationManager = ConfigurationManager.AppSettings;
-
             //Configuration Registry
             Kernel.Bind<IConfigurationRegistry>().ToMethod((context) =>
             {
                 var registry = new ConfigurationRegistry();
 
-                registry.AddValue("StockQuoteServiceBaseUrl", configurationManager["StockQuoteServiceBaseUrl"]);
-                registry.AddValue("StockQuoteOnlineCheckUrl", configurationManager["StockQuoteOnlineCheckUrl"]);
+                registry.AddValue("StockQuoteServiceBaseUrl", ConfigurationManager.AppSettings["StockQuoteServiceBaseUrl"]);
+                registry.AddValue("StockQuoteOnlineCheckUrl", ConfigurationManager.AppSettings["StockQuoteOnlineCheckUrl"]);
+                registry.AddValue("StockTradingAnalysis_MSSQL", ConfigurationManager.ConnectionStrings["StockTradingAnalysis_MSSQL"].ConnectionString);
+                registry.AddValue("StockTradingAnalysis_RavenDB", ConfigurationManager.ConnectionStrings["StockTradingAnalysis_RavenDB"].ConnectionString);
 
                 return registry;
 

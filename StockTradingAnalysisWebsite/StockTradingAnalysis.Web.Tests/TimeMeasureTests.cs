@@ -24,7 +24,7 @@ namespace StockTradingAnalysis.Web.Tests
             var results = service.GetResults().ToDictionary(r => r.Key, r => r);
 
             results["Total Commands"].Value.Should().Be(1);
-            results["Average Commands Duration"].Value.Should().BeApproximately(500, 5);
+            results["Average Commands Duration (ms)"].Value.Should().BeApproximately(500, 5);
         }
     }
 }

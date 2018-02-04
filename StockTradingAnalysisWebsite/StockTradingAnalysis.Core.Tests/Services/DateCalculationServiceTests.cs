@@ -1,21 +1,15 @@
-﻿using FluentAssertions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using StockTradingAnalysis.Core.Services;
-using System;
+﻿using System;
 using System.Globalization;
 using System.Threading;
+using FluentAssertions;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using StockTradingAnalysis.Core.Services;
 
 namespace StockTradingAnalysis.Core.Tests.Services
 {
     [TestClass]
     public class DateCalculationServiceTests
     {
-        [TestInitialize]
-        private void Initialize()
-        {
-            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("de-DE");
-        }
-
         [TestMethod]
         [Description("GetStartAndEndDateOfWeek should return the correct start and end date of a week")]
         public void GetStartAndEndDateOfWeekShouldReturnTheCorrectStartAndEndDate()
@@ -23,6 +17,7 @@ namespace StockTradingAnalysis.Core.Tests.Services
             var date = new DateTime(2016, 08, 23, 0, 0, 0);
 
             DateTime endDate;
+            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("de");
             var startDate = new DateCalculationService().GetStartAndEndDateOfWeek(date, out endDate);
 
             endDate.ToString("dd.MM.yyyy HH:mm:ss").Should().Be(new DateTime(2016, 08, 28, 23, 59, 59).ToString("dd.MM.yyyy HH:mm:ss"));
@@ -36,6 +31,7 @@ namespace StockTradingAnalysis.Core.Tests.Services
             var date = new DateTime(2016, 08, 28, 0, 0, 0);
 
             DateTime endDate;
+            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("de");
             var startDate = new DateCalculationService().GetStartAndEndDateOfWeek(date, out endDate);
 
             endDate.ToString("dd.MM.yyyy HH:mm:ss").Should().Be(new DateTime(2016, 08, 28, 23, 59, 59).ToString("dd.MM.yyyy HH:mm:ss"));
@@ -49,6 +45,7 @@ namespace StockTradingAnalysis.Core.Tests.Services
             var date = new DateTime(2016, 08, 22, 0, 0, 0);
 
             DateTime endDate;
+            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("de");
             var startDate = new DateCalculationService().GetStartAndEndDateOfWeek(date, out endDate);
 
             endDate.ToString("dd.MM.yyyy HH:mm:ss").Should().Be(new DateTime(2016, 08, 28, 23, 59, 59).ToString("dd.MM.yyyy HH:mm:ss"));
@@ -62,6 +59,7 @@ namespace StockTradingAnalysis.Core.Tests.Services
             var date = new DateTime(2016, 08, 23, 0, 0, 0);
 
             DateTime endDate;
+            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("de");
             var startDate = new DateCalculationService().GetStartAndEndDateOfMonth(date, out endDate);
 
             endDate.ToString("dd.MM.yyyy HH:mm:ss").Should().Be(new DateTime(2016, 08, 31, 23, 59, 59).ToString("dd.MM.yyyy HH:mm:ss"));
@@ -75,6 +73,7 @@ namespace StockTradingAnalysis.Core.Tests.Services
             var date = new DateTime(2016, 08, 1, 0, 0, 0);
 
             DateTime endDate;
+            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("de");
             var startDate = new DateCalculationService().GetStartAndEndDateOfMonth(date, out endDate);
 
             endDate.ToString("dd.MM.yyyy HH:mm:ss").Should().Be(new DateTime(2016, 08, 31, 23, 59, 59).ToString("dd.MM.yyyy HH:mm:ss"));
@@ -88,6 +87,7 @@ namespace StockTradingAnalysis.Core.Tests.Services
             var date = new DateTime(2016, 08, 31, 0, 0, 0);
 
             DateTime endDate;
+            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("de");
             var startDate = new DateCalculationService().GetStartAndEndDateOfMonth(date, out endDate);
 
             endDate.ToString("dd.MM.yyyy HH:mm:ss").Should().Be(new DateTime(2016, 08, 31, 23, 59, 59).ToString("dd.MM.yyyy HH:mm:ss"));
@@ -100,6 +100,7 @@ namespace StockTradingAnalysis.Core.Tests.Services
         {
             var date = new DateTime(2016, 08, 23, 0, 0, 0);
 
+            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("de");
             var endDate = new DateCalculationService().GetEndDateOfMonth(date);
 
             endDate.ToString("dd.MM.yyyy HH:mm:ss").Should().Be(new DateTime(2016, 08, 31, 23, 59, 59).ToString("dd.MM.yyyy HH:mm:ss"));
@@ -111,6 +112,7 @@ namespace StockTradingAnalysis.Core.Tests.Services
         {
             var date = new DateTime(2016, 08, 31, 0, 0, 0);
 
+            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("de");
             var endDate = new DateCalculationService().GetEndDateOfMonth(date);
 
             endDate.ToString("dd.MM.yyyy HH:mm:ss").Should().Be(new DateTime(2016, 08, 31, 23, 59, 59).ToString("dd.MM.yyyy HH:mm:ss"));
@@ -123,6 +125,7 @@ namespace StockTradingAnalysis.Core.Tests.Services
             var date = new DateTime(2016, 08, 23, 0, 0, 0);
 
             DateTime endDate;
+            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("de");
             var startDate = new DateCalculationService().GetStartAndEndDateOf2Weeks(date, out endDate);
 
             endDate.ToString("dd.MM.yyyy HH:mm:ss").Should().Be(new DateTime(2016, 08, 23, 23, 59, 59).ToString("dd.MM.yyyy HH:mm:ss"));
@@ -136,6 +139,7 @@ namespace StockTradingAnalysis.Core.Tests.Services
             var date = new DateTime(2016, 08, 23, 0, 0, 0);
 
             DateTime endDate;
+            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("de");
             var startDate = new DateCalculationService().GetStartAndEndDateOfYear(date, out endDate);
 
             endDate.ToString("dd.MM.yyyy HH:mm:ss").Should().Be(new DateTime(2016, 12, 31, 23, 59, 59).ToString("dd.MM.yyyy HH:mm:ss"));
@@ -149,6 +153,7 @@ namespace StockTradingAnalysis.Core.Tests.Services
             var date = new DateTime(2016, 12, 31, 0, 0, 0);
 
             DateTime endDate;
+            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("de");
             var startDate = new DateCalculationService().GetStartAndEndDateOfYear(date, out endDate);
 
             endDate.ToString("dd.MM.yyyy HH:mm:ss").Should().Be(new DateTime(2016, 12, 31, 23, 59, 59).ToString("dd.MM.yyyy HH:mm:ss"));
@@ -162,6 +167,7 @@ namespace StockTradingAnalysis.Core.Tests.Services
             var date = new DateTime(2016, 01, 01, 0, 0, 0);
 
             DateTime endDate;
+            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("de");
             var startDate = new DateCalculationService().GetStartAndEndDateOfYear(date, out endDate);
 
             endDate.ToString("dd.MM.yyyy HH:mm:ss").Should().Be(new DateTime(2016, 12, 31, 23, 59, 59).ToString("dd.MM.yyyy HH:mm:ss"));
@@ -173,6 +179,7 @@ namespace StockTradingAnalysis.Core.Tests.Services
         {
             var date = new DateTime(2016, 08, 23, 0, 0, 0);
 
+            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("de");
             var endDate = new DateCalculationService().GetEndDateOfYear(date);
 
             endDate.ToString("dd.MM.yyyy HH:mm:ss").Should().Be(new DateTime(2016, 12, 31, 23, 59, 59).ToString("dd.MM.yyyy HH:mm:ss"));
@@ -184,6 +191,7 @@ namespace StockTradingAnalysis.Core.Tests.Services
         {
             var date = new DateTime(2016, 12, 31, 0, 0, 0);
 
+            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("de");
             var endDate = new DateCalculationService().GetEndDateOfYear(date);
 
             endDate.ToString("dd.MM.yyyy HH:mm:ss").Should().Be(new DateTime(2016, 12, 31, 23, 59, 59).ToString("dd.MM.yyyy HH:mm:ss"));
@@ -194,6 +202,7 @@ namespace StockTradingAnalysis.Core.Tests.Services
         {
             var date = new DateTime(2016, 08, 23, 0, 0, 0);
 
+            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("de");
             var endDate = new DateCalculationService().GetStartDateOfYear(date);
 
             endDate.ToString("dd.MM.yyyy HH:mm:ss").Should().Be(new DateTime(2016, 01, 01, 0, 0, 0).ToString("dd.MM.yyyy HH:mm:ss"));
@@ -205,6 +214,7 @@ namespace StockTradingAnalysis.Core.Tests.Services
         {
             var date = new DateTime(2016, 01, 01, 0, 0, 0);
 
+            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("de");
             var endDate = new DateCalculationService().GetStartDateOfYear(date);
 
             endDate.ToString("dd.MM.yyyy HH:mm:ss").Should().Be(new DateTime(2016, 01, 01, 0, 0, 0).ToString("dd.MM.yyyy HH:mm:ss"));
@@ -216,6 +226,7 @@ namespace StockTradingAnalysis.Core.Tests.Services
         {
             var date = new DateTime(2016, 12, 31, 0, 0, 0);
 
+            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("de");
             var endDate = new DateCalculationService().GetStartDateOfYear(date);
 
             endDate.ToString("dd.MM.yyyy HH:mm:ss").Should().Be(new DateTime(2016, 01, 01, 0, 0, 0).ToString("dd.MM.yyyy HH:mm:ss"));
@@ -228,6 +239,7 @@ namespace StockTradingAnalysis.Core.Tests.Services
             var date = new DateTime(2016, 08, 23, 0, 0, 0);
 
             DateTime endDate;
+            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("de");
             var startDate = new DateCalculationService().GetStartAndEndDateOfQuarter(date, out endDate);
 
             endDate.ToString("dd.MM.yyyy HH:mm:ss").Should().Be(new DateTime(2016, 09, 30, 23, 59, 59).ToString("dd.MM.yyyy HH:mm:ss"));
@@ -241,6 +253,7 @@ namespace StockTradingAnalysis.Core.Tests.Services
             var date = new DateTime(2016, 08, 1, 0, 0, 0);
 
             DateTime endDate;
+            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("de");
             var startDate = new DateCalculationService().GetStartAndEndDateOfQuarter(date, out endDate);
 
             endDate.ToString("dd.MM.yyyy HH:mm:ss").Should().Be(new DateTime(2016, 09, 30, 23, 59, 59).ToString("dd.MM.yyyy HH:mm:ss"));
@@ -254,6 +267,7 @@ namespace StockTradingAnalysis.Core.Tests.Services
             var date = new DateTime(2016, 08, 31, 0, 0, 0);
 
             DateTime endDate;
+            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("de");
             var startDate = new DateCalculationService().GetStartAndEndDateOfQuarter(date, out endDate);
 
             endDate.ToString("dd.MM.yyyy HH:mm:ss").Should().Be(new DateTime(2016, 09, 30, 23, 59, 59).ToString("dd.MM.yyyy HH:mm:ss"));
@@ -268,6 +282,7 @@ namespace StockTradingAnalysis.Core.Tests.Services
 
             DateTime endDate;
             int quarter;
+            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("de");
             var startDate = new DateCalculationService().GetStartAndEndDateOfQuarter(date, out endDate, out quarter);
 
             endDate.ToString("dd.MM.yyyy HH:mm:ss").Should().Be(new DateTime(2016, 09, 30, 23, 59, 59).ToString("dd.MM.yyyy HH:mm:ss"));
@@ -283,6 +298,7 @@ namespace StockTradingAnalysis.Core.Tests.Services
 
             DateTime endDate;
             int quarter;
+            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("de");
             var startDate = new DateCalculationService().GetStartAndEndDateOfQuarter(date, out endDate, out quarter);
 
             endDate.ToString("dd.MM.yyyy HH:mm:ss").Should().Be(new DateTime(2016, 09, 30, 23, 59, 59).ToString("dd.MM.yyyy HH:mm:ss"));
@@ -298,6 +314,7 @@ namespace StockTradingAnalysis.Core.Tests.Services
 
             DateTime endDate;
             int quarter;
+            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("de");
             var startDate = new DateCalculationService().GetStartAndEndDateOfQuarter(date, out endDate, out quarter);
 
             endDate.ToString("dd.MM.yyyy HH:mm:ss").Should().Be(new DateTime(2016, 09, 30, 23, 59, 59).ToString("dd.MM.yyyy HH:mm:ss"));
@@ -311,6 +328,7 @@ namespace StockTradingAnalysis.Core.Tests.Services
         {
             var date = new DateTime(2016, 08, 23, 0, 0, 0);
 
+            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("de");
             var cw = new DateCalculationService().GetCalendarWeek(date);
             cw.Should().Be(34);
         }
@@ -321,6 +339,7 @@ namespace StockTradingAnalysis.Core.Tests.Services
         {
             var date = new DateTime(2016, 08, 22, 0, 0, 0);
 
+            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("de");
             var cw = new DateCalculationService().GetCalendarWeek(date);
             cw.Should().Be(34);
         }
@@ -331,11 +350,9 @@ namespace StockTradingAnalysis.Core.Tests.Services
         {
             var date = new DateTime(2016, 08, 28, 0, 0, 0);
 
+            Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo("de");
             var cw = new DateCalculationService().GetCalendarWeek(date);
             cw.Should().Be(34);
         }
-
-        //TODO: Test FirstDateOfWeek
-        //TODO: Test GetEndOfToDay
     }
 }

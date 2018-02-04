@@ -1,7 +1,7 @@
-﻿using StockTradingAnalysis.Interfaces.Domain;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using StockTradingAnalysis.Interfaces.Domain;
 
-namespace StockTradingAnalysis.Interfaces.Services
+namespace StockTradingAnalysis.Interfaces.Services.Domain
 {
     /// <summary>
     /// THe interface IStatisticService defines a service to calculate time range based statistical information for transational data

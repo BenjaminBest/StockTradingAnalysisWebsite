@@ -3,6 +3,7 @@ using StockTradingAnalysis.Interfaces.Services;
 using StockTradingAnalysis.Services.Domain;
 using System.Collections.Generic;
 using System.Linq;
+using StockTradingAnalysis.Interfaces.Services.Domain;
 
 namespace StockTradingAnalysis.Services.Services
 {

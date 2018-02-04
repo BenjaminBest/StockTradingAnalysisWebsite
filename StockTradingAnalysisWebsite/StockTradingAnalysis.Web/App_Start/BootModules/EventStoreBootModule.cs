@@ -5,9 +5,9 @@ using StockTradingAnalysis.Interfaces.Events;
 namespace StockTradingAnalysis.Web.BootModules
 {
     /// <summary>
-    /// Defines an boot module for configuration purposes
+    /// Defines an boot module for the event store
     /// </summary>
-    public class ConfigurationBootModule : IBootModule
+    public class EventStoreBootModule : IBootModule
     {
         /// <summary>
         /// Gets the priority

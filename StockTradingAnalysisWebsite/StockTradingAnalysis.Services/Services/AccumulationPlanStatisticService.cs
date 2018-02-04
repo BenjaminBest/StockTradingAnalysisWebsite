@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using StockTradingAnalysis.Domain.CQRS.Query.Filter;
 using StockTradingAnalysis.Domain.CQRS.Query.Queries;
 using StockTradingAnalysis.Interfaces.Domain;
 using StockTradingAnalysis.Interfaces.Queries;
-using StockTradingAnalysis.Interfaces.Services;
 using StockTradingAnalysis.Interfaces.Services.Core;
+using StockTradingAnalysis.Interfaces.Services.Domain;
 using StockTradingAnalysis.Interfaces.Types;
 using StockTradingAnalysis.Services.Domain;
 
@@ -16,202 +17,235 @@ namespace StockTradingAnalysis.Services.Services
     /// </summary>
     public class AccumulationPlanStatisticService : IAccumulationPlanStatisticService
     {
+        /// <summary>
+        /// The date calculation service
+        /// </summary>
         private readonly IDateCalculationService _dateCalculationService;
-        private readonly IInterestRateCalculatorService _interestRateCalculatorService;
+
+        /// <summary>
+        /// The query dispatcher
+        /// </summary>
         private readonly IQueryDispatcher _queryDispatcher;
+
+        /// <summary>
+        /// The iir calculation service
+        /// </summary>
+        private readonly IInterestRateCalculatorService _iirCalculationService;
+
+        /// <summary>
+        /// The transaction calculation service
+        /// </summary>
+        private readonly ITransactionCalculationService _transactionCalculationService;
 
         /// <summary>
         /// Initializes this service with the given values
         /// </summary>
         /// <param name="dateCalculationService">The date calculation service</param>
-        /// <param name="interestRateCalculatorService">The interest rate calculation service</param>
         /// <param name="queryDispatcher">The query dispatcher to retrieve stock quotes</param>
+        /// <param name="iirCalculationService">The iir calculation service.</param>
+        /// <param name="transactionCalculationService">The transaction calculation service.</param>
         public AccumulationPlanStatisticService(
             IDateCalculationService dateCalculationService,
-            IInterestRateCalculatorService interestRateCalculatorService,
-            IQueryDispatcher queryDispatcher)
+            IQueryDispatcher queryDispatcher,
+            IInterestRateCalculatorService iirCalculationService,
+            ITransactionCalculationService transactionCalculationService)
         {
             _dateCalculationService = dateCalculationService;
-            _interestRateCalculatorService = interestRateCalculatorService;
             _queryDispatcher = queryDispatcher;
+            _iirCalculationService = iirCalculationService;
+            _transactionCalculationService = transactionCalculationService;
         }
 
         /// <summary>
-        /// Starts calculation and uses all transactions
+        /// Calculates the savings plan for the given <paramref name="tag"/>.
         /// </summary>
-        /// <param name="transactions">A list with all transactions which should be analyzed</param>
-        public IAccumulationPlanStatistic Calculate(IEnumerable<ITransaction> transactions)
+        /// <param name="tag">The tag.</param>
+        public ISavingsPlan CalculateSavingsPlan(string tag)
         {
-            if (transactions == null)
-                return null;
+            var savingsPlan = new SavingsPlan { Tag = tag, Date = DateTime.Now };
 
-            var list = transactions as IList<ITransaction> ?? transactions.ToList();
-            if (!list.Any())
-                return null;
+            var yearQuery = new TransactionYearsQuery()
+                .Register(new TransactionStartDateFilter(DateTime.MinValue))
+                .Register(new TransactionEndDateFilter(_dateCalculationService.GetEndOfToDay()))
+                .Register(new TransactionTagFilter(tag))
+                .Register(new TransactionDividendFilter(true));
 
-            //Period start and end
-            var periodStart = _dateCalculationService.GetStartDateOfYear(list.Min(t => t.OrderDate));
-            var periodEnd = _dateCalculationService.GetEndDateOfYear(list.Max(t => t.OrderDate));
+            var years = _queryDispatcher.Execute(yearQuery).ToList();
 
-            var statistic = new AccumulationPlanStatistic();
-
-            //Inpayment amounts
-            statistic.SumInpayment = CalculateSumInpayment(list);
-
-            //Order costs
-            statistic.SumOrderCosts -= list.Sum(t => t.OrderCosts);
-            statistic.SumOrderCostsPercentage = decimal.Round((statistic.SumOrderCosts / (statistic.SumOrderCosts - statistic.SumInpayment) * 100), 2);
-
-            //Sum capital
-            statistic.SumCapitalEndofPeriod = CalculateSumCapital(list, periodStart, periodEnd);
-            statistic.SumCapital = CalculateSumCapital(list, periodStart, list.Max(t => t.OrderDate));
-            statistic.SumCapitalToday = CalculateSumCapital(list, periodStart, periodEnd);
-
-            //Dividends
-            statistic.SumDividends = CalculateSumDividends(list);
-
-            //PerformancePercentageIIR
-            statistic.PerformancePercentageIIR = CalculatePerformancePercentageIIR(list, statistic.SumCapitalEndofPeriod, periodEnd);
-
-            //PerformancePercentageGeometrical
-            statistic.PerformancePercentageGeometrical = CalculatePerformancePercentageGeometrical(statistic.SumInpayment, statistic.SumCapitalEndofPeriod);
-
-            return statistic;
-        }
-
-        /// <summary>
-        /// Calculates the sum of dividends
-        /// </summary>
-        /// <param name="transactions">The list of transactions</param>
-        /// <returns>Sum dividends</returns>
-        internal decimal CalculateSumDividends(IEnumerable<ITransaction> transactions)
-        {
-            if (transactions == null)
-                return default(decimal);
-
-            return transactions.Where(t => t is IDividendTransaction).Cast<IDividendTransaction>().Sum(tr => tr.PositionSize - tr.OrderCosts - tr.Taxes);
-        }
-
-        /// <summary>
-        /// Calculates the sum of inpayments
-        /// </summary>
-        /// <param name="transactions">The list of transactions</param>
-        /// <returns>Sum inpayment</returns>
-        internal decimal CalculateSumInpayment(IEnumerable<ITransaction> transactions)
-        {
-            var sum = default(decimal);
-
-            foreach (var tr in transactions.Where(t => !(t is IDividendTransaction)))
+            foreach (var year in years)
             {
-                if (tr is ISellingTransaction)
-                {
-                    sum += (tr.PositionSize) * -1;
-                }
+                var period = new SavingsPlanPeriod() { Year = year.ToString() };
 
-                if (tr is IBuyingTransaction)
-                {
-                    sum += (tr.PositionSize);
-                }
+                //Time period
+                var start = _dateCalculationService.GetStartAndEndDateOfYear(new DateTime(year, 1, 1), out DateTime end);
+                var lastYearEnd = new DateTime(years[0] - 1, 1, 1);
+
+                //Only this year
+                var actualPeriodResult = CalculateCurrentPeriod(start, end, tag);
+
+                period.PerformanceActualPeriodPercentage = actualPeriodResult.PerformanceActualPeriodPercentage;
+                period.SumDividends = actualPeriodResult.SumDividends;
+
+                //Accumulated till this end of year                
+                var periodResult = CalculateOverallPeriod(_dateCalculationService.GetEndDateOfYear(lastYearEnd), end, tag);
+
+                period.SumOrderCostsPercentage = periodResult.SumOrderCostsPercentage;
+                period.SumOrderCosts = periodResult.SumOrderCosts;
+                period.SumInpayment = periodResult.SumInpayment;
+                period.SumCapital = periodResult.SumCapital;
+                period.PerformanceOverallPeriodPercentage = periodResult.PerformanceOverallPeriodPercentage;
+                period.SumOverallDividends = periodResult.SumOverallDividends;
+                period.SumOverallDividendsPercentage = decimal.Round((periodResult.SumOverallDividends / periodResult.SumInpayment) * 100, 2);
+                period.IsCurrentYear = DateTime.Now.Year == year;
+                period.IsForecast = false;
+
+                savingsPlan.Periods.Add(period);
             }
 
-            return sum;
+            //Forecast
+            if (savingsPlan.Periods.Any())
+            {
+                var startYear = years.Max() + 1;
+                var amountOfForecastYears = years.Min() + 35 - startYear;
+                foreach (ISavingsPlanPeriod forecast in GetTagPeriodForecast(amountOfForecastYears, startYear, savingsPlan.Periods))
+                    savingsPlan.Periods.Add(forecast);
+            }
+
+            return savingsPlan;
         }
 
         /// <summary>
-        /// Calculates the sum of all capital
+        /// Calculate current saving for the given period
         /// </summary>
-        /// <param name="transactions">The list of transactions</param>
-        /// <param name="periodStart">The start date of the period</param>
-        /// <param name="periodEnd">The end date of the period</param>
-        /// <returns>Sum Capital</returns>
-        internal decimal CalculateSumCapital(IEnumerable<ITransaction> transactions, DateTime periodStart, DateTime periodEnd)
+        /// <param name="start">The start.</param>
+        /// <param name="end">The end.</param>
+        /// <param name="tag">The tag.</param>
+        /// <returns></returns>
+        internal ISavingsPlanPeriodCurrent CalculateCurrentPeriod(DateTime start, DateTime end, string tag)
         {
-            var sumCapital = default(decimal);
+            var query = new TransactionAllQuery()
+                .Register(new TransactionStartDateFilter(start))
+                .Register(new TransactionEndDateFilter(end))
+                .Register(new TransactionTagFilter(tag));
 
-            var trans = transactions.ToList();
+            var period = new SavingsPlanPeriod();
 
-            var stocks = trans.Where(t => !(t is IDividendTransaction)).GroupBy(t => t.Stock).Select(t => t.Key);
+            period.SumDividends = _transactionCalculationService.CalculateSumDividends(query);
+            period.PerformanceActualPeriodPercentage = _transactionCalculationService.CalculatePerformancePercentageForPeriod(new TransactionAllQuery().Register(new TransactionTagFilter(tag)), start, end);
 
-            foreach (var stock in stocks)
+            return period;
+        }
+
+        /// <summary>
+        /// Caculate overall savings for the given period
+        /// </summary>
+        /// <param name="start">The start.</param>
+        /// <param name="end">The end.</param>
+        /// <param name="tag">The tag.</param>
+        /// <returns></returns>
+        internal ISavingsPlanPeriodOverall CalculateOverallPeriod(DateTime start, DateTime end, string tag)
+        {
+            var query = new TransactionAllQuery()
+                .Register(new TransactionStartDateFilter(start))
+                .Register(new TransactionEndDateFilter(end))
+                .Register(new TransactionTagFilter(tag));
+
+            var transactions = _queryDispatcher.Execute(query).ToList();
+
+            var period = new SavingsPlanPeriod { IsForecast = false };
+
+            if (!transactions.Any())
+                return period;
+
+            //Inpayments
+            period.SumInpayment = _transactionCalculationService.CalculateSumInpayments(query);
+
+            //Order costs
+            period.SumOrderCosts -= transactions.Sum(t => t.OrderCosts);
+            period.SumOrderCostsPercentage = decimal.Round((period.SumOrderCosts / (period.SumOrderCosts - period.SumInpayment) * 100), 2);
+
+            //Sum capital
+            period.SumCapital = _transactionCalculationService.CalculateSumCapital(query, end);
+
+            //Dividends
+            period.SumOverallDividends = _transactionCalculationService.CalculateSumDividends(query);
+
+            //PerformancePercentage
+            var cashFlowEnd = new CashFlow(period.SumCapital, end);
+            period.PerformanceOverallPeriodPercentage = _transactionCalculationService.CalculatePerformancePercentageIir(query, new CashFlow(0, start), cashFlowEnd);
+
+            return period;
+        }
+
+        /// <summary>
+        /// Calculates a forecast for the given years
+        /// </summary>
+        /// <param name="startYear">Year to start with</param>
+        /// <param name="years">Amount of years</param>
+        /// <param name="historical">Historical data</param>
+        /// <returns>Forecast</returns>
+        private IEnumerable<ISavingsPlanPeriod> GetTagPeriodForecast(int years, int startYear, IEnumerable<ISavingsPlanPeriod> historical)
+        {
+            if (historical == null)
+                return Enumerable.Empty<ISavingsPlanPeriod>();
+
+            var periods = new List<ISavingsPlanPeriod>();
+            var historicalData = historical.OrderByDescending(t => t.Year).ToList();
+
+            var tempForecast = new List<ISavingsPlanPeriod>();
+            tempForecast.InsertRange(0, historicalData);
+
+            var actualYear = startYear;
+            while (actualYear <= startYear + years)
             {
-                IEnumerable<ITransaction> filtered = trans.Where(t => t.Stock.Id == stock.Id).OrderByDescending(t => t.OrderDate);
+                var lastYear = (actualYear - 1).ToString();
+                var period = new SavingsPlanPeriod() { Year = actualYear.ToString() };
 
-                decimal allUnitsOfStock = 0;
-                foreach (var tr in filtered)
+                decimal lastYearCapital;
+                decimal lastYearInPayment;
+                decimal lastYearOrderCosts;
+                decimal lastYearSumOverallDividends;
+
+                var lastYearCalculation = tempForecast.FirstOrDefault(t => t.Year == lastYear);
+
+                if (lastYearCalculation.Year == DateTime.Now.Year.ToString())
                 {
-                    if (tr is IBuyingTransaction)
-                    {
-                        allUnitsOfStock += tr.Shares;
-
-                    }
-
-                    if (tr is ISellingTransaction)
-                    {
-                        allUnitsOfStock += tr.Shares * -1;
-
-                    }
-                }
-
-                var quotations = _queryDispatcher.Execute(new StockQuotationsByIdQuery(stock.Id)).ToList();
-
-                quotations = quotations?.Where(q => q.Date >= periodStart && q.Date <= periodEnd).OrderByDescending(q => q.Date).ToList();
-
-                if (!quotations.Any())
-                {
-                    sumCapital += (filtered.FirstOrDefault().PricePerShare * allUnitsOfStock);
+                    lastYearCapital = lastYearCalculation.SumCapital + ((lastYearCalculation.SumCapital / (((tempForecast.Count - 1) * 12) + DateTime.Now.Month)) * (12 - DateTime.Now.Month));
+                    lastYearInPayment = lastYearCalculation.SumInpayment + ((lastYearCalculation.SumInpayment / (((tempForecast.Count - 1) * 12) + DateTime.Now.Month)) * (12 - DateTime.Now.Month));
+                    lastYearOrderCosts = lastYearCalculation.SumOrderCosts + ((lastYearCalculation.SumOrderCosts / (((tempForecast.Count - 1) * 12) + DateTime.Now.Month)) * (12 - DateTime.Now.Month));
+                    lastYearSumOverallDividends = lastYearCalculation.SumOverallDividends + ((lastYearCalculation.SumOverallDividends / (((tempForecast.Count - 1) * 12) + DateTime.Now.Month)) * (12 - DateTime.Now.Month));
                 }
                 else
                 {
-                    sumCapital += (quotations.FirstOrDefault().Close * allUnitsOfStock);
+                    lastYearCapital = lastYearCalculation.SumCapital;
+                    lastYearInPayment = lastYearCalculation.SumInpayment;
+                    lastYearOrderCosts = lastYearCalculation.SumOrderCosts;
+                    lastYearSumOverallDividends = lastYearCalculation.SumOverallDividends;
                 }
+
+                period.PerformanceOverallPeriodPercentage = historicalData.FirstOrDefault().PerformanceOverallPeriodPercentage;
+                period.PerformanceActualPeriodPercentage = period.PerformanceOverallPeriodPercentage;
+
+                var converted = period.PerformanceOverallPeriodPercentage / 100;
+                var percentagePerfActual = converted < 0 ? 1 - (converted * -1) : 1 + converted;
+
+                period.SumInpayment = (lastYearInPayment / tempForecast.Count) + lastYearInPayment;
+                period.SumCapital = (lastYearCapital * percentagePerfActual) + ((lastYearInPayment / tempForecast.Count) * percentagePerfActual);
+                period.SumOrderCosts = (lastYearOrderCosts / tempForecast.Count) + lastYearOrderCosts;
+                period.SumOrderCostsPercentage = decimal.Round((period.SumOrderCosts / (period.SumOrderCosts - period.SumInpayment) * 100), 2);
+
+                period.SumOverallDividendsPercentage = historicalData.FirstOrDefault().SumOverallDividendsPercentage;
+                period.SumOverallDividends = decimal.Round((period.SumOverallDividendsPercentage / 100) * period.SumInpayment, 2) + lastYearSumOverallDividends;
+                period.SumDividends = 0;
+
+                period.IsForecast = true;
+
+                periods.Add(period);
+                tempForecast.Add(period);
+                actualYear++;
             }
 
-            return sumCapital;
-        }
-
-        /// <summary>
-        /// Calculates the performance with the internal rate of interest
-        /// </summary>
-        /// <param name="transactions">The list of transactions</param>
-        /// <param name="sumCapitalEndofPeriod">Sum of the capital at the end of the period</param>
-        /// <param name="periodEnd">The end of the period</param>
-        /// <returns>Performance in %</returns>
-        internal decimal CalculatePerformancePercentageIIR(IEnumerable<ITransaction> transactions, decimal sumCapitalEndofPeriod, DateTime periodEnd)
-        {
-            var bigcfs = new List<CashFlow>();
-
-            foreach (var tr in transactions.Where(t => !(t is IDividendTransaction)))
-            {
-                if (tr is IBuyingTransaction)
-                {
-                    bigcfs.Add(new CashFlow((tr.PositionSize + tr.OrderCosts) * -1, tr.OrderDate));
-                }
-
-                if (tr is ISellingTransaction)
-                {
-                    bigcfs.Add(new CashFlow(tr.PositionSize + tr.OrderCosts, tr.OrderDate));
-                }
-            }
-
-            bigcfs.Add(new CashFlow(sumCapitalEndofPeriod, periodEnd));
-
-            var val = _interestRateCalculatorService.Calculate(bigcfs).Value;
-
-            return decimal.Round(Convert.ToDecimal(val) * 100, 2);
-        }
-
-        /// <summary>
-        /// Calculates the performance with normal time weighted method
-        /// </summary>
-        /// <param name="sumInpayment">Sum of inpayments</param>
-        /// <param name="sumCapitalEndofPeriod">Sum of the capital at the end of the period</param>
-        /// <returns>Performance in %</returns>
-        internal decimal CalculatePerformancePercentageGeometrical(decimal sumInpayment, decimal sumCapitalEndofPeriod)
-        {
-            if (sumCapitalEndofPeriod == 0)
-                return default(decimal);
-
-            return decimal.Round(Convert.ToDecimal((1 - (sumInpayment / sumCapitalEndofPeriod)) * 100), 2);
+            return periods;
         }
     }
 }

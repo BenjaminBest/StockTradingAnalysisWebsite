@@ -6,6 +6,7 @@ using StockTradingAnalysis.Domain.Events.Events;
 using StockTradingAnalysis.Interfaces.Domain;
 using StockTradingAnalysis.Interfaces.Events;
 using StockTradingAnalysis.Interfaces.Services;
+using StockTradingAnalysis.Interfaces.Services.Domain;
 
 namespace StockTradingAnalysis.Domain.Events.Aggregates
 {

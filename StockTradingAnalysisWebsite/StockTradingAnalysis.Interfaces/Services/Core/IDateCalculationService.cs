@@ -80,9 +80,9 @@ namespace StockTradingAnalysis.Interfaces.Services.Core
         /// <summary>
         /// Returns the calendar week of the given date
         /// </summary>
-        /// <param name="Datum"></param>
+        /// <param name="date"></param>
         /// <returns></returns>
-        int GetCalendarWeek(DateTime Datum);
+        int GetCalendarWeek(DateTime date);
 
         /// <summary>
         /// Returns the start date of the given calendar week and the end date
@@ -98,5 +98,13 @@ namespace StockTradingAnalysis.Interfaces.Services.Core
         /// </summary>
         /// <returns>End of Day</returns>
         DateTime GetEndOfToDay();
+
+        /// <summary>
+        /// Calculate the days between <paramref name="start"/> and <paramref name="end"/>
+        /// </summary>
+        /// <param name="start">The start.</param>
+        /// <param name="end">The end.</param>
+        /// <returns>Amount of days</returns>
+        int DaysBetween(DateTime start, DateTime end);
     }
 }

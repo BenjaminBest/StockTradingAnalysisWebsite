@@ -7,7 +7,6 @@ using StockTradingAnalysis.Domain.Events.Domain;
 using StockTradingAnalysis.Interfaces.Configuration;
 using StockTradingAnalysis.Interfaces.Queries;
 using StockTradingAnalysis.Interfaces.Services;
-using StockTradingAnalysis.Web.Common.Configuration;
 using StockTradingAnalysis.Web.Common.Interfaces;
 
 namespace StockTradingAnalysis.Web.Common.Services
@@ -55,7 +54,7 @@ namespace StockTradingAnalysis.Web.Common.Services
         {
             var stock = _queryDispatcher.Execute(new StockByIdQuery(stockId));
 
-            var result = HtmlDownload.CreateHttpClientSync(new Uri(_configurationRegistry.GetValue<string>(ConfigurationKeys.StockQuoteServiceBaseUrl) + $"/{stock.Wkn}"));
+            var result = HtmlDownload.CreateHttpClientSync(new Uri(_configurationRegistry.GetValue<string>("StockQuoteServiceBaseUrl") + $"/{stock.Wkn}"));
 
             if (string.IsNullOrEmpty(result))
                 return Enumerable.Empty<Quotation>();
@@ -76,7 +75,7 @@ namespace StockTradingAnalysis.Web.Common.Services
             try
             {
                 result = _serializerService.Deserialize<bool>(HtmlDownload.CreateHttpClientSync(new Uri(
-                    _configurationRegistry.GetValue<string>(ConfigurationKeys.StockQuoteOnlineCheckUrl)), new TimeSpan(0, 0, 0, 0, 150)));
+                    _configurationRegistry.GetValue<string>("StockQuoteOnlineCheckUrl")), new TimeSpan(0, 0, 0, 0, 150)));
             }
             catch (Exception)
             {

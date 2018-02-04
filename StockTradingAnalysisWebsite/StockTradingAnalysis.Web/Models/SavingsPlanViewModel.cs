@@ -4,9 +4,9 @@ using System.Collections.Generic;
 namespace StockTradingAnalysis.Web.Models
 {
     /// <summary>
-    /// Class ViewModel is used for showing information about tagged transactions
+    /// Class SavingsPlanViewModel is used for showing information about tagged transactions
     /// </summary>
-    public class TagsViewModel
+    public class SavingsPlanViewModel
     {
         /// <summary>
         /// Tag
@@ -29,7 +29,7 @@ namespace StockTradingAnalysis.Web.Models
         /// <summary>
         /// Historical information over periods
         /// </summary>
-        public IList<TagPeriodViewModel> Periods
+        public IList<SavingsPlanPeriodViewModel> Periods
         {
             get;
             set;
@@ -38,9 +38,9 @@ namespace StockTradingAnalysis.Web.Models
         /// <summary>
         /// Initializes this object with default values
         /// </summary>
-        public TagsViewModel()
+        public SavingsPlanViewModel()
         {
-            Periods = new List<TagPeriodViewModel>();
+            Periods = new List<SavingsPlanPeriodViewModel>();
         }
     }
 }

@@ -10,6 +10,7 @@ using StockTradingAnalysis.Interfaces.Commands;
 using StockTradingAnalysis.Interfaces.Domain;
 using StockTradingAnalysis.Interfaces.Queries;
 using StockTradingAnalysis.Interfaces.Services;
+using StockTradingAnalysis.Interfaces.Services.Domain;
 using StockTradingAnalysis.Web.Models;
 
 namespace StockTradingAnalysis.Web.Controllers

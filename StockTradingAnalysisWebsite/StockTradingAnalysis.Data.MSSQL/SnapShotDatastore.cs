@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Data.SqlClient;
 using System.Transactions;
 using StockTradingAnalysis.Core.Common;
+using StockTradingAnalysis.Interfaces.Configuration;
 using StockTradingAnalysis.Interfaces.Data;
 using StockTradingAnalysis.Interfaces.DomainContext;
 using StockTradingAnalysis.Interfaces.Services.Core;
@@ -36,11 +36,16 @@ namespace StockTradingAnalysis.Data.MSSQL
         /// <param name="connectionName">Name of the connection string</param>
         /// <param name="tableName">Name of the table</param>
         /// <param name="performanceMeasurementService">The performance measurement service.</param>
-        public SnapShotDatastore(string connectionName, string tableName, IPerformanceMeasurementService performanceMeasurementService)
+        /// <param name="configurationRegistry">The configuration registry.</param>
+        public SnapShotDatastore(
+            string connectionName,
+            string tableName,
+            IPerformanceMeasurementService performanceMeasurementService,
+            IConfigurationRegistry configurationRegistry)
             : base(performanceMeasurementService)
         {
             _tableName = tableName;
-            _connectionString = ConfigurationManager.ConnectionStrings[connectionName].ConnectionString;
+            _connectionString = configurationRegistry.GetValue<string>(connectionName);
             _performanceMeasurementService = performanceMeasurementService;
         }
 

@@ -8,24 +8,30 @@ namespace StockTradingAnalysis.Interfaces.Types
     public class CashFlow
     {
         /// <summary>
-        /// Amount of money
+        /// Gets the date.
         /// </summary>
-        public readonly decimal Amount;
+        /// <value>
+        /// The date.
+        /// </value>
+        public DateTime Date { get; }
 
         /// <summary>
-        /// Particular time
+        /// Gets the value.
         /// </summary>
-        public readonly DateTime Date;
+        /// <value>
+        /// The value.
+        /// </value>
+        public decimal Value { get; }
 
         /// <summary>
-        /// Initializes this object with the given values
+        /// Initializes a new instance of the <see cref="CashFlow" /> class.
         /// </summary>
-        /// <param name="amount">Amount of money</param>
-        /// <param name="date">Particular time</param>
-        public CashFlow(decimal amount, DateTime date)
+        /// <param name="value">The value.</param>
+        /// <param name="date">The date.</param>
+        public CashFlow(decimal value, DateTime date)
         {
-            Amount = amount;
             Date = date;
+            Value = value;
         }
     }
 }

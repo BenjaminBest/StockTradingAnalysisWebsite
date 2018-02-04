@@ -1,24 +1,25 @@
-﻿using StockTradingAnalysis.Interfaces.Domain;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using StockTradingAnalysis.Interfaces.Domain;
+using StockTradingAnalysis.Interfaces.Filter;
 
-namespace StockTradingAnalysis.Web.Common.Filter
+namespace StockTradingAnalysis.Domain.CQRS.Query.Filter
 {
     /// <summary>
-    /// The class TransactionStartDateFilter filters a list of transactions over the given startdate
+    /// The class TransactionEndDateFilter filters a list of transactions over the given enddate
     /// </summary>
-    public class TransactionStartDateFilter : ITransactionFilter
+    public class TransactionEndDateFilter : ITransactionFilter
     {
-        private readonly DateTime _startdate;
+        private readonly DateTime _enddate;
 
         /// <summary>
         /// Initialize this class with the given arguments
         /// </summary>
-        /// <param name="startdate">Startdate</param>
-        public TransactionStartDateFilter(DateTime startdate)
+        /// <param name="enddate">Enddate</param>
+        public TransactionEndDateFilter(DateTime enddate)
         {
-            _startdate = startdate;
+            _enddate = enddate;
         }
 
         /// <summary>
@@ -28,7 +29,7 @@ namespace StockTradingAnalysis.Web.Common.Filter
         /// <returns>Result after filtering</returns>
         public IEnumerable<ITransaction> Apply(IEnumerable<ITransaction> input)
         {
-            return input.Where(i => i.OrderDate >= _startdate);
+            return input.Where(i => i.OrderDate <= _enddate);
         }
     }
 }

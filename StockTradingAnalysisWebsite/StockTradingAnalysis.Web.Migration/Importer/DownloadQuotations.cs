@@ -1,12 +1,11 @@
-﻿using StockTradingAnalysis.Core.Common;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using StockTradingAnalysis.Core.Common;
 using StockTradingAnalysis.Domain.CQRS.Cmd.Commands;
 using StockTradingAnalysis.Domain.CQRS.Query.Queries;
 using StockTradingAnalysis.Domain.Events.Domain;
-using StockTradingAnalysis.Web.Common.Configuration;
 using StockTradingAnalysis.Web.Migration.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace StockTradingAnalysis.Web.Migration.Importer
 {
@@ -27,7 +26,7 @@ namespace StockTradingAnalysis.Web.Migration.Importer
                 var result = string.Empty;
                 try
                 {
-                    result = HtmlDownload.CreateHttpClientSync(new Uri(Configuration.GetValue<string>(ConfigurationKeys.StockQuoteServiceBaseUrl) + $"/{stock.Wkn}"));
+                    result = HtmlDownload.CreateHttpClientSync(new Uri(Configuration.GetValue<string>("StockQuoteServiceBaseUrl") + $"/{stock.Wkn}"));
                 }
                 catch (Exception e)
                 {

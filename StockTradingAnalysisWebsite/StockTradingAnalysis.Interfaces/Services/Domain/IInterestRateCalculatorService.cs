@@ -1,8 +1,7 @@
-﻿using StockTradingAnalysis.Interfaces.Enumerations;
+﻿using System.Collections.Generic;
 using StockTradingAnalysis.Interfaces.Types;
-using System.Collections.Generic;
 
-namespace StockTradingAnalysis.Interfaces.Services
+namespace StockTradingAnalysis.Interfaces.Services.Domain
 {
     /// <summary>
     /// The interface IInterestCalculator defines a service for interest rate calculation
@@ -14,7 +13,9 @@ namespace StockTradingAnalysis.Interfaces.Services
         /// Inpayments have to be negative, outpayments or the last value of a stock have to be postive
         /// </summary>
         /// <param name="cashFlows">Cashflow</param>
-        /// <returns>interest rate</returns>
-        AlgorithmResult<ApproximateResultKind, double> Calculate(IEnumerable<CashFlow> cashFlows);
+        /// <returns>
+        /// interest rate
+        /// </returns>
+        double Calculate(IEnumerable<CashFlow> cashFlows);
     }
 }

@@ -1,7 +1,7 @@
-﻿using StockTradingAnalysis.Interfaces.Domain;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using StockTradingAnalysis.Interfaces.Domain;
 
-namespace StockTradingAnalysis.Interfaces.Services
+namespace StockTradingAnalysis.Interfaces.Services.Domain
 {
     public interface ITransactionPerformanceService
     {

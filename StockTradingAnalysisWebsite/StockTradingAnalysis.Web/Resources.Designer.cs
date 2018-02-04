@@ -1231,16 +1231,25 @@ namespace StockTradingAnalysis.Web {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Dividenden (%) p.a..
+        ///   Looks up a localized string similar to Dividenden akkumuliert.
         /// </summary>
-        public static string Display_TagDividendsPercentage {
+        public static string Display_TagOverallDividends {
             get {
-                return ResourceManager.GetString("Display_TagDividendsPercentage", resourceCulture);
+                return ResourceManager.GetString("Display_TagOverallDividends", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Rendite.
+        ///   Looks up a localized string similar to Dividenden (%) akkumuliert.
+        /// </summary>
+        public static string Display_TagOverallDividendsPercentage {
+            get {
+                return ResourceManager.GetString("Display_TagOverallDividendsPercentage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rendite p.a..
         /// </summary>
         public static string Display_TagPerformanceActualPeriodPercentage {
             get {
@@ -1249,7 +1258,7 @@ namespace StockTradingAnalysis.Web {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Rendite ges..
+        ///   Looks up a localized string similar to Gesamtrendite p.a..
         /// </summary>
         public static string Display_TagPerformanceOverallPeriodPercentage {
             get {
@@ -1258,7 +1267,7 @@ namespace StockTradingAnalysis.Web {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Wert.
+        ///   Looks up a localized string similar to Kapital.
         /// </summary>
         public static string Display_TagPeriodSumCapital {
             get {
@@ -2718,9 +2727,9 @@ namespace StockTradingAnalysis.Web {
         /// <summary>
         ///   Looks up a localized string similar to Export nach Excel.
         /// </summary>
-        public static string ViewTextInfoStaticticsTagsExportExcel {
+        public static string ViewTextInfoStaticticsSavingsPlanExportExcel {
             get {
-                return ResourceManager.GetString("ViewTextInfoStaticticsTagsExportExcel", resourceCulture);
+                return ResourceManager.GetString("ViewTextInfoStaticticsSavingsPlanExportExcel", resourceCulture);
             }
         }
         
@@ -2745,9 +2754,9 @@ namespace StockTradingAnalysis.Web {
         /// <summary>
         ///   Looks up a localized string similar to Sparplan Hochrechnung.
         /// </summary>
-        public static string ViewTextInfoStatisticsTags {
+        public static string ViewTextInfoStatisticsSavingsPlan {
             get {
-                return ResourceManager.GetString("ViewTextInfoStatisticsTags", resourceCulture);
+                return ResourceManager.GetString("ViewTextInfoStatisticsSavingsPlan", resourceCulture);
             }
         }
         
@@ -3130,20 +3139,20 @@ namespace StockTradingAnalysis.Web {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Altersvorsorge.
-        /// </summary>
-        public static string ViewTextMainDashboardRetirementPlanning {
-            get {
-                return ResourceManager.GetString("ViewTextMainDashboardRetirementPlanning", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Risiko.
         /// </summary>
         public static string ViewTextMainDashboardRisk {
             get {
                 return ResourceManager.GetString("ViewTextMainDashboardRisk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sparplan.
+        /// </summary>
+        public static string ViewTextMainDashboardSavingsPlan {
+            get {
+                return ResourceManager.GetString("ViewTextMainDashboardSavingsPlan", resourceCulture);
             }
         }
         
@@ -3220,6 +3229,24 @@ namespace StockTradingAnalysis.Web {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Der Sparplan ist nicht verfügbar bzw. es konnten keine Daten gefunden werden. Bitte weisen Sie Transaktionen eine Kategorie zu, diese wird dann hier ausgewertet..
+        /// </summary>
+        public static string ViewTextSavingsPlanNotAvailable {
+            get {
+                return ResourceManager.GetString("ViewTextSavingsPlanNotAvailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sparplanhochrechnung nicht verfügbar.
+        /// </summary>
+        public static string ViewTextSavingsPlanNotAvailableTitle {
+            get {
+                return ResourceManager.GetString("ViewTextSavingsPlanNotAvailableTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Verkauf.
         /// </summary>
         public static string ViewTextSell {
@@ -3265,20 +3292,29 @@ namespace StockTradingAnalysis.Web {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Dividendenrendite bezieht sich auf die persönliche Rendite  (Dividenen p.a. /  Einzahlungen * 100).
+        ///   Looks up a localized string similar to * Forecast aufgrund der durchschnittlichen historischen Werte bis maximal 35 Jahre in die Zukunft / ** Kapital/Dividenden des aktuellen Jahres entsprechen dem Ist-Stand mit heutigem Datum / *** Einzahlungen enthalten nicht die Gebühren /**** IZF Methode.
         /// </summary>
-        public static string ViewTextStatisticsPersonalDividends {
+        public static string ViewTextStatisticsSavingsPlanForcast {
             get {
-                return ResourceManager.GetString("ViewTextStatisticsPersonalDividends", resourceCulture);
+                return ResourceManager.GetString("ViewTextStatisticsSavingsPlanForcast", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to * Forecast(zeitgewichtet) aufgrund der durchschnittlichen historischen Werte bis Renteneintrittsalter (mit 67).
+        ///   Looks up a localized string similar to Die Rendite beinhaltet die Kursgewinne (nach Steuer) und Dividenden. Die Qualität der Hochrechnung steigt mit aktuellen Kursdaten..
         /// </summary>
-        public static string ViewTextStatisticsTagsForcast {
+        public static string ViewTextStatisticsSavingsPlanInformation {
             get {
-                return ResourceManager.GetString("ViewTextStatisticsTagsForcast", resourceCulture);
+                return ResourceManager.GetString("ViewTextStatisticsSavingsPlanInformation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} Stand: {1:dd.MM.yyyy}.
+        /// </summary>
+        public static string ViewTextStatisticsSavingsPlanTitle {
+            get {
+                return ResourceManager.GetString("ViewTextStatisticsSavingsPlanTitle", resourceCulture);
             }
         }
         
@@ -3297,24 +3333,6 @@ namespace StockTradingAnalysis.Web {
         public static string ViewTextStatisticsTagsProductsTitle {
             get {
                 return ResourceManager.GetString("ViewTextStatisticsTagsProductsTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Zeitgewichtet p.a..
-        /// </summary>
-        public static string ViewTextStatisticsTagsTimeWeighted {
-            get {
-                return ResourceManager.GetString("ViewTextStatisticsTagsTimeWeighted", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to {0} Stand: {1:dd.MM.yyyy}.
-        /// </summary>
-        public static string ViewTextStatisticsTagsTitle {
-            get {
-                return ResourceManager.GetString("ViewTextStatisticsTagsTitle", resourceCulture);
             }
         }
         

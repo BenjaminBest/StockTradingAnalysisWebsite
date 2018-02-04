@@ -1,6 +1,6 @@
 ﻿using StockTradingAnalysis.Interfaces.Domain;
 
-namespace StockTradingAnalysis.Interfaces.Services
+namespace StockTradingAnalysis.Interfaces.Services.Domain
 {
     /// <summary>
     /// The interface IPriceCalculatorService defines a service to calculate certificates based on the current price and their underlyings

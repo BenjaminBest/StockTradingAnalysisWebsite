@@ -1,9 +1,9 @@
-﻿using StockTradingAnalysis.Interfaces.Enumerations;
-using StockTradingAnalysis.Interfaces.Services;
-using StockTradingAnalysis.Interfaces.Types;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using StockTradingAnalysis.Interfaces.Enumerations;
+using StockTradingAnalysis.Interfaces.Services.Domain;
+using StockTradingAnalysis.Interfaces.Types;
 
 namespace StockTradingAnalysis.Services.Services
 {
@@ -18,12 +18,19 @@ namespace StockTradingAnalysis.Services.Services
         /// </summary>
         /// <param name="cashFlows">Cashflow</param>
         /// <returns>interest rate</returns>
-        public AlgorithmResult<ApproximateResultKind, double> Calculate(IEnumerable<CashFlow> cashFlows)
+        public double Calculate(IEnumerable<CashFlow> cashFlows)
         {
-            return CalculateXIRR(cashFlows, 0.00000001, 50000);
+            return CalculateXIRR(cashFlows.ToList(), 0.00000001, 50000).Value;
         }
 
-        internal AlgorithmResult<ApproximateResultKind, double> CalculateXIRR(IEnumerable<CashFlow> cashFlows, double tolerance, int maxIters)
+        /// <summary>
+        /// Calculates the xirr.
+        /// </summary>
+        /// <param name="cashFlows">The cash flows.</param>
+        /// <param name="tolerance">The tolerance.</param>
+        /// <param name="maxIters">The maximum iters.</param>
+        /// <returns></returns>
+        internal AlgorithmResult<ApproximateResultKind, double> CalculateXIRR(List<CashFlow> cashFlows, double tolerance, int maxIters)
         {
             var brackets = FindBrackets(CalculateXNPV, cashFlows);
 
@@ -33,18 +40,29 @@ namespace StockTradingAnalysis.Services.Services
             return Bisection(r => CalculateXNPV(cashFlows, r), brackets, tolerance, maxIters);
         }
 
-        internal decimal CalculateXNPV(IEnumerable<CashFlow> cfs, double r)
+        /// <summary>
+        /// Calculates the XNPV.
+        /// </summary>
+        /// <param name="cfs">The CFS.</param>
+        /// <param name="r">The r.</param>
+        /// <returns></returns>
+        internal decimal CalculateXNPV(List<CashFlow> cfs, double r)
         {
-
             if (r <= -1)
                 r = -0.99999999; // Very funky ... Better check what an IRR <= -100% means
 
             return (from cf in cfs
                     let startDate = cfs.OrderBy(cf1 => cf1.Date).First().Date
-                    select cf.Amount / (decimal)Math.Pow(1 + r, (cf.Date - startDate).Days / 365.0)).Sum();
+                    select cf.Value / (decimal)Math.Pow(1 + r, (cf.Date - startDate).Days / 365.0)).Sum();
         }
 
-        internal Pair<double, double> FindBrackets(Func<IEnumerable<CashFlow>, double, decimal> func, IEnumerable<CashFlow> cfs)
+        /// <summary>
+        /// Finds the brackets.
+        /// </summary>
+        /// <param name="func">The function.</param>
+        /// <param name="cfs">The CFS.</param>
+        /// <returns></returns>
+        internal Pair<double, double> FindBrackets(Func<List<CashFlow>, double, decimal> func, List<CashFlow> cfs)
         {
             const int maxIter = 100;
             const double bracketStep = 0.5;
@@ -67,6 +85,16 @@ namespace StockTradingAnalysis.Services.Services
             return new Pair<double, double>(leftBracket, rightBracket);
         }
 
+        /// <summary>
+        /// Bisections the specified function.
+        /// </summary>
+        /// <param name="func">The function.</param>
+        /// <param name="brackets">The brackets.</param>
+        /// <param name="tol">The tol.</param>
+        /// <param name="maxIters">The maximum iters.</param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentException">x1 x2 values don't bracket a root</exception>
+        /// <exception cref="Exception">It should never get here</exception>
         private static AlgorithmResult<ApproximateResultKind, double> Bisection(Func<double, decimal> func, Pair<double, double> brackets, double tol, int maxIters)
         {
 
@@ -112,6 +140,11 @@ namespace StockTradingAnalysis.Services.Services
             throw new Exception("It should never get here");
         }
 
+        /// <summary>
+        /// Pair
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <typeparam name="Z"></typeparam>
         internal struct Pair<T, Z>
         {
 

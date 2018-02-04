@@ -1,7 +1,8 @@
-﻿using StockTradingAnalysis.Interfaces.Domain;
-using StockTradingAnalysis.Interfaces.Queries;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using StockTradingAnalysis.Interfaces.Domain;
+using StockTradingAnalysis.Interfaces.Filter;
+using StockTradingAnalysis.Interfaces.Queries;
 
 namespace StockTradingAnalysis.Domain.CQRS.Query.Queries
 {

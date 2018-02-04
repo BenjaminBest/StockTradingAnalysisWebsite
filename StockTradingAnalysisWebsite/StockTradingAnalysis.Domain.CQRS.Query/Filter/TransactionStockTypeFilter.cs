@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using StockTradingAnalysis.Interfaces.Domain;
+using StockTradingAnalysis.Interfaces.Filter;
 
-namespace StockTradingAnalysis.Web.Common.Filter
+namespace StockTradingAnalysis.Domain.CQRS.Query.Filter
 {
     /// <summary>
     /// The class TransactionStockTypeFilter filters a list of transactions over the given stock type

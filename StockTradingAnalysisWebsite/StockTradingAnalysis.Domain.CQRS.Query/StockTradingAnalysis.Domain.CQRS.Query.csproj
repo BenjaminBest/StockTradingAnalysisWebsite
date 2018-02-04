@@ -43,10 +43,17 @@
     <Compile Include="Exceptions\ModelRepositoryAddException.cs" />
     <Compile Include="Exceptions\ModelRepositoryDeleteException.cs" />
     <Compile Include="Exceptions\ModelRepositoryUpdateException.cs" />
+    <Compile Include="Filter\TransactionDividendFilter.cs" />
+    <Compile Include="Filter\TransactionEndDateFilter.cs" />
+    <Compile Include="Filter\TransactionStartDateFilter.cs" />
+    <Compile Include="Filter\TransactionStockTypeFilter.cs" />
+    <Compile Include="Filter\TransactionTagFilter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Queries\CalculationAllQuery.cs" />
     <Compile Include="Queries\FeedbackProportionAllQuery.cs" />
     <Compile Include="Queries\StockByWknQuery.cs" />
+    <Compile Include="Queries\StockQuotationsLastBeforeDateByIdQuery.cs" />
+    <Compile Include="Queries\StockQuotationsLastOfYearByIdQuery.cs" />
     <Compile Include="Queries\StockQuotationsCountByIdQuery.cs" />
     <Compile Include="Queries\StockQuotationsByIdQuery.cs" />
     <Compile Include="Queries\StockTypeInUseSearchQuery.cs" />
@@ -76,6 +83,8 @@
     <Compile Include="QueryHandler\FeedbackProportionAllQueryHandler.cs" />
     <Compile Include="QueryHandler\CalculationAllQueryHandler.cs" />
     <Compile Include="QueryHandler\StockByWknQueryHandler.cs" />
+    <Compile Include="QueryHandler\StockQuotationsLastBeforeDateByIdQueryHandler.cs" />
+    <Compile Include="QueryHandler\StockQuotationsLastOfYearByIdQueryHandler.cs" />
     <Compile Include="QueryHandler\StockQuotationsCountByIdQueryHandler.cs" />
     <Compile Include="QueryHandler\StockQuotationsByIdQueryHandler.cs" />
     <Compile Include="QueryHandler\StockTypeInUseSearchQueryHandler.cs" />

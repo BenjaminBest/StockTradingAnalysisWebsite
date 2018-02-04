@@ -1,17 +1,18 @@
-﻿using FluentAssertions;
+﻿using System;
+using System.Collections.Generic;
+using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using StockTradingAnalysis.Interfaces.Enumerations;
 using StockTradingAnalysis.Interfaces.Types;
 using StockTradingAnalysis.Services.Services;
-using System;
-using System.Collections.Generic;
 
 namespace StockTradingAnalysis.Services.Tests.Services
 {
     [TestClass]
     public class InterestRateCalculatorServiceTests
     {
-        private readonly IEnumerable<CashFlow> _cfs = new CashFlow[] {
+        private readonly List<CashFlow> _cfs = new List<CashFlow>
+        {
                 new CashFlow(-10000, new DateTime(2008,1,1)),
                 new CashFlow(2750, new DateTime(2008,3,1)),
                 new CashFlow(4250, new DateTime(2008,10,30)),
@@ -19,39 +20,39 @@ namespace StockTradingAnalysis.Services.Tests.Services
                 new CashFlow(2750, new DateTime(2009,4,1))
             };
 
-        private readonly IEnumerable<CashFlow> _bigcfs = new CashFlow[] {
+        private readonly List<CashFlow> _bigcfs = new List<CashFlow> {
                 new CashFlow(-10, new DateTime(2000,1,1)),
                 new CashFlow(10, new DateTime(2002,1,2)),
                 new CashFlow(20, new DateTime(2003,1,3))
             };
 
-        private readonly IEnumerable<CashFlow> _negcfs = new CashFlow[] {
+        private readonly List<CashFlow> _negcfs = new List<CashFlow> {
                 new CashFlow(-10, new DateTime(2000,1,1)),
                 new CashFlow(-1, new DateTime(2002,1,2)),
                 new CashFlow(1, new DateTime(2003,1,3))
             };
 
-        private readonly IEnumerable<CashFlow> _samedaysamecfs = new CashFlow[] {
+        private readonly List<CashFlow> _samedaysamecfs = new List<CashFlow> {
                 new CashFlow(-10, new DateTime(2000,1,1)),
                 new CashFlow(10, new DateTime(2000,1,1)),
             };
 
-        private readonly IEnumerable<CashFlow> _samedaydifferentcfs = new CashFlow[] {
+        private readonly List<CashFlow> _samedaydifferentcfs = new List<CashFlow> {
                 new CashFlow(-10, new DateTime(2000,1,1)),
                 new CashFlow(100, new DateTime(2000,1,1)),
             };
 
-        private readonly IEnumerable<CashFlow> _bigratecfs = new CashFlow[] {
+        private readonly List<CashFlow> _bigratecfs = new List<CashFlow> {
                 new CashFlow(-10, new DateTime(2000,1,1)),
                 new CashFlow(20, new DateTime(2000,5,30)),
             };
 
-        private readonly IEnumerable<CashFlow> _zeroRate = new CashFlow[] {
+        private readonly List<CashFlow> _zeroRate = new List<CashFlow> {
                 new CashFlow(-10, new DateTime(2000,1,1)),
                 new CashFlow(10, new DateTime(2003,1,1)),
                 };
 
-        private readonly IEnumerable<CashFlow> _doubleNegative = new CashFlow[] {
+        private readonly List<CashFlow> _doubleNegative = new List<CashFlow> {
                 new CashFlow(-10000, new DateTime(2008,1,1)),
                 new CashFlow(2750, new DateTime(2008,3,1)),
                 new CashFlow(-4250, new DateTime(2008,10,30)),
@@ -59,7 +60,7 @@ namespace StockTradingAnalysis.Services.Tests.Services
                 new CashFlow(2750, new DateTime(2009,4,1))
             };
 
-        private readonly IEnumerable<CashFlow> _badDoubleNegative = new CashFlow[] {
+        private readonly List<CashFlow> _badDoubleNegative = new List<CashFlow> {
                 new CashFlow(-10000, new DateTime(2008,1,1)),
                 new CashFlow(2750, new DateTime(2008,3,1)),
                 new CashFlow(-4250, new DateTime(2008,10,30)),

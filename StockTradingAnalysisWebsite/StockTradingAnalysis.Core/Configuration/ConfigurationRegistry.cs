@@ -1,5 +1,5 @@
-﻿using StockTradingAnalysis.Interfaces.Configuration;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using StockTradingAnalysis.Interfaces.Configuration;
 
 namespace StockTradingAnalysis.Core.Configuration
 {

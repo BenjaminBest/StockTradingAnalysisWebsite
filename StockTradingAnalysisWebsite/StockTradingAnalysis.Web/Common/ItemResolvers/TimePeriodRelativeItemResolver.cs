@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using StockTradingAnalysis.Interfaces.Domain;
+using StockTradingAnalysis.Domain.CQRS.Query.Filter;
+using StockTradingAnalysis.Interfaces.Filter;
 using StockTradingAnalysis.Interfaces.Services.Core;
-using StockTradingAnalysis.Web.Common.Filter;
 using StockTradingAnalysis.Web.Common.Interfaces;
 
 namespace StockTradingAnalysis.Web.Common.ItemResolvers

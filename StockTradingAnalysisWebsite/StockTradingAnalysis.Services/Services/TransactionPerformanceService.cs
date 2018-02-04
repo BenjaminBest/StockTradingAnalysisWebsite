@@ -1,9 +1,9 @@
-﻿using StockTradingAnalysis.Interfaces.Domain;
-using StockTradingAnalysis.Interfaces.Services;
-using StockTradingAnalysis.Services.Domain;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using StockTradingAnalysis.Interfaces.Domain;
+using StockTradingAnalysis.Interfaces.Services.Domain;
+using StockTradingAnalysis.Services.Domain;
 
 namespace StockTradingAnalysis.Services.Services
 {

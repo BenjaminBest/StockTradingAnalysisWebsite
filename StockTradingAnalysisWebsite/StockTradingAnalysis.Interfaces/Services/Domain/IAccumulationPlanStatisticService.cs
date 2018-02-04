@@ -1,7 +1,6 @@
 ﻿using StockTradingAnalysis.Interfaces.Domain;
-using System.Collections.Generic;
 
-namespace StockTradingAnalysis.Interfaces.Services
+namespace StockTradingAnalysis.Interfaces.Services.Domain
 {
     /// <summary>
     /// The interface IAccumulationPlanStatisticService defines a service to calculate time range based statistical information for saving plans
@@ -9,10 +8,10 @@ namespace StockTradingAnalysis.Interfaces.Services
     public interface IAccumulationPlanStatisticService
     {
         /// <summary>
-        /// Starts calculation and uses all transactions
+        /// Calculates the savings plan for the given <paramref name="tag" />
         /// </summary>
-        /// <param name="transactions">A list with all transactions which should be analyzed</param>
-        /// <returns>statistical information</returns>
-        IAccumulationPlanStatistic Calculate(IEnumerable<ITransaction> transactions);
+        /// <param name="tag">The tag.</param>
+        /// <returns>Savingsplan</returns>
+        ISavingsPlan CalculateSavingsPlan(string tag);
     }
 }

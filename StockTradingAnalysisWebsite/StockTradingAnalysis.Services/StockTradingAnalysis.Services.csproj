@@ -40,9 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Domain\AccumulationPlanStatistic.cs" />
+    <Compile Include="Domain\SavingsPlanPeriod.cs" />
     <Compile Include="Domain\CalculationQuotation.cs" />
     <Compile Include="Domain\CalculationResult.cs" />
+    <Compile Include="Domain\SavingsPlan.cs" />
     <Compile Include="Domain\Statistic.cs" />
     <Compile Include="Domain\TransactionPerformance.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -51,6 +52,7 @@
     <Compile Include="Services\PriceCalculatorService.cs" />
     <Compile Include="Services\StatisticService.cs" />
     <Compile Include="Services\StockQuoteService.cs" />
+    <Compile Include="Services\TransactionCalculationService.cs" />
     <Compile Include="Services\TransactionPerformanceService.cs" />
   </ItemGroup>
   <ItemGroup>

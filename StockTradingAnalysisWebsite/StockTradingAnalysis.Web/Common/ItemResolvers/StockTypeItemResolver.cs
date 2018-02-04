@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using StockTradingAnalysis.Domain.CQRS.Query.Filter;
 using StockTradingAnalysis.Domain.CQRS.Query.Queries;
-using StockTradingAnalysis.Interfaces.Domain;
+using StockTradingAnalysis.Interfaces.Filter;
 using StockTradingAnalysis.Interfaces.Queries;
-using StockTradingAnalysis.Web.Common.Filter;
 using StockTradingAnalysis.Web.Common.Interfaces;
 
 namespace StockTradingAnalysis.Web.Common.ItemResolvers

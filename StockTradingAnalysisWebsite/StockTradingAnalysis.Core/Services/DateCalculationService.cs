@@ -212,5 +212,16 @@ namespace StockTradingAnalysis.Core.Services
 
             return result;
         }
+
+        /// <summary>
+        /// Calculate the days between <paramref name="start"/> and <paramref name="end"/>
+        /// </summary>
+        /// <param name="start">The start.</param>
+        /// <param name="end">The end.</param>
+        /// <returns>Amount of days</returns>
+        public int DaysBetween(DateTime start, DateTime end)
+        {
+            return (int)(end - start).TotalDays;
+        }
     }
 }

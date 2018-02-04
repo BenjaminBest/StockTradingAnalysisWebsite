@@ -513,17 +513,17 @@
   <data name="Display_TagDividends" xml:space="preserve">
     <value>Dividenden p.a.</value>
   </data>
-  <data name="Display_TagDividendsPercentage" xml:space="preserve">
-    <value>Dividenden (%) p.a.</value>
+  <data name="Display_TagOverallDividendsPercentage" xml:space="preserve">
+    <value>Dividenden (%) akkumuliert</value>
   </data>
   <data name="Display_TagPerformanceActualPeriodPercentage" xml:space="preserve">
-    <value>Rendite</value>
+    <value>Rendite p.a.</value>
   </data>
   <data name="Display_TagPerformanceOverallPeriodPercentage" xml:space="preserve">
-    <value>Rendite ges.</value>
+    <value>Gesamtrendite p.a.</value>
   </data>
   <data name="Display_TagPeriodSumCapital" xml:space="preserve">
-    <value>Wert</value>
+    <value>Kapital</value>
   </data>
   <data name="Display_TagPeriodSumInpayment" xml:space="preserve">
     <value>Einzahlungen</value>
@@ -990,7 +990,7 @@
   <data name="ViewTextInfoPerformanceProfitLossTrades" xml:space="preserve">
     <value>Trefferquote</value>
   </data>
-  <data name="ViewTextInfoStaticticsTagsExportExcel" xml:space="preserve">
+  <data name="ViewTextInfoStaticticsSavingsPlanExportExcel" xml:space="preserve">
     <value>Export nach Excel</value>
   </data>
   <data name="ViewTextInfoStatisticsOverTrades" xml:space="preserve">
@@ -999,7 +999,7 @@
   <data name="ViewTextInfoStatisticsProducts" xml:space="preserve">
     <value>Produkte</value>
   </data>
-  <data name="ViewTextInfoStatisticsTags" xml:space="preserve">
+  <data name="ViewTextInfoStatisticsSavingsPlan" xml:space="preserve">
     <value>Sparplan Hochrechnung</value>
   </data>
   <data name="ViewTextInfoSumPL" xml:space="preserve">
@@ -1128,8 +1128,8 @@
   <data name="ViewTextMainDashboardPotential" xml:space="preserve">
     <value>Potential</value>
   </data>
-  <data name="ViewTextMainDashboardRetirementPlanning" xml:space="preserve">
-    <value>Altersvorsorge</value>
+  <data name="ViewTextMainDashboardSavingsPlan" xml:space="preserve">
+    <value>Sparplan</value>
   </data>
   <data name="ViewTextMainDashboardRisk" xml:space="preserve">
     <value>Risiko</value>
@@ -1170,11 +1170,8 @@
   <data name="ViewTextStatisticsOverNumberOfTrades" xml:space="preserve">
     <value>Letzte {0} Trades</value>
   </data>
-  <data name="ViewTextStatisticsPersonalDividends" xml:space="preserve">
-    <value>Dividendenrendite bezieht sich auf die persönliche Rendite  (Dividenen p.a. /  Einzahlungen * 100)</value>
-  </data>
-  <data name="ViewTextStatisticsTagsForcast" xml:space="preserve">
-    <value>* Forecast(zeitgewichtet) aufgrund der durchschnittlichen historischen Werte bis Renteneintrittsalter (mit 67)</value>
+  <data name="ViewTextStatisticsSavingsPlanForcast" xml:space="preserve">
+    <value>* Forecast aufgrund der durchschnittlichen historischen Werte bis maximal 35 Jahre in die Zukunft / ** Kapital/Dividenden des aktuellen Jahres entsprechen dem Ist-Stand mit heutigem Datum / *** Einzahlungen enthalten nicht die Gebühren /**** IZF Methode</value>
   </data>
   <data name="ViewTextStatisticsTagsMoneyWeighted" xml:space="preserve">
     <value>Geldgewichtet p.a.</value>
@@ -1182,10 +1179,7 @@
   <data name="ViewTextStatisticsTagsProductsTitle" xml:space="preserve">
     <value>{0} Stand: {1}</value>
   </data>
-  <data name="ViewTextStatisticsTagsTimeWeighted" xml:space="preserve">
-    <value>Zeitgewichtet p.a.</value>
-  </data>
-  <data name="ViewTextStatisticsTagsTitle" xml:space="preserve">
+  <data name="ViewTextStatisticsSavingsPlanTitle" xml:space="preserve">
     <value>{0} Stand: {1:dd.MM.yyyy}</value>
   </data>
   <data name="ViewTextStatisticsTitle" xml:space="preserve">
@@ -1274,5 +1268,17 @@
   </data>
   <data name="ViewTextUpdateQuotationsServiceOnline" xml:space="preserve">
     <value>The stock quotation service is &lt;strong&gt;online&lt;/string&gt;. Quotations will be updated.</value>
+  </data>
+  <data name="ViewTextSavingsPlanNotAvailable" xml:space="preserve">
+    <value>Der Sparplan ist nicht verfügbar bzw. es konnten keine Daten gefunden werden. Bitte weisen Sie Transaktionen eine Kategorie zu, diese wird dann hier ausgewertet.</value>
+  </data>
+  <data name="ViewTextSavingsPlanNotAvailableTitle" xml:space="preserve">
+    <value>Sparplanhochrechnung nicht verfügbar</value>
+  </data>
+  <data name="Display_TagOverallDividends" xml:space="preserve">
+    <value>Dividenden akkumuliert</value>
+  </data>
+  <data name="ViewTextStatisticsSavingsPlanInformation" xml:space="preserve">
+    <value>Die Rendite beinhaltet die Kursgewinne (nach Steuer) und Dividenden. Die Qualität der Hochrechnung steigt mit aktuellen Kursdaten.</value>
   </data>
 </root>
