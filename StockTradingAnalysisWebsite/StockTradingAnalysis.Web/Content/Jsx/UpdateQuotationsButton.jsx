@@ -23,7 +23,6 @@ class UpdateQuotationsButton extends React.Component {
 
         hub.client.SendQuotationServiceStatus = function (status) {
             this.setState({ serviceAvailable: status });
-            console.log(status);
         }.bind(this);
     }
 

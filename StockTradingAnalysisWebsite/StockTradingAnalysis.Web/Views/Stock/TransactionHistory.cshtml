@@ -1,4 +1,5 @@
-﻿@model IEnumerable<StockTradingAnalysis.Web.Models.TransactionHistoryViewModel>
+﻿@using StockTradingAnalysis.Web.Common.Extensions
+@model IEnumerable<StockTradingAnalysis.Web.Models.TransactionHistoryViewModel>
 
 @Resources.Display_StockTransactionHistory
 <table class="table table-hover table-striped table-scrollable">
@@ -24,7 +25,7 @@
     <tbody>
     @foreach (var item in Model)
     {
-        <tr>
+        <tr class="clickableRow" href='@Html.PlainLink("Edit", "Transaction", new { id = item.Id })'>
             <td class="col-sm-4">
                 @Html.DisplayFor(modelItem => item.OrderDate)
             </td>

@@ -12,7 +12,7 @@ namespace StockTradingAnalysis.Web.Models
         /// Gets/sets the Date
         /// </summary>
         [DataType(DataType.DateTime)]
-        [DisplayFormat(NullDisplayText = "", DataFormatString = "{0:dd.MM.yyyy HH:mm}")]
+        [DisplayFormat(NullDisplayText = "", DataFormatString = "{0:dd.MM.yyyy}")]
         [Display(Name = "Display_QuoteDate", ResourceType = typeof(Resources))]
         public DateTime Date { get; set; }
 

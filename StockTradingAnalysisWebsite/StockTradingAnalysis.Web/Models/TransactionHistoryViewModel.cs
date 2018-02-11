@@ -9,6 +9,14 @@ namespace StockTradingAnalysis.Web.Models
     public class TransactionHistoryViewModel
     {
         /// <summary>
+        /// Gets or sets the identifier.
+        /// </summary>
+        /// <value>
+        /// The identifier.
+        /// </value>
+        public Guid Id { get; set; }
+
+        /// <summary>
         /// Gets or sets the order date.
         /// </summary>
         /// <value>
