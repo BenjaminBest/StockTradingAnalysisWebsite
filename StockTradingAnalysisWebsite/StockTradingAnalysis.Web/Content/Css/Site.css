@@ -91,3 +91,22 @@ table tr.table-danger td span {
     opacity: 0.7;
     color: #FFFFFF;
 }
+
+.table-scrollable thead {
+    width: 97%;
+}
+
+.table-scrollable tbody {
+    height: 700px;
+    overflow-y: auto;
+    width: 100%;
+}
+
+.table-scrollable thead, .table-scrollable tbody, .table-scrollable tr, .table-scrollable td, .table-scrollable th {
+    display: block;
+}
+
+.table-scrollable tbody td, .table-scrollable thead > tr > th {
+        float: left;
+        border-bottom-width: 0;
+}

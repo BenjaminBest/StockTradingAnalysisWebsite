@@ -44,7 +44,7 @@
                         @Html.LabelFor(m => performance.FirstOrDefault().Value.R)
                     </th>
                     <th>
-                        <label>@Resources.ViewTextLongShort</label>                        
+                        <label>@Resources.ViewTextLongShort</label>
                     </th>
                     <th>
                         @Html.LabelFor(m => performance.FirstOrDefault().Value.ProfitAbsolute)
@@ -127,7 +127,7 @@
         </tr>
         <tr>
             <td>
-                @Html.DropDownList("TimeFilter", (List<SelectListItem>)ViewBag.TimeFilter, new { onchange = "this.form.submit();", @class= "custom-select" })
+                @Html.DropDownList("TimeFilter", (List<SelectListItem>)ViewBag.TimeFilter, new { onchange = "this.form.submit();", @class = "custom-select" })
             </td>
             <td>
                 @Html.DropDownList("StockTypeFilter", (List<SelectListItem>)ViewBag.StockTypeFilter, new { onchange = "this.form.submit();", @class = "custom-select" })

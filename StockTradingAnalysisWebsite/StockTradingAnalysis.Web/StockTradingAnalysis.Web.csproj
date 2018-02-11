@@ -259,6 +259,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\AutoMapperProfiles\QuotationProfile.cs" />
     <Compile Include="App_Start\AutoMapperProfiles\SavingsPlanProfile.cs" />
     <Compile Include="App_Start\AutoMapperProfiles\CalculationProfile.cs" />
     <Compile Include="App_Start\AutoMapperProfiles\TransactionProfile.cs" />
@@ -317,6 +318,7 @@
     <Compile Include="Hubs\QuotationHub.cs" />
     <Compile Include="Models\CalculationViewModel.cs" />
     <Compile Include="Models\FeedbackProportionViewModel.cs" />
+    <Compile Include="Models\QuoteViewModel.cs" />
     <Compile Include="Models\SelectionViewModel.cs" />
     <Compile Include="Models\ImageViewModel.cs" />
     <Compile Include="Models\StrategyViewModel.cs" />
@@ -327,6 +329,7 @@
     <Compile Include="Models\SavingsPlanPeriodViewModel.cs" />
     <Compile Include="Models\SavingsPlanViewModel.cs" />
     <Compile Include="Models\TransactionDividendViewModel.cs" />
+    <Compile Include="Models\TransactionHistoryViewModel.cs" />
     <Compile Include="Models\TransactionPerformanceViewModel.cs" />
     <Compile Include="Models\TransactionSellingViewModel.cs" />
     <Compile Include="Models\TransactionBuyingViewModel.cs" />
@@ -395,6 +398,8 @@
     <Content Include="Views\Shared\DisplayTemplates\Action.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\LongShort.cshtml" />
     <Content Include="Views\TestData\GenerateTestData.cshtml" />
+    <Content Include="Views\Stock\TransactionHistory.cshtml" />
+    <Content Include="Views\Stock\LatestQuote.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

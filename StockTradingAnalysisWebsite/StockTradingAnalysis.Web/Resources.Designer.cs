@@ -655,6 +655,51 @@ namespace StockTradingAnalysis.Web {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Close.
+        /// </summary>
+        public static string Display_QuoteClose {
+            get {
+                return ResourceManager.GetString("Display_QuoteClose", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date.
+        /// </summary>
+        public static string Display_QuoteDate {
+            get {
+                return ResourceManager.GetString("Display_QuoteDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to High.
+        /// </summary>
+        public static string Display_QuoteHigh {
+            get {
+                return ResourceManager.GetString("Display_QuoteHigh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Low.
+        /// </summary>
+        public static string Display_QuoteLow {
+            get {
+                return ResourceManager.GetString("Display_QuoteLow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Open.
+        /// </summary>
+        public static string Display_QuoteOpen {
+            get {
+                return ResourceManager.GetString("Display_QuoteOpen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Undefiniert.
         /// </summary>
         public static string Display_SQN0 {
@@ -1168,11 +1213,29 @@ namespace StockTradingAnalysis.Web {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Letzer Kurs.
+        /// </summary>
+        public static string Display_StockLastestQuote {
+            get {
+                return ResourceManager.GetString("Display_StockLastestQuote", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
         public static string Display_StockName {
             get {
                 return ResourceManager.GetString("Display_StockName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Transaktionshistorie.
+        /// </summary>
+        public static string Display_StockTransactionHistory {
+            get {
+                return ResourceManager.GetString("Display_StockTransactionHistory", resourceCulture);
             }
         }
         
@@ -2082,6 +2145,15 @@ namespace StockTradingAnalysis.Web {
         public static string Validation_TransactionUndefinedCase {
             get {
                 return ResourceManager.GetString("Validation_TransactionUndefinedCase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Es konnten keine Kursdaten gefunden werden.
+        /// </summary>
+        public static string ViewText_StockLastestQuoteNotAvailable {
+            get {
+                return ResourceManager.GetString("ViewText_StockLastestQuoteNotAvailable", resourceCulture);
             }
         }
         

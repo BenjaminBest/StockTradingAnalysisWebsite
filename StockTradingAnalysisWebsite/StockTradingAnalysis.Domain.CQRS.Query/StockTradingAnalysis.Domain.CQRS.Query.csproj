@@ -52,6 +52,7 @@
     <Compile Include="Queries\CalculationAllQuery.cs" />
     <Compile Include="Queries\FeedbackProportionAllQuery.cs" />
     <Compile Include="Queries\StockByWknQuery.cs" />
+    <Compile Include="Queries\StockQuotationsLatestByIdQuery.cs" />
     <Compile Include="Queries\StockQuotationsLastBeforeDateByIdQuery.cs" />
     <Compile Include="Queries\StockQuotationsLastOfYearByIdQuery.cs" />
     <Compile Include="Queries\StockQuotationsCountByIdQuery.cs" />
@@ -63,6 +64,7 @@
     <Compile Include="Queries\FeedbackNameSearchQuery.cs" />
     <Compile Include="Queries\AccountBalanceAllQuery.cs" />
     <Compile Include="Queries\OpenPositionsAllQuery.cs" />
+    <Compile Include="Queries\TransactionsByStockIdQuery.cs" />
     <Compile Include="Queries\TransactionPerformanceByIdQuery.cs" />
     <Compile Include="Queries\TransactionPerformanceAllQuery.cs" />
     <Compile Include="Queries\TransactionImageByIdQuery.cs" />
@@ -83,6 +85,7 @@
     <Compile Include="QueryHandler\FeedbackProportionAllQueryHandler.cs" />
     <Compile Include="QueryHandler\CalculationAllQueryHandler.cs" />
     <Compile Include="QueryHandler\StockByWknQueryHandler.cs" />
+    <Compile Include="QueryHandler\StockQuotationsLastestByIdQueryHandler.cs" />
     <Compile Include="QueryHandler\StockQuotationsLastBeforeDateByIdQueryHandler.cs" />
     <Compile Include="QueryHandler\StockQuotationsLastOfYearByIdQueryHandler.cs" />
     <Compile Include="QueryHandler\StockQuotationsCountByIdQueryHandler.cs" />
@@ -94,6 +97,7 @@
     <Compile Include="QueryHandler\FeedbackNameSearchQueryHandler.cs" />
     <Compile Include="QueryHandler\AccountBalanceAllQueryHandler.cs" />
     <Compile Include="QueryHandler\OpenPositionsAllQueryHandler.cs" />
+    <Compile Include="QueryHandler\TransactionByStockIdQueryHandler.cs" />
     <Compile Include="QueryHandler\TransactionYearsQueryHandler.cs" />
     <Compile Include="QueryHandler\TransactionPerformanceByIdQueryHandler.cs" />
     <Compile Include="QueryHandler\TransactionPerformanceAllQueryHandler.cs" />

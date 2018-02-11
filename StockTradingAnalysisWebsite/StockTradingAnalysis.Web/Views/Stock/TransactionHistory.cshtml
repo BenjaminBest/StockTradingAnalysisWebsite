@@ -1,0 +1,46 @@
+﻿@model IEnumerable<StockTradingAnalysis.Web.Models.TransactionHistoryViewModel>
+
+@Resources.Display_StockTransactionHistory
+<table class="table table-hover table-striped table-scrollable">
+    <thead>
+    <tr>
+        <th class="col-sm-4">
+            @Html.LabelFor(modelItem => Model.FirstOrDefault().OrderDate)
+        </th>
+        <th class="col-sm-2">
+            @Html.LabelFor(modelItem => Model.FirstOrDefault().Action)
+        </th>
+        <th class="col-sm-2">
+            @Html.LabelFor(modelItem => Model.FirstOrDefault().Units)
+        </th>
+        <th class="col-sm-2">
+            @Html.LabelFor(modelItem => Model.FirstOrDefault().PricePerUnit)
+        </th>
+        <th class="col-sm-2">
+            @Html.LabelFor(modelItem => Model.FirstOrDefault().PositionSize)
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td class="col-sm-4">
+                @Html.DisplayFor(modelItem => item.OrderDate)
+            </td>
+            <td class="col-sm-2">
+                @Html.DisplayFor(modelItem => item.Action)
+            </td>
+            <td class="col-sm-2">
+                @Html.DisplayFor(modelItem => item.Units)
+            </td>
+            <td class="col-sm-2">
+                @Html.DisplayFor(modelItem => item.PricePerUnit)
+            </td>
+            <td class="col-sm-2">
+                @Html.DisplayFor(modelItem => item.PositionSize)
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

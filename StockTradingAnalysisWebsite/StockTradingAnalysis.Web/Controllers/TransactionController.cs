@@ -245,9 +245,7 @@ namespace StockTradingAnalysis.Web.Controllers
                         id);
                 }
 
-                //_commandDispatcher.Execute(new StockChangeCommand(id, model.OriginalVersion, model.Name, model.Wkn,
-                //    model.Type, model.IsDividend,
-                //    model.LongShort));
+                //TODO: Edit a transaction
 
                 return RedirectToAction("Index");
             }

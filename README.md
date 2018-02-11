@@ -39,6 +39,7 @@ Features
 * Security
   * Add, edit, delete, update quotes
   * Aggregated absolute profit per security
+  * Transaction history and latest quote per security
 * Feedback
   * Add, edit, delete
   * Percentage of transactions assigned to feedbacks
@@ -89,3 +90,5 @@ Calculations
 ![calculation](https://user-images.githubusercontent.com/29073072/35777955-055ff46a-09b7-11e8-9ec1-3704a4aca895.png)
 Transactions
 ![transactions](https://user-images.githubusercontent.com/29073072/36072645-5a183582-0f23-11e8-94f2-f69e4c981812.png)
+Security details
+![security_edit](https://user-images.githubusercontent.com/29073072/36073653-736b7f92-0f34-11e8-8ac8-23b9ab53a9d1.png)

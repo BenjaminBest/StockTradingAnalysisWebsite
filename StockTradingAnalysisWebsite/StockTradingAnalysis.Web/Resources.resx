@@ -1293,10 +1293,34 @@
   <data name="ViewTextAdministrationGenerateTestDataLost" xml:space="preserve">
     <value>Alle Daten der Datenbank und Caches werden gelöscht.</value>
   </data>
+  <data name="Display_StockLastestQuote" xml:space="preserve">
+    <value>Letzer Kurs</value>
+  </data>
+  <data name="Display_StockTransactionHistory" xml:space="preserve">
+    <value>Transaktionshistorie</value>
+  </data>
   <data name="ViewTextTestDataControllerErase" xml:space="preserve">
     <value>Datenbank und Caches wurden geleert, Bewertungen &amp; Strategien erstellt</value>
   </data>
   <data name="ViewTextTestDataControllerSecurityCreated" xml:space="preserve">
     <value>Wertpapier und Transaktionen für {0} wurden erstellt</value>
+  </data>
+  <data name="Display_QuoteClose" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="Display_QuoteDate" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="Display_QuoteHigh" xml:space="preserve">
+    <value>High</value>
+  </data>
+  <data name="Display_QuoteLow" xml:space="preserve">
+    <value>Low</value>
+  </data>
+  <data name="Display_QuoteOpen" xml:space="preserve">
+    <value>Open</value>
+  </data>
+  <data name="ViewText_StockLastestQuoteNotAvailable" xml:space="preserve">
+    <value>Es konnten keine Kursdaten gefunden werden</value>
   </data>
 </root>

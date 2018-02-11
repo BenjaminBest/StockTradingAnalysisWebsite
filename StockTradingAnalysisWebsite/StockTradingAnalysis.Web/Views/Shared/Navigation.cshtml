@@ -10,7 +10,7 @@
                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">@Resources.ViewTextMainDashboard <span class="caret"></span></a>
                 <div class="dropdown-menu">
                     @Html.ActionLink(Resources.ViewTextMainDashboard, "Index", "Dashboard", null, new { @class = "dropdown-item" })
-                    <div class="dropdown-divider"></div>
+                    @*<div class="dropdown-divider"></div>
                     @Html.ActionLink(Resources.ViewTextInfoStatisticsOverTrades, "StatisticsOverTrades", "Dashboard", null, new { @class = "dropdown-item" })
                     @Html.ActionLink(Resources.ViewTextInfoPerformancePerStocktype, "PerformancePerStocktype", "Dashboard", null, new { @class = "dropdown-item" })
                     @Html.ActionLink(Resources.ViewTextInfoPerformancePerLongShort, "PerformancePerLongShort", "Dashboard", null, new { @class = "dropdown-item" })
@@ -26,7 +26,7 @@
                     @Html.ActionLink(Resources.ViewTextInfoSumPL, "DepotSumPL", "Dashboard", null, new { @class = "dropdown-item" })
                     @Html.ActionLink(Resources.ViewTextInfoPerformanceProfitLossTrades, "PerformanceProfitLossTrades", "Dashboard", null, new { @class = "dropdown-item" })
                     <div class="dropdown-divider"></div>
-                    @Html.ActionLink(Resources.ViewTextInfoClusterAnalysis, "ClusterAnalysis", "Dashboard", null, new { @class = "dropdown-item" })
+                    @Html.ActionLink(Resources.ViewTextInfoClusterAnalysis, "ClusterAnalysis", "Dashboard", null, new { @class = "dropdown-item" })*@
                 </div>
             </li>
 
@@ -34,8 +34,8 @@
                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">@Resources.ViewTextMainDashboardSavingsPlan <span class="caret"></span></a>
                 <div class="dropdown-menu">
                     @Html.ActionLink(Resources.ViewTextInfoStatisticsSavingsPlan, "SavingsPlan", "Dashboard", null, new { @class = "dropdown-item" })
-                    @Html.ActionLink(Resources.ViewTextInfoStatisticsProducts, "SavingsPlanProducts", "Dashboard", null, new { @class = "dropdown-item" })
-                    @Html.ActionLink(Resources.ViewTextInfoStaticticsSavingsPlanExportExcel, "ExportSavingsPlanToExcel", "Export", new { tag = "Altersvorsorge" }, new { @class = "dropdown-item" })
+                    @*@Html.ActionLink(Resources.ViewTextInfoStatisticsProducts, "SavingsPlanProducts", "Dashboard", null, new { @class = "dropdown-item" })
+                    @Html.ActionLink(Resources.ViewTextInfoStaticticsSavingsPlanExportExcel, "ExportSavingsPlanToExcel", "Export", new { tag = "Altersvorsorge" }, new { @class = "dropdown-item" })*@
                 </div>
             </li>
 
@@ -48,7 +48,7 @@
                     @Html.ActionLink(Resources.ViewTextSell, "Sell", "Transaction", null, new { @class = "dropdown-item" })
                     @Html.ActionLink(Resources.ViewTextDividend, "Dividend", "Transaction", null, new { @class = "dropdown-item" })
                     @Html.ActionLink(Resources.ViewTextSplit, "Split", "Transaction", null, new { @class = "dropdown-item" })
-                    @Html.ActionLink(Resources.ViewTextExportExcel, "ExportTransactionsToExcel", "Export", null, new { @class = "dropdown-item" })
+                    @*@Html.ActionLink(Resources.ViewTextExportExcel, "ExportTransactionsToExcel", "Export", null, new { @class = "dropdown-item" })*@
                 </div>
             </li>
 
@@ -59,11 +59,11 @@
                     <div class="dropdown-divider"></div>
                     @Html.ActionLink(Resources.ViewTextNew, "Create", "Stock", null, new { @class = "dropdown-item" })
                     @Html.ActionLink(Resources.ViewTextStocksUpdate, "UpdateQuotations", "Stock", null, new { @class = "dropdown-item" })
-                    <div class="dropdown-divider"></div>
+                    @*<div class="dropdown-divider"></div>
                     @Html.ActionLink(Resources.ViewTextStocksQuotationsIndex, "StockQuotations", "Stock", new { assetClass = "Index" }, new { @class = "dropdown-item" })
                     @Html.ActionLink(Resources.ViewTextStocksQuotationsETF, "StockQuotations", "Stock", new { assetClass = "ETF" }, new { @class = "dropdown-item" })
                     @Html.ActionLink(Resources.ViewTextStocksQuotationsStocks, "StockQuotations", "Stock", new { assetClass = "Aktien" }, new { @class = "dropdown-item" })
-                    @Html.ActionLink(Resources.ViewTextStocksQuotationsCertificates, "StockQuotations", "Stock", new { assetClass = "Optionsscheine" }, new { @class = "dropdown-item" })
+                    @Html.ActionLink(Resources.ViewTextStocksQuotationsCertificates, "StockQuotations", "Stock", new { assetClass = "Optionsscheine" }, new { @class = "dropdown-item" })*@
                 </div>
             </li>
 
@@ -94,11 +94,11 @@
                 </div>
             </li>
 
-            <ul class="nav navbar-nav ml-auto">
+            @*<ul class="nav navbar-nav ml-auto">
                 <li class="nav-item">
                     @Html.ActionLink(Resources.ViewTextStatistics, "Index", "Statistics", null, new { @class = "nav-link" })
                 </li>
-            </ul>
+            </ul>*@
 
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">@Resources.ViewTextAdministration <span class="caret"></span></a>
