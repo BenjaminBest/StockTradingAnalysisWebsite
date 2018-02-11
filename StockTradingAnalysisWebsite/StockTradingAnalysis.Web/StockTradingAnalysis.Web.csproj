@@ -209,6 +209,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Jsx\Popup.jsx" />
+    <Content Include="Content\Jsx\GenerateTestDataButtonProgressBar.jsx" />
     <Content Include="Content\Jsx\UpdateQuotationsButton.jsx" />
     <Content Include="Content\Js\axios.min.js" />
     <Content Include="Content\Js\calculation.js" />
@@ -283,6 +284,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Common\Deletion\DataDeletionCoordinator.cs" />
     <Compile Include="Common\Enumerations\StatisticsKPIsFormat.cs" />
     <Compile Include="Common\Enumerations\StatisticsKPIsStyleCalcFormat.cs" />
     <Compile Include="Common\Extensions\HtmlExtensions.cs" />
@@ -300,6 +302,7 @@
     <Compile Include="Common\Interfaces\ISelectItemResolverRegistry.cs" />
     <Compile Include="Common\ModelBinders\ImageViewModelBinder.cs" />
     <Compile Include="Common\Services\QuotationServiceClient.cs" />
+    <Compile Include="Controllers\TestDataController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\CalculationController.cs" />
     <Compile Include="Controllers\QuotationController.cs" />
@@ -391,6 +394,7 @@
     <Content Include="Views\Shared\Navigation.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\Action.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\LongShort.cshtml" />
+    <Content Include="Views\TestData\GenerateTestData.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

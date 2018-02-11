@@ -76,5 +76,13 @@ namespace StockTradingAnalysis.EventSourcing.Storage
 
             return Enumerable.Empty<SnapshotBase>();
         }
+
+        /// <summary>
+        /// Deletes all.
+        /// </summary>
+        public void DeleteAll()
+        {
+            _cache.Clear();
+        }
     }
 }

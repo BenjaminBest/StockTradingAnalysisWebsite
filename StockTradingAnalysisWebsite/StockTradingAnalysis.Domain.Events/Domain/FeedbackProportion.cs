@@ -1,5 +1,5 @@
-﻿using StockTradingAnalysis.Interfaces.Domain;
-using System;
+﻿using System;
+using StockTradingAnalysis.Interfaces.Domain;
 
 namespace StockTradingAnalysis.Domain.Events.Domain
 {
@@ -23,7 +23,7 @@ namespace StockTradingAnalysis.Domain.Events.Domain
         /// <summary>
         /// Gets the proportion calculation by using <see cref="IFeedbackProportion.OverallFeedbackAmount"/> and <see cref="IFeedbackProportion.FeedbackShare"/>
         /// </summary>
-        public decimal ProportionPercentage => decimal.Round(FeedbackShare / OverallFeedbackAmount * 100, 2);
+        public decimal ProportionPercentage => OverallFeedbackAmount == 0 ? 0 : decimal.Round(FeedbackShare / OverallFeedbackAmount * 100, 2);
 
         /// <summary>
         /// Initializes this object

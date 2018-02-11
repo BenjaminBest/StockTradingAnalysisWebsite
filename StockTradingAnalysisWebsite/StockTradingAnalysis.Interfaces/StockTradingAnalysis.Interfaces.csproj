@@ -50,9 +50,11 @@
     <Compile Include="Common\IPerformanceCounter.cs" />
     <Compile Include="Common\IPerformanceCounterItem.cs" />
     <Compile Include="Common\IPerformanceRegistry.cs" />
+    <Compile Include="ReadModel\IDataDeletionCoordinator.cs" />
     <Compile Include="Data\ISnapshotDatastore.cs" />
     <Compile Include="Data\IEventDatastore.cs" />
     <Compile Include="Data\IDatastore.cs" />
+    <Compile Include="ReadModel\ISupportsDataDeletion.cs" />
     <Compile Include="DomainContext\ISnapshotableRepository.cs" />
     <Compile Include="DomainContext\ISnapshotOriginator.cs" />
     <Compile Include="DomainContext\ISnapshotProcessor.cs" />

@@ -1,10 +1,10 @@
-﻿using Ninject;
+﻿using System;
+using Ninject;
 using Ninject.Web.Common;
 using StockTradingAnalysis.Core.Common;
 using StockTradingAnalysis.Interfaces.Common;
-using StockTradingAnalysis.Interfaces.Data;
+using StockTradingAnalysis.Interfaces.ReadModel;
 using StockTradingAnalysis.Web.BootModules;
-using System;
 
 namespace StockTradingAnalysis.Web.Migration
 {
@@ -22,8 +22,7 @@ namespace StockTradingAnalysis.Web.Migration
             CreateKernel();
 
             //Erase Database
-            DependencyResolver.GetService<IEventDatastore>().DeleteAll();
-            DependencyResolver.GetService<ISnapshotDatastore>().DeleteAll();
+            DependencyResolver.GetService<IModelRepositoryDeletionCoordinator>().DeleteAll();
         }
 
         /// <summary>

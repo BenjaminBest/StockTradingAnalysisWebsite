@@ -28,5 +28,10 @@ namespace StockTradingAnalysis.Interfaces.Events
         /// A list with all events
         /// </returns>
         IEnumerable<TType> Get(Guid aggregateId);
+
+        /// <summary>
+        /// Deletes all.
+        /// </summary>
+        void DeleteAll();
     }
 }

@@ -29,7 +29,7 @@
                     @Html.ActionLink(Resources.ViewTextInfoClusterAnalysis, "ClusterAnalysis", "Dashboard", null, new { @class = "dropdown-item" })
                 </div>
             </li>
-            
+
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">@Resources.ViewTextMainDashboardSavingsPlan <span class="caret"></span></a>
                 <div class="dropdown-menu">
@@ -99,5 +99,13 @@
                     @Html.ActionLink(Resources.ViewTextStatistics, "Index", "Statistics", null, new { @class = "nav-link" })
                 </li>
             </ul>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">@Resources.ViewTextAdministration <span class="caret"></span></a>
+                <div class="dropdown-menu">
+                    @Html.ActionLink(Resources.ViewTextAdministrationGenerateTestData, "GenerateTestData", "TestData", null, new { @class = "dropdown-item" })
+                </div>
+            </li>
         </div>
+    </div>
 </nav>

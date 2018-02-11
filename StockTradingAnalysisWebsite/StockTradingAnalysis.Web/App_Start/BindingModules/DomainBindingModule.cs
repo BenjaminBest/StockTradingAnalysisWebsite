@@ -7,6 +7,7 @@ using StockTradingAnalysis.Interfaces.DomainContext;
 using StockTradingAnalysis.Interfaces.ReadModel;
 using StockTradingAnalysis.Interfaces.Services.Domain;
 using StockTradingAnalysis.Services.Services;
+using StockTradingAnalysis.Web.Common.Deletion;
 
 namespace StockTradingAnalysis.Web.BindingModules
 {
@@ -27,31 +28,33 @@ namespace StockTradingAnalysis.Web.BindingModules
             Kernel.Bind<ITransactionCalculationService>().To<TransactionCalculationService>();
 
             //Model repositories
-            Kernel.Bind<IModelReaderRepository<IStock>, IModelWriterRepository<IStock>, IModelRepository<IStock>>()
+            Kernel.Bind<IModelRepositoryDeletionCoordinator>().To<ModelRepositoryDeletionCoordinator>();
+
+            Kernel.Bind<IModelReaderRepository<IStock>, IModelWriterRepository<IStock>, IModelRepository<IStock>, IModelRepositorySupportsDataDeletion>()
                 .To<StockModelRepository>().InSingletonScope();
 
-            Kernel.Bind<IModelReaderRepository<IFeedback>, IModelWriterRepository<IFeedback>, IModelRepository<IFeedback>>()
+            Kernel.Bind<IModelReaderRepository<IFeedback>, IModelWriterRepository<IFeedback>, IModelRepository<IFeedback>, IModelRepositorySupportsDataDeletion>()
                 .To<FeedbackModelRepository>().InSingletonScope();
 
-            Kernel.Bind<IModelReaderRepository<ICalculation>, IModelWriterRepository<ICalculation>, IModelRepository<ICalculation>>()
+            Kernel.Bind<IModelReaderRepository<ICalculation>, IModelWriterRepository<ICalculation>, IModelRepository<ICalculation>, IModelRepositorySupportsDataDeletion>()
                 .To<CalculationModelRepository>().InSingletonScope();
 
-            Kernel.Bind<IModelReaderRepository<IStrategy>, IModelWriterRepository<IStrategy>, IModelRepository<IStrategy>>()
+            Kernel.Bind<IModelReaderRepository<IStrategy>, IModelWriterRepository<IStrategy>, IModelRepository<IStrategy>, IModelRepositorySupportsDataDeletion>()
                 .To<StrategyModelRepository>().InSingletonScope();
 
-            Kernel.Bind<IModelReaderRepository<ITransaction>, IModelWriterRepository<ITransaction>, IModelRepository<ITransaction>>()
+            Kernel.Bind<IModelReaderRepository<ITransaction>, IModelWriterRepository<ITransaction>, IModelRepository<ITransaction>, IModelRepositorySupportsDataDeletion>()
                 .To<TransactionModelRepository>().InSingletonScope();
 
-            Kernel.Bind<IModelReaderRepository<ITransactionPerformance>, IModelWriterRepository<ITransactionPerformance>, IModelRepository<ITransactionPerformance>>()
+            Kernel.Bind<IModelReaderRepository<ITransactionPerformance>, IModelWriterRepository<ITransactionPerformance>, IModelRepository<ITransactionPerformance>, IModelRepositorySupportsDataDeletion>()
                 .To<TransactionPerformanceModelRepository>().InSingletonScope();
 
-            Kernel.Bind<IModelReaderRepository<IAccountBalance>, IModelWriterRepository<IAccountBalance>, IModelRepository<IAccountBalance>>()
+            Kernel.Bind<IModelReaderRepository<IAccountBalance>, IModelWriterRepository<IAccountBalance>, IModelRepository<IAccountBalance>, IModelRepositorySupportsDataDeletion>()
                 .To<AccountBalanceModelRepository>().InSingletonScope();
 
-            Kernel.Bind<IModelReaderRepository<IFeedbackProportion>, IModelWriterRepository<IFeedbackProportion>, IModelRepository<IFeedbackProportion>>()
+            Kernel.Bind<IModelReaderRepository<IFeedbackProportion>, IModelWriterRepository<IFeedbackProportion>, IModelRepository<IFeedbackProportion>, IModelRepositorySupportsDataDeletion>()
                 .To<FeedbackProportionModelRepository>().InSingletonScope();
 
-            Kernel.Bind<IModelReaderRepository<IStockStatistics>, IModelWriterRepository<IStockStatistics>, IModelRepository<IStockStatistics>>()
+            Kernel.Bind<IModelReaderRepository<IStockStatistics>, IModelWriterRepository<IStockStatistics>, IModelRepository<IStockStatistics>, IModelRepositorySupportsDataDeletion>()
                 .To<StockStatisticsModelRepository>().InSingletonScope();
 
             //Repository

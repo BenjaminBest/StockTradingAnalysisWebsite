@@ -35,13 +35,12 @@ namespace StockTradingAnalysis.Web.BootModules
 
             bundles.Add(new ScriptBundle("~/bundles/react").Include(
                 "~/Content/Js/react.js",
-                "~/Content/Js/react-dom.js"
-            ));
+                "~/Content/Js/react-dom.js"));
 
             bundles.Add(new BabelBundle("~/bundles/jsx").Include(
                 "~/Content/Jsx/Popup.jsx",
-                "~/Content/Jsx/UpdateQuotationsButton.jsx"
-            ));
+                "~/Content/Jsx/UpdateQuotationsButton.jsx",
+                "~/Content/Jsx/GenerateTestDataButtonProgressBar.jsx"));
 
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                 "~/Scripts/jquery-{version}.js",

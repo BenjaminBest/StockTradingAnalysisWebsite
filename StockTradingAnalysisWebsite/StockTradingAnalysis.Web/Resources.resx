@@ -1281,4 +1281,22 @@
   <data name="ViewTextStatisticsSavingsPlanInformation" xml:space="preserve">
     <value>Die Rendite beinhaltet die Kursgewinne (nach Steuer) und Dividenden. Die Qualität der Hochrechnung steigt mit aktuellen Kursdaten.</value>
   </data>
+  <data name="ViewTextAdministration" xml:space="preserve">
+    <value>Administration</value>
+  </data>
+  <data name="ViewTextAdministrationGenerateTestData" xml:space="preserve">
+    <value>Testdaten Generierung</value>
+  </data>
+  <data name="ViewTextAdministrationGenerateTestDataInfo" xml:space="preserve">
+    <value>Generierung von einigen Testdaten, inklusive Produkte, Transaktionen, Strategien, Bewertungsmodellen &amp; Kalkulationen.</value>
+  </data>
+  <data name="ViewTextAdministrationGenerateTestDataLost" xml:space="preserve">
+    <value>Alle Daten der Datenbank und Caches werden gelöscht.</value>
+  </data>
+  <data name="ViewTextTestDataControllerErase" xml:space="preserve">
+    <value>Datenbank und Caches wurden geleert, Bewertungen &amp; Strategien erstellt</value>
+  </data>
+  <data name="ViewTextTestDataControllerSecurityCreated" xml:space="preserve">
+    <value>Wertpapier und Transaktionen für {0} wurden erstellt</value>
+  </data>
 </root>

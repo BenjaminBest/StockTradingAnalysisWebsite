@@ -8,8 +8,11 @@ namespace StockTradingAnalysis.Domain.CQRS.Query.ReadModel
     /// <summary>
     /// The repository for stocks
     /// </summary>
-    public class ModelRepositoryBase<TItem> : IModelRepository<TItem> where TItem : class, IModelRepositoryItem
+    public class ModelRepositoryBase<TItem> : IModelRepositorySupportsDataDeletion, IModelRepository<TItem> where TItem : class, IModelRepositoryItem
     {
+        /// <summary>
+        /// The items
+        /// </summary>
         protected readonly IDictionary<Guid, TItem> _items = new Dictionary<Guid, TItem>();
 
         /// <summary>
@@ -96,6 +99,14 @@ namespace StockTradingAnalysis.Domain.CQRS.Query.ReadModel
                 throw new ModelRepositoryAddException($"The given item with the id '{item.Id}' already exists");
 
             _items.Add(item.Id, item);
+        }
+
+        /// <summary>
+        /// Deletes all.
+        /// </summary>
+        public void DeleteAll()
+        {
+            _items.Clear();
         }
     }
 }

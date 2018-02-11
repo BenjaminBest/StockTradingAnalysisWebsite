@@ -2113,6 +2113,42 @@ namespace StockTradingAnalysis.Web {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Administration.
+        /// </summary>
+        public static string ViewTextAdministration {
+            get {
+                return ResourceManager.GetString("ViewTextAdministration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Testdaten Generierung.
+        /// </summary>
+        public static string ViewTextAdministrationGenerateTestData {
+            get {
+                return ResourceManager.GetString("ViewTextAdministrationGenerateTestData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Generierung von einigen Testdaten, inklusive Produkte, Transaktionen, Strategien, Bewertungsmodellen &amp; Kalkulationen..
+        /// </summary>
+        public static string ViewTextAdministrationGenerateTestDataInfo {
+            get {
+                return ResourceManager.GetString("ViewTextAdministrationGenerateTestDataInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Alle Daten der Datenbank und Caches werden gelöscht..
+        /// </summary>
+        public static string ViewTextAdministrationGenerateTestDataLost {
+            get {
+                return ResourceManager.GetString("ViewTextAdministrationGenerateTestDataLost", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Alle.
         /// </summary>
         public static string ViewTextAll {
@@ -3441,6 +3477,24 @@ namespace StockTradingAnalysis.Web {
         public static string ViewTextStrategyTitle {
             get {
                 return ResourceManager.GetString("ViewTextStrategyTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Datenbank und Caches wurden geleert, Bewertungen &amp; Strategien erstellt.
+        /// </summary>
+        public static string ViewTextTestDataControllerErase {
+            get {
+                return ResourceManager.GetString("ViewTextTestDataControllerErase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wertpapier und Transaktionen für {0} wurden erstellt.
+        /// </summary>
+        public static string ViewTextTestDataControllerSecurityCreated {
+            get {
+                return ResourceManager.GetString("ViewTextTestDataControllerSecurityCreated", resourceCulture);
             }
         }
         

@@ -5,16 +5,16 @@ This application can be used to manage stock transactions and maintaining a diar
 
 History
 --------------
-This application already exists in an old version which was developed by the motto "getting things done" by utilizing a relational database. I've decided to re-develop the whole application with techniques which are more sophisticated like [CQRS](https://martinfowler.com/bliki/CQRS.html) and [Eventsourcing](https://martinfowler.com/eaaDev/EventSourcing.html).
+This application already exists in an old version which was developed by the motto "getting things done" and by utilizing a relational database. I've decided to re-develop the whole application with techniques which are more sophisticated like [CQRS](https://martinfowler.com/bliki/CQRS.html) and [Eventsourcing](https://martinfowler.com/eaaDev/EventSourcing.html).
 
-The projects `StockTradingAnalysis.Web.Migration` is used to load all data from the relational database to the object oriented database by firing commands and thus using the event sourcing system.
+The project `StockTradingAnalysis.Web.Migration` is used to load the data from the relational database of my legacy application to the object oriented database by firing commands and thus using the event sourcing system (can be ignored by you).
 
 Setup project with MSSQL ([RavenDB](https://ravendb.net/) exists as well)
 --------------
 1. Create a new database
 2. Execute the script `StockTradingAnalysis.Data.MSSQL.Scripts.Create_DataStore_Table.sql`
 3. Run multiple projects (`StockTradingAnalysis.Web` and `StockTradingAnalysis.Services.StockQuoteService`). Can be done by right-click on the solution in Visual Studio and go to "Set Startup Projects".
-4. (NOT FINISHED) Run test data creation
+4. Open Administration-> Generate test data
 
 Technologies & Approaches
 --------------
@@ -24,6 +24,7 @@ Technologies & Approaches
 4. [Bootstrap](https://getbootstrap.com/)
 5. [SignalR](https://www.asp.net/signalr)
 6. [ReactJs.NET](https://reactjs.net/])
+7. [Axios](https://github.com/axios/axios)
 
 Application infrastructure
 --------------
@@ -34,13 +35,20 @@ Features
 * Dashboard
   * Savings plan based on assigned categories for transactions
 * Transactions
-  * Buy, Sell, Dividend, Split/Reverse split
-* Stocks
+  * Buy, sell, dividend, split/reverse split
+* Security
+  * Add, edit, delete, update quotes
+  * Aggregated absolute profit per security
 * Feedback
+  * Add, edit, delete
+  * Percentage of transactions assigned to feedbacks
 * Strategies
+  * Add, edit, delete
 * Calculation for buying decisions and open positions
   * Stop loss, take profit, price, amount etc. can be configured
   * Historical/daily basis quotes can be downloaded (if stock with WKN was configured)
+* Administration
+  * Test data generation
 
 Features (not yet migrated)
 --------------
@@ -77,4 +85,7 @@ Features (not yet migrated)
 
 Images
 --------------
+Calculations
 ![calculation](https://user-images.githubusercontent.com/29073072/35777955-055ff46a-09b7-11e8-9ec1-3704a4aca895.png)
+Transactions
+![transactions](https://user-images.githubusercontent.com/29073072/36072645-5a183582-0f23-11e8-94f2-f69e4c981812.png)

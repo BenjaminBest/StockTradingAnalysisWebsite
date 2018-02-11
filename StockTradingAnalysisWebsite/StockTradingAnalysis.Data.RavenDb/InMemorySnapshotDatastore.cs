@@ -1,4 +1,8 @@
-﻿using Raven.Abstractions.Data;
+﻿using System;
+using System.Collections.Generic;
+using System.Reflection;
+using System.Threading;
+using Raven.Abstractions.Data;
 using Raven.Client;
 using Raven.Client.Document;
 using Raven.Client.Embedded;
@@ -6,10 +10,6 @@ using Raven.Client.Indexes;
 using StockTradingAnalysis.Data.RavenDb.Extensions;
 using StockTradingAnalysis.Interfaces.Data;
 using StockTradingAnalysis.Interfaces.DomainContext;
-using System;
-using System.Collections.Generic;
-using System.Reflection;
-using System.Threading;
 
 namespace StockTradingAnalysis.Data.RavenDb
 {
