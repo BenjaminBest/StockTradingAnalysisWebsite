@@ -40,6 +40,7 @@ Features
   * Add, edit, delete, update quotes
   * Aggregated absolute profit per security
   * Transaction history and latest quote per security
+  * Candlestick chat based on security quotes with flags for buy, sell, dividend and split
 * Feedback
   * Add, edit, delete
   * Percentage of transactions assigned to feedbacks
@@ -91,4 +92,6 @@ Calculations
 Transactions
 ![transactions](https://user-images.githubusercontent.com/29073072/36072645-5a183582-0f23-11e8-94f2-f69e4c981812.png)
 Security details
-![security_edit](https://user-images.githubusercontent.com/29073072/36073653-736b7f92-0f34-11e8-8ac8-23b9ab53a9d1.png)
+![security_edit](https://user-images.githubusercontent.com/29073072/36342219-6027b808-13fb-11e8-8c34-3f6b8ddf8ffd.png)
+Security charts
+![security_charts](https://user-images.githubusercontent.com/29073072/36342220-61e068e8-13fb-11e8-830d-ad3fa23c1c44.png)

@@ -26,7 +26,12 @@ namespace StockTradingAnalysis.Web.BootModules
                 "~/Content/Js/bootstrap.js",
                 "~/Content/Js/moment-with-locales.js",
                 "~/Content/Js/bootstrap-datetimepicker.min.js",
-                "~/Content/Js/axios.min.js")); //https://github.com/axios/axios
+                "~/Content/Js/axios.min.js")); //https://github.com/axios/axios                
+
+            bundles.Add(new ScriptBundle("~/bundles/highchart/js").Include(
+                "~/Content/Js/highstock.js", //https://www.highcharts.com/
+                "~/Content/Js/highchart-theme.js", //https://github.com/highcharts/highcharts/tree/master/js/themes
+                "~/Content/Js/highcharts_de.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/validation").Include(
                 "~/Scripts/jquery.validate.min.js",
@@ -49,7 +54,7 @@ namespace StockTradingAnalysis.Web.BootModules
             bundles.Add(new ScriptBundle("~/bundles/signalr").Include(
                 "~/Scripts/jquery.signalR-{version}.js"));
 
-            BundleTable.EnableOptimizations = false;
+            //BundleTable.EnableOptimizations = false;
         }
     }
 }

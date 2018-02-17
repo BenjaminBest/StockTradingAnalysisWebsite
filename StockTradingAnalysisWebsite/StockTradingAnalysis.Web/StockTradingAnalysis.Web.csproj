@@ -138,6 +138,9 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Runtime.Caching" />
+    <Reference Include="System.ValueTuple, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.4.0\lib\net461\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -220,6 +223,10 @@
     <Content Include="Content\Fonts\fontawesome-webfont.svg" />
     <Content Include="Content\Js\bootstrap-datetimepicker.min.js" />
     <Content Include="Content\Js\bootstrap.js" />
+    <Content Include="Content\Js\highchart-theme.js" />
+    <Content Include="Content\Js\highcharts.js" />
+    <Content Include="Content\Js\highcharts_de.js" />
+    <Content Include="Content\Js\highstock.js" />
     <Content Include="Global.asax" />
     <Content Include="Content\Js\custom.js" />
     <Content Include="..\packages\RavenDB.Database.3.5.0\tools\Raven.Studio.Html5.zip">
@@ -303,6 +310,7 @@
     <Compile Include="Common\Interfaces\ISelectItemResolverRegistry.cs" />
     <Compile Include="Common\ModelBinders\ImageViewModelBinder.cs" />
     <Compile Include="Common\Services\QuotationServiceClient.cs" />
+    <Compile Include="Controllers\ChartController.cs" />
     <Compile Include="Controllers\TestDataController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\CalculationController.cs" />
@@ -317,6 +325,7 @@
     </Compile>
     <Compile Include="Hubs\QuotationHub.cs" />
     <Compile Include="Models\CalculationViewModel.cs" />
+    <Compile Include="Models\CandleStickChartViewModel.cs" />
     <Compile Include="Models\FeedbackProportionViewModel.cs" />
     <Compile Include="Models\QuoteViewModel.cs" />
     <Compile Include="Models\SelectionViewModel.cs" />
@@ -400,6 +409,7 @@
     <Content Include="Views\TestData\GenerateTestData.cshtml" />
     <Content Include="Views\Stock\TransactionHistory.cshtml" />
     <Content Include="Views\Stock\LatestQuote.cshtml" />
+    <Content Include="Views\Chart\CandleStickChart.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

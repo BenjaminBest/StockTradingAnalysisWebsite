@@ -354,5 +354,14 @@ namespace StockTradingAnalysis.Core.Tests.Services
             var cw = new DateCalculationService().GetCalendarWeek(date);
             cw.Should().Be(34);
         }
+
+        [TestMethod]
+        [Description("ConvertToEpochTime should return a correct long representation of the timespan for a non UTC date")]
+        public void ConvertToEpochTimeShouldReturnTheCorrectTimeSpan()
+        {
+            var date = new DateTime(2016, 08, 28, 13, 13, 13);
+
+            new DateCalculationService().ConvertToEpochTimeInMilliseconds(date).Should().Be(1472389993000);
+        }
     }
 }

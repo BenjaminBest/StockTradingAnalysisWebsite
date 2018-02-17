@@ -2275,6 +2275,87 @@ namespace StockTradingAnalysis.Web {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Kursdaten.
+        /// </summary>
+        public static string ViewTextCandleStickChartData {
+            get {
+                return ResourceManager.GetString("ViewTextCandleStickChartData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kauf von {0} für {1}€ am {2}.
+        /// </summary>
+        public static string ViewTextCandleStickChartToolTipBuy {
+            get {
+                return ResourceManager.GetString("ViewTextCandleStickChartToolTipBuy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to K.
+        /// </summary>
+        public static string ViewTextCandleStickChartToolTipBuyShortCut {
+            get {
+                return ResourceManager.GetString("ViewTextCandleStickChartToolTipBuyShortCut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dividende von {0} für {1}€ am {2}.
+        /// </summary>
+        public static string ViewTextCandleStickChartToolTipDividend {
+            get {
+                return ResourceManager.GetString("ViewTextCandleStickChartToolTipDividend", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to D.
+        /// </summary>
+        public static string ViewTextCandleStickChartToolTipDividendShortCut {
+            get {
+                return ResourceManager.GetString("ViewTextCandleStickChartToolTipDividendShortCut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Verkauf von {0} für {1}€ am {2}.
+        /// </summary>
+        public static string ViewTextCandleStickChartToolTipSell {
+            get {
+                return ResourceManager.GetString("ViewTextCandleStickChartToolTipSell", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to V.
+        /// </summary>
+        public static string ViewTextCandleStickChartToolTipSellShortCut {
+            get {
+                return ResourceManager.GetString("ViewTextCandleStickChartToolTipSellShortCut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Split/Reverse Split von {0} für {1}€ am {2}.
+        /// </summary>
+        public static string ViewTextCandleStickChartToolTipSplit {
+            get {
+                return ResourceManager.GetString("ViewTextCandleStickChartToolTipSplit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to S.
+        /// </summary>
+        public static string ViewTextCandleStickChartToolTipSplitShortCut {
+            get {
+                return ResourceManager.GetString("ViewTextCandleStickChartToolTipSplitShortCut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Eingesetztes Kapital (offenes Risiko).
         /// </summary>
         public static string ViewTextCapitalExpenditure {
@@ -2739,6 +2820,33 @@ namespace StockTradingAnalysis.Web {
         public static string ViewTextFilterYear {
             get {
                 return ResourceManager.GetString("ViewTextFilterYear", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tag.
+        /// </summary>
+        public static string ViewTextHighChartDay {
+            get {
+                return ResourceManager.GetString("ViewTextHighChartDay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Monat.
+        /// </summary>
+        public static string ViewTextHighChartMonth {
+            get {
+                return ResourceManager.GetString("ViewTextHighChartMonth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Woche.
+        /// </summary>
+        public static string ViewTextHighChartWeek {
+            get {
+                return ResourceManager.GetString("ViewTextHighChartWeek", resourceCulture);
             }
         }
         
@@ -3459,6 +3567,24 @@ namespace StockTradingAnalysis.Web {
         public static string ViewTextStock {
             get {
                 return ResourceManager.GetString("ViewTextStock", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Kurse und Charts.
+        /// </summary>
+        public static string ViewTextStockEditCharts {
+            get {
+                return ResourceManager.GetString("ViewTextStockEditCharts", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Informationen.
+        /// </summary>
+        public static string ViewTextStockEditMain {
+            get {
+                return ResourceManager.GetString("ViewTextStockEditMain", resourceCulture);
             }
         }
         

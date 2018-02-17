@@ -10,6 +10,11 @@ namespace StockTradingAnalysis.Core.Services
     public class DateCalculationService : IDateCalculationService
     {
         /// <summary>
+        /// The epoch date time
+        /// </summary>
+        private readonly DateTime _epochDateTime = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
+
+        /// <summary>
         /// Returns the start date of the week calculated with the given date
         /// </summary>
         /// <param name="date">Date</param>
@@ -222,6 +227,18 @@ namespace StockTradingAnalysis.Core.Services
         public int DaysBetween(DateTime start, DateTime end)
         {
             return (int)(end - start).TotalDays;
+        }
+
+        /// <summary>
+        /// Converts to epoch/posix time.
+        /// </summary>
+        /// <param name="date">The date.</param>
+        /// <returns>Milliseconds since epoch</returns>
+        public long ConvertToEpochTimeInMilliseconds(DateTime date)
+        {
+            var timeSpan = date - _epochDateTime;
+
+            return (long)timeSpan.TotalMilliseconds;
         }
     }
 }

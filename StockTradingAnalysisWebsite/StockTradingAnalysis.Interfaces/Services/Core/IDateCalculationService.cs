@@ -106,5 +106,12 @@ namespace StockTradingAnalysis.Interfaces.Services.Core
         /// <param name="end">The end.</param>
         /// <returns>Amount of days</returns>
         int DaysBetween(DateTime start, DateTime end);
+
+        /// <summary>
+        /// Converts to epoch/posix time.
+        /// </summary>
+        /// <param name="date">The date.</param>
+        /// <returns>Milliseconds since epoch</returns>
+        long ConvertToEpochTimeInMilliseconds(DateTime date);
     }
 }

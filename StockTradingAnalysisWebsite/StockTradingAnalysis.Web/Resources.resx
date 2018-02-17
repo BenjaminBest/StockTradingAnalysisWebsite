@@ -1323,4 +1323,46 @@
   <data name="ViewText_StockLastestQuoteNotAvailable" xml:space="preserve">
     <value>Es konnten keine Kursdaten gefunden werden</value>
   </data>
+  <data name="ViewTextCandleStickChartData" xml:space="preserve">
+    <value>Kursdaten</value>
+  </data>
+  <data name="ViewTextHighChartDay" xml:space="preserve">
+    <value>Tag</value>
+  </data>
+  <data name="ViewTextHighChartMonth" xml:space="preserve">
+    <value>Monat</value>
+  </data>
+  <data name="ViewTextHighChartWeek" xml:space="preserve">
+    <value>Woche</value>
+  </data>
+  <data name="ViewTextCandleStickChartToolTipBuy" xml:space="preserve">
+    <value>Kauf von {0} für {1}€ am {2}</value>
+  </data>
+  <data name="ViewTextCandleStickChartToolTipBuyShortCut" xml:space="preserve">
+    <value>K</value>
+  </data>
+  <data name="ViewTextCandleStickChartToolTipDividend" xml:space="preserve">
+    <value>Dividende von {0} für {1}€ am {2}</value>
+  </data>
+  <data name="ViewTextCandleStickChartToolTipDividendShortCut" xml:space="preserve">
+    <value>D</value>
+  </data>
+  <data name="ViewTextCandleStickChartToolTipSell" xml:space="preserve">
+    <value>Verkauf von {0} für {1}€ am {2}</value>
+  </data>
+  <data name="ViewTextCandleStickChartToolTipSellShortCut" xml:space="preserve">
+    <value>V</value>
+  </data>
+  <data name="ViewTextCandleStickChartToolTipSplit" xml:space="preserve">
+    <value>Split/Reverse Split von {0} für {1}€ am {2}</value>
+  </data>
+  <data name="ViewTextCandleStickChartToolTipSplitShortCut" xml:space="preserve">
+    <value>S</value>
+  </data>
+  <data name="ViewTextStockEditCharts" xml:space="preserve">
+    <value>Kurse und Charts</value>
+  </data>
+  <data name="ViewTextStockEditMain" xml:space="preserve">
+    <value>Informationen</value>
+  </data>
 </root>

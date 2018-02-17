@@ -1,8 +1,9 @@
-﻿using StockTradingAnalysis.Domain.CQRS.Query.Queries;
+﻿using System.Collections.Generic;
+using System.Linq;
+using StockTradingAnalysis.Domain.CQRS.Query.Queries;
 using StockTradingAnalysis.Interfaces.Domain;
 using StockTradingAnalysis.Interfaces.Queries;
 using StockTradingAnalysis.Interfaces.ReadModel;
-using System.Collections.Generic;
 
 namespace StockTradingAnalysis.Domain.CQRS.Query.QueryHandler
 {
@@ -26,7 +27,7 @@ namespace StockTradingAnalysis.Domain.CQRS.Query.QueryHandler
         /// <returns></returns>
         public IEnumerable<IQuotation> Execute(StockQuotationsByIdQuery query)
         {
-            return _modelReaderRepository.GetById(query.Id).Quotations;
+            return _modelReaderRepository.GetById(query.Id).Quotations.OrderBy(q => q.Date);
         }
     }
 }
