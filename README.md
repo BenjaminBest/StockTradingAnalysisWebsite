@@ -14,21 +14,36 @@ Setup project with MSSQL ([RavenDB](https://ravendb.net/) exists as well)
 1. Create a new database
 2. Execute the script `StockTradingAnalysis.Data.MSSQL.Scripts.Create_DataStore_Table.sql`
 3. Run multiple projects (`StockTradingAnalysis.Web` and `StockTradingAnalysis.Services.StockQuoteService`). Can be done by right-click on the solution in Visual Studio and go to "Set Startup Projects".
-4. Open Administration-> Generate test data
+4. Open Administration in the GUI and generate test data
 
 Technologies & Approaches
 --------------
-1. [CQRS](https://martinfowler.com/bliki/CQRS.html)
-2. [Eventsourcing](https://martinfowler.com/eaaDev/EventSourcing.html)
+1. [Command Query Responsibility Segregation (CQRS)](https://martinfowler.com/bliki/CQRS.html)
+2. [Eventsourcing (ES)](https://martinfowler.com/eaaDev/EventSourcing.html)
 3. [RavenDB](https://ravendb.net/)
 4. [Bootstrap](https://getbootstrap.com/)
 5. [SignalR](https://www.asp.net/signalr)
 6. [ReactJs.NET](https://reactjs.net/])
 7. [Axios](https://github.com/axios/axios)
+8. [Automapper](http://automapper.org/)
 
-Application infrastructure
+Application architecture
 --------------
-Diagram coming soon
+The architecture was designed like most ES systems, but of course simpler than for example a professional product like [Event Store](https://eventstore.org/). Core components for the ES system are the _event store_ which reads and writes the _events_, the _event bus_ which distributes the events to the _event handlers_. The persistence layer is controlled by a DBMS dependent implementation called _persistent event store_. There is one for [RavenDB](https://ravendb.net/) and one for MS SQL.
+
+The system supports _snapshots_ - a projection of the current state of an aggregate - as well. If snapshots for an aggregate are explicitly activated, the event store asks the _snapshot processor_ to take care, when events are persisted. Then the snapshot processor calculates if a snapshot is needed, then the _snapshot store_ persists it.
+
+All reads and writes are separated by using the CQRS architectural pattern. The domain data to be written is transported by _commands_. These commands are sent to a _command dispatcher_ which locates the correct _command handler_ for this command. In the command handler the _aggregate repository_ (in fact every aggregate type has it's own repository) returns the _aggregate_ by loading and applying all events since existence of this aggregate. Then the command can be applied to the aggregate and uncommitted events are written to the event store.
+
+Aggregates as well as the MVC controllers, query handlers and event handlers use _domain services_ (may depend on external services) when domain logic is needed.
+
+Every _event_ which is persisted will be published to the event bus. An _event handler_ catches the event and stores an optimized read model in the correct _model repository_. This is done in memory, but it could also be persisted to a database.
+
+On the read side, the _MVC controllers_ for example asking the _query dispatcher_ to return the _domain model_ for a given _query_. The _query handler_ which was implemented to handle this specific query retrieves the model from the model repository and returns it. Then [Automapper](http://automapper.org/) maps the domain model to a view model which was requested by the controller and the data can be pushed towards the frontend.
+
+For Web Sockets the [SignalR](https://www.asp.net/signalr) _hub_ retrieves the data also from the query dispatcher and sends it to the frontend.  
+
+![architecture](https://user-images.githubusercontent.com/29073072/36352831-0ae9fcba-14bf-11e8-96b5-f84c04ad33b9.png)
 
 Features
 --------------
