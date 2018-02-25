@@ -23,11 +23,6 @@ namespace StockTradingAnalysis.Interfaces.Events
         Type AggregateType { get; }
 
         /// <summary>
-        /// Gets the id of this event
-        /// </summary>
-        Guid Id { get; }
-
-        /// <summary>
         /// Gets the name of this event
         /// </summary>
         string EventName { get; }

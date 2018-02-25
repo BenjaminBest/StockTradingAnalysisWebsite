@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections.Concurrent;
+using System.Collections.Generic;
 
 namespace StockTradingAnalysis.Core.Common
 {
@@ -9,7 +10,10 @@ namespace StockTradingAnalysis.Core.Common
     /// <typeparam name="TItem">The type of the list item</typeparam>
     public class DictionaryList<TKey, TItem>
     {
-        private readonly IDictionary<TKey, IList<TItem>> _items = new Dictionary<TKey, IList<TItem>>();
+        /// <summary>
+        /// The items
+        /// </summary>
+        private readonly IDictionary<TKey, IList<TItem>> _items = new ConcurrentDictionary<TKey, IList<TItem>>();
 
         /// <summary>
         /// Returns a list of all items which are assigned to the given <paramref name="key"/>. If the list
@@ -56,6 +60,7 @@ namespace StockTradingAnalysis.Core.Common
         /// Removes the given item from the list with the given key
         /// </summary>
         /// <param name="key">Key</param>
+        /// <param name="item">The item.</param>
         public void Delete(TKey key, TItem item)
         {
             var items = GetOrAdd(key);

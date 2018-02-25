@@ -4,6 +4,10 @@ using StockTradingAnalysis.Web.Converters;
 
 namespace StockTradingAnalysis.Web.BindingModules
 {
+    /// <summary>
+    /// Binding module for json converters.
+    /// </summary>
+    /// <seealso cref="NinjectModule" />
     public class JsonConverterBindingModule : NinjectModule
     {
         /// <summary>
@@ -12,7 +16,7 @@ namespace StockTradingAnalysis.Web.BindingModules
         public override void Load()
         {
             //Services
-            Kernel.Bind<JsonConverter>().To<QuotationJsonConverter>();
+            Bind<JsonConverter>().To<QuotationJsonConverter>();
         }
     }
 }

@@ -1,11 +1,14 @@
 ﻿using StockTradingAnalysis.Domain.CQRS.Cmd.Commands;
-using StockTradingAnalysis.Domain.CQRS.Cmd.Exceptions;
 using StockTradingAnalysis.Domain.Events.Aggregates;
 using StockTradingAnalysis.Interfaces.Commands;
 using StockTradingAnalysis.Interfaces.DomainContext;
 
 namespace StockTradingAnalysis.Domain.CQRS.Cmd.CommandHandler
 {
+    /// <summary>
+    /// The TransactionRemoveCommandHandler removes a transaction
+    /// </summary>
+    /// <seealso cref="Interfaces.Commands.ICommandHandler{TransactionRemoveCommand}" />
     public class TransactionRemoveCommandHandler : ICommandHandler<TransactionRemoveCommand>
     {
         private readonly IAggregateRepository<TransactionAggregate> _repository;
@@ -24,7 +27,6 @@ namespace StockTradingAnalysis.Domain.CQRS.Cmd.CommandHandler
         /// </summary>
         /// <param name="command">The command.</param>
         /// <returns></returns>
-        /// <exception cref="DomainValidationException">Thrown if validation fails</exception>
         public void Execute(TransactionRemoveCommand command)
         {
             //TODO: Validation

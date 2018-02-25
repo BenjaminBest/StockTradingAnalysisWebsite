@@ -1,10 +1,14 @@
-﻿using StockTradingAnalysis.Interfaces.Domain;
-using StockTradingAnalysis.Interfaces.Events;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using StockTradingAnalysis.Interfaces.Domain;
+using StockTradingAnalysis.Interfaces.Events;
 
 namespace StockTradingAnalysis.Domain.Events.Events
 {
+    /// <summary>
+    /// The event StockAddedEvent is fired when a stock was added.
+    /// </summary>
+    /// <seealso cref="DomainEvent" />
     public class StockAddedEvent : DomainEvent
     {
         /// <summary>
@@ -57,7 +61,7 @@ namespace StockTradingAnalysis.Domain.Events.Events
         /// </summary>
         protected StockAddedEvent()
         {
-            
+
         }
     }
 }

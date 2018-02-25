@@ -115,6 +115,7 @@
     <Compile Include="QueryHandler\FeedbackByIdQueryHandler.cs" />
     <Compile Include="QueryHandler\StockByIdQueryHandler.cs" />
     <Compile Include="QueryHandler\StockAllQueryHandler.cs" />
+    <Compile Include="ReadModel\TimeRangeModelRepository.cs" />
     <Compile Include="ReadModel\StockStatisticsModelRepository.cs" />
     <Compile Include="ReadModel\FeedbackProportionModelRepository.cs" />
     <Compile Include="ReadModel\CalculationModelRepository.cs" />

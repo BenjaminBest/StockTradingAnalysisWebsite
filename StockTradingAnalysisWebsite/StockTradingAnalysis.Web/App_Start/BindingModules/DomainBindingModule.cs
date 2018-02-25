@@ -1,5 +1,5 @@
-﻿using Ninject.Extensions.Conventions;
-using Ninject.Modules;
+﻿using Ninject.Modules;
+using StockTradingAnalysis.Core.Extensions;
 using StockTradingAnalysis.Domain.CQRS.Query.ReadModel;
 using StockTradingAnalysis.Domain.Events.Domain;
 using StockTradingAnalysis.Interfaces.Domain;
@@ -11,6 +11,10 @@ using StockTradingAnalysis.Web.Common.Deletion;
 
 namespace StockTradingAnalysis.Web.BindingModules
 {
+    /// <summary>
+    /// Binding module for the domain
+    /// </summary>
+    /// <seealso cref="NinjectModule" />
     public class DomainBindingModule : NinjectModule
     {
         /// <summary>
@@ -19,51 +23,49 @@ namespace StockTradingAnalysis.Web.BindingModules
         public override void Load()
         {
             //Services
-            Kernel.Bind<IPriceCalculatorService>().To<PriceCalculatorService>().InSingletonScope();
-            Kernel.Bind<IStockQuoteService>().To<StockQuoteService>().InSingletonScope();
-            Kernel.Bind<ITransactionPerformanceService>().To<TransactionPerformanceService>().InSingletonScope();
-            Kernel.Bind<ITransactionBook>().To<TransactionBook>().InSingletonScope();
-            Kernel.Bind<IAccumulationPlanStatisticService>().To<AccumulationPlanStatisticService>().InSingletonScope();
-            Kernel.Bind<IInterestRateCalculatorService>().To<InterestRateCalculatorService>();
-            Kernel.Bind<ITransactionCalculationService>().To<TransactionCalculationService>();
+            Bind<IPriceCalculatorService>().To<PriceCalculatorService>().InSingletonScope();
+            Bind<IStockQuoteService>().To<StockQuoteService>().InSingletonScope();
+            Bind<ITransactionPerformanceService>().To<TransactionPerformanceService>().InSingletonScope();
+            Bind<ITransactionBook>().To<TransactionBook>().InSingletonScope();
+            Bind<IAccumulationPlanStatisticService>().To<AccumulationPlanStatisticService>().InSingletonScope();
+            Bind<IInterestRateCalculatorService>().To<InterestRateCalculatorService>();
+            Bind<ITransactionCalculationService>().To<TransactionCalculationService>();
 
             //Model repositories
-            Kernel.Bind<IModelRepositoryDeletionCoordinator>().To<ModelRepositoryDeletionCoordinator>();
+            Bind<IModelRepositoryDeletionCoordinator>().To<ModelRepositoryDeletionCoordinator>();
 
-            Kernel.Bind<IModelReaderRepository<IStock>, IModelWriterRepository<IStock>, IModelRepository<IStock>, IModelRepositorySupportsDataDeletion>()
+            Bind<IModelReaderRepository<IStock>, IModelWriterRepository<IStock>, IModelRepository<IStock>, ISupportsDataDeletion>()
                 .To<StockModelRepository>().InSingletonScope();
 
-            Kernel.Bind<IModelReaderRepository<IFeedback>, IModelWriterRepository<IFeedback>, IModelRepository<IFeedback>, IModelRepositorySupportsDataDeletion>()
+            Bind<IModelReaderRepository<IFeedback>, IModelWriterRepository<IFeedback>, IModelRepository<IFeedback>, ISupportsDataDeletion>()
                 .To<FeedbackModelRepository>().InSingletonScope();
 
-            Kernel.Bind<IModelReaderRepository<ICalculation>, IModelWriterRepository<ICalculation>, IModelRepository<ICalculation>, IModelRepositorySupportsDataDeletion>()
+            Bind<IModelReaderRepository<ICalculation>, IModelWriterRepository<ICalculation>, IModelRepository<ICalculation>, ISupportsDataDeletion>()
                 .To<CalculationModelRepository>().InSingletonScope();
 
-            Kernel.Bind<IModelReaderRepository<IStrategy>, IModelWriterRepository<IStrategy>, IModelRepository<IStrategy>, IModelRepositorySupportsDataDeletion>()
+            Bind<IModelReaderRepository<IStrategy>, IModelWriterRepository<IStrategy>, IModelRepository<IStrategy>, ISupportsDataDeletion>()
                 .To<StrategyModelRepository>().InSingletonScope();
 
-            Kernel.Bind<IModelReaderRepository<ITransaction>, IModelWriterRepository<ITransaction>, IModelRepository<ITransaction>, IModelRepositorySupportsDataDeletion>()
+            Bind<IModelReaderRepository<ITransaction>, IModelWriterRepository<ITransaction>, IModelRepository<ITransaction>, ISupportsDataDeletion>()
                 .To<TransactionModelRepository>().InSingletonScope();
 
-            Kernel.Bind<IModelReaderRepository<ITransactionPerformance>, IModelWriterRepository<ITransactionPerformance>, IModelRepository<ITransactionPerformance>, IModelRepositorySupportsDataDeletion>()
+            Bind<IModelReaderRepository<ITransactionPerformance>, IModelWriterRepository<ITransactionPerformance>, IModelRepository<ITransactionPerformance>, ISupportsDataDeletion>()
                 .To<TransactionPerformanceModelRepository>().InSingletonScope();
 
-            Kernel.Bind<IModelReaderRepository<IAccountBalance>, IModelWriterRepository<IAccountBalance>, IModelRepository<IAccountBalance>, IModelRepositorySupportsDataDeletion>()
+            Bind<IModelReaderRepository<IAccountBalance>, IModelWriterRepository<IAccountBalance>, IModelRepository<IAccountBalance>, ISupportsDataDeletion>()
                 .To<AccountBalanceModelRepository>().InSingletonScope();
 
-            Kernel.Bind<IModelReaderRepository<IFeedbackProportion>, IModelWriterRepository<IFeedbackProportion>, IModelRepository<IFeedbackProportion>, IModelRepositorySupportsDataDeletion>()
+            Bind<IModelReaderRepository<IFeedbackProportion>, IModelWriterRepository<IFeedbackProportion>, IModelRepository<IFeedbackProportion>, ISupportsDataDeletion>()
                 .To<FeedbackProportionModelRepository>().InSingletonScope();
 
-            Kernel.Bind<IModelReaderRepository<IStockStatistics>, IModelWriterRepository<IStockStatistics>, IModelRepository<IStockStatistics>, IModelRepositorySupportsDataDeletion>()
+            Bind<IModelReaderRepository<IStockStatistics>, IModelWriterRepository<IStockStatistics>, IModelRepository<IStockStatistics>, ISupportsDataDeletion>()
                 .To<StockStatisticsModelRepository>().InSingletonScope();
 
+            Bind<ITimeRangeModelRepository<IStatistic>, ITimeRangeModelReaderRepository<IStatistic>, ITimeRangeModelWriterRepository<IStatistic>>()
+                .To<TimeRangeModelRepository<IStatistic>>().InSingletonScope();
+
             //Repository
-            Kernel.Bind(i => i
-                .FromAssembliesMatching("StockTradingAnalysis.*.dll")
-                .SelectAllClasses()
-                .InheritedFrom(typeof(IAggregateRepository<>))
-                .BindAllInterfaces()
-                );
+            Kernel.FindAllInterfacesOfType("StockTradingAnalysis.*.dll", typeof(IAggregateRepository<>));
         }
     }
 }

@@ -1,5 +1,5 @@
-﻿using Ninject.Extensions.Conventions;
-using Ninject.Modules;
+﻿using Ninject.Modules;
+using StockTradingAnalysis.Core.Extensions;
 using StockTradingAnalysis.Domain.Events.Aggregates;
 using StockTradingAnalysis.EventSourcing.DomainContext;
 using StockTradingAnalysis.EventSourcing.Messaging;
@@ -10,6 +10,10 @@ using StockTradingAnalysis.Interfaces.Events;
 
 namespace StockTradingAnalysis.Web.BindingModules
 {
+    /// <summary>
+    /// Binding module for eventsourcing.
+    /// </summary>
+    /// <seealso cref="NinjectModule" />
     public class EventSourcingBindingModule : NinjectModule
     {
         /// <summary>
@@ -36,13 +40,9 @@ namespace StockTradingAnalysis.Web.BindingModules
             Bind<ISnapshotProcessor>().To<SnapshotProcessor>().WithConstructorArgument("snapshotThreshold", 1000);
             Bind<IEventStoreInitializer>().To<EventStoreInitializer>().InSingletonScope();
 
-            Kernel.Bind<ISnapshotableRepository>().To<AggregateRepository<StockAggregate>>();
+            Bind<ISnapshotableRepository>().To<AggregateRepository<StockAggregate>>();
 
-            Kernel.Bind(i => i
-                .FromAssembliesMatching("StockTradingAnalysis.*.dll")
-                .SelectAllClasses()
-                .InheritedFrom(typeof(IEventHandler<>))
-                .BindAllInterfaces());
+            Kernel.FindAllInterfacesOfType("StockTradingAnalysis.*.dll", typeof(IEventHandler<>));
 
             //TODO: Make configurable
             //Kernel.Bind<IDatastore>().To<InMemoryDatastore>();

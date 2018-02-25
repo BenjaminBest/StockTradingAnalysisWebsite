@@ -275,6 +275,7 @@
     <Compile Include="App_Start\AutoMapperProfiles\FeedbackProfile.cs" />
     <Compile Include="App_Start\AutoMapperProfiles\StockProfile.cs" />
     <Compile Include="App_Start\BindingModules\BootModulesBindingModule.cs" />
+    <Compile Include="App_Start\BindingModules\ProcessBindingModule.cs" />
     <Compile Include="App_Start\BindingModules\JsonConverterBindingModule.cs" />
     <Compile Include="App_Start\BindingModules\ConfigurationBindingModule.cs" />
     <Compile Include="App_Start\BindingModules\PerformanceCounterBindingModule.cs" />
@@ -283,6 +284,7 @@
     <Compile Include="App_Start\BindingModules\EventSourcingBindingModule.cs" />
     <Compile Include="App_Start\BindingModules\CqrsBindingModule.cs" />
     <Compile Include="App_Start\BootModules\AutoMapperBootModule.cs" />
+    <Compile Include="App_Start\BootModules\ProcessManagerLocatorBootModule.cs" />
     <Compile Include="App_Start\BootModules\LoggingBootModule.cs" />
     <Compile Include="App_Start\BootModules\ModelBinderBootModule.cs" />
     <Compile Include="App_Start\BootModules\EventStoreBootModule.cs" />
@@ -455,6 +457,10 @@
     <ProjectReference Include="..\StockTradingAnalysis.Domain.Events\StockTradingAnalysis.Domain.Events.csproj">
       <Project>{07D3490F-B18E-4FA5-804A-7FBB647BE184}</Project>
       <Name>StockTradingAnalysis.Domain.Events</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\StockTradingAnalysis.Domain.Process\StockTradingAnalysis.Domain.Process.csproj">
+      <Project>{d6e4b418-70b2-4fe6-987d-8ff0f272c281}</Project>
+      <Name>StockTradingAnalysis.Domain.Process</Name>
     </ProjectReference>
     <ProjectReference Include="..\StockTradingAnalysis.EventSourcing\StockTradingAnalysis.EventSourcing.csproj">
       <Project>{1b0942ad-c3e8-4837-b7e4-afa9769bf97e}</Project>

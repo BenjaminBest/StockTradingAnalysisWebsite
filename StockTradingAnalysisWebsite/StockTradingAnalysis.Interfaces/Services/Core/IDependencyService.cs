@@ -13,14 +13,14 @@ namespace StockTradingAnalysis.Interfaces.Services
         /// </summary>
         /// <typeparam name="TType">The type of the requested service or object.</typeparam>
         /// <returns>The requested service or object.</returns>
-        object GetService<TType>() where TType : Type;
+        object GetService<TType>();
 
         /// <summary>
         /// Resolves multiply registered services.
         /// </summary>
         /// <typeparam name="TType">The type of the requested service or object.</typeparam>
         /// <returns>The requested services.</returns>
-        IEnumerable<object> GetServices<TType>() where TType : Type;
+        IEnumerable<object> GetServices<TType>();
 
         /// <summary>
         /// Returns the instance of a object with type <paramref name="type"/>

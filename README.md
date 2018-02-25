@@ -35,6 +35,8 @@ The system supports _snapshots_ - a projection of the current state of an aggreg
 
 All reads and writes are separated by using the CQRS architectural pattern. The domain data to be written is transported by _commands_. These commands are sent to a _command dispatcher_ which locates the correct _command handler_ for this command. In the command handler the _aggregate repository_ (in fact every aggregate type has it's own repository) returns the _aggregate_ by loading and applying all events since existence of this aggregate. Then the command can be applied to the aggregate and uncommitted events are written to the event store.
 
+The _process manager coordinator_ is involved when several events or commands need to be orchestrated. The coordinator is observing all events and commands from the eventbus and the command dispatcher. In case of a message it asks the _process manager finder repository_ if an instance of the correct process manager for a message is already running. The identification is done via a correlation id, which is a mapping of some information of a message to a process manager. In case no instance can be found the correct manager is created. Every process manager can publish events or dispatch commands and has a (in memory) state.
+
 Aggregates as well as the MVC controllers, query handlers and event handlers use _domain services_ (may depend on external services) when domain logic is needed.
 
 Every _event_ which is persisted will be published to the event bus. An _event handler_ catches the event and stores an optimized read model in the correct _model repository_. This is done in memory, but it could also be persisted to a database.
@@ -43,7 +45,7 @@ On the read side, the _MVC controllers_ for example asking the _query dispatcher
 
 For Web Sockets the [SignalR](https://www.asp.net/signalr) _hub_ retrieves the data also from the query dispatcher and sends it to the frontend.  
 
-![architecture](https://user-images.githubusercontent.com/29073072/36352831-0ae9fcba-14bf-11e8-96b5-f84c04ad33b9.png)
+![architecture](https://user-images.githubusercontent.com/29073072/36641270-43c14cd2-1a2d-11e8-8cf6-d13aff801738.png)
 
 Features
 --------------
@@ -105,7 +107,7 @@ Images
 Calculations
 ![calculation](https://user-images.githubusercontent.com/29073072/35777955-055ff46a-09b7-11e8-9ec1-3704a4aca895.png)
 Transactions
-![transactions](https://user-images.githubusercontent.com/29073072/36072645-5a183582-0f23-11e8-94f2-f69e4c981812.png)
+![transactions](https://user-images.githubusercontent.com/29073072/36640980-db2b004a-1a28-11e8-8a62-7b58b1fdf399.png)
 Security details
 ![security_edit](https://user-images.githubusercontent.com/29073072/36342219-6027b808-13fb-11e8-8c34-3f6b8ddf8ffd.png)
 Security charts

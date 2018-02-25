@@ -1,5 +1,5 @@
-﻿using Ninject.Extensions.Conventions;
-using Ninject.Modules;
+﻿using Ninject.Modules;
+using StockTradingAnalysis.Core.Extensions;
 using StockTradingAnalysis.CQRS.CommandDispatcher;
 using StockTradingAnalysis.CQRS.QueryDispatcher;
 using StockTradingAnalysis.Interfaces.Commands;
@@ -7,6 +7,10 @@ using StockTradingAnalysis.Interfaces.Queries;
 
 namespace StockTradingAnalysis.Web.BindingModules
 {
+    /// <summary>
+    /// Binding module for CQRS
+    /// </summary>
+    /// <seealso cref="NinjectModule" />
     public class CqrsBindingModule : NinjectModule
     {
         /// <summary>
@@ -15,24 +19,15 @@ namespace StockTradingAnalysis.Web.BindingModules
         public override void Load()
         {
             //CQRS Queries
-            Kernel.Bind<IQueryDispatcher>().To<QueryDispatcher>().InSingletonScope();
+            Bind<IQueryDispatcher>().To<QueryDispatcher>().InSingletonScope();
 
-            Kernel.Bind(i => i
-                .FromAssembliesMatching("StockTradingAnalysis.*.dll")
-                .SelectAllClasses()
-                .InheritedFrom(typeof(IQueryHandler<,>))
-                .BindSingleInterface()
-                );
+            Kernel.FindAllInterfacesOfType("StockTradingAnalysis.*.dll", typeof(IQueryHandler<,>));
+
 
             //CQRS Commands
-            Kernel.Bind<ICommandDispatcher>().To<CommandDispatcher>().InSingletonScope();
+            Bind<ICommandDispatcher>().To<CommandDispatcher>().InSingletonScope();
 
-            Kernel.Bind(i => i
-                .FromAssembliesMatching("StockTradingAnalysis.*.dll")
-                .SelectAllClasses()
-                .InheritedFrom(typeof(ICommandHandler<>))
-                .BindSingleInterface()
-                );
+            Kernel.FindAllInterfacesOfType("StockTradingAnalysis.*.dll", typeof(ICommandHandler<>));
         }
     }
 }

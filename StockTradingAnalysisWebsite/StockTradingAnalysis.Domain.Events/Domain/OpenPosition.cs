@@ -3,6 +3,10 @@ using StockTradingAnalysis.Interfaces.Domain;
 
 namespace StockTradingAnalysis.Domain.Events.Domain
 {
+    /// <summary>
+    /// The class OpenPosition contains the information about all shares which are not yet sold.
+    /// </summary>
+    /// <seealso cref="IOpenPosition" />
     public class OpenPosition : IOpenPosition
     {
         /// <summary>

@@ -6,8 +6,15 @@ using StockTradingAnalysis.Interfaces.ReadModel;
 
 namespace StockTradingAnalysis.Domain.Events.EventHandler
 {
+    /// <summary>
+    /// The vent handler CalculationWasCopiedEventHandler is invoked when a calculation was copied.
+    /// </summary>
+    /// <seealso cref="Interfaces.Events.IEventHandler{CalculationWasCopiedEvent}" />
     public class CalculationWasCopiedEventHandler : IEventHandler<CalculationWasCopiedEvent>
     {
+        /// <summary>
+        /// The writer repository
+        /// </summary>
         private readonly IModelRepository<ICalculation> _writerRepository;
 
         /// <summary>

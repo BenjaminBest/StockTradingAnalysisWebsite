@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections.Concurrent;
+using System.Collections.Generic;
 using StockTradingAnalysis.Interfaces.Configuration;
 
 namespace StockTradingAnalysis.Core.Configuration
@@ -8,7 +9,10 @@ namespace StockTradingAnalysis.Core.Configuration
     /// </summary>
     public class ConfigurationRegistry : IConfigurationRegistry
     {
-        private readonly Dictionary<string, object> _configuration = new Dictionary<string, object>();
+        /// <summary>
+        /// The configuration
+        /// </summary>
+        private readonly IDictionary<string, object> _configuration = new ConcurrentDictionary<string, object>();
 
         /// <summary>
         /// Adds the given <paramref name="value"/> with the key <paramref name="key"/> to the configuration

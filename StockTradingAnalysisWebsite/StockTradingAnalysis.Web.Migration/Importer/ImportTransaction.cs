@@ -113,8 +113,6 @@ namespace StockTradingAnalysis.Web.Migration.Importer
 
             CommandDispatcher.Execute(cmd);
 
-            CommandDispatcher.Execute(new TransactionCalculateDividendCommand(item.Id, 0));
-
             //Image
             if (item.Image != null)
             {
@@ -165,8 +163,6 @@ namespace StockTradingAnalysis.Web.Migration.Importer
                 item.Feedback.Select(f => f.Id));
 
             CommandDispatcher.Execute(cmd);
-
-            CommandDispatcher.Execute(new TransactionCalculateCommand(item.Id, 0));
 
             //Image
             if (item.Image != null)

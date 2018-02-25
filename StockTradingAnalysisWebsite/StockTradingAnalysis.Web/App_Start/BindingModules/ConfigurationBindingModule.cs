@@ -5,6 +5,10 @@ using StockTradingAnalysis.Interfaces.Configuration;
 
 namespace StockTradingAnalysis.Web.BindingModules
 {
+    /// <summary>
+    /// Binding module for configuration
+    /// </summary>
+    /// <seealso cref="NinjectModule" />
     public class ConfigurationBindingModule : NinjectModule
     {
         /// <summary>
@@ -13,7 +17,7 @@ namespace StockTradingAnalysis.Web.BindingModules
         public override void Load()
         {
             //Configuration Registry
-            Kernel.Bind<IConfigurationRegistry>().ToMethod((context) =>
+            Bind<IConfigurationRegistry>().ToMethod((context) =>
             {
                 var registry = new ConfigurationRegistry();
 

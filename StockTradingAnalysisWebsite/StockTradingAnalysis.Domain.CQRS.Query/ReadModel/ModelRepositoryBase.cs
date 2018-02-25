@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using StockTradingAnalysis.Domain.CQRS.Query.Exceptions;
 using StockTradingAnalysis.Interfaces.ReadModel;
@@ -6,14 +7,14 @@ using StockTradingAnalysis.Interfaces.ReadModel;
 namespace StockTradingAnalysis.Domain.CQRS.Query.ReadModel
 {
     /// <summary>
-    /// The repository for stocks
+    /// ModelRepositoryBase is a base class for repositories based on a guid as key
     /// </summary>
-    public class ModelRepositoryBase<TItem> : IModelRepositorySupportsDataDeletion, IModelRepository<TItem> where TItem : class, IModelRepositoryItem
+    public class ModelRepositoryBase<TItem> : ISupportsDataDeletion, IModelRepository<TItem> where TItem : class, IModelRepositoryItem
     {
         /// <summary>
         /// The items
         /// </summary>
-        protected readonly IDictionary<Guid, TItem> _items = new Dictionary<Guid, TItem>();
+        protected readonly IDictionary<Guid, TItem> Items = new ConcurrentDictionary<Guid, TItem>();
 
         /// <summary>
         /// Returns the item with the given <paramref name="id"/>
@@ -24,7 +25,7 @@ namespace StockTradingAnalysis.Domain.CQRS.Query.ReadModel
         {
             TItem model;
 
-            return _items.TryGetValue(id, out model) ? model : null;
+            return Items.TryGetValue(id, out model) ? model : null;
         }
 
         /// <summary>
@@ -33,7 +34,7 @@ namespace StockTradingAnalysis.Domain.CQRS.Query.ReadModel
         /// <returns>All items</returns>
         public IEnumerable<TItem> GetAll()
         {
-            return _items.Values;
+            return Items.Values;
         }
 
         /// <summary>
@@ -49,13 +50,13 @@ namespace StockTradingAnalysis.Domain.CQRS.Query.ReadModel
             if (item.Id == Guid.Empty)
                 throw new ModelRepositoryUpdateException("The given item has an empty id");
 
-            if (_items.ContainsKey(item.Id))
+            if (Items.ContainsKey(item.Id))
             {
-                _items[item.Id] = item;
+                Items[item.Id] = item;
             }
             else
             {
-                throw new ModelRepositoryAddException($"The given item cannot be updated because the id '{item.Id}' does not exist");
+                throw new ModelRepositoryUpdateException($"The given item cannot be updated because the id '{item.Id}' does not exist");
             }
         }
 
@@ -63,7 +64,7 @@ namespace StockTradingAnalysis.Domain.CQRS.Query.ReadModel
         /// Deletes the given <paramref name="item"/>
         /// </summary>
         /// <param name="item">The item to be deleted</param>
-        /// <exception cref="ModelRepositoryUpdateException">Thrown if <paramref name="item"/> is null or has an empty id</exception>
+        /// <exception cref="ModelRepositoryDeleteException">Thrown if <paramref name="item"/> is null or has an empty id</exception>
         public void Delete(TItem item)
         {
             if (item == null)
@@ -72,13 +73,13 @@ namespace StockTradingAnalysis.Domain.CQRS.Query.ReadModel
             if (item.Id == Guid.Empty)
                 throw new ModelRepositoryDeleteException("The given item has an empty id");
 
-            if (_items.ContainsKey(item.Id))
+            if (Items.ContainsKey(item.Id))
             {
-                _items.Remove(item.Id);
+                Items.Remove(item.Id);
             }
             else
             {
-                throw new ModelRepositoryAddException($"The given item cannot be deleted because the id '{item.Id}' does not exist");
+                throw new ModelRepositoryDeleteException($"The given item cannot be deleted because the id '{item.Id}' does not exist");
             }
         }
 
@@ -95,10 +96,10 @@ namespace StockTradingAnalysis.Domain.CQRS.Query.ReadModel
             if (item.Id == Guid.Empty)
                 throw new ModelRepositoryAddException("The given item has an empty id");
 
-            if (_items.ContainsKey(item.Id))
+            if (Items.ContainsKey(item.Id))
                 throw new ModelRepositoryAddException($"The given item with the id '{item.Id}' already exists");
 
-            _items.Add(item.Id, item);
+            Items.Add(item.Id, item);
         }
 
         /// <summary>
@@ -106,7 +107,7 @@ namespace StockTradingAnalysis.Domain.CQRS.Query.ReadModel
         /// </summary>
         public void DeleteAll()
         {
-            _items.Clear();
+            Items.Clear();
         }
     }
 }

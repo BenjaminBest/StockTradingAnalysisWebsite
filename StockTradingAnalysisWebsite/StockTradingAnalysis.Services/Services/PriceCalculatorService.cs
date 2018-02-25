@@ -1,6 +1,5 @@
 ﻿using System;
 using StockTradingAnalysis.Interfaces.Domain;
-using StockTradingAnalysis.Interfaces.Services;
 using StockTradingAnalysis.Interfaces.Services.Domain;
 using StockTradingAnalysis.Services.Domain;
 

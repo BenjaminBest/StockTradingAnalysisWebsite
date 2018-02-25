@@ -9,6 +9,10 @@ using StockTradingAnalysis.Web.Common.Services;
 
 namespace StockTradingAnalysis.Web.BindingModules
 {
+    /// <summary>
+    /// Binding module for common classes
+    /// </summary>
+    /// <seealso cref="NinjectModule" />
     public class CommonBindingModule : NinjectModule
     {
         /// <summary>
@@ -17,24 +21,24 @@ namespace StockTradingAnalysis.Web.BindingModules
         public override void Load()
         {
             //Services
-            Kernel.Bind<IDependencyService>().To<DependencyService>().InSingletonScope();
-            Kernel.Bind<ILoggingService>().To<LoggingService>();
-            Kernel.Bind<IImageService>().To<ImageService>().InSingletonScope();
-            Kernel.Bind<IMathCalculatorService>().To<MathCalculatorService>().InSingletonScope();
-            Kernel.Bind<IDateCalculationService>().To<DateCalculationService>().InSingletonScope();
-            Kernel.Bind<ISerializerService>().To<JsonSerializerService>().InSingletonScope();
+            Bind<IDependencyService>().To<DependencyService>().InSingletonScope();
+            Bind<ILoggingService>().To<LoggingService>();
+            Bind<IImageService>().To<ImageService>().InSingletonScope();
+            Bind<IMathCalculatorService>().To<MathCalculatorService>().InSingletonScope();
+            Bind<IDateCalculationService>().To<DateCalculationService>().InSingletonScope();
+            Bind<ISerializerService>().To<JsonSerializerService>().InSingletonScope();
 
             //Selectlist item resolvers
-            Kernel.Bind<ISelectItemResolver>().To<StockTypeItemResolver>().InSingletonScope();
-            Kernel.Bind<ISelectItemResolver>().To<TimePeriodAbsoluteItemResolver>().InSingletonScope();
-            Kernel.Bind<ISelectItemResolver>().To<TimePeriodRelativeItemResolver>().InSingletonScope();
-            Kernel.Bind<ISelectItemResolver>().To<StockItemResolver>().InSingletonScope();
-            Kernel.Bind<ISelectItemResolver>().To<FeedbackItemResolver>().InSingletonScope();
-            Kernel.Bind<ISelectItemResolver>().To<StrategyItemResolver>().InSingletonScope();
+            Bind<ISelectItemResolver>().To<StockTypeItemResolver>().InSingletonScope();
+            Bind<ISelectItemResolver>().To<TimePeriodAbsoluteItemResolver>().InSingletonScope();
+            Bind<ISelectItemResolver>().To<TimePeriodRelativeItemResolver>().InSingletonScope();
+            Bind<ISelectItemResolver>().To<StockItemResolver>().InSingletonScope();
+            Bind<ISelectItemResolver>().To<FeedbackItemResolver>().InSingletonScope();
+            Bind<ISelectItemResolver>().To<StrategyItemResolver>().InSingletonScope();
 
-            Kernel.Bind<ISelectItemResolverRegistry>().To<ItemResolverRegistry>().InSingletonScope();
+            Bind<ISelectItemResolverRegistry>().To<ItemResolverRegistry>().InSingletonScope();
 
-            Kernel.Bind<IQuotationServiceClient>().To<QuotationServiceClient>().InSingletonScope();
+            Bind<IQuotationServiceClient>().To<QuotationServiceClient>().InSingletonScope();
         }
     }
 }

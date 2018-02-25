@@ -1,7 +1,7 @@
-﻿using Ninject;
-using StockTradingAnalysis.Interfaces.Services;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using Ninject;
+using StockTradingAnalysis.Interfaces.Services;
 
 namespace StockTradingAnalysis.Core.Services
 {
@@ -27,7 +27,7 @@ namespace StockTradingAnalysis.Core.Services
         /// </summary>
         /// <typeparam name="TType">The type of the requested service or object.</typeparam>
         ///  <returns>The requested service or object.</returns>
-        public object GetService<TType>() where TType : Type
+        public object GetService<TType>()
         {
             return _kernel.Get(typeof(TType));
         }
@@ -37,7 +37,7 @@ namespace StockTradingAnalysis.Core.Services
         /// </summary>
         /// <typeparam name="TType">The type of the requested service or object.</typeparam>
         /// <returns>The requested services.</returns>
-        public IEnumerable<object> GetServices<TType>() where TType : Type
+        public IEnumerable<object> GetServices<TType>()
         {
             return _kernel.GetAll(typeof(TType));
         }

@@ -6,7 +6,7 @@ namespace StockTradingAnalysis.Web.Tests.Objects
     {
         public void ClearAll()
         {
-            _items.Clear();
+            Items.Clear();
         }
     }
 }

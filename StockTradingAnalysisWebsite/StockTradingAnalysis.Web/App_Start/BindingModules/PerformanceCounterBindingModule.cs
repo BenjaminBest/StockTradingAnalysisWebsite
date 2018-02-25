@@ -3,11 +3,14 @@ using StockTradingAnalysis.Core.Performance;
 using StockTradingAnalysis.Core.Services;
 using StockTradingAnalysis.Interfaces.Common;
 using StockTradingAnalysis.Interfaces.Enumerations;
-using StockTradingAnalysis.Interfaces.Services;
 using StockTradingAnalysis.Interfaces.Services.Core;
 
 namespace StockTradingAnalysis.Web.BindingModules
 {
+    /// <summary>
+    /// Binding module for performance counters.
+    /// </summary>
+    /// <seealso cref="NinjectModule" />
     public class PerformanceCounterBindingModule : NinjectModule
     {
         /// <summary>
@@ -16,7 +19,7 @@ namespace StockTradingAnalysis.Web.BindingModules
         public override void Load()
         {
             //Performance counter-templates
-            Kernel.Bind<IPerformanceRegistry>().ToMethod((context) =>
+            Bind<IPerformanceRegistry>().ToMethod((context) =>
             {
                 var registry = new PerformanceRegistry();
 
@@ -29,7 +32,7 @@ namespace StockTradingAnalysis.Web.BindingModules
             }).InSingletonScope();
 
             //Service
-            Kernel.Bind<IPerformanceMeasurementService>().To<PerformanceMeasurementService>().InSingletonScope();
+            Bind<IPerformanceMeasurementService>().To<PerformanceMeasurementService>().InSingletonScope();
         }
     }
 }

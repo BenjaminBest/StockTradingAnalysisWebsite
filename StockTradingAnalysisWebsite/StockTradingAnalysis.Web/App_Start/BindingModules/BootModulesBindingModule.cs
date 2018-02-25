@@ -1,9 +1,13 @@
-﻿using Ninject.Extensions.Conventions;
-using Ninject.Modules;
+﻿using Ninject.Modules;
+using StockTradingAnalysis.Core.Extensions;
 using StockTradingAnalysis.Interfaces.Common;
 
 namespace StockTradingAnalysis.Web.BindingModules
 {
+    /// <summary>
+    /// Binding module for boot modules
+    /// </summary>
+    /// <seealso cref="NinjectModule" />
     public class BootModulesBindingModule : NinjectModule
     {
         /// <summary>
@@ -11,12 +15,7 @@ namespace StockTradingAnalysis.Web.BindingModules
         /// </summary>
         public override void Load()
         {
-            Kernel.Bind(i => i
-                .FromAssembliesMatching("StockTradingAnalysis.*.dll")
-                .SelectAllClasses()
-                .InheritedFrom(typeof (IBootModule))
-                .BindSingleInterface()
-                );
+            Kernel.FindAllInterfacesOfType("StockTradingAnalysis.*.dll", typeof(IBootModule));
         }
     }
 }

@@ -5,7 +5,7 @@ namespace StockTradingAnalysis.Interfaces.Domain
     /// <summary>
     /// The interface IStatistic defines time range based default statistical information without special statistic calculations
     /// </summary>
-    public interface IStatistic
+    public interface IStatistic : ITimeRangeKey
     {
         /// <summary>
         /// Absolute profit
@@ -207,12 +207,12 @@ namespace StockTradingAnalysis.Interfaces.Domain
         /// <remarks>
         /// Root-square(amount of trades)*propability/stdev(R)
         /// </remarks>
-        decimal SQN { get; }
+        decimal Sqn { get; }
 
         /// <summary>
         /// Description of System Quality Number (SQN)
         /// </summary>
-        string SQNDescription { get; }
+        string SqnDescription { get; }
 
         /// <summary>
         /// Maximum losses in a row

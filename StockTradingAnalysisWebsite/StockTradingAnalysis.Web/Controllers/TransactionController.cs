@@ -128,8 +128,6 @@ namespace StockTradingAnalysis.Web.Controllers
                 _commandDispatcher.Execute(new TransactionSellCommand(id, model.OriginalVersion, model.OrderDate, model.Units, model.PricePerUnit, model.OrderCosts,
                     model.Description, model.Tag, image, model.Stock.Id, model.Taxes, model.MAE, model.MFE, feedback));
 
-                _commandDispatcher.Execute(new TransactionCalculateCommand(id, _queryDispatcher.Execute(new TransactionByIdQuery(id)).OriginalVersion));
-
                 return RedirectToAction("Index");
             }
             catch (DomainValidationException validationException)
@@ -170,8 +168,6 @@ namespace StockTradingAnalysis.Web.Controllers
 
                 _commandDispatcher.Execute(new TransactionDividendCommand(id, model.OriginalVersion, model.OrderDate, model.Units, model.PricePerUnit, model.OrderCosts,
                     model.Description, model.Tag, image, model.Stock.Id, model.Taxes));
-
-                _commandDispatcher.Execute(new TransactionCalculateDividendCommand(id, _queryDispatcher.Execute(new TransactionByIdQuery(id)).OriginalVersion));
 
                 return RedirectToAction("Index");
             }

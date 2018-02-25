@@ -1,9 +1,9 @@
 ﻿namespace StockTradingAnalysis.Interfaces.ReadModel
 {
     /// <summary>
-    /// The interface IModelRepositorySupportsDataDeletion defines methods to delete data, in memory or persisted.
+    /// The interface ISupportsDataDeletion defines methods to delete data, in memory or persisted.
     /// </summary>
-    public interface IModelRepositorySupportsDataDeletion
+    public interface ISupportsDataDeletion
     {
         /// <summary>
         /// Deletes all.

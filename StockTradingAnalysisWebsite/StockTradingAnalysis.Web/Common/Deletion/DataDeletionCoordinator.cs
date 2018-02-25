@@ -62,7 +62,7 @@ namespace StockTradingAnalysis.Web.Common.Deletion
             _eventDocumentStoreCache.DeleteAll();
             _snapshotDocumentStoreCache.DeleteAll();
 
-            var types = DependencyResolver.Current.GetServices<IModelRepositorySupportsDataDeletion>();
+            var types = DependencyResolver.Current.GetServices<ISupportsDataDeletion>();
             foreach (var type in types)
             {
                 type.DeleteAll();

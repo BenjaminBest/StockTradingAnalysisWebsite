@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D6E4B418-70B2-4FE6-987D-8FF0F272C281}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>StockTradingAnalysis.Domain.Process</RootNamespace>
+    <AssemblyName>StockTradingAnalysis.Domain.Process</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Exceptions\ProcessManagerFinderException.cs" />
+    <Compile Include="Exceptions\ProcessManagerRepositoryAddException.cs" />
+    <Compile Include="Exceptions\ProcessManagerRepositoryDeleteException.cs" />
+    <Compile Include="Finders\ProcessManagerFinderRepository.cs" />
+    <Compile Include="Finders\TransactionFinder.cs" />
+    <Compile Include="Locator\ProcessManagerCoordinator.cs" />
+    <Compile Include="ProcessManagers\TransactionProcessManagerBase.cs" />
+    <Compile Include="ProcessManagers\TransactionProcessManager.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\ProcessManagerRepository.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\StockTradingAnalysis.Domain.CQRS.Cmd\StockTradingAnalysis.Domain.CQRS.Cmd.csproj">
+      <Project>{aafaa64b-ebe9-44c3-ad11-ed9070e55374}</Project>
+      <Name>StockTradingAnalysis.Domain.CQRS.Cmd</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\StockTradingAnalysis.Domain.CQRS.Query\StockTradingAnalysis.Domain.CQRS.Query.csproj">
+      <Project>{a6038dbf-fc06-4372-beb0-3feb9ab8264f}</Project>
+      <Name>StockTradingAnalysis.Domain.CQRS.Query</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\StockTradingAnalysis.Interfaces\StockTradingAnalysis.Interfaces.csproj">
+      <Project>{3694cf79-fb2d-4f79-8236-a4975a30924d}</Project>
+      <Name>StockTradingAnalysis.Interfaces</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Locators\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

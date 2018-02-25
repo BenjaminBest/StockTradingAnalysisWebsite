@@ -1,9 +1,9 @@
-﻿using StockTradingAnalysis.Interfaces.Domain;
-using StockTradingAnalysis.Interfaces.Services;
-using StockTradingAnalysis.Services.Domain;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using StockTradingAnalysis.Interfaces.Domain;
 using StockTradingAnalysis.Interfaces.Services.Domain;
+using StockTradingAnalysis.Services.Domain;
 
 namespace StockTradingAnalysis.Services.Services
 {
@@ -24,7 +24,7 @@ namespace StockTradingAnalysis.Services.Services
             if (!transactions.Any())
                 return null;
 
-            return new Statistic(); //TODO: Calculate
+            return new Statistic(DateTime.MinValue, DateTime.MaxValue); //TODO: Calculate, but put every calculation in a seperate class!
         }
     }
 }

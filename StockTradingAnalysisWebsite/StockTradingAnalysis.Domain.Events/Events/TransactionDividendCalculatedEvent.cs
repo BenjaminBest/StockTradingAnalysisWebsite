@@ -4,6 +4,10 @@ using StockTradingAnalysis.Interfaces.Types;
 
 namespace StockTradingAnalysis.Domain.Events.Events
 {
+    /// <summary>
+    /// The event TransactionDividendCalculatedEvent is fired when a dividend transaction was calculated.
+    /// </summary>
+    /// <seealso cref="DomainEvent" />
     public class TransactionDividendCalculatedEvent : DomainEvent
     {
         /// <summary>

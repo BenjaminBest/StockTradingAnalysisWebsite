@@ -13,6 +13,10 @@ namespace StockTradingAnalysis.Domain.Events.Aggregates
     /// </summary>
     public static class AggregateEventApplier
     {
+        /// <summary>
+        /// Returns the cache of all types.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
         private static class Cache<T>
         {
             public static readonly IDictionary<Type, MethodInfo> Dict = typeof(T)

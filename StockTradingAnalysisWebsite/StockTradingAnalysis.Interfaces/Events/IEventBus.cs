@@ -11,5 +11,11 @@
         /// <typeparam name="TEvent">Type of the event</typeparam>
         /// <param name="domainEvent"></param>
         void Publish<TEvent>(TEvent domainEvent) where TEvent : IDomainEvent;
+
+        /// <summary>
+        /// Subscribes the specified event observer which should be notfied in case of an message.
+        /// </summary>
+        /// <param name="messageObserver">The message observer.</param>
+        void Subscribe(IMessageObserver messageObserver);
     }
 }

@@ -5,7 +5,6 @@ using StockTradingAnalysis.Core.Common;
 using StockTradingAnalysis.EventSourcing.Events;
 using StockTradingAnalysis.EventSourcing.Exceptions;
 using StockTradingAnalysis.Interfaces.Events;
-using StockTradingAnalysis.Interfaces.Services;
 using StockTradingAnalysis.Interfaces.Services.Core;
 
 namespace StockTradingAnalysis.EventSourcing.Storage
@@ -98,11 +97,6 @@ namespace StockTradingAnalysis.EventSourcing.Storage
                 {
                     newVersion++;
                     @event.Version = newVersion;
-
-                    //_persistentEventStore.Add(@event);
-
-                    //Create snapshot
-                    //_eventBus.Publish(new AggregateSavedEvent(aggregateId, aggregateType, newVersion));
                 }
 
                 _persistentEventStore.Add(eventList);

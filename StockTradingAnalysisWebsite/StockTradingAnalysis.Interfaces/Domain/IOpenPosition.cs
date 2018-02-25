@@ -2,6 +2,9 @@
 
 namespace StockTradingAnalysis.Interfaces.Domain
 {
+    /// <summary>
+    /// The interface IOpenPosition defines the open position of a security.
+    /// </summary>
     public interface IOpenPosition
     {
         /// <summary>

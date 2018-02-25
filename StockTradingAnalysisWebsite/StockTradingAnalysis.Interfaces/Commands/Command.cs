@@ -15,7 +15,7 @@ namespace StockTradingAnalysis.Interfaces.Commands
         /// <summary>
         /// Gets the id of this command
         /// </summary>
-        public Guid CommandId { get; private set; }
+        public Guid Id { get; private set; }
 
         /// <summary>
         /// Gets the id of this command
@@ -34,7 +34,7 @@ namespace StockTradingAnalysis.Interfaces.Commands
         /// <param name="aggregateId">The aggregate id</param>
         public Command(int originalVersion, Guid aggregateId)
         {
-            CommandId = Guid.NewGuid();
+            Id = Guid.NewGuid();
             TimeStamp = DateTime.Now;
             OriginalVersion = originalVersion;
             AggregateId = aggregateId;
