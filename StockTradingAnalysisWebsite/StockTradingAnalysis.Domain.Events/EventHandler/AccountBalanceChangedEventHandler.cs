@@ -8,7 +8,14 @@ using StockTradingAnalysis.Interfaces.ReadModel;
 
 namespace StockTradingAnalysis.Domain.Events.EventHandler
 {
-    public class AccountBalanceChangedEventHandler : IEventHandler<TransactionDividendCalculatedEvent>, IEventHandler<TransactionPerformanceCalculatedEvent>
+    /// <summary>
+    /// The AccountBalanceChangedEventHandler calculates the overall balance of the account based on the profit for a new transaction. All future balances
+    /// needs to be re-calculated then.
+    /// </summary>
+    /// <seealso cref="Interfaces.Events.IEventHandler{TransactionDividendCalculatedEvent}" />
+    /// <seealso cref="Interfaces.Events.IEventHandler{TransactionPerformanceCalculatedEvent}" />
+    public class AccountBalanceChangedEventHandler : IEventHandler<TransactionDividendCalculatedEvent>,
+        IEventHandler<TransactionPerformanceCalculatedEvent>
     {
         private readonly IModelRepository<IAccountBalance> _modelRepository;
         private readonly IModelReaderRepository<ITransaction> _transactionRepository;
@@ -18,7 +25,8 @@ namespace StockTradingAnalysis.Domain.Events.EventHandler
         /// </summary>
         /// <param name="modelRepository">The repository for reading and writing</param>
         /// <param name="transactionRepository">The transaction repositiory</param>
-        public AccountBalanceChangedEventHandler(IModelRepository<IAccountBalance> modelRepository, IModelReaderRepository<ITransaction> transactionRepository)
+        public AccountBalanceChangedEventHandler(IModelRepository<IAccountBalance> modelRepository,
+            IModelReaderRepository<ITransaction> transactionRepository)
         {
             _modelRepository = modelRepository;
             _transactionRepository = transactionRepository;
@@ -42,6 +50,11 @@ namespace StockTradingAnalysis.Domain.Events.EventHandler
             AddItem(eventData.AggregateId, eventData.ProfitAbsolute);
         }
 
+        /// <summary>
+        /// Adds the item.
+        /// </summary>
+        /// <param name="aggregateId">The aggregate identifier.</param>
+        /// <param name="profitAbsolute">The profit absolute.</param>
         private void AddItem(Guid aggregateId, decimal profitAbsolute)
         {
             if (_modelRepository.GetById(aggregateId) != null)
@@ -53,9 +66,29 @@ namespace StockTradingAnalysis.Domain.Events.EventHandler
             //Get previous balance
             var lastBalance = _modelRepository.GetAll().OrderByDescending(a => a.Date).FirstOrDefault(a => a.Date < balanceDate);
 
-            var item = new AccountBalance(aggregateId, lastBalance?.Balance + profitAbsolute ?? profitAbsolute, balanceDate);
-
+            //Add new balance
+            var item = new AccountBalance(aggregateId, lastBalance?.Balance + profitAbsolute ?? profitAbsolute, profitAbsolute, balanceDate);
             _modelRepository.Add(item);
+
+            //Get future balances
+            var futureAccountBalances = _modelRepository.GetAll().OrderBy(a => a.Date).Where(a => a.Date > balanceDate);
+
+            using (var enumerator = futureAccountBalances.GetEnumerator())
+            {
+                var oldBalance = item.Balance;
+                while (enumerator.MoveNext())
+                {
+                    var newBalance = new AccountBalance(
+                        enumerator.Current.TransactionId,
+                        oldBalance + enumerator.Current.BalanceChange,
+                        enumerator.Current.BalanceChange,
+                        enumerator.Current.Date);
+
+                    _modelRepository.Update(newBalance);
+
+                    oldBalance = newBalance.Balance;
+                }
+            }
         }
     }
 }

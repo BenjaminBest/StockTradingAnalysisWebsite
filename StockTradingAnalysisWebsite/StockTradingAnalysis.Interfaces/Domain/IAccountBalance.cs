@@ -22,5 +22,13 @@ namespace StockTradingAnalysis.Interfaces.Domain
         /// Gets the date & time of this balance
         /// </summary>
         DateTime Date { get; }
+
+        /// <summary>
+        /// Gets the change.
+        /// </summary>
+        /// <value>
+        /// The change.
+        /// </value>
+        decimal BalanceChange { get; }
     }
 }

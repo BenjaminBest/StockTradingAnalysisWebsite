@@ -24,6 +24,14 @@ namespace StockTradingAnalysis.Domain.Events.Domain
         public DateTime Date { get; set; }
 
         /// <summary>
+        /// Gets the change.
+        /// </summary>
+        /// <value>
+        /// The change.
+        /// </value>
+        public decimal BalanceChange { get; set; }
+
+        /// <summary>
         /// Gets/sets the id
         /// </summary>
         public Guid Id { get; set; }
@@ -33,11 +41,13 @@ namespace StockTradingAnalysis.Domain.Events.Domain
         /// </summary>
         /// <param name="transactionId">The id of the transaction</param>
         /// <param name="balance">The balance</param>
+        /// <param name="balanceChange">The balance change.</param>
         /// <param name="date">The date</param>
-        public AccountBalance(Guid transactionId, decimal balance, DateTime date)
+        public AccountBalance(Guid transactionId, decimal balance, decimal balanceChange, DateTime date)
         {
             TransactionId = transactionId;
             Balance = balance;
+            BalanceChange = balanceChange;
             Date = date;
             Id = transactionId;
         }
