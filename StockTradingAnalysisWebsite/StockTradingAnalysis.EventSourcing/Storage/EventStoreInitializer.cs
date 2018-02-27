@@ -1,4 +1,5 @@
 ﻿using StockTradingAnalysis.Core.Common;
+using StockTradingAnalysis.EventSourcing.Events;
 using StockTradingAnalysis.EventSourcing.Exceptions;
 using StockTradingAnalysis.Interfaces.Common;
 using StockTradingAnalysis.Interfaces.Events;
@@ -83,6 +84,9 @@ namespace StockTradingAnalysis.EventSourcing.Storage
 
             foreach (var result in _performanceMeasurementService.GetResults())
                 _loggingService.Info(result.Display);
+
+            //Inform all process handlers that initialization is finished
+            _eventBus.Publish(new ReplayFinishedEvent());
 
             _isInitialized = true;
         }

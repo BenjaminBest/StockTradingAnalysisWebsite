@@ -25,6 +25,15 @@ namespace StockTradingAnalysis.Domain.CQRS.Cmd.Commands
         /// </summary>
         public string LongShort { get; private set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="StockAddCommand"/> class.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <param name="version">The version.</param>
+        /// <param name="name">The name.</param>
+        /// <param name="wkn">The WKN.</param>
+        /// <param name="type">The type.</param>
+        /// <param name="longShort">The long short.</param>
         public StockAddCommand(Guid id, int version, string name, string wkn, string type, string longShort)
             : base(version, id)
         {

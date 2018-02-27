@@ -15,10 +15,10 @@ namespace StockTradingAnalysis.Domain.CQRS.Query.Tests.ReadModel
         [Description("TimeRangeModelRepository should properly delete all items when DeleteAll is called")]
         public void TimeRangeModelRepositoryDeleteAllShouldDeleteAllItems()
         {
-            var item1 = new Statistic(DateTime.MinValue, DateTime.MaxValue);
-            var item2 = new Statistic(DateTime.Parse("2018-01-01 00:00:00"), DateTime.Parse("2018-03-31 00:00:00"));
+            var item1 = new Statistic(new AllTimeSlice(DateTime.MinValue, DateTime.MaxValue));
+            var item2 = new Statistic(new AllTimeSlice(DateTime.Parse("2018-01-01 00:00:00"), DateTime.Parse("2018-03-31 00:00:00")));
 
-            var repository = new TimeRangeModelRepository<IStatistic>();
+            var repository = new TimeSliceModelRepository<IStatistic>();
             repository.Add(item1);
             repository.Add(item2);
 
@@ -30,10 +30,10 @@ namespace StockTradingAnalysis.Domain.CQRS.Query.Tests.ReadModel
         [Description("TimeRangeModelRepository should properly add new items when their keys are different")]
         public void TimeRangeModelRepositoryAddShouldAddNewItems()
         {
-            var item1 = new Statistic(DateTime.MinValue, DateTime.MaxValue);
-            var item2 = new Statistic(DateTime.Parse("2018-01-01 00:00:00"), DateTime.Parse("2018-03-31 00:00:00"));
+            var item1 = new Statistic(new AllTimeSlice(DateTime.MinValue, DateTime.MaxValue));
+            var item2 = new Statistic(new AllTimeSlice(DateTime.Parse("2018-01-01 00:00:00"), DateTime.Parse("2018-03-31 00:00:00")));
 
-            var repository = new TimeRangeModelRepository<IStatistic>();
+            var repository = new TimeSliceModelRepository<IStatistic>();
             repository.Add(item1);
             repository.Add(item2);
 
@@ -44,10 +44,10 @@ namespace StockTradingAnalysis.Domain.CQRS.Query.Tests.ReadModel
         [Description("TimeRangeModelRepository should throw an exception when item already exists")]
         public void TimeRangeModelRepositoryAddShouldThrowExceptionWhenItemExists()
         {
-            var item1 = new Statistic(DateTime.MinValue, DateTime.MaxValue);
-            var item2 = new Statistic(DateTime.MinValue, DateTime.MaxValue);
+            var item1 = new Statistic(new AllTimeSlice(DateTime.MinValue, DateTime.MaxValue));
+            var item2 = new Statistic(new AllTimeSlice(DateTime.MinValue, DateTime.MaxValue));
 
-            var repository = new TimeRangeModelRepository<IStatistic>();
+            var repository = new TimeSliceModelRepository<IStatistic>();
 
             Action act = () => { repository.Add(item1); repository.Add(item2); };
 
@@ -58,7 +58,7 @@ namespace StockTradingAnalysis.Domain.CQRS.Query.Tests.ReadModel
         [Description("TimeRangeModelRepository should throw an exception when item is null")]
         public void TimeRangeModelRepositoryAddShouldThrowExceptionWhenItemIsNull()
         {
-            var repository = new TimeRangeModelRepository<IStatistic>();
+            var repository = new TimeSliceModelRepository<IStatistic>();
 
             Action act = () => { repository.Add(null); };
 
@@ -69,15 +69,15 @@ namespace StockTradingAnalysis.Domain.CQRS.Query.Tests.ReadModel
         [Description("TimeRangeModelRepository should return correct statisic object based on the key")]
         public void TimeRangeModelRepositoryGetByIdShouldReturnCorrectObjectBasedOnKey()
         {
-            var item1 = new Statistic(DateTime.MinValue, DateTime.MaxValue);
-            var item2 = new Statistic(DateTime.Parse("2018-01-01 00:00:00"), DateTime.Parse("2018-03-31 00:00:00"));
+            var item1 = new Statistic(new AllTimeSlice(DateTime.MinValue, DateTime.MaxValue));
+            var item2 = new Statistic(new AllTimeSlice(DateTime.Parse("2018-01-01 00:00:00"), DateTime.Parse("2018-03-31 00:00:00")));
 
-            var repository = new TimeRangeModelRepository<IStatistic>();
+            var repository = new TimeSliceModelRepository<IStatistic>();
 
             repository.Add(item1);
             repository.Add(item2);
 
-            var result = repository.GetById(Statistic.CreateKey(DateTime.MinValue, DateTime.MaxValue));
+            var result = repository.GetById(new Statistic(new AllTimeSlice(DateTime.MinValue, DateTime.MaxValue)));
             result.Should().Be(item1);
         }
 
@@ -85,10 +85,10 @@ namespace StockTradingAnalysis.Domain.CQRS.Query.Tests.ReadModel
         [Description("TimeRangeModelRepository should return all statisic objects")]
         public void TimeRangeModelRepositoryGetAllShouldReturnAllObjects()
         {
-            var item1 = new Statistic(DateTime.MinValue, DateTime.MaxValue);
-            var item2 = new Statistic(DateTime.Parse("2018-01-01 00:00:00"), DateTime.Parse("2018-03-31 00:00:00"));
+            var item1 = new Statistic(new AllTimeSlice(DateTime.MinValue, DateTime.MaxValue));
+            var item2 = new Statistic(new AllTimeSlice(DateTime.Parse("2018-01-01 00:00:00"), DateTime.Parse("2018-03-31 00:00:00")));
 
-            var repository = new TimeRangeModelRepository<IStatistic>();
+            var repository = new TimeSliceModelRepository<IStatistic>();
 
             repository.Add(item1);
             repository.Add(item2);
@@ -101,18 +101,18 @@ namespace StockTradingAnalysis.Domain.CQRS.Query.Tests.ReadModel
         [Description("TimeRangeModelRepository should update correct time range")]
         public void TimeRangeModelRepositoryUpdateShouldUpdateCorrectTimeRange()
         {
-            var item1 = new Statistic(DateTime.MinValue, DateTime.MaxValue) { AmountPositionTrades = 1 };
-            var item2 = new Statistic(DateTime.Parse("2018-01-01 00:00:00"), DateTime.Parse("2018-03-31 00:00:00"));
+            var item1 = new Statistic(new AllTimeSlice(DateTime.MinValue, DateTime.MaxValue)) { AmountPositionTrades = 1 };
+            var item2 = new Statistic(new AllTimeSlice(DateTime.Parse("2018-01-01 00:00:00"), DateTime.Parse("2018-03-31 00:00:00")));
 
-            var repository = new TimeRangeModelRepository<IStatistic>();
+            var repository = new TimeSliceModelRepository<IStatistic>();
 
             repository.Add(item1);
             repository.Add(item2);
 
-            var item1Update = new Statistic(DateTime.MinValue, DateTime.MaxValue) { AmountPositionTrades = 2 };
+            var item1Update = new Statistic(new AllTimeSlice(DateTime.MinValue, DateTime.MaxValue)) { AmountPositionTrades = 2 };
 
             repository.Update(item1Update);
-            repository.GetById(Statistic.CreateKey(DateTime.MinValue, DateTime.MaxValue)).AmountPositionTrades.Should()
+            repository.GetById(new Statistic(new AllTimeSlice(DateTime.MinValue, DateTime.MaxValue))).AmountPositionTrades.Should()
                 .Be(2);
         }
 
@@ -121,16 +121,16 @@ namespace StockTradingAnalysis.Domain.CQRS.Query.Tests.ReadModel
         [Description("TimeRangeModelRepository should delete correct time range")]
         public void TimeRangeModelRepositoryDeleteShouldDeleteCorrectTimeRange()
         {
-            var item1 = new Statistic(DateTime.MinValue, DateTime.MaxValue) { AmountPositionTrades = 1 };
-            var item2 = new Statistic(DateTime.Parse("2018-01-01 00:00:00"), DateTime.Parse("2018-03-31 00:00:00"));
+            var item1 = new Statistic(new AllTimeSlice(DateTime.MinValue, DateTime.MaxValue)) { AmountPositionTrades = 1 };
+            var item2 = new Statistic(new AllTimeSlice(DateTime.Parse("2018-01-01 00:00:00"), DateTime.Parse("2018-03-31 00:00:00")));
 
-            var repository = new TimeRangeModelRepository<IStatistic>();
+            var repository = new TimeSliceModelRepository<IStatistic>();
 
             repository.Add(item1);
             repository.Add(item2);
 
             repository.Delete(item2);
-            repository.GetById(Statistic.CreateKey(DateTime.MinValue, DateTime.MaxValue)).Should().NotBeNull();
+            repository.GetById(new Statistic(new AllTimeSlice(DateTime.MinValue, DateTime.MaxValue))).Should().NotBeNull();
             repository.GetAll().Should().HaveCount(1);
         }
     }

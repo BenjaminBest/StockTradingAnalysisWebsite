@@ -30,6 +30,8 @@ namespace StockTradingAnalysis.Web.BindingModules
             Bind<IAccumulationPlanStatisticService>().To<AccumulationPlanStatisticService>().InSingletonScope();
             Bind<IInterestRateCalculatorService>().To<InterestRateCalculatorService>();
             Bind<ITransactionCalculationService>().To<TransactionCalculationService>();
+            Bind<ITimeSliceCreationService>().To<TimeSliceCreationService>();
+            Bind<IStatisticService>().To<StatisticService>();
 
             //Model repositories
             Bind<IModelRepositoryDeletionCoordinator>().To<ModelRepositoryDeletionCoordinator>();
@@ -61,8 +63,8 @@ namespace StockTradingAnalysis.Web.BindingModules
             Bind<IModelReaderRepository<IStockStatistics>, IModelWriterRepository<IStockStatistics>, IModelRepository<IStockStatistics>, ISupportsDataDeletion>()
                 .To<StockStatisticsModelRepository>().InSingletonScope();
 
-            Bind<ITimeRangeModelRepository<IStatistic>, ITimeRangeModelReaderRepository<IStatistic>, ITimeRangeModelWriterRepository<IStatistic>>()
-                .To<TimeRangeModelRepository<IStatistic>>().InSingletonScope();
+            Bind<ITimeSliceModelRepository<IStatistic>, ITimeSliceModelReaderRepository<IStatistic>, ITimeSliceModelWriterRepository<IStatistic>>()
+                .To<TimeSliceModelRepository<IStatistic>>().InSingletonScope();
 
             //Repository
             Kernel.FindAllInterfacesOfType("StockTradingAnalysis.*.dll", typeof(IAggregateRepository<>));

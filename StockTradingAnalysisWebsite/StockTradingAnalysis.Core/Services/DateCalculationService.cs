@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using StockTradingAnalysis.Interfaces.Services.Core;
 
@@ -97,6 +98,22 @@ namespace StockTradingAnalysis.Core.Services
         /// <summary>
         /// Returns the end date of the the year
         /// </summary>
+        /// <param name="year">The year.</param>
+        /// <param name="end">End date</param>
+        /// <returns>
+        /// Start Date of year
+        /// </returns>
+        public DateTime GetStartAndEndDateOfYear(int year, out DateTime end)
+        {
+            var start = new DateTime(year, 1, 1, 0, 0, 0);
+            end = new DateTime(year, 12, DateTime.DaysInMonth(year, 12), 23, 59, 59);
+
+            return start;
+        }
+
+        /// <summary>
+        /// Returns the end date of the the year
+        /// </summary>
         /// <param name="date">Date</param>
         /// <returns>End Date of year</returns>
         public DateTime GetEndDateOfYear(DateTime date)
@@ -161,6 +178,40 @@ namespace StockTradingAnalysis.Core.Services
             }
 
             return start;
+        }
+
+        /// <summary>
+        /// Gets the quarter of date.
+        /// </summary>
+        /// <param name="date">The date.</param>
+        /// <returns></returns>
+        public int GetQuarterOfDate(DateTime date)
+        {
+            GetStartAndEndDateOfQuarter(date, out DateTime end, out int quarter);
+
+            return quarter;
+        }
+
+        /// <summary>
+        /// Gets the months in a quarter.
+        /// </summary>
+        /// <param name="quarter">The quarter.</param>
+        /// <returns></returns>
+        public IEnumerable<int> GetMonthsInQuarter(int quarter)
+        {
+            switch (quarter)
+            {
+                case 1:
+                    return new List<int> { 1, 2, 3 };
+                case 2:
+                    return new List<int> { 4, 5, 6 };
+                case 3:
+                    return new List<int> { 7, 8, 9 };
+                case 4:
+                    return new List<int> { 10, 11, 12 };
+            }
+
+            return new List<int>();
         }
 
         /// <summary>
@@ -239,6 +290,22 @@ namespace StockTradingAnalysis.Core.Services
             var timeSpan = date - _epochDateTime;
 
             return (long)timeSpan.TotalMilliseconds;
+        }
+
+        /// <summary>
+        /// Gets the involved years.
+        /// </summary>
+        /// <param name="start">The start.</param>
+        /// <param name="end">The end.</param>
+        /// <returns></returns>
+        public IEnumerable<int> GetInvolvedYears(DateTime start, DateTime end)
+        {
+            while (start <= end)
+            {
+                yield return start.Year;
+
+                start = new DateTime(start.Year + 1, 1, 1);
+            }
         }
     }
 }

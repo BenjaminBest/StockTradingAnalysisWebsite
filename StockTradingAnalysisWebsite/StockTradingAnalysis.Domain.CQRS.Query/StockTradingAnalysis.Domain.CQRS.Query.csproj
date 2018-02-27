@@ -64,11 +64,13 @@
     <Compile Include="Queries\FeedbackNameSearchQuery.cs" />
     <Compile Include="Queries\AccountBalanceAllQuery.cs" />
     <Compile Include="Queries\OpenPositionsAllQuery.cs" />
+    <Compile Include="Queries\TransactionMaximumOrderDateQuery.cs" />
     <Compile Include="Queries\TransactionsByStockIdQuery.cs" />
     <Compile Include="Queries\TransactionPerformanceByIdQuery.cs" />
     <Compile Include="Queries\TransactionPerformanceAllQuery.cs" />
     <Compile Include="Queries\TransactionImageByIdQuery.cs" />
     <Compile Include="Queries\StrategyNameSearchQuery.cs" />
+    <Compile Include="Queries\TransactionMinimumOrderDateQuery.cs" />
     <Compile Include="Queries\TransactionYearsQuery.cs" />
     <Compile Include="Queries\TransactionTagAllQuery.cs" />
     <Compile Include="Queries\TransactionTagSearchQuery.cs" />
@@ -98,6 +100,8 @@
     <Compile Include="QueryHandler\AccountBalanceAllQueryHandler.cs" />
     <Compile Include="QueryHandler\OpenPositionsAllQueryHandler.cs" />
     <Compile Include="QueryHandler\TransactionByStockIdQueryHandler.cs" />
+    <Compile Include="QueryHandler\TransactionMaximumOrderDateQueryHandler.cs" />
+    <Compile Include="QueryHandler\TransactionMinumumOrderDateQueryHandler.cs" />
     <Compile Include="QueryHandler\TransactionYearsQueryHandler.cs" />
     <Compile Include="QueryHandler\TransactionPerformanceByIdQueryHandler.cs" />
     <Compile Include="QueryHandler\TransactionPerformanceAllQueryHandler.cs" />
@@ -115,7 +119,7 @@
     <Compile Include="QueryHandler\FeedbackByIdQueryHandler.cs" />
     <Compile Include="QueryHandler\StockByIdQueryHandler.cs" />
     <Compile Include="QueryHandler\StockAllQueryHandler.cs" />
-    <Compile Include="ReadModel\TimeRangeModelRepository.cs" />
+    <Compile Include="ReadModel\TimeSliceModelRepository.cs" />
     <Compile Include="ReadModel\StockStatisticsModelRepository.cs" />
     <Compile Include="ReadModel\FeedbackProportionModelRepository.cs" />
     <Compile Include="ReadModel\CalculationModelRepository.cs" />

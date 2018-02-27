@@ -40,11 +40,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Domain\MonthTimeSlice.cs" />
+    <Compile Include="Domain\QuarterTimeSlice.cs" />
+    <Compile Include="Domain\YearTimeSlice.cs" />
     <Compile Include="Domain\SavingsPlanPeriod.cs" />
     <Compile Include="Domain\CalculationQuotation.cs" />
     <Compile Include="Domain\CalculationResult.cs" />
     <Compile Include="Domain\SavingsPlan.cs" />
     <Compile Include="Domain\Statistic.cs" />
+    <Compile Include="Domain\AllTimeSlice.cs" />
     <Compile Include="Domain\TransactionPerformance.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AccumulationPlanStatisticService.cs" />
@@ -52,6 +56,7 @@
     <Compile Include="Services\PriceCalculatorService.cs" />
     <Compile Include="Services\StatisticService.cs" />
     <Compile Include="Services\StockQuoteService.cs" />
+    <Compile Include="Services\TimeSliceCreationService.cs" />
     <Compile Include="Services\TransactionCalculationService.cs" />
     <Compile Include="Services\TransactionPerformanceService.cs" />
   </ItemGroup>
@@ -59,6 +64,10 @@
     <Folder Include="Common\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\StockTradingAnalysis.Core\StockTradingAnalysis.Core.csproj">
+      <Project>{2D924BA2-EBFC-4675-B435-D346F20A77D1}</Project>
+      <Name>StockTradingAnalysis.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\StockTradingAnalysis.Domain.CQRS.Query\StockTradingAnalysis.Domain.CQRS.Query.csproj">
       <Project>{A6038DBF-FC06-4372-BEB0-3FEB9AB8264F}</Project>
       <Name>StockTradingAnalysis.Domain.CQRS.Query</Name>

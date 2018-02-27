@@ -65,6 +65,23 @@ namespace StockTradingAnalysis.Domain.CQRS.Cmd.Commands
         /// </summary>
         public bool IsLong { get; private set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="CalculationAddCommand"/> class.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <param name="version">The version.</param>
+        /// <param name="name">The name.</param>
+        /// <param name="wkn">The WKN.</param>
+        /// <param name="multiplier">The multiplier.</param>
+        /// <param name="strikePrice">The strike price.</param>
+        /// <param name="underlying">The underlying.</param>
+        /// <param name="initialSl">The initial sl.</param>
+        /// <param name="initialTp">The initial tp.</param>
+        /// <param name="pricePerUnit">The price per unit.</param>
+        /// <param name="orderCosts">The order costs.</param>
+        /// <param name="description">The description.</param>
+        /// <param name="units">The units.</param>
+        /// <param name="isLong">if set to <c>true</c> [is long].</param>
         public CalculationAddCommand(Guid id, int version, string name, string wkn, decimal multiplier,
             decimal? strikePrice, string underlying, decimal initialSl, decimal initialTp, decimal pricePerUnit,
             decimal orderCosts, string description, decimal units, bool isLong)

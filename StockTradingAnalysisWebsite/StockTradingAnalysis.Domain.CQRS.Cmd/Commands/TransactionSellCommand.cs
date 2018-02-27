@@ -1,11 +1,15 @@
-﻿using StockTradingAnalysis.Interfaces.Commands;
-using StockTradingAnalysis.Interfaces.Domain;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using StockTradingAnalysis.Interfaces.Commands;
+using StockTradingAnalysis.Interfaces.Domain;
 
 namespace StockTradingAnalysis.Domain.CQRS.Cmd.Commands
 {
+    /// <summary>
+    /// The TransactionSellCommand is used when a sell transaction should be executed.
+    /// </summary>
+    /// <seealso cref="Command" />
     public class TransactionSellCommand : Command
     {
         /// <summary>
@@ -68,6 +72,23 @@ namespace StockTradingAnalysis.Domain.CQRS.Cmd.Commands
         /// </summary>
         public IEnumerable<Guid> Feedback { get; private set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TransactionSellCommand"/> class.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <param name="version">The version.</param>
+        /// <param name="orderDate">The order date.</param>
+        /// <param name="units">The units.</param>
+        /// <param name="pricePerUnit">The price per unit.</param>
+        /// <param name="orderCosts">The order costs.</param>
+        /// <param name="description">The description.</param>
+        /// <param name="tag">The tag.</param>
+        /// <param name="image">The image.</param>
+        /// <param name="stockId">The stock identifier.</param>
+        /// <param name="taxes">The taxes.</param>
+        /// <param name="mae">The mae.</param>
+        /// <param name="mfe">The mfe.</param>
+        /// <param name="feedback">The feedback.</param>
         public TransactionSellCommand(Guid id, int version,
             DateTime orderDate,
             decimal units,

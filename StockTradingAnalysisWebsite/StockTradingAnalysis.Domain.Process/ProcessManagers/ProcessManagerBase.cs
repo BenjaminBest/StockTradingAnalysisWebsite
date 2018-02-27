@@ -7,7 +7,7 @@ namespace StockTradingAnalysis.Domain.Process.ProcessManagers
     /// The class ProcessManagerBase is a base class for all process managers.
     /// </summary>
     /// <seealso cref="IProcessManager" />
-    public class ProcessManagerBase : IProcessManager
+    public class ProcessManagerBase<TData> : IProcessManager where TData : IProcessManagerData, new()
     {
         /// <summary>
         /// Gets the status update.
@@ -24,6 +24,22 @@ namespace StockTradingAnalysis.Domain.Process.ProcessManagers
         /// The identifier.
         /// </value>
         public Guid Id { get; set; }
+
+        /// <summary>
+        /// Gets the data.
+        /// </summary>
+        /// <value>
+        /// The data.
+        /// </value>
+        public TData Data { get; }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ProcessManagerBase{TData}" /> class.
+        /// </summary>
+        public ProcessManagerBase()
+        {
+            Data = new TData();
+        }
 
         /// <summary>
         /// Registers for status update.

@@ -45,12 +45,12 @@ namespace StockTradingAnalysis.EventSourcing.Messaging
                 var dyn = (dynamic)handler;
 
                 dyn.Handle((dynamic)domainEvent);
+            }
 
-                //Notify observers
-                foreach (var eventObserver in _observers)
-                {
-                    eventObserver.Notify(domainEvent);
-                }
+            //Notify observers
+            foreach (var eventObserver in _observers)
+            {
+                eventObserver.Notify(domainEvent);
             }
         }
 

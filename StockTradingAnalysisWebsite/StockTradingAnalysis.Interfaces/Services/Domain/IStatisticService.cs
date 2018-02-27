@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using StockTradingAnalysis.Interfaces.Domain;
+﻿using StockTradingAnalysis.Interfaces.Domain;
 
 namespace StockTradingAnalysis.Interfaces.Services.Domain
 {
@@ -9,9 +8,10 @@ namespace StockTradingAnalysis.Interfaces.Services.Domain
     public interface IStatisticService
     {
         /// <summary>
-        /// Starts calculation and uses all transactions
+        /// Starts calculation for the given time slice
         /// </summary>
-        /// <param name="transactions">A list with all transactions which should be analyzed</param>
-        IStatistic Calculate(IEnumerable<ITransaction> transactions);
+        /// <param name="timeRange">The time range.</param>
+        /// <returns></returns>
+        IStatistic Calculate(ITimeSlice timeRange);
     }
 }

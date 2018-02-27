@@ -1,12 +1,16 @@
-﻿using StockTradingAnalysis.Domain.CQRS.Query.Queries;
+﻿using System.Collections.Generic;
+using System.Linq;
+using StockTradingAnalysis.Domain.CQRS.Query.Queries;
 using StockTradingAnalysis.Interfaces.Domain;
 using StockTradingAnalysis.Interfaces.Queries;
 using StockTradingAnalysis.Interfaces.ReadModel;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace StockTradingAnalysis.Domain.CQRS.Query.QueryHandler
 {
+    /// <summary>
+    /// The TransactionYearsQueryHandler returns the grouped years in which the transactions happened.
+    /// </summary>
+    /// <seealso cref="Interfaces.Queries.IQueryHandler{TransactionYearsQuery, IEnumerable{int}}" />
     public class TransactionYearsQueryHandler : IQueryHandler<TransactionYearsQuery, IEnumerable<int>>
     {
         private readonly IModelReaderRepository<ITransaction> _modelReaderRepository;

@@ -1,5 +1,6 @@
 ﻿using System;
 using StockTradingAnalysis.Domain.Process.Exceptions;
+using StockTradingAnalysis.Interfaces.Common;
 using StockTradingAnalysis.Interfaces.Events;
 using StockTradingAnalysis.Interfaces.Services;
 
@@ -22,15 +23,24 @@ namespace StockTradingAnalysis.Domain.Process.Finders
         private readonly IDependencyService _dependencyService;
 
         /// <summary>
+        /// The logging service
+        /// </summary>
+        private readonly ILoggingService _loggingService;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="ProcessManagerFinderRepository" /> class.
         /// </summary>
         /// <param name="processManagerRepository">The process manager repository.</param>
         /// <param name="dependencyService">The dependency service.</param>
-        public ProcessManagerFinderRepository(IProcessManagerRepository processManagerRepository,
-            IDependencyService dependencyService)
+        /// <param name="loggingService"></param>
+        public ProcessManagerFinderRepository(
+            IProcessManagerRepository processManagerRepository,
+            IDependencyService dependencyService,
+            ILoggingService loggingService)
         {
             _processManagerRepository = processManagerRepository;
             _dependencyService = dependencyService;
+            _loggingService = loggingService;
         }
 
         /// <summary>
@@ -63,6 +73,11 @@ namespace StockTradingAnalysis.Domain.Process.Finders
                 processManager.Id = correlationId;
 
                 _processManagerRepository.Add(processManager);
+                _loggingService.Debug($"Created new instance of process manager '{processManager.GetType()}' for message '{message.GetType()}'");
+            }
+            else
+            {
+                _loggingService.Debug($"Found and re-used process manager '{processManager.GetType()}' for message '{message.GetType()}'");
             }
 
             processManager.RegisterForStatusUpdate(this);

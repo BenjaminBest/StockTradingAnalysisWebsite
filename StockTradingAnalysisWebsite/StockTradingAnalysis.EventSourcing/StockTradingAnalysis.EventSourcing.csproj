@@ -44,6 +44,7 @@
     <Compile Include="DomainContext\SnapshotProcessor.cs" />
     <Compile Include="EventHandlers\AggregateSavedEventHandler.cs" />
     <Compile Include="Events\AggregateSavedEvent.cs" />
+    <Compile Include="Events\ReplayFinishedEvent.cs" />
     <Compile Include="Exceptions\EventStoreInitializeException.cs" />
     <Compile Include="Exceptions\SnapshotNotSupportedException.cs" />
     <Compile Include="Exceptions\AggregateSaveException.cs" />

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace StockTradingAnalysis.Interfaces.Services.Core
 {
@@ -49,6 +50,16 @@ namespace StockTradingAnalysis.Interfaces.Services.Core
         /// <summary>
         /// Returns the end date of the the year
         /// </summary>
+        /// <param name="year">The year.</param>
+        /// <param name="end">End date</param>
+        /// <returns>
+        /// Start Date of year
+        /// </returns>
+        DateTime GetStartAndEndDateOfYear(int year, out DateTime end);
+
+        /// <summary>
+        /// Returns the end date of the the year
+        /// </summary>
         /// <param name="date">Date</param>
         /// <returns>End Date of year</returns>
         DateTime GetEndDateOfYear(DateTime date);
@@ -76,6 +87,20 @@ namespace StockTradingAnalysis.Interfaces.Services.Core
         /// <param name="quarter">Quarter</param>
         /// <returns>End Date of quarter</returns>
         DateTime GetStartAndEndDateOfQuarter(DateTime date, out DateTime end, out int quarter);
+
+        /// <summary>
+        /// Gets the quarter of date.
+        /// </summary>
+        /// <param name="date">The date.</param>
+        /// <returns></returns>
+        int GetQuarterOfDate(DateTime date);
+
+        /// <summary>
+        /// Gets the months in a quarter.
+        /// </summary>
+        /// <param name="quarter">The quarter.</param>
+        /// <returns></returns>
+        IEnumerable<int> GetMonthsInQuarter(int quarter);
 
         /// <summary>
         /// Returns the calendar week of the given date
@@ -113,5 +138,13 @@ namespace StockTradingAnalysis.Interfaces.Services.Core
         /// <param name="date">The date.</param>
         /// <returns>Milliseconds since epoch</returns>
         long ConvertToEpochTimeInMilliseconds(DateTime date);
+
+        /// <summary>
+        /// Gets the involved years.
+        /// </summary>
+        /// <param name="start">The start.</param>
+        /// <param name="end">The end.</param>
+        /// <returns></returns>
+        IEnumerable<int> GetInvolvedYears(DateTime start, DateTime end);
     }
 }

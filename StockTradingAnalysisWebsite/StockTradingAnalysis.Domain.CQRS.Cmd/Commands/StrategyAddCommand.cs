@@ -21,6 +21,14 @@ namespace StockTradingAnalysis.Domain.CQRS.Cmd.Commands
         /// </summary>
         public IImage Image { get; private set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="StrategyAddCommand"/> class.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <param name="version">The version.</param>
+        /// <param name="name">The name.</param>
+        /// <param name="description">The description.</param>
+        /// <param name="image">The image.</param>
         public StrategyAddCommand(
             Guid id,
             int version,

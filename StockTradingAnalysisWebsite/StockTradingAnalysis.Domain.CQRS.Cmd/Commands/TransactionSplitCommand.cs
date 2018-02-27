@@ -1,8 +1,12 @@
-﻿using StockTradingAnalysis.Interfaces.Commands;
-using System;
+﻿using System;
+using StockTradingAnalysis.Interfaces.Commands;
 
 namespace StockTradingAnalysis.Domain.CQRS.Cmd.Commands
 {
+    /// <summary>
+    /// The TransactionSplitCommand is used when a split transaction should be executed.
+    /// </summary>
+    /// <seealso cref="Command" />
     public class TransactionSplitCommand : Command
     {
         /// <summary>
@@ -25,6 +29,15 @@ namespace StockTradingAnalysis.Domain.CQRS.Cmd.Commands
         /// </summary>
         public Guid StockId { get; private set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TransactionSplitCommand"/> class.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <param name="version">The version.</param>
+        /// <param name="orderDate">The order date.</param>
+        /// <param name="units">The units.</param>
+        /// <param name="pricePerUnit">The price per unit.</param>
+        /// <param name="stockId">The stock identifier.</param>
         public TransactionSplitCommand(Guid id, int version,
             DateTime orderDate,
             decimal units,

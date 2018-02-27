@@ -69,7 +69,9 @@
     <Compile Include="Domain\TransactionPerformance.cs" />
     <Compile Include="EventHandler\CalculationAddedEventHandler.cs" />
     <Compile Include="EventHandler\AccountBalanceChangedEventHandler.cs" />
+    <Compile Include="EventHandler\StaticsticsBasicDataChangedEventHandler.cs" />
     <Compile Include="EventHandler\StockQuotationsAddedEventHandler.cs" />
+    <Compile Include="EventHandler\StockQuotationsAddedOrChangedEventHandler.cs" />
     <Compile Include="EventHandler\StockQuotationsChangedEventHandler.cs" />
     <Compile Include="EventHandler\StockOverallPerformanceChangedEventHandler.cs" />
     <Compile Include="EventHandler\TransactionSplitOrderAddedEventHandler.cs" />
@@ -113,6 +115,8 @@
     <Compile Include="Events\CalculationWasCopiedEvent.cs" />
     <Compile Include="Events\CalculationIsLongChangedEvent.cs" />
     <Compile Include="Events\CalculationUnitsChangedEvent.cs" />
+    <Compile Include="Events\StaticsticsBasicDataChangedEvent.cs" />
+    <Compile Include="Events\StockQuotationsAddedOrChangedEvent.cs" />
     <Compile Include="Events\StockQuotationChangedEvent.cs" />
     <Compile Include="Events\StockQuotationAddedEvent.cs" />
     <Compile Include="Events\StockOverallPerformanceChangedEvent.cs" />

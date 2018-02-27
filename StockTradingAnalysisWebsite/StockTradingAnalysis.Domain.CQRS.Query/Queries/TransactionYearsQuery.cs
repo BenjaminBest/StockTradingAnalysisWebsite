@@ -6,8 +6,15 @@ using StockTradingAnalysis.Interfaces.Queries;
 
 namespace StockTradingAnalysis.Domain.CQRS.Query.Queries
 {
+    /// <summary>
+    /// The TransactionYearsQuery is used to return a list of all years in which transactions have been executed.
+    /// </summary>
+    /// <seealso cref="Interfaces.Queries.IQuery{IEnumerable{int}}" />
     public class TransactionYearsQuery : IQuery<IEnumerable<int>>
     {
+        /// <summary>
+        /// The filters
+        /// </summary>
         private readonly List<ITransactionFilter> _filters = new List<ITransactionFilter>();
 
         /// <summary>

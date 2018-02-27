@@ -3,12 +3,12 @@
 namespace StockTradingAnalysis.Interfaces.Domain
 {
     /// <summary>
-    /// The interface ITimeRangeKey defines a key to store and lookup information for time ranges.
+    /// The interface ITimeSliceKey defines a key to store and lookup information for time ranges.
     /// </summary>
-    public interface ITimeRangeKey : IEquatable<ITimeRangeKey>
+    public interface ITimeSliceKey : IEquatable<ITimeSliceKey>
     {
         /// <summary>
-        /// Gets the start.
+        /// Gets or sets the start.
         /// </summary>
         /// <value>
         /// The start.
@@ -16,7 +16,7 @@ namespace StockTradingAnalysis.Interfaces.Domain
         DateTime Start { get; }
 
         /// <summary>
-        /// Gets the end.
+        /// Gets or sets the end.
         /// </summary>
         /// <value>
         /// The end.

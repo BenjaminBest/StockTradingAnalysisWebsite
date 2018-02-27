@@ -40,13 +40,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\TransactionProcessManagerData.cs" />
+    <Compile Include="Data\StatisticsProcessManagerData.cs" />
     <Compile Include="Exceptions\ProcessManagerFinderException.cs" />
     <Compile Include="Exceptions\ProcessManagerRepositoryAddException.cs" />
     <Compile Include="Exceptions\ProcessManagerRepositoryDeleteException.cs" />
     <Compile Include="Finders\ProcessManagerFinderRepository.cs" />
+    <Compile Include="Finders\StatisticsFinder.cs" />
     <Compile Include="Finders\TransactionFinder.cs" />
     <Compile Include="Locator\ProcessManagerCoordinator.cs" />
-    <Compile Include="ProcessManagers\TransactionProcessManagerBase.cs" />
+    <Compile Include="ProcessManagers\StatisticsProcessManager.cs" />
+    <Compile Include="ProcessManagers\ProcessManagerBase.cs" />
     <Compile Include="ProcessManagers\TransactionProcessManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\ProcessManagerRepository.cs" />
@@ -59,6 +63,14 @@
     <ProjectReference Include="..\StockTradingAnalysis.Domain.CQRS.Query\StockTradingAnalysis.Domain.CQRS.Query.csproj">
       <Project>{a6038dbf-fc06-4372-beb0-3feb9ab8264f}</Project>
       <Name>StockTradingAnalysis.Domain.CQRS.Query</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\StockTradingAnalysis.Domain.Events\StockTradingAnalysis.Domain.Events.csproj">
+      <Project>{07D3490F-B18E-4FA5-804A-7FBB647BE184}</Project>
+      <Name>StockTradingAnalysis.Domain.Events</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\StockTradingAnalysis.EventSourcing\StockTradingAnalysis.EventSourcing.csproj">
+      <Project>{1B0942AD-C3E8-4837-B7E4-AFA9769BF97E}</Project>
+      <Name>StockTradingAnalysis.EventSourcing</Name>
     </ProjectReference>
     <ProjectReference Include="..\StockTradingAnalysis.Interfaces\StockTradingAnalysis.Interfaces.csproj">
       <Project>{3694cf79-fb2d-4f79-8236-a4975a30924d}</Project>

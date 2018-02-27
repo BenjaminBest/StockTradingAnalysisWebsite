@@ -7,6 +7,10 @@ using StockTradingAnalysis.Services.Domain;
 
 namespace StockTradingAnalysis.Services.Services
 {
+    /// <summary>
+    /// The TransactionPerformanceService calculates KPIs for a single transaction.
+    /// </summary>
+    /// <seealso cref="ITransactionPerformanceService" />
     public class TransactionPerformanceService : ITransactionPerformanceService
     {
         /// <summary>

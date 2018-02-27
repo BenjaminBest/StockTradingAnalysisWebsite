@@ -4,6 +4,10 @@ using StockTradingAnalysis.Interfaces.Domain;
 
 namespace StockTradingAnalysis.Domain.CQRS.Cmd.Commands
 {
+    /// <summary>
+    /// The TransactionBuyCommand is used when a buy transaction should be executed.
+    /// </summary>
+    /// <seealso cref="Command" />
     public class TransactionBuyCommand : Command
     {
         /// <summary>
@@ -61,6 +65,22 @@ namespace StockTradingAnalysis.Domain.CQRS.Cmd.Commands
         /// </summary>
         public Guid StrategyId { get; private set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TransactionBuyCommand"/> class.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <param name="version">The version.</param>
+        /// <param name="orderDate">The order date.</param>
+        /// <param name="units">The units.</param>
+        /// <param name="pricePerUnit">The price per unit.</param>
+        /// <param name="orderCosts">The order costs.</param>
+        /// <param name="description">The description.</param>
+        /// <param name="tag">The tag.</param>
+        /// <param name="image">The image.</param>
+        /// <param name="initialSL">The initial sl.</param>
+        /// <param name="initialTP">The initial tp.</param>
+        /// <param name="stockId">The stock identifier.</param>
+        /// <param name="strategyId">The strategy identifier.</param>
         public TransactionBuyCommand(Guid id, int version,
             DateTime orderDate,
             decimal units,

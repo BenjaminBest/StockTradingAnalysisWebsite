@@ -7,22 +7,22 @@ using StockTradingAnalysis.Interfaces.ReadModel;
 namespace StockTradingAnalysis.Domain.CQRS.Query.ReadModel
 {
     /// <summary>
-    /// The repository StatisticsModelRepository stores time range based statistics.
+    /// The repository TimeSliceModelRepository stores time range based statistics.
     /// </summary>
     /// <seealso cref="ISupportsDataDeletion" />
-    public class TimeRangeModelRepository<TItem> : ISupportsDataDeletion, ITimeRangeModelRepository<TItem> where TItem : ITimeRangeKey
+    public class TimeSliceModelRepository<TItem> : ISupportsDataDeletion, ITimeSliceModelRepository<TItem> where TItem : ITimeSliceKey
     {
         /// <summary>
         /// The items
         /// </summary>
-        protected readonly IDictionary<ITimeRangeKey, TItem> Items = new ConcurrentDictionary<ITimeRangeKey, TItem>();
+        protected readonly IDictionary<ITimeSliceKey, TItem> Items = new ConcurrentDictionary<ITimeSliceKey, TItem>();
 
         /// <summary>
         /// Returns the item with the given <paramref name="id"/>
         /// </summary>
         /// <param name="id">The id of the item</param>
         /// <returns>The item with the <paramref name="id"/> or <c>null</c></returns>
-        public TItem GetById(ITimeRangeKey id)
+        public TItem GetById(ITimeSliceKey id)
         {
             TItem model;
 
@@ -54,7 +54,7 @@ namespace StockTradingAnalysis.Domain.CQRS.Query.ReadModel
             }
             else
             {
-                throw new ModelRepositoryAddException($"The given item cannot be updated because the id '{item.Start}-{item.End}' does not exist");
+                throw new ModelRepositoryAddException($"The given item cannot be updated because the id {item.Start.Date}-{item.End.Date} does not exist");
             }
         }
 
@@ -74,7 +74,7 @@ namespace StockTradingAnalysis.Domain.CQRS.Query.ReadModel
             }
             else
             {
-                throw new ModelRepositoryAddException($"The given item cannot be deleted because the id '{item.Start}-{item.End}' does not exist");
+                throw new ModelRepositoryAddException($"The given item cannot be deleted because the id {item.Start.Date}-{item.End.Date} does not exist");
             }
         }
 
@@ -89,7 +89,7 @@ namespace StockTradingAnalysis.Domain.CQRS.Query.ReadModel
                 throw new ModelRepositoryAddException("The given item was null");
 
             if (Items.ContainsKey(item))
-                throw new ModelRepositoryAddException($"The given item with the id '{item.Start}-{item.End}' already exists");
+                throw new ModelRepositoryAddException($"The given item with the id {item.Start.Date}-{item.End.Date} already exists");
 
             Items.Add(item, item);
         }

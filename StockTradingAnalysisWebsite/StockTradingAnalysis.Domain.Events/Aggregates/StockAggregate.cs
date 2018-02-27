@@ -19,6 +19,7 @@ namespace StockTradingAnalysis.Domain.Events.Aggregates
         IHandle<StockWknChangedEvent>,
         IHandle<StockQuotationAddedEvent>,
         IHandle<StockQuotationChangedEvent>,
+        IHandle<StockQuotationsAddedOrChangedEvent>,
         ISnapshotOriginator
     {
         /// <summary>
@@ -148,10 +149,30 @@ namespace StockTradingAnalysis.Domain.Events.Aggregates
         /// <remarks>Checks if quotation already exists, but has changed</remarks>
         public void AddOrChangeQuotations(IEnumerable<IQuotation> quotations)
         {
+            var changedQuotations = new List<IQuotation>();
+
             foreach (var quotation in quotations)
             {
-                AddOrChangeQuotation(quotation);
+                if (Quotations.Contains(quotation))
+                {
+                    var existentQuotation = Quotations.FirstOrDefault(q => q.Date.Equals(quotation.Date));
+
+                    if (existentQuotation != null &&
+                        existentQuotation.Open == quotation.Open &&
+                        existentQuotation.Close == quotation.Close &&
+                        existentQuotation.High == quotation.High &&
+                        existentQuotation.Low == quotation.Low)
+                        return;
+
+                    changedQuotations.Add(quotation);
+                }
+                else
+                {
+                    changedQuotations.Add(quotation);
+                }
             }
+
+            ApplyChange(new StockQuotationsAddedOrChangedEvent(Id, typeof(StockAggregate), changedQuotations));
         }
 
         /// <summary>
@@ -231,6 +252,17 @@ namespace StockTradingAnalysis.Domain.Events.Aggregates
         {
             Quotations.RemoveWhere(p => p.Date == @event.Quotation.Date);
             Quotations.Add(@event.Quotation);
+        }
+
+        /// <summary>
+        /// Handles the given event <paramref name="event" />
+        /// </summary>
+        /// <param name="event">The event</param>
+        /// <exception cref="NotImplementedException"></exception>
+        public void Handle(StockQuotationsAddedOrChangedEvent @event)
+        {
+            Quotations.RemoveWhere(q => @event.Quotations.Contains(q));
+            Quotations.AddRange(@event.Quotations);
         }
 
         #region snapshots

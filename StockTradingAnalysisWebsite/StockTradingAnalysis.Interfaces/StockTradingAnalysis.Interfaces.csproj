@@ -44,6 +44,8 @@
     <Compile Include="Commands\Command.cs" />
     <Compile Include="Commands\ICommandHandler.cs" />
     <Compile Include="Commands\ICommandDispatcher.cs" />
+    <Compile Include="Domain\ITimeSlice.cs" />
+    <Compile Include="Enumerations\TimeSliceType.cs" />
     <Compile Include="Events\IMessageObserver.cs" />
     <Compile Include="Common\IBootModule.cs" />
     <Compile Include="Common\ILoggingService.cs" />
@@ -51,7 +53,8 @@
     <Compile Include="Common\IPerformanceCounter.cs" />
     <Compile Include="Common\IPerformanceCounterItem.cs" />
     <Compile Include="Common\IPerformanceRegistry.cs" />
-    <Compile Include="Domain\ITimeRangeKey.cs" />
+    <Compile Include="Domain\ITimeSliceKey.cs" />
+    <Compile Include="Events\IProcessManagerData.cs" />
     <Compile Include="Events\IProcessManagerFinderRepository.cs" />
     <Compile Include="Events\IProcessManager.cs" />
     <Compile Include="Events\IMessageCorrelationIdCreator.cs" />
@@ -125,9 +128,9 @@
     <Compile Include="Queries\IQueryDispatcher.cs" />
     <Compile Include="Queries\IQueryHandler.cs" />
     <Compile Include="ReadModel\IModelReaderRepository.cs" />
-    <Compile Include="ReadModel\ITimeRangeModelRepository.cs" />
-    <Compile Include="ReadModel\ITimeRangeModelReaderRepository.cs" />
-    <Compile Include="ReadModel\ITimeRangeModelWriterRepository.cs" />
+    <Compile Include="ReadModel\ITimeSliceModelRepository.cs" />
+    <Compile Include="ReadModel\ITimeSliceModelReaderRepository.cs" />
+    <Compile Include="ReadModel\ITimeSliceModelWriterRepository.cs" />
     <Compile Include="ReadModel\IVersionableModelRepositoryItem.cs" />
     <Compile Include="ReadModel\IModelRepositoryItem.cs" />
     <Compile Include="ReadModel\IModelWriterRepository.cs" />
@@ -142,6 +145,7 @@
     <Compile Include="Services\Domain\IAccumulationPlanStatisticService.cs" />
     <Compile Include="Services\Domain\IStatisticService.cs" />
     <Compile Include="Services\Domain\IStockQuoteService.cs" />
+    <Compile Include="Services\Domain\ITimeSliceCreationService.cs" />
     <Compile Include="Services\Domain\ITransactionCalculationService.cs" />
     <Compile Include="Services\Domain\ITransactionPerformanceService.cs" />
     <Compile Include="Services\Core\IPerformanceMeasurementService.cs" />

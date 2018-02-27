@@ -1,10 +1,14 @@
-﻿using StockTradingAnalysis.Interfaces.Commands;
-using StockTradingAnalysis.Interfaces.Domain;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using StockTradingAnalysis.Interfaces.Commands;
+using StockTradingAnalysis.Interfaces.Domain;
 
 namespace StockTradingAnalysis.Domain.CQRS.Cmd.Commands
 {
+    /// <summary>
+    /// The StockQuotationsAddOrChangeCommand is used when quotations should be added for a stock.
+    /// </summary>
+    /// <seealso cref="Command" />
     public class StockQuotationsAddOrChangeCommand : Command
     {
         /// <summary>

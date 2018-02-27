@@ -5,8 +5,16 @@ namespace StockTradingAnalysis.Interfaces.Domain
     /// <summary>
     /// The interface IStatistic defines time range based default statistical information without special statistic calculations
     /// </summary>
-    public interface IStatistic : ITimeRangeKey
+    public interface IStatistic : ITimeSliceKey
     {
+        /// <summary>
+        /// Gets the time slice.
+        /// </summary>
+        /// <value>
+        /// The time slice.
+        /// </value>
+        ITimeSlice TimeSlice { get; }
+
         /// <summary>
         /// Absolute profit
         /// </summary>

@@ -110,7 +110,6 @@
     <Compile Include="AggregateTests.cs" />
     <Compile Include="ModelRepositoryTests.cs" />
     <Compile Include="TypesTests.cs" />
-    <Compile Include="StatisticServiceTests.cs" />
     <Compile Include="VersioningTests.cs" />
     <Compile Include="SnapshotTests.cs" />
   </ItemGroup>

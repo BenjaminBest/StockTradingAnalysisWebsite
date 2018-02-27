@@ -1,5 +1,6 @@
 ﻿using StockTradingAnalysis.Domain.CQRS.Cmd.Commands;
 using StockTradingAnalysis.Domain.CQRS.Query.Queries;
+using StockTradingAnalysis.Domain.Process.Data;
 using StockTradingAnalysis.Interfaces.Commands;
 using StockTradingAnalysis.Interfaces.Events;
 using StockTradingAnalysis.Interfaces.Queries;
@@ -7,13 +8,13 @@ using StockTradingAnalysis.Interfaces.Queries;
 namespace StockTradingAnalysis.Domain.Process.ProcessManagers
 {
     /// <summary>
-    /// The class TransactionProcessManager manages the process of a transaction
+    /// The class TransactionProcessManager manages the process of a transaction.
     /// </summary>
-    /// <seealso cref="ProcessManagerBase" />
-    /// <seealso cref="Interfaces.Events.IStartedByCommand{TransactionDividendCommand}" />
-    /// <seealso cref="Interfaces.Events.IStartedByCommand{TransactionSellCommand}" />
+    /// <seealso cref="ProcessManagerBase{TData}" />
+    /// <seealso cref="Interfaces.Events.IStartedByMessage{TransactionDividendCommand}" />
+    /// <seealso cref="Interfaces.Events.IStartedByMessage{TransactionSellCommand}" />
     /// <seealso cref="IProcessManager" />
-    public class TransactionProcessManager : ProcessManagerBase,
+    public class TransactionProcessManager : ProcessManagerBase<TransactionProcessManagerData>,
         IStartedByMessage<TransactionDividendCommand>,
         IStartedByMessage<TransactionSellCommand>
     {

@@ -10,6 +10,30 @@ namespace StockTradingAnalysis.Services.Domain
     public class Statistic : IStatistic
     {
         /// <summary>
+        /// Gets or sets the start.
+        /// </summary>
+        /// <value>
+        /// The start.
+        /// </value>
+        public DateTime Start => TimeSlice.Start;
+
+        /// <summary>
+        /// Gets or sets the end.
+        /// </summary>
+        /// <value>
+        /// The end.
+        /// </value>
+        public DateTime End => TimeSlice.End;
+
+        /// <summary>
+        /// Gets the time slice.
+        /// </summary>
+        /// <value>
+        /// The time slice.
+        /// </value>
+        public ITimeSlice TimeSlice { get; }
+
+        /// <summary>
         /// Absolute profit
         /// </summary>
         public decimal ProfitAbsolute { get; set; }
@@ -254,36 +278,38 @@ namespace StockTradingAnalysis.Services.Domain
         public decimal? AvgMFEAbsolute { get; set; }
 
         /// <summary>
-        /// Gets the start.
+        /// Initializes a new instance of the <see cref="Statistic" /> class.
         /// </summary>
-        /// <value>
-        /// The start.
-        /// </value>
-        public DateTime Start { get; }
-
-        /// <summary>
-        /// Gets the end.
-        /// </summary>
-        /// <value>
-        /// The end.
-        /// </value>
-        public DateTime End { get; }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Statistic"/> class.
-        /// </summary>
-        /// <param name="start">The start.</param>
-        /// <param name="end">The end.</param>
-        public Statistic(DateTime start, DateTime end)
+        /// <param name="slice">The slice.</param>
+        public Statistic(ITimeSlice slice)
         {
-            Start = start;
-            End = end;
+            TimeSlice = slice;
         }
 
 
-        /// <summary>
-        /// Determines whether the specified object is equal to the current object.
-        /// </summary>
+        /// <summary>Indicates whether the current object is equal to another object of the same type.</summary>
+        /// <returns>true if the current object is equal to the <paramref name="other" /> parameter; otherwise, false.</returns>
+        /// <param name="other">An object to compare with this object.</param>
+        protected bool Equals(Statistic other)
+        {
+            if (other == null)
+                return false;
+
+            return Start == other.Start && End == other.End;
+        }
+
+        /// <summary>Indicates whether the current object is equal to another object of the same type.</summary>
+        /// <returns>true if the current object is equal to the <paramref name="other" /> parameter; otherwise, false.</returns>
+        /// <param name="other">An object to compare with this object.</param>
+        public bool Equals(ITimeSliceKey other)
+        {
+            if (other == null)
+                return false;
+
+            return Start == other.Start && End == other.End;
+        }
+
+        /// <summary>Determines whether the specified object is equal to the current object.</summary>
         /// <returns>true if the specified object  is equal to the current object; otherwise, false.</returns>
         /// <param name="obj">The object to compare with the current object. </param>
         public override bool Equals(object obj)
@@ -294,12 +320,13 @@ namespace StockTradingAnalysis.Services.Domain
             if (ReferenceEquals(this, obj))
                 return true;
 
-            return obj.GetType() == GetType() && Equals((IStatistic)obj);
+            if (obj.GetType() != this.GetType())
+                return false;
+
+            return Equals((Statistic)obj);
         }
 
-        /// <summary>
-        /// Serves as the default hash function. 
-        /// </summary>
+        /// <summary>Serves as the default hash function. </summary>
         /// <returns>A hash code for the current object.</returns>
         public override int GetHashCode()
         {
@@ -307,29 +334,6 @@ namespace StockTradingAnalysis.Services.Domain
             {
                 return (Start.GetHashCode() * 397) ^ End.GetHashCode();
             }
-        }
-
-        /// <summary>
-        /// Indicates whether the current object is equal to another object of the same type.
-        /// </summary>
-        /// <param name="other">An object to compare with this object.</param>
-        /// <returns>
-        /// true if the current object is equal to the <paramref name="other" /> parameter; otherwise, false.
-        /// </returns>
-        public bool Equals(ITimeRangeKey other)
-        {
-            return other != null && (Start.Equals(other.Start) && End.Equals(other.End));
-        }
-
-        /// <summary>
-        /// Creates the key.
-        /// </summary>
-        /// <param name="start">The start.</param>
-        /// <param name="end">The end.</param>
-        /// <returns></returns>
-        public static ITimeRangeKey CreateKey(DateTime start, DateTime end)
-        {
-            return new Statistic(start, end);
         }
     }
 }

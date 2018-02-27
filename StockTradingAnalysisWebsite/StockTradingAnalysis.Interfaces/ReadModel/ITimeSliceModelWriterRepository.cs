@@ -3,9 +3,9 @@ using StockTradingAnalysis.Interfaces.Domain;
 namespace StockTradingAnalysis.Interfaces.ReadModel
 {
     /// <summary>
-    /// The interface ITimeRangeModelWriterRepository defines a repository which stores time range based statistics.
+    /// The interface ITimeSliceModelWriterRepository defines a repository which stores time range based statistics.
     /// </summary>
-    public interface ITimeRangeModelWriterRepository<in TItem> where TItem : ITimeRangeKey
+    public interface ITimeSliceModelWriterRepository<in TItem> where TItem : ITimeSliceKey
     {
         /// <summary>
         /// Updates the given <paramref name="item"/>

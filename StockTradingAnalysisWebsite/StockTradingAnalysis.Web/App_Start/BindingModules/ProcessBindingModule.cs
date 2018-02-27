@@ -24,7 +24,8 @@ namespace StockTradingAnalysis.Web.BindingModules
             Bind<IProcessManagerCoordinator>().To<ProcessManagerCoordinator>().InSingletonScope();
             Bind<IProcessManagerFinderRepository>().To<ProcessManagerFinderRepository>().InSingletonScope();
 
-            Bind<IProcessManager>().To<TransactionProcessManager>().InSingletonScope();
+            Bind<IProcessManager>().To<TransactionProcessManager>();
+            Bind<IProcessManager>().To<StatisticsProcessManager>();
 
             Kernel.Bind(i => i
                 .FindAllInterfacesOfType("StockTradingAnalysis.*.dll", typeof(IStartedByMessage<>))

@@ -6,6 +6,10 @@ using StockTradingAnalysis.Interfaces.ReadModel;
 
 namespace StockTradingAnalysis.Domain.Events.EventHandler
 {
+    /// <summary>
+    /// The StockQuotationsChangedEventHandler updates a quotation of a stock.
+    /// </summary>
+    /// <seealso cref="Interfaces.Events.IEventHandler{StockQuotationChangedEvent}" />
     public class StockQuotationsChangedEventHandler : IEventHandler<StockQuotationChangedEvent>
     {
         private readonly IModelRepository<IStock> _writerRepository;

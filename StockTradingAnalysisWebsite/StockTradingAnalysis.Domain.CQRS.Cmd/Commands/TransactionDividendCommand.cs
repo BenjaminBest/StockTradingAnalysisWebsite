@@ -4,6 +4,10 @@ using StockTradingAnalysis.Interfaces.Domain;
 
 namespace StockTradingAnalysis.Domain.CQRS.Cmd.Commands
 {
+    /// <summary>
+    /// The TransactionDividendCommand is used to executed a dividend transaction.
+    /// </summary>
+    /// <seealso cref="Command" />
     public class TransactionDividendCommand : Command
     {
         /// <summary>
@@ -51,6 +55,20 @@ namespace StockTradingAnalysis.Domain.CQRS.Cmd.Commands
         /// </summary>
         public decimal Taxes { get; private set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TransactionDividendCommand"/> class.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <param name="version">The version.</param>
+        /// <param name="orderDate">The order date.</param>
+        /// <param name="units">The units.</param>
+        /// <param name="pricePerUnit">The price per unit.</param>
+        /// <param name="orderCosts">The order costs.</param>
+        /// <param name="description">The description.</param>
+        /// <param name="tag">The tag.</param>
+        /// <param name="image">The image.</param>
+        /// <param name="stockId">The stock identifier.</param>
+        /// <param name="taxes">The taxes.</param>
         public TransactionDividendCommand(Guid id, int version,
             DateTime orderDate,
             decimal units,
