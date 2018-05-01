@@ -50,6 +50,12 @@
     <Compile Include="Domain\Statistic.cs" />
     <Compile Include="Domain\AllTimeSlice.cs" />
     <Compile Include="Domain\TransactionPerformance.cs" />
+    <Compile Include="Modules\StatisticLossModule.cs" />
+    <Compile Include="Modules\StatisticAssetClassModule.cs" />
+    <Compile Include="Modules\StatisticProfitModule.cs" />
+    <Compile Include="Modules\StatisticAmountModule.cs" />
+    <Compile Include="Modules\StatisticCostsModule.cs" />
+    <Compile Include="Modules\StatisticFeedbackModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AccumulationPlanStatisticService.cs" />
     <Compile Include="Services\InterestRateCalculatorService.cs" />

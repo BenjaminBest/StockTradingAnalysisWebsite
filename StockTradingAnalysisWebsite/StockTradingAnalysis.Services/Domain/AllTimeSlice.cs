@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using StockTradingAnalysis.Core.Extensions;
 using StockTradingAnalysis.Interfaces.Domain;
 using StockTradingAnalysis.Interfaces.Enumerations;
@@ -55,7 +56,7 @@ namespace StockTradingAnalysis.Services.Domain
         /// <returns></returns>
         public IEnumerable<ITimeSlice> GetAllSlices()
         {
-            return _slices.Flatten(s => s.GetAllSlices());
+            return _slices.Flatten(s => s.GetAllSlices()).Concat(new List<ITimeSlice> { this });
         }
 
         /// <summary>
@@ -94,7 +95,7 @@ namespace StockTradingAnalysis.Services.Domain
         /// </summary>
         /// <param name="other">The other.</param>
         /// <returns></returns>
-        protected bool Equals(AllTimeSlice other)
+        protected bool Equals(ITimeSlice other)
         {
             return Start.Equals(other.Start) && End.Equals(other.End);
         }
@@ -113,7 +114,7 @@ namespace StockTradingAnalysis.Services.Domain
             if (obj.GetType() != GetType())
                 return false;
 
-            return Equals((AllTimeSlice)obj);
+            return Equals((ITimeSlice)obj);
         }
 
         /// <summary>Serves as the default hash function. </summary>
@@ -124,6 +125,17 @@ namespace StockTradingAnalysis.Services.Domain
             {
                 return (Start.GetHashCode() * 397) ^ End.GetHashCode();
             }
+        }
+
+        /// <summary>Indicates whether the current object is equal to another object of the same type.</summary>
+        /// <returns>true if the current object is equal to the <paramref name="other" /> parameter; otherwise, false.</returns>
+        /// <param name="other">An object to compare with this object.</param>
+        public bool Equals(ITimeSliceKey other)
+        {
+            if (other == null)
+                return false;
+
+            return Start == other.Start && End == other.End;
         }
     }
 }

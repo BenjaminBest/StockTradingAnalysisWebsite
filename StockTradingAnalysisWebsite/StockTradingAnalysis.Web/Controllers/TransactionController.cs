@@ -341,8 +341,7 @@ namespace StockTradingAnalysis.Web.Controllers
 
             models.ForEach(m =>
             {
-                IAccountBalance balance;
-                m.AccountBalance = balances.TryGetValue(m.Id, out balance) ? balance.Balance : decimal.Zero;
+                m.AccountBalance = balances.TryGetValue(m.Id, out var balance) ? balance.Balance : decimal.Zero;
             });
 
             return models;

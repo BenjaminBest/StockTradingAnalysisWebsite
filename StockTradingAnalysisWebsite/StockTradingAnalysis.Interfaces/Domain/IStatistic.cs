@@ -121,11 +121,6 @@ namespace StockTradingAnalysis.Interfaces.Domain
         Dictionary<string, decimal> FeedbackTop5 { get; }
 
         /// <summary>
-        /// All Feedback sorted by percentage
-        /// </summary>
-        Dictionary<int, decimal> Feedback { get; }
-
-        /// <summary>
         /// Absolute profit per asset class
         /// </summary>
         Dictionary<string, decimal> AbsoluteProfitPerTradingType { get; }

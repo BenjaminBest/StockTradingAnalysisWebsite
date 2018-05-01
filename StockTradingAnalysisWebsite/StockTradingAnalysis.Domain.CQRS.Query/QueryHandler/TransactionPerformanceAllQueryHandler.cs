@@ -6,8 +6,15 @@ using StockTradingAnalysis.Interfaces.ReadModel;
 
 namespace StockTradingAnalysis.Domain.CQRS.Query.QueryHandler
 {
+    /// <summary>
+    /// The TransactionPerformanceAllQueryHandler returns all transaction performances.
+    /// </summary>
+    /// <seealso cref="Interfaces.Queries.IQueryHandler{TransactionPerformanceAllQuery, IEnumerable{ITransactionPerformance}}" />
     public class TransactionPerformanceAllQueryHandler : IQueryHandler<TransactionPerformanceAllQuery, IEnumerable<ITransactionPerformance>>
     {
+        /// <summary>
+        /// The model reader repository
+        /// </summary>
         private readonly IModelReaderRepository<ITransactionPerformance> _modelReaderRepository;
 
         /// <summary>

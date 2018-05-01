@@ -1,12 +1,9 @@
-﻿@using StockTradingAnalysis.Web.Common.Enumerations
-@using StockTradingAnalysis.Web.Common.Formatting
+﻿@using StockTradingAnalysis.Web.Common.Formatting
 @model decimal?
          
 @if (Model.HasValue)
 {
-    string cssClass = ValueFormat.GetCssClass(Model.Value, StatisticsKPIsFormat.Efficiency, StatisticsKPIsStyleCalcFormat.Dynamically);
-    
-    <span class="@cssClass">@string.Format("{0} %", Model.Value)</span>
+    <span class="text-@Model.Value.StyleTypeForEfficiency().CssClass()">@string.Format("{0} %", Model.Value)</span>
 }
 else
 {

@@ -1,16 +1,4 @@
-﻿@using StockTradingAnalysis.Web.Common.Enumerations
-@using StockTradingAnalysis.Web.Common.Formatting
+﻿@using StockTradingAnalysis.Web.Common.Formatting
 @model decimal?
-         
 
-@if (Model.HasValue)
-{
-    var cssClass = ValueFormat.GetCssClass(Model.Value, StatisticsKPIsFormat.Currency, StatisticsKPIsStyleCalcFormat.Dynamically);
-    
-    <span class="@cssClass">@string.Format("{0:c}", Model.Value)</span>
-}
-else
-{
-    string.Format("{0} €", "0.00");
-}
-
+<span class="text-@Model.Value.StyleTypeForCurrency().CssClass()"><strong>@string.Format("{0:c}", Model.Value)</strong></span>

@@ -1,5 +1,14 @@
-﻿
+﻿@model StockTradingAnalysis.Web.Models.DashboardViewModel
+
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+<div class="container-fluid">
+    <div class="row">
+        @Html.Partial("DisplayTemplates/Cards", Model.Cards)
+    </div>
+</div>
+
+@{ //TODO: Open positions in a table maybe at the right/left column, cards should flow around}

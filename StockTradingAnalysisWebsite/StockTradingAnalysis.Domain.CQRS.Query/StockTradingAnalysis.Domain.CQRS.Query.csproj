@@ -64,6 +64,7 @@
     <Compile Include="Queries\FeedbackNameSearchQuery.cs" />
     <Compile Include="Queries\AccountBalanceAllQuery.cs" />
     <Compile Include="Queries\OpenPositionsAllQuery.cs" />
+    <Compile Include="Queries\StatisticsByTimeSliceQuery.cs" />
     <Compile Include="Queries\TransactionMaximumOrderDateQuery.cs" />
     <Compile Include="Queries\TransactionsByStockIdQuery.cs" />
     <Compile Include="Queries\TransactionPerformanceByIdQuery.cs" />
@@ -86,6 +87,7 @@
     <Compile Include="Queries\StockByIdQuery.cs" />
     <Compile Include="QueryHandler\FeedbackProportionAllQueryHandler.cs" />
     <Compile Include="QueryHandler\CalculationAllQueryHandler.cs" />
+    <Compile Include="QueryHandler\StatisticByTimeSliceQueryHandler.cs" />
     <Compile Include="QueryHandler\StockByWknQueryHandler.cs" />
     <Compile Include="QueryHandler\StockQuotationsLastestByIdQueryHandler.cs" />
     <Compile Include="QueryHandler\StockQuotationsLastBeforeDateByIdQueryHandler.cs" />

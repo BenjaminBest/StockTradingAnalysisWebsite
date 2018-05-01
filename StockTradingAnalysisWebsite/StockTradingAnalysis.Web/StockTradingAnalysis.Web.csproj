@@ -275,6 +275,7 @@
     <Compile Include="App_Start\AutoMapperProfiles\FeedbackProfile.cs" />
     <Compile Include="App_Start\AutoMapperProfiles\StockProfile.cs" />
     <Compile Include="App_Start\BindingModules\BootModulesBindingModule.cs" />
+    <Compile Include="App_Start\BindingModules\FormattingBindingModule.cs" />
     <Compile Include="App_Start\BindingModules\ProcessBindingModule.cs" />
     <Compile Include="App_Start\BindingModules\JsonConverterBindingModule.cs" />
     <Compile Include="App_Start\BindingModules\ConfigurationBindingModule.cs" />
@@ -295,10 +296,41 @@
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Common\Deletion\DataDeletionCoordinator.cs" />
-    <Compile Include="Common\Enumerations\StatisticsKPIsFormat.cs" />
-    <Compile Include="Common\Enumerations\StatisticsKPIsStyleCalcFormat.cs" />
+    <Compile Include="Common\Formatting\StatisticCardConverterRepository.cs" />
+    <Compile Include="Common\Formatting\StatisticConverters\AmountOfLossTransactionsToCardConverter.cs" />
+    <Compile Include="Common\Formatting\DecimalExtensions.cs" />
+    <Compile Include="Common\Formatting\StatisticConverters\AvgExitEfficiencyToCardConverter.cs" />
+    <Compile Include="Common\Formatting\StatisticConverters\AvgEntryEfficiencyToCardConverter.cs" />
+    <Compile Include="Common\Formatting\StatisticConverters\BestAssetToCardConverter.cs" />
+    <Compile Include="Common\Formatting\StatisticConverters\LossMaximumToCardConverter.cs" />
+    <Compile Include="Common\Formatting\StatisticConverters\BestAssetClassToCardConverter.cs" />
+    <Compile Include="Common\Formatting\StatisticConverters\ProfitMaximumToCardConverter.cs" />
+    <Compile Include="Common\Formatting\StatisticConverters\LossAverageToCardConverter.cs" />
+    <Compile Include="Common\Formatting\StatisticConverters\ProfitAverageToCardConverter.cs" />
+    <Compile Include="Common\Formatting\StatisticConverters\TradeAverageToCardConverter.cs" />
+    <Compile Include="Common\Formatting\StatisticConverters\PayOffRatioToCardConverter.cs" />
+    <Compile Include="Common\Formatting\StatisticConverters\AmountOfTransactionsPerWeekToCardConverter.cs" />
+    <Compile Include="Common\Formatting\StatisticConverters\AmountOfTransactionsPerMonthToCardConverter.cs" />
+    <Compile Include="Common\Formatting\StatisticConverters\AmountOfTransactionsPerYearToCardConverter.cs" />
+    <Compile Include="Common\Formatting\StatisticConverters\AmountOfProfitTradesToCardConverter.cs" />
+    <Compile Include="Common\Formatting\StatisticConverters\AvgHoldingPeriodPositionTradesToCardConverter.cs" />
+    <Compile Include="Common\Formatting\StatisticConverters\SqnToCardConverter.cs" />
+    <Compile Include="Common\Formatting\StatisticConverters\MostConsecutiveWinsToCardConverter.cs" />
+    <Compile Include="Common\Formatting\StatisticConverters\MostConsecutiveLossesToCardConverter.cs" />
+    <Compile Include="Common\Formatting\StatisticConverters\SumOrderCostsToCardConverter.cs" />
+    <Compile Include="Common\Formatting\StatisticConverters\AverageCrvVolumeToCardConverter.cs" />
+    <Compile Include="Common\Formatting\StatisticConverters\AverageBuyVolumeToCardConverter.cs" />
+    <Compile Include="Common\Formatting\StatisticConverters\MaxDrawdownToCardConverter.cs" />
+    <Compile Include="Common\Formatting\StatisticConverters\AvgHoldingPeriodIntradayTradesToCardConverter.cs" />
+    <Compile Include="Common\Formatting\StatisticConverters\TaxesToCardConverter.cs" />
+    <Compile Include="Common\Formatting\StatisticConverters\AmountOfTransactionsToCardConverter.cs" />
+    <Compile Include="Common\Formatting\StyleExtensions.cs" />
+    <Compile Include="Common\Formatting\StyleType.cs" />
     <Compile Include="Common\Extensions\HtmlExtensions.cs" />
+    <Compile Include="Common\Formatting\StyleTypeCssClass.cs" />
     <Compile Include="Common\Interfaces\IQuotationServiceClient.cs" />
+    <Compile Include="Common\Interfaces\IStatisticCardConverter.cs" />
+    <Compile Include="Common\Interfaces\IStatisticCardConverterRepository.cs" />
     <Compile Include="Common\ItemResolvers\ItemResolverRegistry.cs" />
     <Compile Include="Common\ItemResolvers\FeedbackItemResolver.cs" />
     <Compile Include="Common\ItemResolvers\StrategyItemResolver.cs" />
@@ -307,7 +339,6 @@
     <Compile Include="Common\ItemResolvers\StockTypeItemResolver.cs" />
     <Compile Include="Common\ItemResolvers\TimePeriodAbsoluteItemResolver.cs" />
     <Compile Include="Common\ItemResolvers\TimePeriodRelativeItemResolver.cs" />
-    <Compile Include="Common\Formatting\ValueFormat.cs" />
     <Compile Include="Common\ImageResult.cs" />
     <Compile Include="Common\Interfaces\ISelectItemResolverRegistry.cs" />
     <Compile Include="Common\ModelBinders\ImageViewModelBinder.cs" />
@@ -321,13 +352,16 @@
     <Compile Include="Controllers\StrategyController.cs" />
     <Compile Include="Controllers\FeedbackController.cs" />
     <Compile Include="Controllers\StockController.cs" />
-    <Compile Include="Converters\QuotationJsonConverter.cs" />
+    <Compile Include="Common\Converters\QuotationJsonConverter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Hubs\QuotationHub.cs" />
     <Compile Include="Models\CalculationViewModel.cs" />
     <Compile Include="Models\CandleStickChartViewModel.cs" />
+    <Compile Include="Models\CardsViewModel.cs" />
+    <Compile Include="Models\CardViewModel.cs" />
+    <Compile Include="Models\DashboardViewModel.cs" />
     <Compile Include="Models\FeedbackProportionViewModel.cs" />
     <Compile Include="Models\QuoteViewModel.cs" />
     <Compile Include="Models\SelectionViewModel.cs" />
@@ -364,11 +398,7 @@
     </Content>
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Dashboard\Index.cshtml" />
-    <Content Include="Views\Shared\DisplayTemplates\ATR.cshtml" />
-    <Content Include="Views\Shared\DisplayTemplates\ListAbsolute.cshtml" />
-    <Content Include="Views\Shared\DisplayTemplates\ListPercentage.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\PerformanceAbsolute.cshtml" />
-    <Content Include="Views\Shared\DisplayTemplates\PerformanceGreenAbsolute.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\PerformanceGreenPercentage.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\PerformancePercentage.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\PerformancePercentageEfficiency.cshtml" />
@@ -412,6 +442,8 @@
     <Content Include="Views\Stock\TransactionHistory.cshtml" />
     <Content Include="Views\Stock\LatestQuote.cshtml" />
     <Content Include="Views\Chart\CandleStickChart.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\Card.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\Cards.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

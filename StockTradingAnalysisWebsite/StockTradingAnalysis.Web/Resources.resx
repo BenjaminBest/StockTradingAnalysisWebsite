@@ -1081,7 +1081,7 @@
     <value>Max. aufeinanderfolgende Gewinner</value>
   </data>
   <data name="ViewTextKpiOrderCosts" xml:space="preserve">
-    <value>Orderkosten/Steuern</value>
+    <value>Orderkosten</value>
   </data>
   <data name="ViewTextKpiPayOffRatio" xml:space="preserve">
     <value>Pay-Off-Ratio</value>

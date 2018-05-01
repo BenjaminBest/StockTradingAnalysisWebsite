@@ -1,0 +1,6 @@
+﻿@model StockTradingAnalysis.Web.Models.CardsViewModel
+
+@foreach (var card in Model.Cards)
+{
+    @Html.Partial("DisplayTemplates/Card",card)
+}

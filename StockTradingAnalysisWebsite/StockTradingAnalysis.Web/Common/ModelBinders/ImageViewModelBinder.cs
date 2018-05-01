@@ -4,6 +4,10 @@ using StockTradingAnalysis.Web.Models;
 
 namespace StockTradingAnalysis.Web.Common.ModelBinders
 {
+    /// <summary>
+    /// The ImageViewModelBinder converts the image data transfered to a viewmodel.
+    /// </summary>
+    /// <seealso cref="IModelBinder" />
     public class ImageViewModelBinder : IModelBinder
     {
         /// <summary>
@@ -42,15 +46,20 @@ namespace StockTradingAnalysis.Web.Common.ModelBinders
         private static byte[] GetBytes(string str)
         {
             //TODO: Create converter service and put this there
-            var bytes = new byte[str.Length*sizeof (char)];
+            var bytes = new byte[str.Length * sizeof(char)];
             Buffer.BlockCopy(str.ToCharArray(), 0, bytes, 0, bytes.Length);
 
             return bytes;
         }
 
+        /// <summary>
+        /// Converts a byte array to a string.
+        /// </summary>
+        /// <param name="bytes">The bytes.</param>
+        /// <returns></returns>
         private static string GetString(byte[] bytes)
         {
-            var chars = new char[bytes.Length/sizeof (char)];
+            var chars = new char[bytes.Length / sizeof(char)];
             Buffer.BlockCopy(bytes, 0, chars, 0, bytes.Length);
             return new string(chars);
         }

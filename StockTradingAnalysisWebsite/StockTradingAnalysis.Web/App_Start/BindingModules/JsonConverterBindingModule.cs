@@ -1,6 +1,6 @@
 ﻿using Ninject.Modules;
 using Raven.Imports.Newtonsoft.Json;
-using StockTradingAnalysis.Web.Converters;
+using StockTradingAnalysis.Web.Common.Converters;
 
 namespace StockTradingAnalysis.Web.BindingModules
 {

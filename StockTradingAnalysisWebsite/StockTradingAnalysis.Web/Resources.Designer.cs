@@ -3211,7 +3211,7 @@ namespace StockTradingAnalysis.Web {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Orderkosten/Steuern.
+        ///   Looks up a localized string similar to Orderkosten.
         /// </summary>
         public static string ViewTextKpiOrderCosts {
             get {

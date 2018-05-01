@@ -70,7 +70,7 @@ namespace StockTradingAnalysis.Domain.Events.EventHandler
                 {
                     using (new TimeMeasure(ms => _loggingService.Debug($"Re-Calculate statistics for time range: {slice} in {ms} msec")))
                     {
-                        var calculationResult = _statisticService.Calculate(slices);
+                        var calculationResult = _statisticService.Calculate(slice);
 
                         var item = _modelRepository.GetById(calculationResult);
 

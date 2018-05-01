@@ -9,13 +9,13 @@ namespace StockTradingAnalysis.Interfaces.Services.Domain
     public interface ITimeSliceCreationService
     {
         /// <summary>
-        /// Creates all time slices.
+        /// Creates all time slices recursivly.
         /// </summary>
         /// <returns></returns>
         ITimeSlice CreateTimeSlices();
 
         /// <summary>
-        /// Creates the time slices which are affected by the given <paramref name="date"/>
+        /// Creates the time slices which are affected by the given <paramref name="date"/> recursivly.
         /// </summary>
         /// <param name="date">The date.</param>
         /// <returns></returns>

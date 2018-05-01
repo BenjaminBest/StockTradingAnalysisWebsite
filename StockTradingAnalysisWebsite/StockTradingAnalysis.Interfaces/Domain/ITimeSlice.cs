@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using StockTradingAnalysis.Interfaces.Enumerations;
 
 namespace StockTradingAnalysis.Interfaces.Domain
@@ -7,24 +6,8 @@ namespace StockTradingAnalysis.Interfaces.Domain
     /// <summary>
     /// The interface ITimeSlice defines one single time slice which covers a specific time range.
     /// </summary>
-    public interface ITimeSlice
+    public interface ITimeSlice : ITimeSliceKey
     {
-        /// <summary>
-        /// Gets or sets the start.
-        /// </summary>
-        /// <value>
-        /// The start.
-        /// </value>
-        DateTime Start { get; set; }
-
-        /// <summary>
-        /// Gets or sets the end.
-        /// </summary>
-        /// <value>
-        /// The end.
-        /// </value>
-        DateTime End { get; set; }
-
         /// <summary>
         /// Gets or sets the type.
         /// </summary>

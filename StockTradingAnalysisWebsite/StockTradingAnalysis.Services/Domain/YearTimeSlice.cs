@@ -87,5 +87,53 @@ namespace StockTradingAnalysis.Services.Domain
         {
             return $"Year {Value} [{Start.Date}-{End.Date}]";
         }
+
+        /// <summary>
+        /// Equalses the specified other.
+        /// </summary>
+        /// <param name="other">The other.</param>
+        /// <returns></returns>
+        protected bool Equals(ITimeSlice other)
+        {
+            return Start.Equals(other.Start) && End.Equals(other.End);
+        }
+
+        /// <summary>Determines whether the specified object is equal to the current object.</summary>
+        /// <returns>true if the specified object  is equal to the current object; otherwise, false.</returns>
+        /// <param name="obj">The object to compare with the current object. </param>
+        public override bool Equals(object obj)
+        {
+            if (obj is null)
+                return false;
+
+            if (ReferenceEquals(this, obj))
+                return true;
+
+            if (obj.GetType() != GetType())
+                return false;
+
+            return Equals((ITimeSlice)obj);
+        }
+
+        /// <summary>Serves as the default hash function. </summary>
+        /// <returns>A hash code for the current object.</returns>
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                return (Start.GetHashCode() * 397) ^ End.GetHashCode();
+            }
+        }
+
+        /// <summary>Indicates whether the current object is equal to another object of the same type.</summary>
+        /// <returns>true if the current object is equal to the <paramref name="other" /> parameter; otherwise, false.</returns>
+        /// <param name="other">An object to compare with this object.</param>
+        public bool Equals(ITimeSliceKey other)
+        {
+            if (other == null)
+                return false;
+
+            return Start == other.Start && End == other.End;
+        }
     }
 }
