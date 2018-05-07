@@ -44,8 +44,6 @@
     <Compile Include="CommandHandler\CalculationCopyCommandHandler.cs" />
     <Compile Include="CommandHandler\StockQuotationsAddOrChangeCommandHandler.cs" />
     <Compile Include="CommandHandler\StockQuotationAddOrChangeCommandHandler.cs" />
-    <Compile Include="CommandHandler\TransactionCalculateCommandHandler.cs" />
-    <Compile Include="CommandHandler\TransactionCalculateDividendCommandHandler.cs" />
     <Compile Include="CommandHandler\TransactionSplitCommandHandler.cs" />
     <Compile Include="CommandHandler\TransactionRemoveCommandHandler.cs" />
     <Compile Include="CommandHandler\TransactionDividendCommandHandler.cs" />
@@ -67,8 +65,6 @@
     <Compile Include="Commands\CalculationCopyCommand.cs" />
     <Compile Include="Commands\StockQuotationsAddOrChangeCommand.cs" />
     <Compile Include="Commands\StockQuotationAddOrChangeCommand.cs" />
-    <Compile Include="Commands\TransactionCalculateDividendCommand.cs" />
-    <Compile Include="Commands\TransactionCalculateCommand.cs" />
     <Compile Include="Commands\TransactionSplitCommand.cs" />
     <Compile Include="Commands\TransactionRemoveCommand.cs" />
     <Compile Include="Commands\TransactionDividendCommand.cs" />

@@ -29,7 +29,7 @@ namespace StockTradingAnalysis.Web.Common.Formatting.StatisticConverters
             {
                 Style = StyleType.Light,
                 Header = Resources.ViewTextKpiAvgHoldingPeriodIntradayTrades,
-                Title = $"{statistic.AvgHoldingPeriodIntradayTrades:0.00} {Resources.DisplayTooltipMinutes} ({statistic.AmountIntradayTrades})"
+                Title = $"{statistic.AvgHoldingPeriodIntradayTrades:0} {Resources.DisplayTooltipMinutes} ({statistic.AmountIntradayTrades})"
             };
         }
     }

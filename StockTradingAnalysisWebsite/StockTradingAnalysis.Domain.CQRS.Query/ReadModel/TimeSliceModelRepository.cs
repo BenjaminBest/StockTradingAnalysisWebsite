@@ -24,9 +24,7 @@ namespace StockTradingAnalysis.Domain.CQRS.Query.ReadModel
         /// <returns>The item with the <paramref name="id"/> or <c>null</c></returns>
         public TItem GetById(ITimeSliceKey id)
         {
-            TItem model;
-
-            return Items.TryGetValue(id, out model) ? model : default(TItem);
+            return Items.TryGetValue(id, out var model) ? model : default(TItem);
         }
 
         /// <summary>

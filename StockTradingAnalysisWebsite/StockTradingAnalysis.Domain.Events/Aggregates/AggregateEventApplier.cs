@@ -34,13 +34,13 @@ namespace StockTradingAnalysis.Domain.Events.Aggregates
         /// <param name="event">The event</param>
         public static void InvokeEvent<TAggregate>(TAggregate aggregate, IDomainEvent @event)
         {
-            MethodInfo info;
             var type = @event.GetType();
-            if (!Cache<TAggregate>.Dict.TryGetValue(type, out info))
+            if (!Cache<TAggregate>.Dict.TryGetValue(type, out var info))
             {
                 var s = $"Failed to locate {typeof(TAggregate).Name}.Handle({type.Name})";
                 throw new AggregateApplyException(s);
             }
+
             info.Invoke(aggregate, new object[] { @event });
         }
     }
