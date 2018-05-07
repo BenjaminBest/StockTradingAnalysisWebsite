@@ -296,6 +296,9 @@
     <Compile Include="App_Start\Startup.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Common\Deletion\DataDeletionCoordinator.cs" />
+    <Compile Include="Common\Interfaces\IStyleTypeBuilder.cs" />
+    <Compile Include="Common\Interfaces\IStyleTypeBuilderThreshold.cs" />
+    <Compile Include="Common\Formatting\StyleTypeBuilder.cs" />
     <Compile Include="Common\Formatting\StatisticCardConverterRepository.cs" />
     <Compile Include="Common\Formatting\StatisticConverters\AmountOfLossTransactionsToCardConverter.cs" />
     <Compile Include="Common\Formatting\DecimalExtensions.cs" />
@@ -378,7 +381,6 @@
     <Compile Include="Models\TransactionPerformanceViewModel.cs" />
     <Compile Include="Models\TransactionSellingViewModel.cs" />
     <Compile Include="Models\TransactionBuyingViewModel.cs" />
-    <Compile Include="Models\TransactionToolTipViewModel.cs" />
     <Compile Include="Models\TransactionIndexViewModel.cs" />
     <Compile Include="Models\TransactionSplitViewModel.cs" />
     <Compile Include="Models\TransactionViewModel.cs" />

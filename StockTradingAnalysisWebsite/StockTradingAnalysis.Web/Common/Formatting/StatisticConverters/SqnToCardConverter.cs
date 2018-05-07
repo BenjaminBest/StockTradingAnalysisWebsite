@@ -27,9 +27,15 @@ namespace StockTradingAnalysis.Web.Common.Formatting.StatisticConverters
         {
             return new CardViewModel
             {
-                Style = StyleType.Light,
+                Style = new StyleTypeBuilder<decimal>(statistic.PayOffRatio)
+                    .Default(StyleType.Dark)
+                    .WhenSmallerThan(0, StyleType.Danger)
+                    .WhenSmallerThan(2.5m, StyleType.Warning)
+                    .WhenGreaterOrEqualThan(2.5m, StyleType.Success)
+                    .Compile(),
                 Header = Resources.ViewTextKpiSQN,
-                Title = $"{statistic.SqnDescription} ({statistic.Sqn:0.0})"
+                Title = $"{statistic.SqnDescription} ({statistic.Sqn:0.0})",
+                FilledBackground = true
             };
         }
     }

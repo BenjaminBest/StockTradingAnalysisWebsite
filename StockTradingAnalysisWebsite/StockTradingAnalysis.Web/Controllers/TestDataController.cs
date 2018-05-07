@@ -192,7 +192,7 @@ namespace StockTradingAnalysis.Web.Controllers
 
                 _commandDispatcher.Execute(new TransactionSellCommand(Guid.NewGuid(), -1,
                     DateTime.Parse("2013-03-12 19:19"), 650, 1.39m, 11.15m, string.Empty, string.Empty, null, stockId,
-                    10.71m, 2.80m, 3.58m,
+                    10.71m, 1.10m, 3.58m,
                     new List<Guid>()
                     {
                         Guid.Parse("B3ACE2B0-B820-4E1A-86C6-EF3D1991CF9A"),
@@ -205,7 +205,7 @@ namespace StockTradingAnalysis.Web.Controllers
 
                 _commandDispatcher.Execute(new TransactionSellCommand(Guid.NewGuid(), -1,
                      DateTime.Parse("2013-03-25 16:22"), 700, 1.14m, 11.15m, string.Empty, string.Empty, null, stockId,
-                     10.71m, 2.80m, 3.58m,
+                     10.71m, 1.00m, 2.58m,
                      new List<Guid>()
                      {
                         Guid.Parse("BEC6DE2C-2E6A-4B84-8A11-E8726A5C5EC9"),

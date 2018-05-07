@@ -40,6 +40,11 @@ namespace StockTradingAnalysis.Interfaces.Types
             EndDate = end;
         }
 
+        public bool HasValue()
+        {
+            return StartDate != default(DateTime) && EndDate != default(DateTime);
+        }
+
         /// <summary>
         /// Returns a decimal representation of this period in minutes
         /// </summary>

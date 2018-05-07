@@ -34,6 +34,9 @@ namespace StockTradingAnalysis.Web.Common.Formatting
         {
             var result = new CardsViewModel();
 
+            if (statistic == null)
+                return result;
+
             foreach (var converter in _converters.OrderBy(c => c.Order))
             {
                 result.Cards.Add(converter.Convert(statistic));

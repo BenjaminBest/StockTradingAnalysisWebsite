@@ -4,6 +4,8 @@ using System.Linq;
 using StockTradingAnalysis.Domain.CQRS.Query.Queries;
 using StockTradingAnalysis.Interfaces.Domain;
 using StockTradingAnalysis.Interfaces.Queries;
+using StockTradingAnalysis.Interfaces.Services;
+using StockTradingAnalysis.Interfaces.Services.Core;
 using StockTradingAnalysis.Interfaces.Services.Domain;
 using StockTradingAnalysis.Services.Domain;
 using StockTradingAnalysis.Services.Modules;
@@ -15,6 +17,11 @@ namespace StockTradingAnalysis.Services.Services
     /// </summary>
     public class StatisticService : IStatisticService
     {
+        /// <summary>
+        /// The math calculator service
+        /// </summary>
+        private readonly IMathCalculatorService _mathCalculatorService;
+
         /// <summary>
         /// The transactions
         /// </summary>
@@ -36,10 +43,13 @@ namespace StockTradingAnalysis.Services.Services
         private readonly IReadOnlyList<IFeedbackProportion> _feedbackProportions;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="StatisticService"/> class.
+        /// Initializes a new instance of the <see cref="StatisticService" /> class.
         /// </summary>
-        public StatisticService(IQueryDispatcher queryDispatcher)
+        /// <param name="queryDispatcher">The query dispatcher.</param>
+        /// <param name="mathCalculatorService">The math calculator service.</param>
+        public StatisticService(IQueryDispatcher queryDispatcher, IMathCalculatorService mathCalculatorService)
         {
+            _mathCalculatorService = mathCalculatorService;
             _transactions = new ReadOnlyCollection<ITransaction>(queryDispatcher.Execute(new TransactionAllQuery()).ToList());
             _feedback = new ReadOnlyCollection<IFeedback>(queryDispatcher.Execute(new FeedbackAllQuery()).ToList());
             _transactionPerformances = new ReadOnlyCollection<ITransactionPerformance>(queryDispatcher.Execute(new TransactionPerformanceAllQuery()).ToList());
@@ -64,14 +74,14 @@ namespace StockTradingAnalysis.Services.Services
             var transactions = FilterTransactions(_transactions, timeRange);
             var transactionPerformances = FilterPerformances(_transactionPerformances, transactions);
 
-            //TODO:Filter all the others here based on transaction or date
-
             result.CalculateCosts(transactions);
-            result.CalculateFeedback(_feedback, _feedbackProportions);//TODO: Feedback filtern nach performance/transactions
             result.CalculateAmounts(transactionPerformances);
-            result.CalculateProfits(transactionPerformances);
-            result.CalculateLosses(transactionPerformances);
+            result.CalculateFeedback(_feedback, _feedbackProportions);//TODO: Feedback filtern nach performance/transactions            
+            result.CalculateProfits(transactionPerformances, _mathCalculatorService);
+            result.CalculateLosses(transactionPerformances, _mathCalculatorService);
             result.CalculateAssetClass(transactionPerformances);
+            result.CalculateDailyBasis(transactionPerformances);
+            result.CalculateEfficiency(transactionPerformances, transactions, _mathCalculatorService);
 
             return result;
         }

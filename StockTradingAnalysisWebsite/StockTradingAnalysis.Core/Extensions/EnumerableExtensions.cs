@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace StockTradingAnalysis.Core.Extensions
 {
@@ -32,6 +33,22 @@ namespace StockTradingAnalysis.Core.Extensions
                 foreach (var child in children)
                     stack.Push(child);
             }
+        }
+
+        /// <summary>
+        /// Excecutes the <paramref name="safeAction"/> when the collection of items is not null or empty.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="items">The items.</param>
+        /// <param name="safeAction">The safe action.</param>
+        public static void WhenNotNullOrEmpty<T>(this IEnumerable<T> items, Action<IEnumerable<T>> safeAction)
+        {
+            var itemsList = items?.ToList() ?? Enumerable.Empty<T>().ToList();
+
+            if (!itemsList.Any())
+                return;
+
+            safeAction(itemsList);
         }
     }
 }

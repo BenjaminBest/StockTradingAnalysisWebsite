@@ -72,6 +72,9 @@ namespace StockTradingAnalysis.Domain.Events.EventHandler
                     {
                         var calculationResult = _statisticService.Calculate(slice);
 
+                        if (calculationResult == null)
+                            return;
+
                         var item = _modelRepository.GetById(calculationResult);
 
                         if (item != null)

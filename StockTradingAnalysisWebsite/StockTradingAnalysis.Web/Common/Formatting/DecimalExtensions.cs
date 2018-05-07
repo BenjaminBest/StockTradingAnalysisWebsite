@@ -12,10 +12,12 @@
         /// <returns></returns>
         public static StyleType StyleTypeForCurrency(this decimal value)
         {
-            var cssClass = value > 0 ? StyleType.Success : StyleType.Danger;
-            cssClass = value == 0 ? StyleType.Warning : cssClass;
-
-            return cssClass;
+            return new StyleTypeBuilder<decimal>(value)
+                .Default(StyleType.Info)
+                .WhenSmallerThan(0, StyleType.Danger)
+                .WhenEqualThan(0, StyleType.Warning)
+                .WhenGreaterThan(0, StyleType.Success)
+                .Compile();
         }
 
         /// <summary>
@@ -25,10 +27,12 @@
         /// <returns></returns>
         public static StyleType StyleTypeForPercentage(this decimal value)
         {
-            var cssClass = value > 0 ? StyleType.Success : StyleType.Danger;
-            cssClass = value >= 0 && value < 1 ? StyleType.Warning : cssClass;
-
-            return cssClass;
+            return new StyleTypeBuilder<decimal>(value)
+                .Default(StyleType.Info)
+                .WhenSmallerThan(0, StyleType.Danger)
+                .WhenGreaterOrEqualThan(0, StyleType.Warning)
+                .WhenGreaterOrEqualThan(1, StyleType.Success)
+                .Compile();
         }
 
         /// <summary>
@@ -38,10 +42,12 @@
         /// <returns></returns>
         public static StyleType StyleTypeForEfficiency(this decimal value)
         {
-            var cssClass = value > 80 ? StyleType.Success : StyleType.Danger;
-            cssClass = value >= 60 && value <= 80 ? StyleType.Warning : cssClass;
-
-            return cssClass;
+            return new StyleTypeBuilder<decimal>(value)
+                .Default(StyleType.Info)
+                .WhenGreaterOrEqualThan(0, StyleType.Danger)
+                .WhenGreaterOrEqualThan(60, StyleType.Warning)
+                .WhenGreaterOrEqualThan(80, StyleType.Success)
+                .Compile();
         }
     }
 }

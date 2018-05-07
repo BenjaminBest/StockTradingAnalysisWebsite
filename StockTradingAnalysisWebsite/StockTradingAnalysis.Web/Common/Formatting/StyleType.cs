@@ -1,10 +1,18 @@
-﻿namespace StockTradingAnalysis.Web.Common.Formatting
+﻿using System;
+
+namespace StockTradingAnalysis.Web.Common.Formatting
 {
     /// <summary>
     /// Enumeration StyleType defines the different styles available
     /// </summary>
+    [Flags]
     public enum StyleType
     {
+        /// <summary>
+        /// The undefined
+        /// </summary>
+        [StyleTypeCssClass("")]
+        Undefined,
         /// <summary>
         /// The primary style
         /// </summary>

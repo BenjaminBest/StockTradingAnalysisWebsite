@@ -16,9 +16,13 @@ namespace StockTradingAnalysis.Services.Modules
         /// <param name="transactions">The transactions.</param>
         public static void CalculateAssetClass(this Statistic statistic, IReadOnlyCollection<ITransactionPerformance> transactions)
         {
+            if (transactions.Count == 0)
+                return;
+
             //statistic.BestAssetClassProfit
             //statistic.BestAssetProfit           
-
+            //statistic.AbsoluteProfitPerStockName
+            //statistic.AbsoluteProfitPerTradingType            
         }
     }
 }

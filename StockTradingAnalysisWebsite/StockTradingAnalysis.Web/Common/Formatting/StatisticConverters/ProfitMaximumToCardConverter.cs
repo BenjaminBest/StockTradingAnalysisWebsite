@@ -27,7 +27,7 @@ namespace StockTradingAnalysis.Web.Common.Formatting.StatisticConverters
         {
             return new CardViewModel
             {
-                Style = statistic.LossAverage.StyleTypeForCurrency(),
+                Style = statistic.ProfitMaximum.StyleTypeForCurrency(),
                 Header = Resources.ViewTextKpiProfitMaximum,
                 Title = statistic.ProfitMaximum.ToString("0.00 €")
             };

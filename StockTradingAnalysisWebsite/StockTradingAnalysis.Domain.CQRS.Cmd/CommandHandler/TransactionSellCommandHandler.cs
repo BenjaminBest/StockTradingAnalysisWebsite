@@ -37,6 +37,8 @@ namespace StockTradingAnalysis.Domain.CQRS.Cmd.CommandHandler
             if (_book.GetOpenPosition(command.StockId).Shares < command.Shares)
                 throw new DomainValidationException("Units", "The amount of available units for the stock is smaller than those sold.");
 
+            //TODO: Validation MAE must be smaller than share price if long, else higher, same for MFE
+
             //Create new transaction
             var transaction = new TransactionAggregate();
 

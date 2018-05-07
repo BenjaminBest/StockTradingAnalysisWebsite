@@ -27,9 +27,15 @@ namespace StockTradingAnalysis.Web.Common.Formatting.StatisticConverters
         {
             return new CardViewModel
             {
-                Style = StyleType.Secondary,
+                Style = new StyleTypeBuilder<decimal>(statistic.PayOffRatio)
+                    .Default(StyleType.Info)
+                    .WhenGreaterOrEqualThan(0, StyleType.Danger)
+                    .WhenGreaterOrEqualThan(0.7m, StyleType.Warning)
+                    .WhenGreaterOrEqualThan(1.25m, StyleType.Success)
+                    .Compile(),
                 Header = Resources.ViewTextKpiPayOffRatio,
-                Title = $"{statistic.PayOffRatioDescription} ({statistic.PayOffRatio})"
+                Title = $"{statistic.PayOffRatioDescription} ({statistic.PayOffRatio})",
+                FilledBackground = true
             };
         }
     }
