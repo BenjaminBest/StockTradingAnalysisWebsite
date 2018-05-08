@@ -113,4 +113,4 @@ Security details
 Security charts
 ![security_charts](https://user-images.githubusercontent.com/29073072/36342220-61e068e8-13fb-11e8-830d-ad3fa23c1c44.png)
 Dashboard KPIs
-![dashboard](https://user-images.githubusercontent.com/29073072/39760693-4f45210a-52d6-11e8-90dc-d923647100f0.png)
+![dashboard](https://user-images.githubusercontent.com/29073072/39763155-ac11817a-52dc-11e8-8e34-b1bd0fc5db35.png)
