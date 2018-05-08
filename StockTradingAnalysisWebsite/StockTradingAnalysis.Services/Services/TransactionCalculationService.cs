@@ -135,7 +135,7 @@ namespace StockTradingAnalysis.Services.Services
         /// <summary>
         /// The performance of the current period is calculated as if all shares whould have been sold at the beginning
         /// of this period and then the difference to the value at the end of the period is beeing calculated.
-        /// All buys of the year <paramref name="year" /> will be calculated seperatly on a daily basis.
+        /// All buys within the timeframe will be calculated seperatly on a daily basis.
         /// This calculation should only be used for periods starting with the begin of a year till the end of a year (IIR problem)
         /// </summary>
         /// <param name="query">The query should only contain the base query with special filters. Date range filters will automatically applied.</param>
@@ -146,9 +146,7 @@ namespace StockTradingAnalysis.Services.Services
         {
             var endOfLastYear = _dateCalculationService.GetEndDateOfYear(new DateTime(start.Year - 1, 1, 1));
 
-            var localQuery = query as TransactionAllQuery;
-
-            if (localQuery == null)
+            if (!(query is TransactionAllQuery localQuery))
                 throw new InvalidOperationException("CalculatePerformancePercentageForPeriod only works with a TransactionAllQuery"); //TODO: Not good
 
             var periodQuery = new TransactionAllQuery().CopyFiltersFrom(localQuery).Register(new TransactionStartDateFilter(start)).Register(new TransactionEndDateFilter(end));

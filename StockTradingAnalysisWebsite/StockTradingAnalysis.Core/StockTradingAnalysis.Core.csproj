@@ -67,6 +67,7 @@
     <Compile Include="Common\TimeMeasure.cs" />
     <Compile Include="Common\TypeHelper.cs" />
     <Compile Include="Configuration\ConfigurationRegistry.cs" />
+    <Compile Include="Extensions\ReadOnlyListExtensions.cs" />
     <Compile Include="Extensions\EnumerableExtensions.cs" />
     <Compile Include="Extensions\HashSetExtensions.cs" />
     <Compile Include="Extensions\KernelExtensions.cs" />

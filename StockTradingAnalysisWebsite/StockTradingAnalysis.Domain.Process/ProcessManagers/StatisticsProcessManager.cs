@@ -16,7 +16,10 @@ namespace StockTradingAnalysis.Domain.Process.ProcessManagers
         IStartedByMessage<StockQuotationAddedEvent>,
         IStartedByMessage<StockQuotationChangedEvent>,
         IStartedByMessage<StockQuotationsAddedOrChangedEvent>,
-        IStartedByMessage<ReplayFinishedEvent>
+        IStartedByMessage<ReplayFinishedEvent>,
+        IStartedByMessage<TransactionPerformanceCalculatedEvent>,
+        IStartedByMessage<TransactionDividendCalculatedEvent>,
+        IStartedByMessage<TransactionUndoEvent>
     {
         /// <summary>
         /// The event bus
@@ -70,7 +73,39 @@ namespace StockTradingAnalysis.Domain.Process.ProcessManagers
         {
             _eventBus.Publish(new StaticsticsBasicDataChangedEvent(DateTime.MinValue));
             Data.ReplayFinished = true;
+
+            //Long living process to make sure during replay statistics are only calculated once
             //StatusUpdate.MarkAsCompleted(this);
+        }
+
+        /// <summary>
+        /// Handles the given message <paramref name="message" />
+        /// </summary>
+        /// <param name="message">The message.</param>
+        public void Handle(TransactionUndoEvent message)
+        {
+            if (Data.ReplayFinished)
+                _eventBus.Publish(new StaticsticsBasicDataChangedEvent(message.OrderDate));
+        }
+
+        /// <summary>
+        /// Handles the given message <paramref name="message" />
+        /// </summary>
+        /// <param name="message">The message.</param>
+        public void Handle(TransactionPerformanceCalculatedEvent message)
+        {
+            if (Data.ReplayFinished)
+                _eventBus.Publish(new StaticsticsBasicDataChangedEvent(message.HoldingPeriod.EndDate));
+        }
+
+        /// <summary>
+        /// Handles the given message <paramref name="message" />
+        /// </summary>
+        /// <param name="message">The message.</param>
+        public void Handle(TransactionDividendCalculatedEvent message)
+        {
+            if (Data.ReplayFinished)
+                _eventBus.Publish(new StaticsticsBasicDataChangedEvent(message.HoldingPeriod.EndDate));
         }
     }
 }

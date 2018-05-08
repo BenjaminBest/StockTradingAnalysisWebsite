@@ -14,16 +14,18 @@ namespace StockTradingAnalysis.Services.Modules
         /// Calculates the feedback.
         /// </summary>
         /// <param name="statistic">The statistic.</param>
-        /// <param name="feedback">The feedback.</param>
-        /// <param name="proportions">The feedback proportion in relation of the total amount of feedback given.</param>
-        public static void CalculateFeedback(this Statistic statistic,
-            IReadOnlyCollection<IFeedback> feedback,
-            IReadOnlyCollection<IFeedbackProportion> proportions)
+        /// <param name="transactions">The transactions.</param>
+        public static void CalculateFeedback(this Statistic statistic, IReadOnlyList<ITransaction> transactions)
         {
-            statistic.FeedbackTop5 = proportions.Join(feedback, p => p.Id, f => f.Id,
-                    (p, f) => new { f.Name, p.ProportionPercentage })
-                .OrderByDescending(p => p.ProportionPercentage).Take(5)
-                .ToDictionary(k => k.Name, v => v.ProportionPercentage);
+            var allFeedback = transactions.OfType<ISellingTransaction>().SelectMany(t => t.Feedback)
+                .Select(t => t.Name).ToList();
+
+            statistic.FeedbackTop5 = allFeedback
+                .GroupBy(t => t)
+                .Select(x => new { Name = x.Key, Count = x.Count() })
+                .OrderByDescending(x => x.Count)
+                .Take(5)
+                .ToDictionary(g => g.Name, g => decimal.Round(g.Count / allFeedback.Count() * 100, 2));
         }
     }
 }

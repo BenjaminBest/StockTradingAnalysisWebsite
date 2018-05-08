@@ -17,9 +17,6 @@ namespace StockTradingAnalysis.Services.Modules
         /// <param name="transactions">The transactions.</param>
         public static void CalculateCosts(this Statistic statistic, IReadOnlyCollection<ITransaction> transactions)
         {
-            if (transactions.Count == 0)
-                return;
-
             statistic.SumOrderCosts = transactions.Sum(t => t.OrderCosts);
             statistic.SumTaxes = transactions.OfType<ISellingTransaction>().Sum(t => t.Taxes) +
                                  transactions.OfType<IDividendTransaction>().Sum(t => t.Taxes);

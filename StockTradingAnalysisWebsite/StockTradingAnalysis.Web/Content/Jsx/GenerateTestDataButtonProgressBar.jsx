@@ -2,7 +2,7 @@
     constructor(props) {
         super(props);
 
-        this.state = { progressbarValue: 0, popup: { message: '', type: '' }, steps: 7, enabled: true, baseUrl: '/TestData/Generate/' };
+        this.state = { progressbarValue: 0, popup: { message: '', type: '' }, steps: 8, enabled: true, baseUrl: '/TestData/Generate/' };
 
         this.updateProgressBar = this.updateProgressBar.bind(this);
         this.generate = this.generate.bind(this);
@@ -23,6 +23,7 @@
             .then(() => this.generate(4))
             .then(() => this.generate(5))
             .then(() => this.generate(6))
+            .then(() => this.generate(7))
             .then(this.setState({ enabled: !this.state.enabled }));        
     }
 

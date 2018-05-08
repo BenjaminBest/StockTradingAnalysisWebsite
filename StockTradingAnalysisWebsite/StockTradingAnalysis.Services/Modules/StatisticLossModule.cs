@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using StockTradingAnalysis.Interfaces.Domain;
-using StockTradingAnalysis.Interfaces.Services;
 using StockTradingAnalysis.Interfaces.Services.Core;
 using StockTradingAnalysis.Services.Domain;
 
@@ -31,8 +30,8 @@ namespace StockTradingAnalysis.Services.Modules
             statistic.LossAbsolute = decimal.Round(lossTransactions.Sum(s => s.ProfitAbsolute), 2);
             statistic.LossAverage = decimal.Round(lossTransactions.Average(s => s.ProfitAbsolute), 2);
             statistic.LossAveragePercentage = mathCalculatorService.CalculateGeometricMean(lossTransactions.Select(t => t.ProfitPercentage));
-            statistic.LossMaximum = decimal.Round(lossTransactions.Max(s => s.ProfitAbsolute), 2);
             statistic.PercentageOfLossTransactions = decimal.Round(Convert.ToDecimal(statistic.AmountOfLossTransactions / (decimal)statistic.AmountOfTransactions) * 100, 2);
+            statistic.LossMaximum = decimal.Round(lossTransactions.Min(s => s.ProfitAbsolute), 2);
         }
     }
 }

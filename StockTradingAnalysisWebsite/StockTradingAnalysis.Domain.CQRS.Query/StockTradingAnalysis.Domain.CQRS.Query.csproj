@@ -51,6 +51,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Queries\CalculationAllQuery.cs" />
     <Compile Include="Queries\FeedbackProportionAllQuery.cs" />
+    <Compile Include="Queries\StockStatisticsAllQuery.cs" />
     <Compile Include="Queries\StockByWknQuery.cs" />
     <Compile Include="Queries\StockQuotationsLatestByIdQuery.cs" />
     <Compile Include="Queries\StockQuotationsLastBeforeDateByIdQuery.cs" />
@@ -88,6 +89,7 @@
     <Compile Include="QueryHandler\FeedbackProportionAllQueryHandler.cs" />
     <Compile Include="QueryHandler\CalculationAllQueryHandler.cs" />
     <Compile Include="QueryHandler\StatisticByTimeSliceQueryHandler.cs" />
+    <Compile Include="QueryHandler\StockStatisticsAllQueryHandler.cs" />
     <Compile Include="QueryHandler\StockByWknQueryHandler.cs" />
     <Compile Include="QueryHandler\StockQuotationsLastestByIdQueryHandler.cs" />
     <Compile Include="QueryHandler\StockQuotationsLastBeforeDateByIdQueryHandler.cs" />

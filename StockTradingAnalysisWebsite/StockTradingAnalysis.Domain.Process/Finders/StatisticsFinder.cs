@@ -12,7 +12,10 @@ namespace StockTradingAnalysis.Domain.Process.Finders
         IMessageCorrelationIdCreator<StockQuotationAddedEvent>,
         IMessageCorrelationIdCreator<StockQuotationChangedEvent>,
         IMessageCorrelationIdCreator<StockQuotationsAddedOrChangedEvent>,
-        IMessageCorrelationIdCreator<ReplayFinishedEvent>
+        IMessageCorrelationIdCreator<ReplayFinishedEvent>,
+        IMessageCorrelationIdCreator<TransactionPerformanceCalculatedEvent>,
+        IMessageCorrelationIdCreator<TransactionDividendCalculatedEvent>,
+        IMessageCorrelationIdCreator<TransactionUndoEvent>
     {
         /// <summary>
         /// The correlation identifier, in this case static and one for all to re-use the existent process manager related to statistics creation
@@ -55,6 +58,36 @@ namespace StockTradingAnalysis.Domain.Process.Finders
         /// <param name="message">The message.</param>
         /// <returns></returns>
         public Guid GetCorrelationId(ReplayFinishedEvent message)
+        {
+            return CorrelationId;
+        }
+
+        /// <summary>
+        /// Gets the correlation identifier.
+        /// </summary>
+        /// <param name="message">The message.</param>
+        /// <returns></returns>
+        public Guid GetCorrelationId(TransactionUndoEvent message)
+        {
+            return CorrelationId;
+        }
+
+        /// <summary>
+        /// Gets the correlation identifier.
+        /// </summary>
+        /// <param name="message">The message.</param>
+        /// <returns></returns>
+        public Guid GetCorrelationId(TransactionPerformanceCalculatedEvent message)
+        {
+            return CorrelationId;
+        }
+
+        /// <summary>
+        /// Gets the correlation identifier.
+        /// </summary>
+        /// <param name="message">The message.</param>
+        /// <returns></returns>
+        public Guid GetCorrelationId(TransactionDividendCalculatedEvent message)
         {
             return CorrelationId;
         }

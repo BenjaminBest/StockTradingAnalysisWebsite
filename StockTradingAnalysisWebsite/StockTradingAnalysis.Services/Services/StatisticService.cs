@@ -4,7 +4,6 @@ using System.Linq;
 using StockTradingAnalysis.Domain.CQRS.Query.Queries;
 using StockTradingAnalysis.Interfaces.Domain;
 using StockTradingAnalysis.Interfaces.Queries;
-using StockTradingAnalysis.Interfaces.Services;
 using StockTradingAnalysis.Interfaces.Services.Core;
 using StockTradingAnalysis.Interfaces.Services.Domain;
 using StockTradingAnalysis.Services.Domain;
@@ -30,17 +29,7 @@ namespace StockTradingAnalysis.Services.Services
         /// <summary>
         /// The transactions
         /// </summary>
-        private readonly IReadOnlyList<IFeedback> _feedback;
-
-        /// <summary>
-        /// The transactions
-        /// </summary>
         private readonly IReadOnlyList<ITransactionPerformance> _transactionPerformances;
-
-        /// <summary>
-        /// The feedback proportions
-        /// </summary>
-        private readonly IReadOnlyList<IFeedbackProportion> _feedbackProportions;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="StatisticService" /> class.
@@ -51,9 +40,7 @@ namespace StockTradingAnalysis.Services.Services
         {
             _mathCalculatorService = mathCalculatorService;
             _transactions = new ReadOnlyCollection<ITransaction>(queryDispatcher.Execute(new TransactionAllQuery()).ToList());
-            _feedback = new ReadOnlyCollection<IFeedback>(queryDispatcher.Execute(new FeedbackAllQuery()).ToList());
             _transactionPerformances = new ReadOnlyCollection<ITransactionPerformance>(queryDispatcher.Execute(new TransactionPerformanceAllQuery()).ToList());
-            _feedbackProportions = new ReadOnlyCollection<IFeedbackProportion>(queryDispatcher.Execute(new FeedbackProportionAllQuery()).ToList());
         }
 
         /// <summary>
@@ -74,20 +61,26 @@ namespace StockTradingAnalysis.Services.Services
             var transactions = FilterTransactions(_transactions, timeRange);
             var transactionPerformances = FilterPerformances(_transactionPerformances, transactions);
 
+            if (!transactions.Any())
+                return null;
+
+            if (!transactionPerformances.Any())
+                return null;
+
             result.CalculateCosts(transactions);
             result.CalculateAmounts(transactionPerformances);
-            result.CalculateFeedback(_feedback, _feedbackProportions);//TODO: Feedback filtern nach performance/transactions            
+            result.CalculateFeedback(transactions);
             result.CalculateProfits(transactionPerformances, _mathCalculatorService);
             result.CalculateLosses(transactionPerformances, _mathCalculatorService);
-            result.CalculateAssetClass(transactionPerformances);
-            result.CalculateDailyBasis(transactionPerformances);
+            result.CalculateAssetClass(transactionPerformances, transactions);
+            result.CalculateDailyBasis(transactions, transactionPerformances);
             result.CalculateEfficiency(transactionPerformances, transactions, _mathCalculatorService);
 
             return result;
         }
 
         /// <summary>
-        /// Filters the transaction performances based on the given <param name="transactions"></param> to that only the performance values for the given
+        /// Filters the performances based on the given <param name="transactions"></param> to that only the performances for the given
         /// transactions are returned.
         /// </summary>
         /// <param name="transactionPerformances">The transaction performances.</param>

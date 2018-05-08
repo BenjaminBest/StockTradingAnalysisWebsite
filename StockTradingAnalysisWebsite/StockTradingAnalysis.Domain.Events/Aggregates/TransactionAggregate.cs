@@ -179,7 +179,7 @@ namespace StockTradingAnalysis.Domain.Events.Aggregates
         /// </summary>
         public void Undo()
         {
-            ApplyChange(new TransactionUndoEvent(Id, typeof(TransactionAggregate)));
+            ApplyChange(new TransactionUndoEvent(Id, typeof(TransactionAggregate), OrderDate));
         }
 
         /// <summary>

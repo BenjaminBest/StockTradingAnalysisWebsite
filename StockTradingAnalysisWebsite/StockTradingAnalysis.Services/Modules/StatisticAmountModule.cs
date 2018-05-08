@@ -18,9 +18,6 @@ namespace StockTradingAnalysis.Services.Modules
         /// <param name="transactions">The transactions.</param>
         public static void CalculateAmounts(this Statistic statistic, IReadOnlyCollection<ITransactionPerformance> transactions)
         {
-            if (transactions.Count == 0)
-                return;
-
             var range = statistic.End - statistic.Start;
 
             statistic.AmountOfLossTransactions = transactions.Count(t => !t.ProfitMade);

@@ -17,18 +17,22 @@ namespace StockTradingAnalysis.Core.Services
         /// <returns>Geometric mean</returns>
         public decimal CalculateGeometricMean(IEnumerable<decimal> values)
         {
-            if (values == null)
-                return 0.0m;
-
             var list = values as IList<decimal> ?? values.ToList();
 
             if (!list.Any())
                 return 0.0m;
 
-            var mul = list.Aggregate<decimal, double>(1, (current, val) => current * Convert.ToDouble(val));
-            var mean = Math.Pow(mul, 1 / Convert.ToDouble(list.Count));
+            double mul = 1;
 
-            return decimal.Round(Convert.ToDecimal(mean), 2);
+            foreach (var val in list)
+            {
+                var converted = Convert.ToDouble(val / 100);
+                mul *= converted < 0 ? 1 - (converted * -1) : 1 + converted;
+            }
+
+            var mean = Math.Pow(mul, 1 / Convert.ToDouble(list.Count()));
+
+            return decimal.Round(Convert.ToDecimal((mean - 1) * 100), 2);
         }
 
         /// <summary>

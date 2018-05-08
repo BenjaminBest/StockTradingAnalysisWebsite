@@ -265,11 +265,6 @@ namespace StockTradingAnalysis.Interfaces.Domain
         //TODO:IEnumerable<StatisticsKPI> KPI { get; } Create new service, inject this service
 
         /// <summary>
-        /// Information based on daily data, mainly used for charting
-        /// </summary>
-        //TODO:StatisticsCalcDaily DailyInformation { get; }
-
-        /// <summary>
         /// Loss clusters
         /// </summary>
         //TODO:List<StatisticsClusterNode> ClusterLosses { get; }

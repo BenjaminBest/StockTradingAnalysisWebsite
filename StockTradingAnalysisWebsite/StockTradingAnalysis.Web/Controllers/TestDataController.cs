@@ -272,6 +272,24 @@ namespace StockTradingAnalysis.Web.Controllers
 
                 result = string.Format(Resources.ViewTextTestDataControllerSecurityCreated, "ProSiebenSat1 Media");
             }
+            //Beiersdorf AG
+            else if (id == 7)
+            {
+                var stockId = Guid.Parse("FB065C9A-BA34-4853-A4B7-281DB15CD48C");
+                _commandDispatcher.Execute(new StockAddCommand(stockId, -1, "Beiersdorf AG", "520000", "Aktie", "Long"));
+                DownloadQuotes(stockId);
+
+                _commandDispatcher.Execute(new TransactionBuyCommand(Guid.NewGuid(), -1,
+                    DateTime.Parse("2018-07-05 10:00"), 10, 94.1m, 9.90m, string.Empty, string.Empty, null, 0, 0, stockId,
+                    Guid.Parse("67380559-9393-4628-AC3F-3807F61D83B9")));
+
+                _commandDispatcher.Execute(new TransactionSellCommand(Guid.NewGuid(), -1,
+                    DateTime.Parse("2018-07-05 14:41"), 5, 94.6m, 11.15m, string.Empty, string.Empty, null, stockId,
+                    5m, 94.020m, 95.0m,
+                    new List<Guid> { Guid.Parse("A9F112DB-D3CB-4254-B232-916C91FC4812"), Guid.Parse("47D36CC2-7A40-43BD-B8CB-940BA82E851B") }));
+
+                result = string.Format(Resources.ViewTextTestDataControllerSecurityCreated, "Beiersdorf AG");
+            }
 
             return Json(result, JsonRequestBehavior.AllowGet);
         }

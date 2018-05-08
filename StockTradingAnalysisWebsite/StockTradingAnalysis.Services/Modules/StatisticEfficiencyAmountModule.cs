@@ -25,9 +25,6 @@ namespace StockTradingAnalysis.Services.Modules
             IReadOnlyList<ITransaction> transactions,
                 IMathCalculatorService mathCalculatorService)
         {
-            if (transactionPerformances.Count == 0)
-                return;
-
             statistic.AvgEntryEfficiency = mathCalculatorService.CalculateGeometricMean(transactionPerformances
                 .Where(t => t.EntryEfficiency.HasValue).Select(t => t.EntryEfficiency.Value));
 
@@ -38,8 +35,7 @@ namespace StockTradingAnalysis.Services.Modules
                 mathCalculatorService.CalculateGeometricMean(transactionPerformances.Select(t => t.ProfitPercentage));
             statistic.TradeAverage = decimal.Round(transactionPerformances.Average(s => s.ProfitAbsolute), 2);
 
-            transactions.Where(t => t is IBuyingTransaction).Cast<IBuyingTransaction>()
-                .WhenNotNullOrEmpty(t => statistic.AverageCRV = decimal.Round(t.Average(c => c.CRV), 2));
+            transactions.OfType<IBuyingTransaction>().WhenNotNullOrEmpty(t => statistic.AverageCRV = decimal.Round(t.Average(c => c.CRV), 2));
 
             //Payoff-Ratio
             statistic.PayOffRatio = decimal.Round(statistic.ProfitAverage / (statistic.LossAverage == 0 ? -1 : statistic.LossAverage) * -1, 2);

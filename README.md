@@ -51,6 +51,24 @@ Features
 --------------
 * Dashboard
   * Savings plan based on assigned categories for transactions
+  * KPIs
+    * Amount of trades
+    * Amount of winning/losing trades
+    * Amount of trades per year/month/week
+    * System quality number (SQN)
+    * Pay-Off-Ratio
+    * CRV
+    * Expected values
+    * Average win/loss
+    * Maximum win/loss
+    * Average buying volume
+    * Order costs/taxes
+    * Average holding period intraday/long term positions
+    * Best asset class
+    * Best assert
+    * Maximum drawdown
+    * Maximum consecutive winners/losers
+    * Exit/Entry efficiency  
 * Transactions
   * Buy, sell, dividend, split/reverse split
 * Security
@@ -72,24 +90,6 @@ Features
 Features (not yet migrated)
 --------------
 * Dashboard
-  * KPI
-    * Amount of trades
-    * Amount of winning/losing trades
-    * Amount of trades per year/month/week
-    * System quality number (SQN)
-    * Pay-Off-Ratio
-    * CRV
-    * Expected values
-    * Average win/loss
-    * Maximum win/loss
-    * Average buying volume
-    * Order costs/taxes
-    * Average holding period intraday/long term positions
-    * Best asset class
-    * Best assert
-    * Maximum drawdown
-    * Maximum consecutive winners/losers
-    * Exit/Entry efficiency
     * Open positions
   * Statistics: Last 10/25/50/75/100/150/All Trades (profit, loss, payoff-ratio, CRV,CQN etc.)
   * Performance: over asset class, long/short, strategy, monthly performance
@@ -112,3 +112,5 @@ Security details
 ![security_edit](https://user-images.githubusercontent.com/29073072/36342219-6027b808-13fb-11e8-8c34-3f6b8ddf8ffd.png)
 Security charts
 ![security_charts](https://user-images.githubusercontent.com/29073072/36342220-61e068e8-13fb-11e8-830d-ad3fa23c1c44.png)
+Dashboard KPIs
+![dashboard](https://user-images.githubusercontent.com/29073072/39760693-4f45210a-52d6-11e8-90dc-d923647100f0.png)

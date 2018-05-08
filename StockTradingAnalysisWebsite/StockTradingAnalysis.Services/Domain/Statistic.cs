@@ -139,11 +139,6 @@ namespace StockTradingAnalysis.Services.Domain
         public Dictionary<string, decimal> FeedbackTop5 { get; set; }
 
         /// <summary>
-        /// All Feedback sorted by percentage
-        /// </summary>
-        public Dictionary<int, decimal> Feedback { get; set; }
-
-        /// <summary>
         /// Absolute profit per asset class
         /// </summary>
         public Dictionary<string, decimal> AbsoluteProfitPerTradingType { get; set; }
@@ -284,6 +279,7 @@ namespace StockTradingAnalysis.Services.Domain
         public Statistic(ITimeSlice slice)
         {
             TimeSlice = slice;
+            AbsoluteProfitPerWeekDay = new Dictionary<string, decimal>();
         }
 
         /// <summary>Indicates whether the current object is equal to another object of the same type.</summary>
@@ -313,7 +309,7 @@ namespace StockTradingAnalysis.Services.Domain
         /// <param name="obj">The object to compare with the current object. </param>
         public override bool Equals(object obj)
         {
-            if (ReferenceEquals(null, obj))
+            if (obj is null)
                 return false;
 
             if (ReferenceEquals(this, obj))
