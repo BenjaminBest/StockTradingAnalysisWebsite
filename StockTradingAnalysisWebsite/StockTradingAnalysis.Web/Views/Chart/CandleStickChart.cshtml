@@ -84,6 +84,22 @@
                         shape: 'squarepin'
                     });
                 });
+        })
+        .then(function() {
+            axios.get('@string.Format("/Chart/CandlestickChartAverageBuyingPriceByStockId/{0}", Model.StockId)')
+                .then(function (res) {
+                    var chart = $('#container').highcharts();
+
+                    chart.addSeries({
+                        type: 'line',
+                        name: '@Resources.ViewTextAverageBuyingPrice',
+                        data: res.data,
+                        color: '#62c462',
+                        marker: {
+                            enabled: true
+                            }
+                    });
+                });
         });
 
 </script>

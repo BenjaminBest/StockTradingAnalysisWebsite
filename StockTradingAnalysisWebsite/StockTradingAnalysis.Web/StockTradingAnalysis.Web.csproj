@@ -269,6 +269,7 @@
     <Compile Include="App_Start\AutoMapperProfiles\QuotationProfile.cs" />
     <Compile Include="App_Start\AutoMapperProfiles\SavingsPlanProfile.cs" />
     <Compile Include="App_Start\AutoMapperProfiles\CalculationProfile.cs" />
+    <Compile Include="App_Start\AutoMapperProfiles\OpenPositionsProfile.cs" />
     <Compile Include="App_Start\AutoMapperProfiles\TransactionProfile.cs" />
     <Compile Include="App_Start\AutoMapperProfiles\ImageProfile.cs" />
     <Compile Include="App_Start\AutoMapperProfiles\StrategyProfile.cs" />
@@ -366,6 +367,9 @@
     <Compile Include="Models\CardViewModel.cs" />
     <Compile Include="Models\DashboardViewModel.cs" />
     <Compile Include="Models\FeedbackProportionViewModel.cs" />
+    <Compile Include="Models\OpenPositionsViewModel.cs" />
+    <Compile Include="Models\OpenPositionViewModel.cs" />
+    <Compile Include="Models\ProfitViewModel.cs" />
     <Compile Include="Models\QuoteViewModel.cs" />
     <Compile Include="Models\SelectionViewModel.cs" />
     <Compile Include="Models\ImageViewModel.cs" />
@@ -446,6 +450,8 @@
     <Content Include="Views\Chart\CandleStickChart.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\Card.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\Cards.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\Quotation.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\Profit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

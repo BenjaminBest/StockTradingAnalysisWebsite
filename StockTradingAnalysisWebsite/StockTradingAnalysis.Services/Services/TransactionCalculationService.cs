@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using StockTradingAnalysis.Core.Extensions;
 using StockTradingAnalysis.Domain.CQRS.Query.Filter;
 using StockTradingAnalysis.Domain.CQRS.Query.Queries;
 using StockTradingAnalysis.Interfaces.Domain;
@@ -8,6 +9,7 @@ using StockTradingAnalysis.Interfaces.Queries;
 using StockTradingAnalysis.Interfaces.Services.Core;
 using StockTradingAnalysis.Interfaces.Services.Domain;
 using StockTradingAnalysis.Interfaces.Types;
+using StockTradingAnalysis.Services.Domain;
 
 namespace StockTradingAnalysis.Services.Services
 {
@@ -33,19 +35,27 @@ namespace StockTradingAnalysis.Services.Services
         private readonly IInterestRateCalculatorService _iirCalculatorService;
 
         /// <summary>
+        /// The transaction performance service
+        /// </summary>
+        private readonly ITransactionPerformanceService _transactionPerformanceService;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="TransactionCalculationService" /> class.
         /// </summary>
         /// <param name="queryDispatcher">The query dispatcher.</param>
         /// <param name="dateCalculationService">The date calculation service.</param>
         /// <param name="iirCalculatorService">The iir calculator service.</param>
+        /// <param name="transactionPerformanceService">The transaction performance service.</param>
         public TransactionCalculationService(
             IQueryDispatcher queryDispatcher,
             IDateCalculationService dateCalculationService,
-            IInterestRateCalculatorService iirCalculatorService)
+            IInterestRateCalculatorService iirCalculatorService,
+            ITransactionPerformanceService transactionPerformanceService)
         {
             _queryDispatcher = queryDispatcher;
             _dateCalculationService = dateCalculationService;
             _iirCalculatorService = iirCalculatorService;
+            _transactionPerformanceService = transactionPerformanceService;
         }
 
         /// <summary>
@@ -196,6 +206,83 @@ namespace StockTradingAnalysis.Services.Services
             var val = _iirCalculatorService.Calculate(cashflows);
 
             return decimal.Round(Convert.ToDecimal(val) * 100, 2);
+        }
+
+        /// <summary>
+        /// Calculates the average buying prices.
+        /// </summary>
+        /// <param name="transactions">The transactions.</param>
+        /// <returns></returns>
+        public IEnumerable<IAverageBuyingPrice> CalculateAverageBuyingPrices(IOrderedEnumerable<ITransaction> transactions)
+        {
+            var filteredTransactions = transactions.OfTypes<ITransaction, IBuyingTransaction, ISellingTransaction>().ToList();
+
+            if (!filteredTransactions.Any())
+                return Enumerable.Empty<IAverageBuyingPrice>();
+
+            var result = new List<IAverageBuyingPrice>();
+
+            var accumulatedShares = 0m;
+            var accumulatedPositionSize = 0m;
+
+            foreach (var transaction in filteredTransactions)
+            {
+                if (transaction is IBuyingTransaction)
+                {
+
+                    accumulatedPositionSize += transaction.PositionSize;
+                    accumulatedShares += transaction.Shares;
+                }
+
+                if (accumulatedShares != 0)
+                    result.Add(new AverageBuyingPrice(transaction.OrderDate, decimal.Round(accumulatedPositionSize / accumulatedShares, 2)));
+
+                if (transaction is ISellingTransaction)
+                {
+                    accumulatedPositionSize -= transaction.PositionSize;
+                    accumulatedShares -= transaction.Shares;
+                }
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Calculates open positions.
+        /// </summary>
+        /// <returns>Detailed information about open positions.</returns>
+        public IDetailedOpenPositionOverview CalculateOpenPositions()
+        {
+            var calculateProfit = new Func<IOpenPosition, IQuotation, IProfit>((pos, quote) =>
+                _transactionPerformanceService.GetProfit(
+                    pos.Shares * pos.PricePerShare,
+                    pos.PositionSize - pos.PricePerShare * pos.Shares,
+                    pos.Shares * quote.Close,
+                    0m,
+                    0m));
+
+            var result = new DetailedOpenPositionOverview
+            {
+                OpenPositions = _queryDispatcher.Execute(new OpenPositionsAllQuery())
+                    .Select(pos =>
+                    {
+                        var quote = _queryDispatcher.Execute(new StockQuotationsLatestByIdQuery(pos.ProductId));
+
+                        return new DetailedOpenPosition(_queryDispatcher.Execute(new StockByIdQuery(pos.ProductId)))
+                        {
+                            AveragePricePerShare = pos.PricePerShare,
+                            FirstOrderDate = pos.FirstOrderDate,
+                            PositionSize = pos.PositionSize,
+                            Shares = pos.Shares,
+                            CurrentQuotation = quote,
+                            Profit = calculateProfit(pos, quote)
+                        };
+                    }).ToList()
+            };
+
+            result.CapitalExpenditure = result.OpenPositions.Sum(o => o.PositionSize);
+
+            return result;
         }
     }
 }

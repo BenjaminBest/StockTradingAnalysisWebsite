@@ -1,8 +1,8 @@
-﻿using StockTradingAnalysis.Core.Common;
-using StockTradingAnalysis.Interfaces.Domain;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using StockTradingAnalysis.Core.Common;
+using StockTradingAnalysis.Interfaces.Domain;
 
 namespace StockTradingAnalysis.Domain.Events.Domain
 {
@@ -32,7 +32,7 @@ namespace StockTradingAnalysis.Domain.Events.Domain
         /// </summary>
         /// <param name="stockId">The id of the stock</param>
         /// <returns>Amount of units to sell</returns>
-        public IOpenPosition GetOpenPosition(Guid stockId)
+        public IOpenPosition GetOrAddOpenPosition(Guid stockId)
         {
             if (!_positions.ContainsKey(stockId))
                 _positions.Add(stockId, new OpenPosition(stockId));
@@ -79,7 +79,7 @@ namespace StockTradingAnalysis.Domain.Events.Domain
         {
             var id = newEntry.StockId;
 
-            if (newEntry is ISellingTransactionBookEntry && newEntry.Shares > GetOpenPosition(id).Shares)
+            if (newEntry is ISellingTransactionBookEntry && newEntry.Shares > GetOrAddOpenPosition(id).Shares)
                 throw new InvalidOperationException("Cannot sell more units than available.");
 
             _changedEntries.Clear(id);
@@ -90,8 +90,7 @@ namespace StockTradingAnalysis.Domain.Events.Domain
                 return;
             }
 
-            var split = newEntry as ISplitTransactionBookEntry;
-            if (split != null)
+            if (newEntry is ISplitTransactionBookEntry split)
             {
                 var buys = _entries.GetOrAdd(id).Where(e => e is IBuyingTransactionBookEntry).ToList();
 
@@ -166,6 +165,9 @@ namespace StockTradingAnalysis.Domain.Events.Domain
             var transactions = _entries.GetOrAdd(stockId).Where(e => e is IBuyingTransactionBookEntry).ToList();
 
             var position = _positions[stockId];
+
+            if (transactions.Any())
+                position.FirstOrderDate = transactions.Min(t => t.OrderDate);
 
             position.Shares = transactions.Sum(t => t.Shares);
             position.PositionSize = transactions.Sum(t => (t.PricePerShare * t.Shares) + t.OrderCosts);

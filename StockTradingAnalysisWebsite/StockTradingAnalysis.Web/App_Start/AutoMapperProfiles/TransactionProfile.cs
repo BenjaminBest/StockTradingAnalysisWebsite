@@ -4,8 +4,16 @@ using StockTradingAnalysis.Web.Models;
 
 namespace StockTradingAnalysis.Web.AutoMapperProfiles
 {
+    /// <summary>
+    /// The TransactionProfile contains the auto mapper configuration for all transactions based on <see cref="ITransaction"/>.
+    /// </summary>
+    /// <seealso cref="Profile" />
     public class TransactionProfile : Profile
     {
+        /// <summary>
+        /// Override this method in a derived class and call the CreateMap method to associate that map with this profile.
+        /// Avoid calling the <see cref="T:AutoMapper.Mapper" /> class from this method.
+        /// </summary>
         protected override void Configure()
         {
             Mapper.CreateMap<ITransaction, TransactionViewModel>()

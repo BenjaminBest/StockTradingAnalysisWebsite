@@ -67,6 +67,7 @@
     <Compile Include="Queries\OpenPositionsAllQuery.cs" />
     <Compile Include="Queries\StatisticsByTimeSliceQuery.cs" />
     <Compile Include="Queries\TransactionMaximumOrderDateQuery.cs" />
+    <Compile Include="Queries\AverageBuyingPricesByStockIdQuery.cs" />
     <Compile Include="Queries\TransactionsByStockIdQuery.cs" />
     <Compile Include="Queries\TransactionPerformanceByIdQuery.cs" />
     <Compile Include="Queries\TransactionPerformanceAllQuery.cs" />
@@ -103,6 +104,7 @@
     <Compile Include="QueryHandler\FeedbackNameSearchQueryHandler.cs" />
     <Compile Include="QueryHandler\AccountBalanceAllQueryHandler.cs" />
     <Compile Include="QueryHandler\OpenPositionsAllQueryHandler.cs" />
+    <Compile Include="QueryHandler\AverageBuyingPricesByStockIdQueryHandler.cs" />
     <Compile Include="QueryHandler\TransactionByStockIdQueryHandler.cs" />
     <Compile Include="QueryHandler\TransactionMaximumOrderDateQueryHandler.cs" />
     <Compile Include="QueryHandler\TransactionMinumumOrderDateQueryHandler.cs" />

@@ -3,6 +3,9 @@ using StockTradingAnalysis.Interfaces.Domain;
 
 namespace StockTradingAnalysis.Interfaces.Services.Domain
 {
+    /// <summary>
+    /// The interface ITransactionPerformanceService defines a service to calculate transaction performance related information.
+    /// </summary>
     public interface ITransactionPerformanceService
     {
         /// <summary>
@@ -63,5 +66,16 @@ namespace StockTradingAnalysis.Interfaces.Services.Domain
         /// <param name="buyingTransactions">All buying transaction for the same stock</param>
         /// <returns>Performance</returns>
         ITransactionPerformance GetPerformance(IDividendTransactionBookEntry dividendTransaction, IEnumerable<IBuyingTransactionBookEntry> buyingTransactions);
+
+        /// <summary>
+        /// Calculates the profit.
+        /// </summary>
+        /// <param name="buyingPositionSize">Size of the buying position.</param>
+        /// <param name="buyingOrderCosts">The buying order costs.</param>
+        /// <param name="sellingPositionSize">Size of the selling position.</param>
+        /// <param name="sellingOrderCosts">The selling order costs.</param>
+        /// <param name="taxes">The taxes.</param>
+        /// <returns></returns>
+        IProfit GetProfit(decimal buyingPositionSize, decimal buyingOrderCosts, decimal sellingPositionSize, decimal sellingOrderCosts, decimal taxes);
     }
 }

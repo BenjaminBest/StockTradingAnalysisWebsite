@@ -34,7 +34,7 @@ namespace StockTradingAnalysis.Domain.CQRS.Cmd.CommandHandler
                 throw new DomainValidationException("Shares", "Cannot sell zero units");
 
             //TODO: Further Validation
-            if (_book.GetOpenPosition(command.StockId).Shares < command.Shares)
+            if (_book.GetOrAddOpenPosition(command.StockId).Shares < command.Shares)
                 throw new DomainValidationException("Shares", "The amount of available units for the stock is smaller than those used in the dividend.");
 
             //Create new transaction

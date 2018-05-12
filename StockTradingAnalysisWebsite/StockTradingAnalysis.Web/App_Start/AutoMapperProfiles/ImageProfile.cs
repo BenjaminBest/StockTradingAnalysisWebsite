@@ -4,8 +4,16 @@ using StockTradingAnalysis.Web.Models;
 
 namespace StockTradingAnalysis.Web.AutoMapperProfiles
 {
+    /// <summary>
+    /// The ImageProfile contains the auto mapper configuration for an image, <see cref="IImage"/>.
+    /// </summary>
+    /// <seealso cref="Profile" />
     public class ImageProfile : Profile
     {
+        /// <summary>
+        /// Override this method in a derived class and call the CreateMap method to associate that map with this profile.
+        /// Avoid calling the <see cref="T:AutoMapper.Mapper" /> class from this method.
+        /// </summary>
         protected override void Configure()
         {
             Mapper.CreateMap<IImage, ImageViewModel>()

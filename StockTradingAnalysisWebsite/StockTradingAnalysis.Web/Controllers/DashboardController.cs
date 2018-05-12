@@ -35,16 +35,31 @@ namespace StockTradingAnalysis.Web.Controllers
         /// </summary>
         private readonly IStatisticCardConverterRepository _statisticCardConverterRepository;
 
+        /// <summary>
+        /// The transaction calculation service
+        /// </summary>
+        private readonly ITransactionCalculationService _transactionCalculationService;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="DashboardController"/> class.
+        /// </summary>
+        /// <param name="queryDispatcher">The query dispatcher.</param>
+        /// <param name="accumulationPlanStatisticService">The accumulation plan statistic service.</param>
+        /// <param name="timeSliceCreationService">The time slice creation service.</param>
+        /// <param name="statisticCardConverterRepository">The statistic card converter repository.</param>
+        /// <param name="transactionCalculationService">The transaction calculation service.</param>
         public DashboardController(
             IQueryDispatcher queryDispatcher,
             IAccumulationPlanStatisticService accumulationPlanStatisticService,
             ITimeSliceCreationService timeSliceCreationService,
-            IStatisticCardConverterRepository statisticCardConverterRepository)
+            IStatisticCardConverterRepository statisticCardConverterRepository,
+            ITransactionCalculationService transactionCalculationService)
         {
             _queryDispatcher = queryDispatcher;
             _accumulationPlanStatisticService = accumulationPlanStatisticService;
             _timeSliceCreationService = timeSliceCreationService;
             _statisticCardConverterRepository = statisticCardConverterRepository;
+            _transactionCalculationService = transactionCalculationService;
         }
 
         // GET: Dashboard
@@ -56,6 +71,8 @@ namespace StockTradingAnalysis.Web.Controllers
                 _queryDispatcher.Execute(new StatisticsByTimeSliceQuery(_timeSliceCreationService.CreateTimeSlices()));
 
             model.Cards = _statisticCardConverterRepository.ConvertStatistic(statistic);
+            //NOTE: Cache disabled because of IQuotation overrides Equals and only date is taken into account
+            model.OpenPositions = Mapper.Map<OpenPositionsViewModel>(_transactionCalculationService.CalculateOpenPositions(), o => o.DisableCache = true);
 
             return View(model);
         }

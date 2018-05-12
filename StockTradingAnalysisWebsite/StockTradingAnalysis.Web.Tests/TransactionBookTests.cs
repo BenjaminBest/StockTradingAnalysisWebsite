@@ -1,9 +1,9 @@
-﻿using FluentAssertions;
+﻿using System;
+using System.Linq;
+using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using StockTradingAnalysis.Domain.Events.Domain;
 using StockTradingAnalysis.Web.Tests.Mocks;
-using System;
-using System.Linq;
 
 namespace StockTradingAnalysis.Web.Tests
 {
@@ -28,7 +28,7 @@ namespace StockTradingAnalysis.Web.Tests
             var guid = Guid.NewGuid();
             var book = new TransactionBook();
 
-            book.GetOpenPosition(guid).Should().NotBeNull();
+            book.GetOrAddOpenPosition(guid).Should().NotBeNull();
         }
 
         [TestMethod]
@@ -56,7 +56,7 @@ namespace StockTradingAnalysis.Web.Tests
             book.AddEntry(TransactionEntryMock.CreateBuying(guid, 100));
             book.AddEntry(TransactionEntryMock.CreateSelling(guid, 100));
 
-            book.GetOpenPosition(guid).Shares.Should().Be(0);
+            book.GetOrAddOpenPosition(guid).Shares.Should().Be(0);
         }
 
         [TestMethod]
@@ -70,7 +70,7 @@ namespace StockTradingAnalysis.Web.Tests
             book.AddEntry(TransactionEntryMock.CreateBuying(guid, 50));
             book.AddEntry(TransactionEntryMock.CreateSelling(guid, 100));
 
-            book.GetOpenPosition(guid).Shares.Should().Be(0);
+            book.GetOrAddOpenPosition(guid).Shares.Should().Be(0);
         }
 
         [TestMethod]
@@ -85,7 +85,7 @@ namespace StockTradingAnalysis.Web.Tests
             book.AddEntry(TransactionEntryMock.CreateSelling(guid, 50));
             book.AddEntry(TransactionEntryMock.CreateSelling(guid, 50));
 
-            book.GetOpenPosition(guid).Shares.Should().Be(0);
+            book.GetOrAddOpenPosition(guid).Shares.Should().Be(0);
         }
 
         [TestMethod]
@@ -99,7 +99,7 @@ namespace StockTradingAnalysis.Web.Tests
             book.AddEntry(TransactionEntryMock.CreateSelling(guid, 50));
             book.AddEntry(TransactionEntryMock.CreateSelling(guid, 50));
 
-            book.GetOpenPosition(guid).Shares.Should().Be(0);
+            book.GetOrAddOpenPosition(guid).Shares.Should().Be(0);
         }
 
         [TestMethod]
@@ -112,7 +112,7 @@ namespace StockTradingAnalysis.Web.Tests
             book.AddEntry(TransactionEntryMock.CreateBuying(guid, 100));
             book.AddEntry(TransactionEntryMock.CreateSelling(guid, 50));
 
-            book.GetOpenPosition(guid).Shares.Should().Be(50);
+            book.GetOrAddOpenPosition(guid).Shares.Should().Be(50);
         }
 
         [TestMethod]
@@ -126,7 +126,7 @@ namespace StockTradingAnalysis.Web.Tests
             book.AddEntry(TransactionEntryMock.CreateSelling(guid, 50));
             book.AddEntry(TransactionEntryMock.CreateSelling(guid, 30));
 
-            book.GetOpenPosition(guid).Shares.Should().Be(20);
+            book.GetOrAddOpenPosition(guid).Shares.Should().Be(20);
         }
 
         [TestMethod]
@@ -141,7 +141,7 @@ namespace StockTradingAnalysis.Web.Tests
             book.AddEntry(TransactionEntryMock.CreateBuying(guid, 33, 90.62m, 11.65m));
             book.AddEntry(TransactionEntryMock.CreateBuying(guid, 35, 83m, 11.65m));
 
-            var position = book.GetOpenPosition(guid);
+            var position = book.GetOrAddOpenPosition(guid);
             position.Shares.Should().Be(118);
             position.PricePerShare.Should().BeApproximately(92.553050m, 0.00001m);
             position.PositionSize.Should().Be(10921.26m);
@@ -161,7 +161,7 @@ namespace StockTradingAnalysis.Web.Tests
             book.AddEntry(TransactionEntryMock.CreateBuying(guid, 35, 83m, 11.65m));
             book.AddEntry(TransactionEntryMock.CreateSelling(guid, 60, 100m, 11.65m));
 
-            var position = book.GetOpenPosition(guid);
+            var position = book.GetOrAddOpenPosition(guid);
             position.Shares.Should().Be(58);
             position.PricePerShare.Should().BeApproximately(0m, 0.00001m);//TODO:Get real values
             position.PositionSize.Should().Be(0m); //TODO:Get real values
@@ -178,7 +178,7 @@ namespace StockTradingAnalysis.Web.Tests
             book.AddEntry(TransactionEntryMock.CreateBuying(guid, 100));
             book.AddEntry(TransactionEntryMock.CreateDividend(guid, 100));
 
-            book.GetOpenPosition(guid).Shares.Should().Be(100);
+            book.GetOrAddOpenPosition(guid).Shares.Should().Be(100);
         }
 
         [TestMethod]
@@ -193,7 +193,7 @@ namespace StockTradingAnalysis.Web.Tests
             book.AddEntry(TransactionEntryMock.CreateDividend(guid, 50));
             book.AddEntry(TransactionEntryMock.CreateSelling(guid, 30));
 
-            book.GetOpenPosition(guid).Shares.Should().Be(20);
+            book.GetOrAddOpenPosition(guid).Shares.Should().Be(20);
         }
 
 
@@ -208,7 +208,7 @@ namespace StockTradingAnalysis.Web.Tests
             book.AddEntry(TransactionEntryMock.CreateBuying(guid, 500));
             book.AddEntry(TransactionEntryMock.CreateSplit(guid, 500));
 
-            book.GetOpenPosition(guid).Shares.Should().Be(500);
+            book.GetOrAddOpenPosition(guid).Shares.Should().Be(500);
         }
 
 
@@ -224,7 +224,7 @@ namespace StockTradingAnalysis.Web.Tests
             book.AddEntry(TransactionEntryMock.CreateSplit(guid, 500));
             book.AddEntry(TransactionEntryMock.CreateSelling(guid, 500));
 
-            book.GetOpenPosition(guid).Shares.Should().Be(0);
+            book.GetOrAddOpenPosition(guid).Shares.Should().Be(0);
         }
 
         [TestMethod]
@@ -238,11 +238,11 @@ namespace StockTradingAnalysis.Web.Tests
             book.AddEntry(TransactionEntryMock.CreateBuying(guid, 50, 1.6m, 0m));
             book.AddEntry(TransactionEntryMock.CreateSelling(guid, 80, 1.2m, 0m));
 
-            book.GetOpenPosition(guid).PricePerShare.Should().BeApproximately(1.48571m, 0.00001m);
+            book.GetOrAddOpenPosition(guid).PricePerShare.Should().BeApproximately(1.48571m, 0.00001m);
 
             book.AddEntry(TransactionEntryMock.CreateSelling(guid, 60, 1.46666m, 0m));
 
-            book.GetOpenPosition(guid).PricePerShare.Should().BeApproximately(1.60m, 0.00001m);
+            book.GetOrAddOpenPosition(guid).PricePerShare.Should().BeApproximately(1.60m, 0.00001m);
         }
     }
 }

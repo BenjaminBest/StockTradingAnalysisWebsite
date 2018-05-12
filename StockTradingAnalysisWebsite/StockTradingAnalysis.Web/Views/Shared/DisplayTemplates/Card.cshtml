@@ -3,20 +3,20 @@
 
 @if (Model.FilledBackground)
 {
-    <div class="card text-white bg-@Model.Style.CssClass() mb-2 mt-2 ml-2" style="width: 18rem;">
+    <div class="card text-white bg-@Model.Style.CssClass() mb-2 mt-2 ml-2" style="width: 12.7rem;">
         <div class="card-header">@Model.Header</div>
         <div class="card-body">
-            <h4 class="card-title">@Model.Title</h4>
+            <h5 class="card-title">@Model.Title</h5>
             <p class="card-text">@Model.Content</p>
         </div>
     </div>
 }
 else
 {
-    <div class="card border-@Model.Style.CssClass() mb-2 mt-2 ml-2" style="width: 18rem;">
+    <div class="card border-@Model.Style.CssClass() mb-2 mt-2 ml-2" style="width: 12.7rem;">
         <div class="card-header">@Model.Header</div>
         <div class="card-body">
-            <h4 class="card-title text-@Model.Style.CssClass()">@Model.Title</h4>
+            <h5 class="card-title text-@Model.Style.CssClass()">@Model.Title</h5>
             <p class="card-text">@Model.Content</p>
         </div>
     </div>

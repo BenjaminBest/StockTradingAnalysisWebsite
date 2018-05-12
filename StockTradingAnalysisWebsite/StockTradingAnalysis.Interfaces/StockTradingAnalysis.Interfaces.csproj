@@ -44,6 +44,10 @@
     <Compile Include="Commands\Command.cs" />
     <Compile Include="Commands\ICommandHandler.cs" />
     <Compile Include="Commands\ICommandDispatcher.cs" />
+    <Compile Include="Domain\IAverageBuyingPrice.cs" />
+    <Compile Include="Domain\IDetailedOpenPosition.cs" />
+    <Compile Include="Domain\IDetailedOpenPositionOverview.cs" />
+    <Compile Include="Domain\IProfit.cs" />
     <Compile Include="Domain\ITimeSlice.cs" />
     <Compile Include="Enumerations\TimeSliceType.cs" />
     <Compile Include="Events\IMessageObserver.cs" />

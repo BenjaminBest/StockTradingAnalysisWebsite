@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using StockTradingAnalysis.Interfaces.Domain;
 using StockTradingAnalysis.Interfaces.Queries;
 using StockTradingAnalysis.Interfaces.Types;
@@ -55,5 +56,18 @@ namespace StockTradingAnalysis.Interfaces.Services.Domain
         /// Performance in %
         /// </returns>
         decimal CalculatePerformancePercentageIir(IQuery<IEnumerable<ITransaction>> query, CashFlow beginPeriod, CashFlow endPeriod);
+
+        /// <summary>
+        /// Calculates the average buying prices.
+        /// </summary>
+        /// <param name="transactions">The transactions.</param>
+        /// <returns></returns>
+        IEnumerable<IAverageBuyingPrice> CalculateAverageBuyingPrices(IOrderedEnumerable<ITransaction> transactions);
+
+        /// <summary>
+        /// Calculates open positions.
+        /// </summary>
+        /// <returns>Detailed information about open positions.</returns>
+        IDetailedOpenPositionOverview CalculateOpenPositions();
     }
 }

@@ -5,6 +5,7 @@ using StockTradingAnalysis.Domain.CQRS.Query.Queries;
 using StockTradingAnalysis.Interfaces.Domain;
 using StockTradingAnalysis.Interfaces.Queries;
 using StockTradingAnalysis.Interfaces.Services.Core;
+using StockTradingAnalysis.Services.Domain;
 
 namespace StockTradingAnalysis.Web.Controllers
 {
@@ -25,14 +26,24 @@ namespace StockTradingAnalysis.Web.Controllers
         private readonly IDateCalculationService _dateCalculationService;
 
         /// <summary>
+        /// The transaction book
+        /// </summary>
+        private readonly ITransactionBook _transactionBook;
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="ChartController" /> class.
         /// </summary>
         /// <param name="queryDispatcher">The query dispatcher.</param>
         /// <param name="dateCalculationService">The date calculation service.</param>
-        public ChartController(IQueryDispatcher queryDispatcher, IDateCalculationService dateCalculationService)
+        /// <param name="transactionBook">The transaction book which contains all open positions.</param>
+        public ChartController(
+            IQueryDispatcher queryDispatcher,
+            IDateCalculationService dateCalculationService,
+            ITransactionBook transactionBook)
         {
             _queryDispatcher = queryDispatcher;
             _dateCalculationService = dateCalculationService;
+            _transactionBook = transactionBook;
         }
 
         // GET: Chart/CandlestickChartQuoteDataByStockId/1
@@ -60,6 +71,25 @@ namespace StockTradingAnalysis.Web.Controllers
                     fillColor = GetToolTipFromTransaction(t).Color,
                     style = new { color = "white" }
                 }).ToArray(), JsonRequestBehavior.AllowGet);
+        }
+
+        // GET: Chart/CandlestickChartAverageBuyingPriceByStockId/1
+        [HttpGet]
+        public ActionResult CandlestickChartAverageBuyingPriceByStockId(Guid id)
+        {
+            var prices = _queryDispatcher.Execute(new AverageBuyingPricesByStockIdQuery(id));
+
+            var averageBuyingPrices = prices.ToList();
+
+            if (_transactionBook.GetOpenPositions().Any(o => o.ProductId.Equals(id)))
+                averageBuyingPrices.Add(new AverageBuyingPrice(DateTime.Now, averageBuyingPrices.Last().AveragePrice));
+
+            return Json(averageBuyingPrices.Select(
+                    t => new object[]
+                    {
+                        _dateCalculationService.ConvertToEpochTimeInMilliseconds(t.OrderDate), t.AveragePrice
+                    })
+                .ToArray(), JsonRequestBehavior.AllowGet);
         }
 
         /// <summary>

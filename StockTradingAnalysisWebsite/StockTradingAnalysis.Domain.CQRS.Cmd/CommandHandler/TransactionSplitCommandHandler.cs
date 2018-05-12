@@ -34,7 +34,7 @@ namespace StockTradingAnalysis.Domain.CQRS.Cmd.CommandHandler
                 throw new DomainValidationException("Shares", "Cannot sell zero units");
 
             //TODO: Further Validation
-            if (_book.GetOpenPosition(command.StockId).Shares == 0)
+            if (_book.GetOrAddOpenPosition(command.StockId).Shares == 0)
                 throw new DomainValidationException("Shares", "The amount of available shares cannot be zero for a split/reverse split.");
 
             //Create new transaction

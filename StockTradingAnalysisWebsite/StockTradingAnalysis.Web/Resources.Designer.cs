@@ -1591,6 +1591,42 @@ namespace StockTradingAnalysis.Web {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Profit.
+        /// </summary>
+        public static string Display_ViewModelOpenPositionAbsoluteProfit {
+            get {
+                return ResourceManager.GetString("Display_ViewModelOpenPositionAbsoluteProfit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Aktueller Kurs.
+        /// </summary>
+        public static string Display_ViewModelOpenPositionCurrentQuotation {
+            get {
+                return ResourceManager.GetString("Display_ViewModelOpenPositionCurrentQuotation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Profit (%).
+        /// </summary>
+        public static string Display_ViewModelOpenPositionPercentageProfit {
+            get {
+                return ResourceManager.GetString("Display_ViewModelOpenPositionPercentageProfit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Profit.
+        /// </summary>
+        public static string Display_ViewModelOpenPositionProfit {
+            get {
+                return ResourceManager.GetString("Display_ViewModelOpenPositionProfit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Erstes Kaufdatum.
         /// </summary>
         public static string Display_ViewModelOpenTransactionMinOrderDate {
@@ -1753,7 +1789,7 @@ namespace StockTradingAnalysis.Web {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Insgesamt sind {0} Tagesendkurse in der Datenbank gespeichern. Neu hinzugefügt wurde n  {1} Kursdatensätze..
+        ///   Looks up a localized string similar to Insgesamt sind {0} Tagesendkurse in der Datenbank gespeichern. Neu hinzugefügt wurden  {1} Kursdatensätze..
         /// </summary>
         public static string StatusQuotations {
             get {
@@ -2226,6 +2262,15 @@ namespace StockTradingAnalysis.Web {
         public static string ViewTextAll {
             get {
                 return ResourceManager.GetString("ViewTextAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Durchschnittl. Kaufpreis.
+        /// </summary>
+        public static string ViewTextAverageBuyingPrice {
+            get {
+                return ResourceManager.GetString("ViewTextAverageBuyingPrice", resourceCulture);
             }
         }
         

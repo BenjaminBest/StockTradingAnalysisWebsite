@@ -14,7 +14,7 @@ namespace StockTradingAnalysis.Interfaces.Domain
         /// </summary>
         /// <param name="stockId">The id of the stock</param>
         /// <returns>Open position</returns>
-        IOpenPosition GetOpenPosition(Guid stockId);
+        IOpenPosition GetOrAddOpenPosition(Guid stockId);
 
         /// <summary>
         /// Returns all open positions

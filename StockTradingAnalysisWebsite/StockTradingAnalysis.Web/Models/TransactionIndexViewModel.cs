@@ -8,7 +8,7 @@ namespace StockTradingAnalysis.Web.Models
         /// Gets the position size (amount of money put in the trade, without transaction costs)
         /// </summary>
         [Display(Name = "Display_TransactionsPositionSize", ResourceType = typeof(Resources))]
-        [DisplayFormat(DataFormatString = "{0:F2} €")]
+        [DisplayFormat(DataFormatString = "{0:c}")]
         public decimal PositionSize { get; set; }
 
         [UIHint("PerformanceAbsolute")]

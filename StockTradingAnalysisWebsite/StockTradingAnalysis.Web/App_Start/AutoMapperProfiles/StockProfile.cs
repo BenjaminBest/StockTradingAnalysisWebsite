@@ -10,7 +10,7 @@ using StockTradingAnalysis.Web.Models;
 namespace StockTradingAnalysis.Web.AutoMapperProfiles
 {
     /// <summary>
-    /// The StockProfile cotains the automapper configuration for <see cref="IStock"/>
+    /// The StockProfile cotains the automapper configuration for <see cref="IStock"/>.
     /// </summary>
     /// <seealso cref="Profile" />
     public class StockProfile : Profile

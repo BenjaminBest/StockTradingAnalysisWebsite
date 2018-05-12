@@ -15,6 +15,14 @@ namespace StockTradingAnalysis.Domain.Events.Domain
         public Guid ProductId { get; }
 
         /// <summary>
+        /// Gets the first order date.
+        /// </summary>
+        /// <value>
+        /// The order date.
+        /// </value>
+        public DateTime FirstOrderDate { get; set; }
+
+        /// <summary>
         /// Gets the amount of units
         /// </summary>
         public decimal Shares { get; set; }

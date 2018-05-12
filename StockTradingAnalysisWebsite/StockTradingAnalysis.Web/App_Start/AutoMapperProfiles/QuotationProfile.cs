@@ -4,8 +4,16 @@ using StockTradingAnalysis.Web.Models;
 
 namespace StockTradingAnalysis.Web.AutoMapperProfiles
 {
+    /// <summary>
+    /// The QuotationProfile contains the auto mapper configration for <see cref="IQuotation"/>
+    /// </summary>
+    /// <seealso cref="Profile" />
     public class QuotationProfile : Profile
     {
+        /// <summary>
+        /// Override this method in a derived class and call the CreateMap method to associate that map with this profile.
+        /// Avoid calling the <see cref="T:AutoMapper.Mapper" /> class from this method.
+        /// </summary>
         protected override void Configure()
         {
             Mapper.CreateMap<IQuotation, QuoteViewModel>()

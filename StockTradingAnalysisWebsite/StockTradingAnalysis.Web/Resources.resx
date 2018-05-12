@@ -646,7 +646,7 @@
     <value />
   </data>
   <data name="StatusQuotations" xml:space="preserve">
-    <value>Insgesamt sind {0} Tagesendkurse in der Datenbank gespeichern. Neu hinzugefügt wurde n  {1} Kursdatensätze.</value>
+    <value>Insgesamt sind {0} Tagesendkurse in der Datenbank gespeichern. Neu hinzugefügt wurden  {1} Kursdatensätze.</value>
   </data>
   <data name="TagsInpaymentVsOutpayment" xml:space="preserve">
     <value>Einzahlung vs Auszahlung</value>
@@ -1364,5 +1364,20 @@
   </data>
   <data name="ViewTextStockEditMain" xml:space="preserve">
     <value>Informationen</value>
+  </data>
+  <data name="ViewTextAverageBuyingPrice" xml:space="preserve">
+    <value>Durchschnittl. Kaufpreis</value>
+  </data>
+  <data name="Display_ViewModelOpenPositionAbsoluteProfit" xml:space="preserve">
+    <value>Profit</value>
+  </data>
+  <data name="Display_ViewModelOpenPositionCurrentQuotation" xml:space="preserve">
+    <value>Aktueller Kurs</value>
+  </data>
+  <data name="Display_ViewModelOpenPositionPercentageProfit" xml:space="preserve">
+    <value>Profit (%)</value>
+  </data>
+  <data name="Display_ViewModelOpenPositionProfit" xml:space="preserve">
+    <value>Profit</value>
   </data>
 </root>

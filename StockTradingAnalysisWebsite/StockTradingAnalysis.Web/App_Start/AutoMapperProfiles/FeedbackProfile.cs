@@ -4,8 +4,16 @@ using StockTradingAnalysis.Web.Models;
 
 namespace StockTradingAnalysis.Web.AutoMapperProfiles
 {
+    /// <summary>
+    /// The FeedbackProfile contains the mapper configuration for <see cref="IFeedback"/> and <see cref="IFeedbackProportion"/>.
+    /// </summary>
+    /// <seealso cref="Profile" />
     public class FeedbackProfile : Profile
     {
+        /// <summary>
+        /// Override this method in a derived class and call the CreateMap method to associate that map with this profile.
+        /// Avoid calling the <see cref="T:AutoMapper.Mapper" /> class from this method.
+        /// </summary>
         protected override void Configure()
         {
             Mapper.CreateMap<IFeedback, FeedbackViewModel>()

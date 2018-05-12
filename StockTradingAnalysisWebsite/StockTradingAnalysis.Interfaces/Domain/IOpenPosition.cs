@@ -13,6 +13,14 @@ namespace StockTradingAnalysis.Interfaces.Domain
         Guid ProductId { get; }
 
         /// <summary>
+        /// Gets the first order date.
+        /// </summary>
+        /// <value>
+        /// The order date.
+        /// </value>
+        DateTime FirstOrderDate { get; set; }
+
+        /// <summary>
         /// Gets the amount of units
         /// </summary>
         decimal Shares { get; set; }

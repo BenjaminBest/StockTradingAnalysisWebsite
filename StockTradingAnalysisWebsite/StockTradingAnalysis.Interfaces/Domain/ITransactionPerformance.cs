@@ -6,23 +6,8 @@ namespace StockTradingAnalysis.Interfaces.Domain
     /// <summary>
     /// Defines an interface for performance calculation results of a selling/dividend statistic
     /// </summary>
-    public interface ITransactionPerformance : IModelRepositoryItem
+    public interface ITransactionPerformance : IProfit, IModelRepositoryItem
     {
-        /// <summary>
-        /// Gets the absolute profit
-        /// </summary>
-        decimal ProfitAbsolute { get; }
-
-        /// <summary>
-        /// Gets the profit (in %)
-        /// </summary>
-        decimal ProfitPercentage { get; }
-
-        /// <summary>
-        /// Gets <c>true</c> if profit was made
-        /// </summary>
-        bool ProfitMade { get; }
-
         /// <summary>
         /// Gets the holding period
         /// </summary>

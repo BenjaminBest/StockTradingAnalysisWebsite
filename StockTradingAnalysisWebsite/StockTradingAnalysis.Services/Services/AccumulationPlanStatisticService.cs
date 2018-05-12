@@ -128,10 +128,13 @@ namespace StockTradingAnalysis.Services.Services
                 .Register(new TransactionEndDateFilter(end))
                 .Register(new TransactionTagFilter(tag));
 
-            var period = new SavingsPlanPeriod();
-
-            period.SumDividends = _transactionCalculationService.CalculateSumDividends(query);
-            period.PerformanceActualPeriodPercentage = _transactionCalculationService.CalculatePerformancePercentageForPeriod(new TransactionAllQuery().Register(new TransactionTagFilter(tag)), start, end);
+            var period = new SavingsPlanPeriod
+            {
+                SumDividends = _transactionCalculationService.CalculateSumDividends(query),
+                PerformanceActualPeriodPercentage =
+                    _transactionCalculationService.CalculatePerformancePercentageForPeriod(
+                        new TransactionAllQuery().Register(new TransactionTagFilter(tag)), start, end)
+            };
 
             return period;
         }

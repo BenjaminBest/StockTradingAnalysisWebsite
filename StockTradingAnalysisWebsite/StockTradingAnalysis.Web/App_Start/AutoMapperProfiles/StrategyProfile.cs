@@ -4,6 +4,10 @@ using StockTradingAnalysis.Web.Models;
 
 namespace StockTradingAnalysis.Web.AutoMapperProfiles
 {
+    /// <summary>
+    /// The StrategyProfile contains the auto mapper configuration for <see cref="IStrategy"/>.
+    /// </summary>
+    /// <seealso cref="Profile" />
     public class StrategyProfile : Profile
     {
         protected override void Configure()

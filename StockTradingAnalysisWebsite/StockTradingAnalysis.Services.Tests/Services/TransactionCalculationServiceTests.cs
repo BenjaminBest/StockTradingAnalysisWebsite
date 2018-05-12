@@ -20,10 +20,11 @@ namespace StockTradingAnalysis.Services.Tests.Services
         {
             var dateService = new Mock<IDateCalculationService>();
             var iirService = new Mock<IInterestRateCalculatorService>();
+            var performanceService = new Mock<ITransactionPerformanceService>();
             var dispatcher = new Mock<IQueryDispatcher>();
             dispatcher.Setup(s => s.Execute(It.IsAny<IQuery<IEnumerable<ITransaction>>>())).Returns(transactions ?? new List<ITransaction>());
 
-            return new TransactionCalculationService(dispatcher.Object, dateService.Object, iirService.Object);
+            return new TransactionCalculationService(dispatcher.Object, dateService.Object, iirService.Object, performanceService.Object);
         }
 
         private readonly SellingTransaction _sell = new SellingTransaction(Guid.NewGuid()) { PositionSize = 1000, Taxes = 50, OrderCosts = 50 };

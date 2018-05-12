@@ -51,6 +51,7 @@ Features
 --------------
 * Dashboard
   * Savings plan based on assigned categories for transactions
+  * Open positions  
   * KPIs
     * Amount of trades
     * Amount of winning/losing trades
@@ -75,7 +76,7 @@ Features
   * Add, edit, delete, update quotes
   * Aggregated absolute profit per security
   * Transaction history and latest quote per security
-  * Candlestick chat based on security quotes with flags for buy, sell, dividend and split
+  * Candlestick chat based on security quotes with flags for buy, sell, dividend and split. Also the average price is highlighted as a line-graph
 * Feedback
   * Add, edit, delete
   * Percentage of transactions assigned to feedbacks
@@ -90,7 +91,6 @@ Features
 Features (not yet migrated)
 --------------
 * Dashboard
-    * Open positions
   * Statistics: Last 10/25/50/75/100/150/All Trades (profit, loss, payoff-ratio, CRV,CQN etc.)
   * Performance: over asset class, long/short, strategy, monthly performance
   * Potential: MAE,MFE
@@ -113,4 +113,4 @@ Security details
 Security charts
 ![security_charts](https://user-images.githubusercontent.com/29073072/36342220-61e068e8-13fb-11e8-830d-ad3fa23c1c44.png)
 Dashboard KPIs
-![dashboard](https://user-images.githubusercontent.com/29073072/39763155-ac11817a-52dc-11e8-8e34-b1bd0fc5db35.png)
+![dashboard](https://user-images.githubusercontent.com/29073072/39958239-941bd620-5600-11e8-8979-58e4cf8aedfe.png)

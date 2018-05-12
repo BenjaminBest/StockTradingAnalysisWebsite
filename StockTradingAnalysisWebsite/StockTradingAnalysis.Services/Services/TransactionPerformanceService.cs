@@ -91,7 +91,6 @@ namespace StockTradingAnalysis.Services.Services
             return decimal.Round(sumBuyingPower / sumUnits, 2);
         }
 
-
         /// <summary>
         /// Returns the absolute MAE (maximum loss during trade) incl. order costs
         /// </summary>
@@ -156,14 +155,16 @@ namespace StockTradingAnalysis.Services.Services
         {
             var purchases = buyingTransactions.OrderBy(t => t.OrderDate).ToList();
 
-            var buyingCosts = purchases.Sum(t => (t.PricePerShare * t.Shares) + t.OrderCosts);
+            var profit = GetProfit(
+                purchases.Sum(t => t.Shares * t.PricePerShare),
+                purchases.Sum(t => t.OrderCosts),
+                sellingTransaction.Shares * sellingTransaction.PricePerShare,
+                sellingTransaction.OrderCosts,
+                sellingTransaction.Taxes);
 
-            var sell = (sellingTransaction.Shares * sellingTransaction.PricePerShare) - (sellingTransaction.OrderCosts + sellingTransaction.Taxes);
-            var profit = decimal.Round(sell - buyingCosts, 2);
-            var percentage = decimal.Round((profit / buyingCosts) * 100, 2);
-            var r = decimal.Round(profit / GetMaximumRisk(sellingTransaction.OrderDate), 2);
+            var r = decimal.Round(profit.ProfitAbsolute / GetMaximumRisk(sellingTransaction.OrderDate), 2);
 
-            var performance = new TransactionPerformance(sellingTransaction.TransactionId, profit, percentage, purchases.First().OrderDate, sellingTransaction.OrderDate, r);
+            var performance = new TransactionPerformance(sellingTransaction.TransactionId, profit.ProfitAbsolute, profit.ProfitPercentage, purchases.First().OrderDate, sellingTransaction.OrderDate, r);
 
             if (mfe.HasValue && mae.HasValue)
             {
@@ -196,6 +197,26 @@ namespace StockTradingAnalysis.Services.Services
             var performance = new TransactionPerformance(dividendTransaction.TransactionId, profit, percentage, purchases.First().OrderDate, dividendTransaction.OrderDate, r);
 
             return performance;
+        }
+
+        /// <summary>
+        /// Calculates the profit.
+        /// </summary>
+        /// <param name="buyingPositionSize">Size of the buying position.</param>
+        /// <param name="buyingOrderCosts">The buying order costs.</param>
+        /// <param name="sellingPositionSize">Size of the selling position.</param>
+        /// <param name="sellingOrderCosts">The selling order costs.</param>
+        /// <param name="taxes">The taxes.</param>
+        /// <returns></returns>
+        public IProfit GetProfit(decimal buyingPositionSize, decimal buyingOrderCosts, decimal sellingPositionSize,
+            decimal sellingOrderCosts, decimal taxes)
+        {
+            var buyingCosts = buyingPositionSize + buyingOrderCosts;
+            var sell = sellingPositionSize - (sellingOrderCosts + taxes);
+            var profit = decimal.Round(sell - buyingCosts, 2);
+            var percentage = decimal.Round((profit / buyingCosts) * 100, 2);
+
+            return new Profit(profit, percentage);
         }
 
         /// <summary>

@@ -1,4 +1,5 @@
-﻿@model StockTradingAnalysis.Web.Models.DashboardViewModel
+﻿@using StockTradingAnalysis.Web.Common.Extensions
+@model StockTradingAnalysis.Web.Models.DashboardViewModel
 
 @{
     ViewBag.Title = "Index";
@@ -8,9 +9,64 @@
 <div class="container-fluid">
     <div class="row">
         @Html.Partial("DisplayTemplates/Cards", Model.Cards)
+        
+        <div class="col-12 mt-5">
+            <table class="table table-sm table-hover table-striped table-responsive-lg">
+                <caption><strong>Positions</strong><br/> @Resources.ViewTextCapitalExpenditure: @Html.DisplayFor(modelItem => modelItem.OpenPositions.CapitalExpenditure)</caption>
+                <thead>
+                <tr>
+                    <th>
+                        @Html.LabelFor(modelItem => Model.OpenPositions.OpenPositions.FirstOrDefault().StockName)
+                    </th>
+                    <th>
+                        @Html.LabelFor(modelItem => Model.OpenPositions.OpenPositions.FirstOrDefault().FirstOrderDate)
+                    </th>
+                    <th>
+                        @Html.LabelFor(modelItem => Model.OpenPositions.OpenPositions.FirstOrDefault().PositionSize)
+                    </th>
+                    <th>
+                        @Html.LabelFor(modelItem => Model.OpenPositions.OpenPositions.FirstOrDefault().Shares)
+                    </th>
+                    <th>
+                        @Html.LabelFor(modelItem => Model.OpenPositions.OpenPositions.FirstOrDefault().AveragePricePerShare)
+                    </th>
+                    <th>
+                        @Html.LabelFor(modelItem => Model.OpenPositions.OpenPositions.FirstOrDefault().CurrentQuotation)
+                    </th>
+                    <th>
+                        @Html.LabelFor(modelItem => Model.OpenPositions.OpenPositions.FirstOrDefault().Profit)
+                    </th>                    
+                </tr>
+                </thead>
+                <tbody>
+                @foreach (var position in Model.OpenPositions.OpenPositions)
+                {
+                    <tr class="clickableRow" href='@Html.PlainLink("Edit", "Stock", new {id = position.StockId})'>
+                        <td>
+                            <span class="text-info">@Html.DisplayFor(modelItem => position.StockName)</span>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => position.FirstOrderDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => position.PositionSize)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => position.Shares)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => position.AveragePricePerShare)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => position.CurrentQuotation)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => position.Profit)
+                        </td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
-
-@{ 
-//TODO: Open positions in a table maybe at the right/left column, cards should flow around
-}
