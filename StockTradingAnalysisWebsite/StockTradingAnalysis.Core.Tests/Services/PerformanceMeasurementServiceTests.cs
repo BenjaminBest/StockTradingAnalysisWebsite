@@ -34,7 +34,6 @@ namespace StockTradingAnalysis.Core.Tests.Services
             results["Total Commits"].Value.Should().Be(2);
             results["Total Events"].Value.Should().Be(3);
             results["Commits/ms"].Value.Should().BeApproximately(0.6d, 2);
-            results["Events/ms"].Value.Should().BeApproximately(1, 0.5);
             results["Average Commit Duration (ms)"].Value.Should().Be(1000);
         }
 
