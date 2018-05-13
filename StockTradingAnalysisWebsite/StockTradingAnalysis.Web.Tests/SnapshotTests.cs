@@ -235,6 +235,7 @@ namespace StockTradingAnalysis.Web.Tests
             repository.GetById(guid).ReturnNameForTest().Should().Be(name);
         }
 
+        [Ignore]
         [TestMethod]
         [Description("Repository should be able to load/save 20.000 Aggregates within 10 sec with snapshots enabled")]
         public void RepositoryShouldLoadAndSave20000AggregatesWithSnapShotsEnabledIn60Seconds()
