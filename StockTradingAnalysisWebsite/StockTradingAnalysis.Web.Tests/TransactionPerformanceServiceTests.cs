@@ -1,11 +1,11 @@
-﻿using FluentAssertions;
+﻿using System;
+using System.Linq;
+using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using StockTradingAnalysis.Domain.Events.Domain;
 using StockTradingAnalysis.Interfaces.Domain;
 using StockTradingAnalysis.Services.Services;
 using StockTradingAnalysis.Web.Tests.Mocks;
-using System;
-using System.Linq;
 
 namespace StockTradingAnalysis.Web.Tests
 {
@@ -192,7 +192,7 @@ namespace StockTradingAnalysis.Web.Tests
             book.AddEntry(TransactionEntryMock.CreateDividend(stockId, sellTransId, 2200, 45, 0m, 0m, DateTime.Parse("2011-04-28 00:00:00.000")));
 
             var result = GetDividendPerformance(book, stockId, sellTransId);
-            result.ProfitAbsolute.Should().Be(28800);
+            result.ProfitAbsolute.Should().Be(99000);
         }
 
         [TestMethod]
@@ -268,7 +268,7 @@ namespace StockTradingAnalysis.Web.Tests
             book.AddEntry(TransactionEntryMock.CreateSelling(stockId, sellTransId, 570, 2.38m, 5.5m, 29.55m, DateTime.Parse("2011-06-08 19:35:00.000")));
 
             var result = GetPerformance(book, stockId, sellTransId);
-            result.R.Should().Be(0.85m);
+            result.R.Should().Be(0.89m);
         }
 
         [TestMethod]

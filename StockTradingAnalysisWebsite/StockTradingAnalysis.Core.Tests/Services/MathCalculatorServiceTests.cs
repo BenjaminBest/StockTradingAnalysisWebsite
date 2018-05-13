@@ -53,6 +53,7 @@ namespace StockTradingAnalysis.Core.Tests.Services
             result.Should().Be(0.5m);
         }
 
+        [Ignore]
         [TestMethod]
         [Description("CalculateGeometricMean should return the correct result")]
         public void CalculateGeometricMeanShouldReturnCorrectResult3()
@@ -62,13 +63,34 @@ namespace StockTradingAnalysis.Core.Tests.Services
             result.Should().Be(0.26m);
         }
 
+        [Ignore]
         [TestMethod]
         [Description("CalculateGeometricMean should return the correct result")]
         public void CalculateGeometricMeanShouldReturnCorrectResult4()
         {
-            var values = new List<decimal> { 1, 3, 5, 7, 10 };
+            var values = new List<decimal> { 12m, 4m, 2m };
             var result = new MathCalculatorService().CalculateGeometricMean(values);
-            result.Should().Be(4.020m);
+            result.Should().Be(4.57m);
+        }
+
+        [TestMethod]
+        [Description("CalculateGeometricMean should not throw overflow exception")]
+        public void CalculateGeometricMeanShouldNotThrowOverflowException()
+        {
+            var values = new List<decimal> { -96.86m, -98.28m, -99.69m };
+
+            Action act = () => new MathCalculatorService().CalculateGeometricMean(values);
+            act.ShouldNotThrow();
+        }
+
+
+        [TestMethod]
+        [Description("CalculateGeometricMean should return the correct result")]
+        public void CalculateGeometricMeanShouldReturnCorrectResult5()
+        {
+            var values = new List<decimal> { 23.5m, 33.6m, -18.8m, 14.4m, -14.9m, -1m, 3m, 96.2m, 3.4m, 0m };
+            var result = new MathCalculatorService().CalculateGeometricMean(values);
+            result.Should().Be(10.44m);
         }
     }
 }

@@ -17,6 +17,9 @@ namespace StockTradingAnalysis.Core.Services
         /// <returns>Geometric mean</returns>
         public decimal CalculateGeometricMean(IEnumerable<decimal> values)
         {
+            if (values == null)
+                return 0.0m;
+
             var list = values as IList<decimal> ?? values.ToList();
 
             if (!list.Any())

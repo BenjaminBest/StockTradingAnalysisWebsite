@@ -163,8 +163,8 @@ namespace StockTradingAnalysis.Web.Tests
 
             var position = book.GetOrAddOpenPosition(guid);
             position.Shares.Should().Be(58);
-            position.PricePerShare.Should().BeApproximately(0m, 0.00001m);//TODO:Get real values
-            position.PositionSize.Should().Be(0m); //TODO:Get real values
+            position.PricePerShare.Should().BeApproximately(86.36258098m, 0.00001m);
+            position.PositionSize.Should().BeApproximately(5009.02969m, 0.00001m);
             position.ProductId.Should().Be(guid);
         }
 
