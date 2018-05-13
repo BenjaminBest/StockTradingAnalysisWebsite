@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using HtmlAgilityPack;
-using Microsoft.Extensions.Logging;
-using StockTradingAnalysis.Services.StockQuoteService.Common;
+using StockTradingAnalysis.Domain.Events.Domain;
+using StockTradingAnalysis.Interfaces.Domain;
+using StockTradingAnalysis.Services.External.Common;
 
-namespace StockTradingAnalysis.Services.StockQuoteService.Providers
+namespace StockTradingAnalysis.Services.External.Providers
 {
     /// <summary>
     /// Class QuotationDownloadOnVista is a class to handle the response of a onvista stock prices web page
@@ -16,7 +17,7 @@ namespace StockTradingAnalysis.Services.StockQuoteService.Providers
         /// Extract the needed information out of the plain html response. This si different for multiple pages.
         /// </summary>
         /// <returns></returns>
-        public override IEnumerable<Quotation> ExtractInformation()
+        public override IEnumerable<IQuotation> ExtractInformation()
         {
             var quotations = new List<Quotation>();
 
@@ -33,46 +34,35 @@ namespace StockTradingAnalysis.Services.StockQuoteService.Providers
                     .FirstOrDefault(d => d.InnerText == "Zu Ihrer Eingabe wurden keine Daten gefunden.") != null)
                 return Enumerable.Empty<Quotation>();
 
-            var isin = document.DocumentNode
-                .Descendants("td")
-                .Where(d => d.GetAttributeValue("class", "") == "skb")
-                .FirstOrDefault(d => d.InnerText == "ISIN:").NextSibling.InnerText;
-
             var nodes = document.DocumentNode.Descendants("tr")
-                .Where(d=>d.GetAttributeValue("class","") == "hr");
+                .Where(d => d.GetAttributeValue("class", "") == "hr");
             foreach (var node in nodes)
             {
                 if (node.ChildNodes.Count() != 5)
-                    continue;                
+                    continue;
 
-                decimal open;
-                decimal low;
-                decimal high;
-                decimal close;
-                DateTime date;
-
-                if (!DateTime.TryParse(node.ChildNodes[0].InnerText, out date))
+                if (!DateTime.TryParse(node.ChildNodes[0].InnerText, out var date))
                 {
                     break;
                 }
-                if (!decimal.TryParse(node.ChildNodes[1].InnerText, out open))
+                if (!decimal.TryParse(node.ChildNodes[1].InnerText, out var open))
                 {
                     break;
                 }
-                if (!decimal.TryParse(node.ChildNodes[2].InnerText, out low))
+                if (!decimal.TryParse(node.ChildNodes[2].InnerText, out var low))
                 {
                     break;
                 }
-                if (!decimal.TryParse(node.ChildNodes[3].InnerText, out high))
+                if (!decimal.TryParse(node.ChildNodes[3].InnerText, out var high))
                 {
                     break;
                 }
-                if (!decimal.TryParse(node.ChildNodes[4].InnerText, out close))
+                if (!decimal.TryParse(node.ChildNodes[4].InnerText, out var close))
                 {
                     break;
                 }
 
-                var quote = new Quotation(Wkn, isin )
+                var quote = new Quotation()
                 {
                     Date = date,
                     Open = open,

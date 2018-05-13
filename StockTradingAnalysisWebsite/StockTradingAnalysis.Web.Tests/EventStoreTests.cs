@@ -17,15 +17,15 @@ namespace StockTradingAnalysis.Web.Tests
         [Description("The eventstore should save every event that comes to the internal storage")]
         public void EventStoreShouldSaveEventToInternalStorage()
         {
-            var handlers = new List<DependecyDescriptor>
+            var handlers = new List<DependencyDescriptor>
             {
-                new DependecyDescriptor(typeof (IEventHandler<TestEvent>), new TestEventHandler())
+                new DependencyDescriptor(typeof (IEventHandler<TestEvent>), new TestEventHandler())
             };
 
             var eventBus = new EventBus(DependencyServiceMock.GetMock(handlers));
-            var eventStore = new EventStore(eventBus, new InMemoryEventStore(),PerformanceCounterMock.GetMock());
+            var eventStore = new EventStore(eventBus, new InMemoryEventStore(), PerformanceCounterMock.GetMock());
 
-            var events = new List<IDomainEvent>() {new TestEvent(Guid.NewGuid())};
+            var events = new List<IDomainEvent>() { new TestEvent(Guid.NewGuid()) };
             eventStore.Save(events, -1);
 
             eventStore.GetEventsByAggregateId(events[0].AggregateId).Should().BeEquivalentTo(events[0]);
@@ -35,9 +35,9 @@ namespace StockTradingAnalysis.Web.Tests
         [Description("The eventstore GetEventsByAggregateId method should apply the filter correctly")]
         public void EventStoreShouldApplyTheFilterCorrectly()
         {
-            var handlers = new List<DependecyDescriptor>
+            var handlers = new List<DependencyDescriptor>
             {
-                new DependecyDescriptor(typeof (IEventHandler<TestEvent>), new TestEventHandler())
+                new DependencyDescriptor(typeof (IEventHandler<TestEvent>), new TestEventHandler())
             };
 
             var eventBus = new EventBus(DependencyServiceMock.GetMock(handlers));
@@ -61,15 +61,15 @@ namespace StockTradingAnalysis.Web.Tests
         {
             var result = String.Empty;
 
-            var handlers = new List<DependecyDescriptor>
+            var handlers = new List<DependencyDescriptor>
             {
-                new DependecyDescriptor(typeof (IEventHandler<TestEvent>), new TestEventHandler((name) => result = name))
+                new DependencyDescriptor(typeof (IEventHandler<TestEvent>), new TestEventHandler((name) => result = name))
             };
 
             var eventBus = new EventBus(DependencyServiceMock.GetMock(handlers));
             var eventStore = new EventStore(eventBus, new InMemoryEventStore(), PerformanceCounterMock.GetMock());
 
-            var events = new List<IDomainEvent>() {new TestEvent(Guid.NewGuid())};
+            var events = new List<IDomainEvent>() { new TestEvent(Guid.NewGuid()) };
             eventStore.Save(events, -1);
 
             result.Should().Be("TestEvent");
@@ -80,9 +80,9 @@ namespace StockTradingAnalysis.Web.Tests
             )]
         public void EventStoreShouldNotThrowExceptionWhenFilterIsUsedOnEmptyEventList()
         {
-            var handlers = new List<DependecyDescriptor>
+            var handlers = new List<DependencyDescriptor>
             {
-                new DependecyDescriptor(typeof (IEventHandler<TestEvent>), new TestEventHandler())
+                new DependencyDescriptor(typeof (IEventHandler<TestEvent>), new TestEventHandler())
             };
 
             var eventBus = new EventBus(DependencyServiceMock.GetMock(handlers));
@@ -98,9 +98,9 @@ namespace StockTradingAnalysis.Web.Tests
         {
             var result = String.Empty;
 
-            var handlers = new List<DependecyDescriptor>
+            var handlers = new List<DependencyDescriptor>
             {
-                new DependecyDescriptor(typeof (IEventHandler<TestEvent>), new TestEventHandler((name) => result += "0"))
+                new DependencyDescriptor(typeof (IEventHandler<TestEvent>), new TestEventHandler((name) => result += "0"))
             };
 
             var eventBus = new EventBus(DependencyServiceMock.GetMock(handlers));
@@ -110,7 +110,7 @@ namespace StockTradingAnalysis.Web.Tests
             {
                 for (var i = 0; i <= 19999; i++)
                 {
-                    var events = new List<IDomainEvent>() {new TestEvent(Guid.NewGuid())};
+                    var events = new List<IDomainEvent>() { new TestEvent(Guid.NewGuid()) };
                     eventStore.Save(events, -1);
                 }
             };

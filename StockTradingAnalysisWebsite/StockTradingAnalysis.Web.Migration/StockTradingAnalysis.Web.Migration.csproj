@@ -180,6 +180,10 @@
       <Project>{3694CF79-FB2D-4F79-8236-A4975A30924D}</Project>
       <Name>StockTradingAnalysis.Interfaces</Name>
     </ProjectReference>
+    <ProjectReference Include="..\StockTradingAnalysis.Services.External\StockTradingAnalysis.Services.External.csproj">
+      <Project>{7234CB2E-D129-46B2-99A4-1162E4C4A2B1}</Project>
+      <Name>StockTradingAnalysis.Services.External</Name>
+    </ProjectReference>
     <ProjectReference Include="..\StockTradingAnalysis.Services\StockTradingAnalysis.Services.csproj">
       <Project>{23347637-c67a-4826-a8c3-83d19ec1e2fb}</Project>
       <Name>StockTradingAnalysis.Services</Name>

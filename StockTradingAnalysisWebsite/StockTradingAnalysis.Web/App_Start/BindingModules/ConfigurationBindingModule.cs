@@ -21,8 +21,6 @@ namespace StockTradingAnalysis.Web.BindingModules
             {
                 var registry = new ConfigurationRegistry();
 
-                registry.AddValue("StockQuoteServiceBaseUrl", ConfigurationManager.AppSettings["StockQuoteServiceBaseUrl"]);
-                registry.AddValue("StockQuoteOnlineCheckUrl", ConfigurationManager.AppSettings["StockQuoteOnlineCheckUrl"]);
                 registry.AddValue("StockTradingAnalysis_MSSQL", ConfigurationManager.ConnectionStrings["StockTradingAnalysis_MSSQL"].ConnectionString);
                 registry.AddValue("StockTradingAnalysis_RavenDB", ConfigurationManager.ConnectionStrings["StockTradingAnalysis_RavenDB"].ConnectionString);
 

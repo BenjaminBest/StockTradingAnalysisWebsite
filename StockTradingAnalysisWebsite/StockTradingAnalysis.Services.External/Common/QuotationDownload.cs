@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Net.Http;
-using Microsoft.Extensions.Logging;
+using StockTradingAnalysis.Interfaces.Domain;
 
-namespace StockTradingAnalysis.Services.StockQuoteService.Common
+namespace StockTradingAnalysis.Services.External.Common
 {
     /// <summary>
     /// Class QuotationDownload is a base class which is able to download a page. The data handling logic must
@@ -27,19 +26,6 @@ namespace StockTradingAnalysis.Services.StockQuoteService.Common
         protected string Response;
 
         /// <summary>
-        /// Status of the request
-        /// </summary>
-        public Status Status;
-
-        /// <summary>
-        /// Initializes this class with default values
-        /// </summary>
-        protected QuotationDownload()
-        {
-            Status = new Status();
-        }
-
-        /// <summary>
         /// Initializes this class
         /// </summary>
         /// <param name="wkn">WKN</param>
@@ -59,26 +45,15 @@ namespace StockTradingAnalysis.Services.StockQuoteService.Common
         /// <returns></returns>
         public QuotationDownload Download()
         {
-            try
-            {
-                Response = HtmlDownload.CreateHttpClient(_website).Result;
-            }
-            catch (HttpRequestException)
-            {
-                Status.HttpResponseCode = 504;
-            }
-            catch(Exception)
-            {
-                Status.HttpResponseCode = 500;
-            }
+            Response = HtmlDownload.CreateHttpClient(_website).Result;
 
             return this;
         }
 
         /// <summary>
-        /// Extract the needed information out of the plain html response. This si different for multiple pages.
+        /// Extract the needed information out of the plain html response. This is different for multiple pages.
         /// </summary>
         /// <returns></returns>
-        public abstract IEnumerable<Quotation> ExtractInformation();
+        public abstract IEnumerable<IQuotation> ExtractInformation();
     }
 }

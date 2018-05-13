@@ -1,20 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using StockTradingAnalysis.Interfaces.Domain;
 
-namespace StockTradingAnalysis.Web.Common.Interfaces
+namespace StockTradingAnalysis.Services.External.Interfaces
 {
     /// <summary>
-    /// The IQuotationServiceClient defines methods to communicate with the quotation service
+    /// The interface IStockQuoteExternalService defines a sevice which connects to external resources and downloads quotes.
     /// </summary>
-    public interface IQuotationServiceClient
+    public interface IStockQuoteExternalService
     {
         /// <summary>
-        /// Gets all quotations for the given <paramref name="stockId"/>
+        /// Gets the quotes for the specified WKN.
         /// </summary>
-        /// <param name="stockId">The stock.</param>
+        /// <param name="wkn">The WKN.</param>
         /// <returns></returns>
-        IEnumerable<IQuotation> Get(Guid stockId);
+        IEnumerable<IQuotation> Get(string wkn);
 
         /// <summary>
         /// Determines whether this instance is online.

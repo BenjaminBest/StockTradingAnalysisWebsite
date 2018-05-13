@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using StockTradingAnalysis.Core.Common;
+﻿using System.Linq;
 using StockTradingAnalysis.Domain.CQRS.Cmd.Commands;
 using StockTradingAnalysis.Domain.CQRS.Query.Queries;
-using StockTradingAnalysis.Domain.Events.Domain;
+using StockTradingAnalysis.Services.External.Services;
+using StockTradingAnalysis.Web.Common.Services;
 using StockTradingAnalysis.Web.Migration.Common;
 
 namespace StockTradingAnalysis.Web.Migration.Importer
@@ -23,33 +21,20 @@ namespace StockTradingAnalysis.Web.Migration.Importer
             {
                 var quotationsBefore = QueryDispatcher.Execute(new StockQuotationsCountByIdQuery(stock.Id));
 
-                var result = string.Empty;
-                try
-                {
-                    result = HtmlDownload.CreateHttpClientSync(new Uri(Configuration.GetValue<string>("StockQuoteServiceBaseUrl") + $"/{stock.Wkn}"));
-                }
-                catch (Exception e)
-                {
-                    // ignored
-                }
+                var quotations = new QuotationServiceClient(QueryDispatcher, new StockQuoteExternalService(LoggingService)).Get(stock.Id).ToList();
 
-                if (string.IsNullOrEmpty(result))
+                if (!quotations.Any())
                 {
                     LoggingService.Info($"No quotations for stock {stock.Name} imported (Qty Before: {quotationsBefore})");
                     continue;
                 }
 
-                var quotations = SerializerService.Deserialize<IEnumerable<Quotation>>(result).ToList();
+                var cmd = new StockQuotationsAddOrChangeCommand(
+                    stock.Id,
+                    stock.OriginalVersion,
+                    quotations);
 
-                if (quotations.Any())
-                {
-                    var cmd = new StockQuotationsAddOrChangeCommand(
-                        stock.Id,
-                        stock.OriginalVersion,
-                        quotations);
-
-                    CommandDispatcher.Execute(cmd);
-                }
+                CommandDispatcher.Execute(cmd);
 
                 //Statistics
                 var existentQuotations = QueryDispatcher.Execute(new StockQuotationsByIdQuery(stock.Id)).Count();

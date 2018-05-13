@@ -1,10 +1,8 @@
 ﻿using System;
-using System.IO;
-using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 
-namespace StockTradingAnalysis.Services.StockQuoteService.Common
+namespace StockTradingAnalysis.Services.External.Common
 {
     /// <summary>
     /// HtmlDownload is used to download synchronous and asynchronous a web page
@@ -44,7 +42,7 @@ namespace StockTradingAnalysis.Services.StockQuoteService.Common
         {
             using (var client = new HttpClient())
             {
-                return await client.GetStringAsync(uri);
+                return await client.GetStringAsync(uri).ConfigureAwait(false);
             }
         }
     }

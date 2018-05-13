@@ -18,7 +18,7 @@ namespace StockTradingAnalysis.Web.Tests
         {
             var dispatcher =
                 new CommandDispatcher(
-                    DependencyServiceMock.GetMock(new DependecyDescriptor(typeof(ICommandHandler<TestCommand>), null)),
+                    DependencyServiceMock.GetMock(new DependencyDescriptor(typeof(ICommandHandler<TestCommand>), null)),
                     PerformanceCounterMock.GetMock());
 
             Action act = () => dispatcher.Execute(new TestCommand());

@@ -24,13 +24,13 @@ namespace StockTradingAnalysis.Web.Tests.Mocks
             TestDatabase.Items.Clear();
 
             var savedHandler = new TestAggregateSavedEventHandler();
-            var dependencyService = DependencyServiceMock.GetMock(new List<DependecyDescriptor>()
+            var dependencyService = DependencyServiceMock.GetMock(new List<DependencyDescriptor>()
             {
-                new DependecyDescriptor(typeof (IEventHandler<TestAggregateCreatedEvent>),
+                new DependencyDescriptor(typeof (IEventHandler<TestAggregateCreatedEvent>),
                     new TestAggregateCreatedEventHandler()),
-                new DependecyDescriptor(typeof (IEventHandler<TestAggregateChangedEvent>),
+                new DependencyDescriptor(typeof (IEventHandler<TestAggregateChangedEvent>),
                     new TestAggregateChangedEventHandler()),
-                new DependecyDescriptor(typeof (IEventHandler<AggregateSavedEvent>), savedHandler)
+                new DependencyDescriptor(typeof (IEventHandler<AggregateSavedEvent>), savedHandler)
             });
 
             eventBus = new EventBus(dependencyService);
@@ -58,13 +58,13 @@ namespace StockTradingAnalysis.Web.Tests.Mocks
             TestDatabase.Items.Clear();
 
             var savedHandler = new TestAggregateSavedEventHandler();
-            var dependencyService = DependencyServiceMock.GetMock(new List<DependecyDescriptor>()
+            var dependencyService = DependencyServiceMock.GetMock(new List<DependencyDescriptor>()
             {
-                new DependecyDescriptor(typeof (IEventHandler<TestAggregateCreatedEvent>),
+                new DependencyDescriptor(typeof (IEventHandler<TestAggregateCreatedEvent>),
                     new TestAggregateCreatedEventHandler()),
-                new DependecyDescriptor(typeof (IEventHandler<TestAggregateChangedEvent>),
+                new DependencyDescriptor(typeof (IEventHandler<TestAggregateChangedEvent>),
                     new TestAggregateChangedEventHandler()),
-                new DependecyDescriptor(typeof (IEventHandler<AggregateSavedEvent>), savedHandler)
+                new DependencyDescriptor(typeof (IEventHandler<AggregateSavedEvent>), savedHandler)
             });
 
             eventBus = new EventBus(dependencyService);
@@ -89,13 +89,13 @@ namespace StockTradingAnalysis.Web.Tests.Mocks
             TestDatabase.Items.Clear();
 
             var savedHandler = new TestAggregateSavedEventHandler();
-            var dependencyService = DependencyServiceMock.GetMock(new List<DependecyDescriptor>()
+            var dependencyService = DependencyServiceMock.GetMock(new List<DependencyDescriptor>()
             {
-                new DependecyDescriptor(typeof (IEventHandler<TestAggregateCreatedEvent>),
+                new DependencyDescriptor(typeof (IEventHandler<TestAggregateCreatedEvent>),
                     new TestAggregateCreatedEventHandler()),
-                new DependecyDescriptor(typeof (IEventHandler<TestAggregateChangedEvent>),
+                new DependencyDescriptor(typeof (IEventHandler<TestAggregateChangedEvent>),
                     new TestAggregateChangedEventHandler()),
-                new DependecyDescriptor(typeof (IEventHandler<AggregateSavedEvent>), savedHandler)
+                new DependencyDescriptor(typeof (IEventHandler<AggregateSavedEvent>), savedHandler)
             });
 
             eventBus = new EventBus(dependencyService);

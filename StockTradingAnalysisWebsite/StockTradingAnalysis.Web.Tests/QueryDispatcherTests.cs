@@ -20,7 +20,7 @@ namespace StockTradingAnalysis.Web.Tests
 
             var dispatcher =
                 new QueryDispatcher(
-                    DependencyServiceMock.GetMock(new DependecyDescriptor(typeof(IQueryHandler<TestQuery, Test>),
+                    DependencyServiceMock.GetMock(new DependencyDescriptor(typeof(IQueryHandler<TestQuery, Test>),
                         QueryHandlerMock.GetMock(resultObj))),
                         PerformanceCounterMock.GetMock());
             var result = dispatcher.Execute(new TestQuery());
@@ -34,7 +34,7 @@ namespace StockTradingAnalysis.Web.Tests
         {
             var dispatcher =
                 new QueryDispatcher(
-                    DependencyServiceMock.GetMock(new DependecyDescriptor(typeof(IQueryHandler<TestQuery, Test>), null)),
+                    DependencyServiceMock.GetMock(new DependencyDescriptor(typeof(IQueryHandler<TestQuery, Test>), null)),
                     PerformanceCounterMock.GetMock());
 
             Action act = () => dispatcher.Execute(new TestQuery());

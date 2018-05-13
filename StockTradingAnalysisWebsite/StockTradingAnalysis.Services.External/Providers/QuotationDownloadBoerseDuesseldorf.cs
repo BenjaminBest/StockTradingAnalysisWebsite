@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using HtmlAgilityPack;
-using StockTradingAnalysis.Services.StockQuoteService.Common;
+using StockTradingAnalysis.Domain.Events.Domain;
+using StockTradingAnalysis.Interfaces.Domain;
+using StockTradingAnalysis.Services.External.Common;
 
-namespace StockTradingAnalysis.Services.StockQuoteService.Providers
+namespace StockTradingAnalysis.Services.External.Providers
 {
     /// <summary>
     /// Class QuotationDownloadBoerseDuesseldorf is a class to handle the response of a boerse duesseldorf stock prices web page
@@ -16,17 +18,14 @@ namespace StockTradingAnalysis.Services.StockQuoteService.Providers
         /// Extract the needed information out of the plain html response. This si different for multiple pages.
         /// </summary>
         /// <returns></returns>
-        public override IEnumerable<Quotation> ExtractInformation()
+        public override IEnumerable<IQuotation> ExtractInformation()
         {
             var quotations = new List<Quotation>();
 
             var document = new HtmlDocument();
 
             if (string.IsNullOrEmpty(Response))
-            {
-                Status.HttpResponseCode = 404;
                 return Enumerable.Empty<Quotation>();
-            }
 
             document.LoadHtml(Response);
 
@@ -35,10 +34,7 @@ namespace StockTradingAnalysis.Services.StockQuoteService.Providers
                 .FirstOrDefault(d => d.GetAttributeValue("class", "") == "wkn_isin");
 
             if (isinRaw == null)
-            {
-                Status.HttpResponseCode = 404;
                 return Enumerable.Empty<Quotation>();
-            }
 
             var isin = isinRaw.InnerText.Split(',')[1].Split(':')[1].Trim();
             var nodes = document.DocumentNode.Descendants("tr");
@@ -49,12 +45,6 @@ namespace StockTradingAnalysis.Services.StockQuoteService.Providers
                 if (node.ChildNodes.Count() != 6 || node.ParentNode.Name != "tbody")
                     continue;
 
-                decimal open;
-                decimal low;
-                decimal high;
-                decimal close;
-                DateTime date;
-
                 var validQuote = true;
 
                 var formatting = new NumberFormatInfo
@@ -62,23 +52,23 @@ namespace StockTradingAnalysis.Services.StockQuoteService.Providers
                     CurrencyDecimalSeparator = ","
                 };
 
-                if (!DateTime.TryParseExact(node.ChildNodes[0].InnerText, "dd'.'MM'.'yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out date))
+                if (!DateTime.TryParseExact(node.ChildNodes[0].InnerText, "dd'.'MM'.'yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out var date))
                 {
                     validQuote = false;
                 }
-                if (!decimal.TryParse(node.ChildNodes[1].ChildNodes[0].InnerText, NumberStyles.Currency, formatting, out open))
+                if (!decimal.TryParse(node.ChildNodes[1].ChildNodes[0].InnerText, NumberStyles.Currency, formatting, out var open))
                 {
                     validQuote = false;
                 }
-                if (!decimal.TryParse(node.ChildNodes[2].ChildNodes[0].InnerText, NumberStyles.Currency, formatting, out high))
+                if (!decimal.TryParse(node.ChildNodes[2].ChildNodes[0].InnerText, NumberStyles.Currency, formatting, out var high))
                 {
                     validQuote = false;
                 }
-                if (!decimal.TryParse(node.ChildNodes[3].ChildNodes[0].InnerText, NumberStyles.Currency, formatting, out low))
+                if (!decimal.TryParse(node.ChildNodes[3].ChildNodes[0].InnerText, NumberStyles.Currency, formatting, out var low))
                 {
                     validQuote = false;
                 }
-                if (!decimal.TryParse(node.ChildNodes[4].ChildNodes[0].InnerText, NumberStyles.Currency, formatting, out close))
+                if (!decimal.TryParse(node.ChildNodes[4].ChildNodes[0].InnerText, NumberStyles.Currency, formatting, out var close))
                 {
                     validQuote = false;
                 }
@@ -87,7 +77,7 @@ namespace StockTradingAnalysis.Services.StockQuoteService.Providers
                 if (!validQuote)
                     continue;
 
-                var quote = new Quotation(Wkn, isin)
+                var quote = new Quotation()
                 {
                     Date = date,
                     Open = open,

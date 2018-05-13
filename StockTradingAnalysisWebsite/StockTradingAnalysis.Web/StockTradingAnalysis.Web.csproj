@@ -276,6 +276,7 @@
     <Compile Include="App_Start\AutoMapperProfiles\FeedbackProfile.cs" />
     <Compile Include="App_Start\AutoMapperProfiles\StockProfile.cs" />
     <Compile Include="App_Start\BindingModules\BootModulesBindingModule.cs" />
+    <Compile Include="App_Start\BindingModules\ExternalServicesBindingModule.cs" />
     <Compile Include="App_Start\BindingModules\FormattingBindingModule.cs" />
     <Compile Include="App_Start\BindingModules\ProcessBindingModule.cs" />
     <Compile Include="App_Start\BindingModules\JsonConverterBindingModule.cs" />
@@ -509,6 +510,10 @@
     <ProjectReference Include="..\StockTradingAnalysis.Interfaces\StockTradingAnalysis.Interfaces.csproj">
       <Project>{3694cf79-fb2d-4f79-8236-a4975a30924d}</Project>
       <Name>StockTradingAnalysis.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\StockTradingAnalysis.Services.External\StockTradingAnalysis.Services.External.csproj">
+      <Project>{7234CB2E-D129-46B2-99A4-1162E4C4A2B1}</Project>
+      <Name>StockTradingAnalysis.Services.External</Name>
     </ProjectReference>
     <ProjectReference Include="..\StockTradingAnalysis.Services\StockTradingAnalysis.Services.csproj">
       <Project>{23347637-C67A-4826-A8C3-83D19EC1E2FB}</Project>

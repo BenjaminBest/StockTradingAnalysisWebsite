@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using StockTradingAnalysis.Core.Common;
 using StockTradingAnalysis.Domain.CQRS.Query.Queries;
-using StockTradingAnalysis.Domain.Events.Domain;
-using StockTradingAnalysis.Interfaces.Configuration;
+using StockTradingAnalysis.Interfaces.Domain;
 using StockTradingAnalysis.Interfaces.Queries;
-using StockTradingAnalysis.Interfaces.Services;
+using StockTradingAnalysis.Services.External.Interfaces;
 using StockTradingAnalysis.Web.Common.Interfaces;
 
 namespace StockTradingAnalysis.Web.Common.Services
@@ -18,31 +15,26 @@ namespace StockTradingAnalysis.Web.Common.Services
     public class QuotationServiceClient : IQuotationServiceClient
     {
         /// <summary>
-        /// The configuration registry
-        /// </summary>
-        private readonly IConfigurationRegistry _configurationRegistry;
-
-        /// <summary>
         /// The query dispatcher
         /// </summary>
         private readonly IQueryDispatcher _queryDispatcher;
 
         /// <summary>
-        /// The serializer service
+        /// The stock quote external service
         /// </summary>
-        private readonly ISerializerService _serializerService;
+        private readonly IStockQuoteExternalService _stockQuoteExternalService;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="QuotationServiceClient" /> class.
         /// </summary>
-        /// <param name="configurationRegistry">The configuration registry.</param>
         /// <param name="queryDispatcher">The query dispatcher.</param>
-        /// <param name="serializerService">The serializer service.</param>
-        public QuotationServiceClient(IConfigurationRegistry configurationRegistry, IQueryDispatcher queryDispatcher, ISerializerService serializerService)
+        /// <param name="stockQuoteExternalService">The external stock quote service.</param>
+        public QuotationServiceClient(
+            IQueryDispatcher queryDispatcher,
+            IStockQuoteExternalService stockQuoteExternalService)
         {
-            _configurationRegistry = configurationRegistry;
             _queryDispatcher = queryDispatcher;
-            _serializerService = serializerService;
+            _stockQuoteExternalService = stockQuoteExternalService;
         }
 
         /// <summary>
@@ -50,16 +42,9 @@ namespace StockTradingAnalysis.Web.Common.Services
         /// </summary>
         /// <param name="stockId">The stock.</param>
         /// <returns></returns>
-        public IEnumerable<Quotation> Get(Guid stockId)
+        public IEnumerable<IQuotation> Get(Guid stockId)
         {
-            var stock = _queryDispatcher.Execute(new StockByIdQuery(stockId));
-
-            var result = HtmlDownload.CreateHttpClientSync(new Uri(_configurationRegistry.GetValue<string>("StockQuoteServiceBaseUrl") + $"/{stock.Wkn}"));
-
-            if (string.IsNullOrEmpty(result))
-                return Enumerable.Empty<Quotation>();
-
-            return _serializerService.Deserialize<IEnumerable<Quotation>>(result).ToList();
+            return _stockQuoteExternalService.Get(_queryDispatcher.Execute(new StockByIdQuery(stockId)).Wkn);
         }
 
         /// <summary>
@@ -70,19 +55,7 @@ namespace StockTradingAnalysis.Web.Common.Services
         /// </returns>
         public bool IsOnline()
         {
-            var result = false;
-
-            try
-            {
-                result = _serializerService.Deserialize<bool>(HtmlDownload.CreateHttpClientSync(new Uri(
-                    _configurationRegistry.GetValue<string>("StockQuoteOnlineCheckUrl")), new TimeSpan(0, 0, 0, 0, 150)));
-            }
-            catch (Exception)
-            {
-                // ignored
-            }
-
-            return result;
+            return _stockQuoteExternalService.IsOnline();
         }
     }
 }

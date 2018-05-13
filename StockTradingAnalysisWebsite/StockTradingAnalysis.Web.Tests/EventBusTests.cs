@@ -18,9 +18,9 @@ namespace StockTradingAnalysis.Web.Tests
         {
             var result = String.Empty;
 
-            var handlers = new List<DependecyDescriptor>
+            var handlers = new List<DependencyDescriptor>
             {
-                new DependecyDescriptor(typeof (IEventHandler<TestEvent>), new TestEventHandler((name) => result = name))
+                new DependencyDescriptor(typeof (IEventHandler<TestEvent>), new TestEventHandler((name) => result = name))
             };
 
             var eventBus = new EventBus(DependencyServiceMock.GetMock(handlers));
@@ -36,7 +36,7 @@ namespace StockTradingAnalysis.Web.Tests
         {
             var result = String.Empty;
 
-            var eventBus = new EventBus(DependencyServiceMock.GetMock(new List<DependecyDescriptor>()));
+            var eventBus = new EventBus(DependencyServiceMock.GetMock(new List<DependencyDescriptor>()));
 
             eventBus.Publish(new TestEvent(Guid.NewGuid()));
 
@@ -49,10 +49,10 @@ namespace StockTradingAnalysis.Web.Tests
         {
             var result = String.Empty;
 
-            var handlers = new List<DependecyDescriptor>
+            var handlers = new List<DependencyDescriptor>
             {
-                new DependecyDescriptor(typeof (IEventHandler<TestEvent>), new TestEventHandler((name) => result += name)),
-                new DependecyDescriptor(typeof (IEventHandler<TestAlternativeEvent>),
+                new DependencyDescriptor(typeof (IEventHandler<TestEvent>), new TestEventHandler((name) => result += name)),
+                new DependencyDescriptor(typeof (IEventHandler<TestAlternativeEvent>),
                     new TestAlternativeEventHandler((name) => result += name))
             };
 
@@ -69,10 +69,10 @@ namespace StockTradingAnalysis.Web.Tests
         {
             var result = String.Empty;
 
-            var handlers = new List<DependecyDescriptor>
+            var handlers = new List<DependencyDescriptor>
             {
-                new DependecyDescriptor(typeof (IEventHandler<TestEvent>), new TestAllSpecificEventHandler((name) => result += name)),
-                new DependecyDescriptor(typeof (IEventHandler<TestAlternativeEvent>),
+                new DependencyDescriptor(typeof (IEventHandler<TestEvent>), new TestAllSpecificEventHandler((name) => result += name)),
+                new DependencyDescriptor(typeof (IEventHandler<TestAlternativeEvent>),
                     new TestAllSpecificEventHandler((name) => result += name))
             };
 

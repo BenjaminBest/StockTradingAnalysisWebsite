@@ -1,12 +1,9 @@
-﻿using FluentAssertions;
+﻿using System;
+using System.Linq;
+using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using StockTradingAnalysis.EventSourcing.DomainContext;
-using StockTradingAnalysis.EventSourcing.Messaging;
-using StockTradingAnalysis.EventSourcing.Storage;
 using StockTradingAnalysis.Web.Tests.Mocks;
 using StockTradingAnalysis.Web.Tests.Objects;
-using System;
-using System.Linq;
 
 namespace StockTradingAnalysis.Web.Tests
 {
@@ -17,16 +14,9 @@ namespace StockTradingAnalysis.Web.Tests
         [Description("Datastore should load and save events with no eventual consistency problem")]
         public void DatastoreShouldLoadAndSaveWithNoEventualConsistency()
         {
-            EventBus eventBus;
-            EventStore eventStore;
-            SnapshotStore snapshotStore;
-            SnapshotProcessor snapshotProcessor;
-            DocumentDatabaseEventStore documentEventStore;
-            DocumentDatabaseSnapshotStore documentSnapshotStore;
-
-            var repository = EnvironmentMock.CreateDatabaseEnvironment<TestSnapshotAggregate>(out eventBus,
-                out eventStore,
-                out snapshotStore, out documentEventStore, out snapshotProcessor, out documentSnapshotStore, 100);
+            var repository = EnvironmentMock.CreateDatabaseEnvironment<TestSnapshotAggregate>(out _,
+                out _,
+                out _, out var documentEventStore, out _, out var documentSnapshotStore, 100);
 
             var guid = Guid.NewGuid();
 

@@ -237,7 +237,7 @@ namespace StockTradingAnalysis.Web.Tests
 
         [TestMethod]
         [Description("Repository should be able to load/save 20.000 Aggregates within 10 sec with snapshots enabled")]
-        public void RepositoryShouldLoadAndSave20000AggregatesWithSnapShotsEnabledIn10Seconds()
+        public void RepositoryShouldLoadAndSave20000AggregatesWithSnapShotsEnabledIn60Seconds()
         {
             EventBus eventBus;
             EventStore eventStore;
@@ -261,7 +261,7 @@ namespace StockTradingAnalysis.Web.Tests
                 }
             };
 
-            act.ExecutionTime().ShouldNotExceed(new TimeSpan(0, 0, 10));
+            act.ExecutionTime().ShouldNotExceed(new TimeSpan(0, 0, 60));
         }
 
         [TestMethod]
