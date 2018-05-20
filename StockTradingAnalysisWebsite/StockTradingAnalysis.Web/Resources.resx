@@ -1018,31 +1018,31 @@
     <value>Trade Stabilität</value>
   </data>
   <data name="ViewTextKpiAmountIntradayTrades" xml:space="preserve">
-    <value>Anzahl Intraday Trades</value>
+    <value># Intraday Trades</value>
   </data>
   <data name="ViewTextKpiAmountOfLossTrades" xml:space="preserve">
-    <value>Anzahl Verlust-Tades</value>
+    <value># Verlust-Tades</value>
   </data>
   <data name="ViewTextKpiAmountOfProfitTrades" xml:space="preserve">
-    <value>Anzahl Gewinn-Tades</value>
+    <value># Gewinn-Tades</value>
   </data>
   <data name="ViewTextKpiAmountOfTrades" xml:space="preserve">
     <value>Anzahl Trades</value>
   </data>
   <data name="ViewTextKpiAmountOfTransactionsPerMonth" xml:space="preserve">
-    <value>Anzahl Trades pro Monat</value>
+    <value># Trades pro Monat</value>
   </data>
   <data name="ViewTextKpiAmountOfTransactionsPerWeek" xml:space="preserve">
-    <value>Anzahl Trades pro Woche</value>
+    <value># Trades pro Woche</value>
   </data>
   <data name="ViewTextKpiAmountOfTransactionsPerYear" xml:space="preserve">
-    <value>Anzahl Trades pro Jahr</value>
+    <value># Trades pro Jahr</value>
   </data>
   <data name="ViewTextKpiAmountPositionTrades" xml:space="preserve">
-    <value>Anzahl Positionen Trades</value>
+    <value># Positionen Trades</value>
   </data>
   <data name="ViewTextKpiAverageBuyVolume" xml:space="preserve">
-    <value>AVG Buying Volume</value>
+    <value>Ø Buying Volume</value>
   </data>
   <data name="ViewTextKpiAverageCRV" xml:space="preserve">
     <value>CRV</value>
@@ -1054,10 +1054,10 @@
     <value>Ø Exit Efficiency</value>
   </data>
   <data name="ViewTextKpiAvgHoldingPeriodIntradayTrades" xml:space="preserve">
-    <value>AVG Haltedauer Intraday</value>
+    <value>Ø Haltedauer Intraday</value>
   </data>
   <data name="ViewTextKpiAvgHoldingPeriodPositionTrades" xml:space="preserve">
-    <value>AVG Haltedauer Positionen</value>
+    <value>Ø Haltedauer Positionen</value>
   </data>
   <data name="ViewTextKpiBestAsset" xml:space="preserve">
     <value>Bestes Finanzprodukt</value>
@@ -1066,7 +1066,7 @@
     <value>Beste Assetklasse</value>
   </data>
   <data name="ViewTextKpiLossAverage" xml:space="preserve">
-    <value>Durchschnittlicher Verlust</value>
+    <value>Ø Verlust</value>
   </data>
   <data name="ViewTextKpiLossMaximum" xml:space="preserve">
     <value>Maximaler Verlust</value>
@@ -1075,10 +1075,10 @@
     <value>Max. Drawdown</value>
   </data>
   <data name="ViewTextKpiMostConsecutiveLosses" xml:space="preserve">
-    <value>Max. aufeinanderfolgende Verlierer</value>
+    <value>Max. ff. Verlierer</value>
   </data>
   <data name="ViewTextKpiMostConsecutiveWins" xml:space="preserve">
-    <value>Max. aufeinanderfolgende Gewinner</value>
+    <value>Max. ff. Gewinner</value>
   </data>
   <data name="ViewTextKpiOrderCosts" xml:space="preserve">
     <value>Orderkosten</value>
@@ -1087,7 +1087,7 @@
     <value>Pay-Off-Ratio</value>
   </data>
   <data name="ViewTextKpiProfitAverage" xml:space="preserve">
-    <value>Durchschnittlicher Gewinn</value>
+    <value>Ø Gewinn</value>
   </data>
   <data name="ViewTextKpiProfitMaximum" xml:space="preserve">
     <value>Maximaler Gewinn</value>

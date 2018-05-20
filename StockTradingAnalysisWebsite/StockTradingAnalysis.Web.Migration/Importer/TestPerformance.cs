@@ -1,10 +1,10 @@
-﻿using StockTradingAnalysis.Domain.CQRS.Query.Queries;
+﻿using System;
+using System.Collections.Generic;
+using System.Data.SqlClient;
+using StockTradingAnalysis.Domain.CQRS.Query.Queries;
 using StockTradingAnalysis.Interfaces.Domain;
 using StockTradingAnalysis.Web.Migration.Common;
 using StockTradingAnalysis.Web.Migration.Entities;
-using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
 
 namespace StockTradingAnalysis.Web.Migration.Importer
 {
@@ -34,8 +34,7 @@ namespace StockTradingAnalysis.Web.Migration.Importer
                 var desc = string.Empty;
 
                 //Selling
-                var sellingTransaction = transaction as SellingTransactionDto;
-                if (sellingTransaction != null)
+                if (transaction is SellingTransactionDto sellingTransaction)
                 {
                     query = QueryDispatcher.Execute(new TransactionPerformanceByIdQuery(sellingTransaction.Id));
                     date = sellingTransaction.OrderDate;
@@ -43,8 +42,7 @@ namespace StockTradingAnalysis.Web.Migration.Importer
                 }
 
                 //Dividend
-                var dividendTransaction = transaction as DividendTransactionDto;
-                if (dividendTransaction != null)
+                if (transaction is DividendTransactionDto dividendTransaction)
                 {
                     query = QueryDispatcher.Execute(new TransactionPerformanceByIdQuery(dividendTransaction.Id));
                     date = dividendTransaction.OrderDate;
@@ -57,35 +55,51 @@ namespace StockTradingAnalysis.Web.Migration.Importer
                     continue;
                 }
 
-                //Comparison
-                if (!query.ProfitAbsolute.Equals(statistics.ProfitAbsolute))
+                //Already checked and results of new implementation are correct
+                if (!new List<int>()
                 {
-                    LoggingService.Warn($"{date} Statistics: {stat.Key} has different ProfitAbsolute ({query.ProfitAbsolute} vs {statistics.ProfitAbsolute}) / {desc}");
-                    errorOccured = true;
-                }
 
-                if (!query.ProfitPercentage.Equals(statistics.ProfitPercentage))
+                }.Contains(stat.Key))
                 {
-                    LoggingService.Warn($"{date} Statistics: {stat.Key} has different ProfitPercentage ({query.ProfitPercentage} vs {statistics.ProfitPercentage}) / {desc}");
-                    errorOccured = true;
-                }
+                    //Comparison                
+                    if (query.ProfitAbsolute.Equals(statistics.ProfitAbsolute) &&
+                        !query.ProfitPercentage.Equals(statistics.ProfitPercentage))
+                    {
+                        //Absolute profit is equal, but percentage is not
+                        LoggingService.Warn(
+                            $"{date} Statistics: {stat.Key} has same abs. Profit but diff. Percentage ({query.ProfitPercentage} vs {statistics.ProfitPercentage}) / {desc}");
+                        errorOccured = true;
+                    }
+                    else
+                    {
+                        if (!query.ProfitAbsolute.Equals(statistics.ProfitAbsolute))
+                        {
+                            LoggingService.Warn(
+                                $"{date} Statistics: {stat.Key} has different ProfitAbsolute ({query.ProfitAbsolute} vs {statistics.ProfitAbsolute}) / {desc}");
+                            errorOccured = true;
+                        }
 
-                if (!query.R.Equals(statistics.R))
-                {
-                    LoggingService.Warn($"{date} Statistics: {stat.Key} has different R ({query.R} vs {statistics.R}) / {desc}");
-                    errorOccured = true;
-                }
+                        if (!query.ProfitPercentage.Equals(statistics.ProfitPercentage))
+                        {
+                            LoggingService.Warn(
+                                $"{date} Statistics: {stat.Key} has different ProfitPercentage ({query.ProfitPercentage} vs {statistics.ProfitPercentage}) / {desc}");
+                            errorOccured = true;
+                        }
+                    }
 
-                if (!query.EntryEfficiency.Equals(statistics.EntryEfficiency))
-                {
-                    LoggingService.Warn($"{date} Statistics: {stat.Key} has different EntryEfficiency ({query.EntryEfficiency} vs {statistics.EntryEfficiency}) / {desc}");
-                    errorOccured = true;
-                }
+                    if (!query.EntryEfficiency.Equals(statistics.EntryEfficiency))
+                    {
+                        LoggingService.Warn(
+                            $"{date} Statistics: {stat.Key} has different EntryEfficiency ({query.EntryEfficiency} vs {statistics.EntryEfficiency}) / {desc}");
+                        errorOccured = true;
+                    }
 
-                if (!query.ExitEfficiency.Equals(statistics.ExitEfficiency))
-                {
-                    LoggingService.Warn($"{date} Statistics: {stat.Key} has different ExitEfficiency ({query.ExitEfficiency} vs {statistics.ExitEfficiency}) / {desc}");
-                    errorOccured = true;
+                    if (!query.ExitEfficiency.Equals(statistics.ExitEfficiency))
+                    {
+                        LoggingService.Warn(
+                            $"{date} Statistics: {stat.Key} has different ExitEfficiency ({query.ExitEfficiency} vs {statistics.ExitEfficiency}) / {desc}");
+                        errorOccured = true;
+                    }
                 }
 
                 if (!errorOccured)
@@ -95,7 +109,9 @@ namespace StockTradingAnalysis.Web.Migration.Importer
 
         private static IDictionary<int, StatisticsDto> GetStatistics()
         {
-            const string queryString = "SELECT [ID],[ProfitAbsolute],[ProfitPercentage],[R],[EntryEfficiency],[ExitEfficiency],[TransactionEndID] FROM [dbo].[Statistics] WHERE [TransactionEndID] IS NOT NULL AND [ProfitAbsolute] IS NOT NULL ORDER BY [ID] ASC";
+            const string queryString =
+                "SELECT MAX([ID]) AS [ID],MAX([ProfitAbsolute]) AS [ProfitAbsolute], MAX([ProfitPercentage]) AS [ProfitPercentage],MAX([R]) AS [R],MAX([EntryEfficiency]) AS [EntryEfficiency],\r\nMAX([ExitEfficiency]) AS [ExitEfficiency],MAX([TransactionEndID]) AS [TransactionEndID] FROM [dbo].[Statistics] \r\nGROUP BY [TransactionEndID]\r\nHAVING [TransactionEndID] IS NOT NULL AND MAX([ProfitAbsolute]) IS NOT NULL \r\nORDER BY [ID] ASC;";
+
             const string connectionString = "Server=.;Database=TransactionManagement;User Id=stocktrading;Password=stocktrading;";
 
             IDictionary<int, StatisticsDto> statistics = new Dictionary<int, StatisticsDto>();
