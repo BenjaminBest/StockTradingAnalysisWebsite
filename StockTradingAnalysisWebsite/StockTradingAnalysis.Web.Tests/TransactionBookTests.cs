@@ -181,7 +181,7 @@ namespace StockTradingAnalysis.Web.Tests
             book.AddEntry(TransactionEntryMock.CreateBuying(guid, 35, 83m, 11.65m));
 
             var position = book.GetOrAddOpenPosition(guid);
-            position.Shares.Should().Be(11.65m * 4);
+            position.OrderCosts.Should().Be(11.65m * 4);
         }
 
         [TestMethod]
