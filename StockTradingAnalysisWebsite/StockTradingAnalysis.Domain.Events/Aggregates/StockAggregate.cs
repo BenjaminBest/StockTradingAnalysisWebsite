@@ -151,8 +151,6 @@ namespace StockTradingAnalysis.Domain.Events.Aggregates
         {
             var changedQuotations = new List<IQuotation>();
 
-            var test = Quotations.Where(t => t.Date >= DateTime.Parse("2016-08-08"));
-
             foreach (var quotation in quotations)
             {
                 if (Quotations.Contains(quotation))
@@ -174,7 +172,8 @@ namespace StockTradingAnalysis.Domain.Events.Aggregates
                 }
             }
 
-            ApplyChange(new StockQuotationsAddedOrChangedEvent(Id, typeof(StockAggregate), changedQuotations));
+            if (changedQuotations.Any())
+                ApplyChange(new StockQuotationsAddedOrChangedEvent(Id, typeof(StockAggregate), changedQuotations));
         }
 
         /// <summary>
