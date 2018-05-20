@@ -104,6 +104,7 @@ namespace StockTradingAnalysis.Web.AutoMapperProfiles
                 .ForMember(t => t.OrderDate, source => source.MapFrom(s => s.OrderDate))
                 .ForMember(t => t.Units, source => source.MapFrom(s => s.Shares))
                 .ForMember(t => t.PricePerUnit, source => source.MapFrom(s => s.PricePerShare))
+                .ForMember(t => t.OrderCosts, source => source.MapFrom(s => s.OrderCosts))
                 .ForMember(t => t.Stock, source => source.MapFrom(s => s.Stock));
 
             Mapper.CreateMap<ITransaction, TransactionHistoryViewModel>()

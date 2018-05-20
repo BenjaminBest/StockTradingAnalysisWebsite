@@ -1,5 +1,5 @@
-﻿using StockTradingAnalysis.Interfaces.Domain;
-using System;
+﻿using System;
+using StockTradingAnalysis.Interfaces.Domain;
 
 namespace StockTradingAnalysis.Domain.Events.Domain
 {
@@ -8,14 +8,6 @@ namespace StockTradingAnalysis.Domain.Events.Domain
     /// </summary>
     public class BuyingTransaction : IBuyingTransaction
     {
-        /// <summary>
-        /// Initializes this object
-        /// </summary>
-        public BuyingTransaction(Guid id)
-        {
-            Id = id;
-        }
-
         /// <summary>
         /// Gets/sets the id
         /// </summary>
@@ -95,5 +87,24 @@ namespace StockTradingAnalysis.Domain.Events.Domain
         /// Gets/sets the change risk ratio = TP Points/SL Points
         /// </summary>
         public decimal CRV { get; set; }
+
+        /// <summary>
+        /// Initializes this object
+        /// </summary>
+        public BuyingTransaction(Guid id)
+        {
+            Id = id;
+        }
+
+        /// <summary>
+        /// Returns a <see cref="string" /> that represents this instance.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="string" /> that represents this instance.
+        /// </returns>
+        public override string ToString()
+        {
+            return $"Buy [{Stock.Name}] {Shares} * {PricePerShare} on {OrderDate}";
+        }
     }
 }

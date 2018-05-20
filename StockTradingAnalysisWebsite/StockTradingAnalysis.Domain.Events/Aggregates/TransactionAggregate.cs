@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using StockTradingAnalysis.Core.Common;
 using StockTradingAnalysis.Domain.Events.Events;
 using StockTradingAnalysis.Interfaces.Domain;
@@ -171,7 +172,11 @@ namespace StockTradingAnalysis.Domain.Events.Aggregates
         {
             Id = id;
 
-            ApplyChange(new TransactionSplitOrderAddedEvent(id, typeof(TransactionAggregate), orderDate, shares, pricePerShare, stockId));
+            var openPosition = DependencyResolver.GetService<ITransactionCalculationService>().CalculateOpenPositions()
+                ?.OpenPositions?.FirstOrDefault(o => o.Stock.Id.Equals(stockId));
+
+            ApplyChange(new TransactionSplitOrderAddedEvent(id, typeof(TransactionAggregate), orderDate, shares,
+                pricePerShare, openPosition?.PositionSize ?? 0, openPosition?.OrderCosts ?? 0, stockId));
         }
 
         /// <summary>

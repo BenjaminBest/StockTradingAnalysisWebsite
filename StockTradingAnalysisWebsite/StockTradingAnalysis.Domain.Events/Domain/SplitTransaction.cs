@@ -1,5 +1,5 @@
-﻿using StockTradingAnalysis.Interfaces.Domain;
-using System;
+﻿using System;
+using StockTradingAnalysis.Interfaces.Domain;
 
 namespace StockTradingAnalysis.Domain.Events.Domain
 {
@@ -8,14 +8,6 @@ namespace StockTradingAnalysis.Domain.Events.Domain
     /// </summary>
     public class SplitTransaction : ISplitTransaction
     {
-        /// <summary>
-        /// Initializes this object
-        /// </summary>
-        public SplitTransaction(Guid id)
-        {
-            Id = id;
-        }
-
         /// <summary>
         /// Gets/sets the id
         /// </summary>
@@ -75,5 +67,24 @@ namespace StockTradingAnalysis.Domain.Events.Domain
         /// Gets/sets a transaction description if this was a buy, sell or dividend
         /// </summary>        
         public string Action { get; set; }
+
+        /// <summary>
+        /// Initializes this object
+        /// </summary>
+        public SplitTransaction(Guid id)
+        {
+            Id = id;
+        }
+
+        /// <summary>
+        /// Returns a <see cref="string" /> that represents this instance.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="string" /> that represents this instance.
+        /// </returns>
+        public override string ToString()
+        {
+            return $"Split [{Stock.Name}] {Shares} * {PricePerShare} on {OrderDate}";
+        }
     }
 }

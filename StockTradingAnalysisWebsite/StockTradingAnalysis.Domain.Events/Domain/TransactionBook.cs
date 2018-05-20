@@ -170,8 +170,9 @@ namespace StockTradingAnalysis.Domain.Events.Domain
                 position.FirstOrderDate = transactions.Min(t => t.OrderDate);
 
             position.Shares = transactions.Sum(t => t.Shares);
-            position.PositionSize = transactions.Sum(t => (t.PricePerShare * t.Shares) + t.OrderCosts);
+            position.PositionSize = transactions.Sum(t => t.PricePerShare * t.Shares + t.OrderCosts);
             position.PricePerShare = position.Shares == 0 ? 0 : position.PositionSize / position.Shares;
+            position.OrderCosts = transactions.Sum(t => t.OrderCosts);
 
             //Open position was completely sold
             if (position.Shares == 0)

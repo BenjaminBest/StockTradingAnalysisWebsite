@@ -11,7 +11,7 @@ namespace StockTradingAnalysis.Domain.CQRS.Query.QueryHandler
     /// The query handler TransactionByStockIdQueryHandler returns all transactions by a given stock id and orders them by order date descending.
     /// </summary>
     /// <seealso cref="Interfaces.Queries.IQueryHandler{TransactionByStockIdQuery, ITransaction}" />
-    public class TransactionByStockIdQueryHandler : IQueryHandler<TransactionsByStockIdQuery, IEnumerable<ITransaction>>
+    public class TransactionByStockIdQueryHandler : IQueryHandler<TransactionByStockIdQuery, IEnumerable<ITransaction>>
     {
         private readonly IModelReaderRepository<ITransaction> _modelReaderRepository;
 
@@ -29,7 +29,7 @@ namespace StockTradingAnalysis.Domain.CQRS.Query.QueryHandler
         /// </summary>
         /// <param name="query">The query.</param>
         /// <returns></returns>
-        public IEnumerable<ITransaction> Execute(TransactionsByStockIdQuery query)
+        public IEnumerable<ITransaction> Execute(TransactionByStockIdQuery query)
         {
             return _modelReaderRepository.GetAll().Where(t => t.Stock.Id.Equals(query.Id))
                 .OrderByDescending(t => t.OrderDate);

@@ -10,14 +10,6 @@ namespace StockTradingAnalysis.Domain.Events.Domain
     public class SellingTransaction : ISellingTransaction
     {
         /// <summary>
-        /// Initializes this object
-        /// </summary>
-        public SellingTransaction(Guid id)
-        {
-            Id = id;
-        }
-
-        /// <summary>
         /// Gets/sets the id
         /// </summary>
         public Guid Id { get; set; }
@@ -96,5 +88,24 @@ namespace StockTradingAnalysis.Domain.Events.Domain
         /// Gets/sets the feedbacks
         /// </summary>
         public IEnumerable<IFeedback> Feedback { get; set; }
+
+        /// <summary>
+        /// Initializes this object
+        /// </summary>
+        public SellingTransaction(Guid id)
+        {
+            Id = id;
+        }
+
+        /// <summary>
+        /// Returns a <see cref="string" /> that represents this instance.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="string" /> that represents this instance.
+        /// </returns>
+        public override string ToString()
+        {
+            return $"Selling [{Stock.Name}] {Shares} * {PricePerShare} on {OrderDate}";
+        }
     }
 }

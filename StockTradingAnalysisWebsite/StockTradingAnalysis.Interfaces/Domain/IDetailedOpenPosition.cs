@@ -37,6 +37,14 @@ namespace StockTradingAnalysis.Interfaces.Domain
         decimal PositionSize { get; }
 
         /// <summary>
+        /// Gets the order costs.
+        /// </summary>
+        /// <value>
+        /// The order costs.
+        /// </value>
+        decimal OrderCosts { get; }
+
+        /// <summary>
         /// Gets the current quotation.
         /// </summary>
         /// <value>

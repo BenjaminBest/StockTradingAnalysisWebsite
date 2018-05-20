@@ -7,6 +7,10 @@ using StockTradingAnalysis.Interfaces.ReadModel;
 
 namespace StockTradingAnalysis.Domain.Events.EventHandler
 {
+    /// <summary>
+    /// The TransactionSplitOrderAddedEventHandler handles a split or reverse split event
+    /// </summary>
+    /// <seealso cref="Interfaces.Events.IEventHandler{TransactionSplitOrderAddedEvent}" />
     public class TransactionSplitOrderAddedEventHandler : IEventHandler<TransactionSplitOrderAddedEvent>
     {
         private readonly IModelRepository<ITransaction> _writerRepository;
@@ -41,7 +45,7 @@ namespace StockTradingAnalysis.Domain.Events.EventHandler
             var stock = _stockRepository.GetById(eventData.StockId);
 
             if (stock == null)
-                throw new EventHandlerException($"No Stock found with id: {eventData.StockId}", typeof(TransactionSellingOrderAddedEventHandler));
+                throw new EventHandlerException($"No Stock found with id: {eventData.StockId}", typeof(TransactionSplitOrderAddedEventHandler));
 
             var item = new SplitTransaction(eventData.AggregateId)
             {
@@ -50,7 +54,9 @@ namespace StockTradingAnalysis.Domain.Events.EventHandler
                 PricePerShare = eventData.PricePerShare,
                 Stock = stock,
                 Shares = eventData.Shares,
-                Action = "Split/Reverse Split"
+                OrderCosts = eventData.OrderCosts,
+                Action = "Split/Reverse Split",
+                PositionSize = eventData.PositionSize
             };
 
             _writerRepository.Add(item);

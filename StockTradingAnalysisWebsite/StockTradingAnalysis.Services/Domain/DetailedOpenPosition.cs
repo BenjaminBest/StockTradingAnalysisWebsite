@@ -38,6 +38,14 @@ namespace StockTradingAnalysis.Services.Domain
         public decimal PositionSize { get; set; }
 
         /// <summary>
+        /// Gets the order costs.
+        /// </summary>
+        /// <value>
+        /// The order costs.
+        /// </value>
+        public decimal OrderCosts { get; set; }
+
+        /// <summary>
         /// Gets the current quotation.
         /// </summary>
         /// <value>

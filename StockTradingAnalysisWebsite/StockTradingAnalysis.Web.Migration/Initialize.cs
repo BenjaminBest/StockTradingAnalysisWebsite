@@ -21,6 +21,9 @@ namespace StockTradingAnalysis.Web.Migration
 
             CreateKernel();
 
+            //Booting configuration modules
+            new ProcessManagerLocatorBootModule().Boot();
+
             //Erase Database
             DependencyResolver.GetService<IModelRepositoryDeletionCoordinator>().DeleteAll();
         }

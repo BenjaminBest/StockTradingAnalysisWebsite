@@ -169,6 +169,22 @@ namespace StockTradingAnalysis.Web.Tests
         }
 
         [TestMethod]
+        [Description("Transaction book should calculate the cumulated open positions order costs")]
+        public void TransactionBookShouldCalulateOpenPositionsOrderCost()
+        {
+            var guid = Guid.NewGuid();
+            var book = new TransactionBook();
+
+            book.AddEntry(TransactionEntryMock.CreateBuying(guid, 20, 101.96m, 11.65m));
+            book.AddEntry(TransactionEntryMock.CreateBuying(guid, 30, 98m, 11.65m));
+            book.AddEntry(TransactionEntryMock.CreateBuying(guid, 33, 90.62m, 11.65m));
+            book.AddEntry(TransactionEntryMock.CreateBuying(guid, 35, 83m, 11.65m));
+
+            var position = book.GetOrAddOpenPosition(guid);
+            position.Shares.Should().Be(11.65m * 4);
+        }
+
+        [TestMethod]
         [Description("Transaction book should calculate the remaining shares for 100 Buy, 100 Sell")]
         public void TransactionBookShouldCalulateRemainingShares100Buy100Dividend()
         {
@@ -225,6 +241,20 @@ namespace StockTradingAnalysis.Web.Tests
             book.AddEntry(TransactionEntryMock.CreateSelling(guid, 500));
 
             book.GetOrAddOpenPosition(guid).Shares.Should().Be(0);
+        }
+
+        [TestMethod]
+        [Description("Transaction book should calculate the ordercosts for the remaining shares for 6500 Buy, 14000 Buy, 137 Split")]
+        public void TransactionBookShouldCalulateCorrectOrderCostsForRemainingSharesAfterSplit()
+        {
+            var guid = Guid.NewGuid();
+            var book = new TransactionBook();
+
+            book.AddEntry(TransactionEntryMock.CreateBuying(guid, 6500, 0.14m, 1.25m));
+            book.AddEntry(TransactionEntryMock.CreateBuying(guid, 14000, 0.06m, 15.40m));
+            book.AddEntry(TransactionEntryMock.CreateSplit(guid, Guid.NewGuid(), 137m, 13.209124m, DateTime.Now));
+
+            book.GetOrAddOpenPosition(guid).PositionSize.Should().Be(137 * 13.209124m + 1.25m + 15.40m);
         }
 
         [TestMethod]

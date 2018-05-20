@@ -21,6 +21,8 @@ namespace StockTradingAnalysis.Web.Migration.Importer
 
         public IDictionary<int, StrategyDto> StrategyItems { get; set; }
 
+
+
         public void Start()
         {
             const string queryString = "SELECT [ID],[OrderDate],[Units],[PricePerUnit],[OrderCosts],[Stock_ID],[ClosingTransaction],[Description],[Taxes],[InitialSL],[InitialTP],[Tag],[MFE],[MAE],[MAEAbsolute],[MFEAbsolute],[Strategy_ID] FROM [dbo].[Transactions] ORDER BY [OrderDate] ASC";
@@ -49,22 +51,18 @@ namespace StockTradingAnalysis.Web.Migration.Importer
 
                             ITransactionDto item;
 
+                            if (int.Parse(reader["ID"].ToString()) == 2056)
+                            {
+                                //Splits                                
+                                ImportSplit(DateTime.Parse("2012-05-16 00:00:00"), StockItems[7], 500, 1.991m); //Pferdewetten
+                            }
+
                             if (isDividend)
                             {
                                 item = ImportDividend(reader);
                             }
                             else if (isSell)
                             {
-                                //Custom handling for splits
-                                var orderDate = DateTime.Parse(reader["OrderDate"].ToString());
-
-                                //Pferdewetten
-                                if (int.Parse(reader["ID"].ToString()) == 2056)
-                                {
-                                    ImportSplit(reader, 500, new decimal(1.991));
-                                }
-
-
                                 item = ImportSelling(reader);
                             }
                             else
@@ -77,6 +75,9 @@ namespace StockTradingAnalysis.Web.Migration.Importer
                     }
                 }
             }
+
+            //Splits            
+            ImportSplit(DateTime.Parse("2012-12-13 00:00:00"), StockItems[8], 137, 13.209124m); //Lambda TD Software
         }
 
         private ITransactionDto ImportDividend(IDataRecord reader)
@@ -177,13 +178,8 @@ namespace StockTradingAnalysis.Web.Migration.Importer
             return item;
         }
 
-        private void ImportSplit(IDataRecord reader, decimal newShares, decimal newPrice)
+        private void ImportSplit(DateTime orderDate, StockDto stock, decimal newShares, decimal newPrice)
         {
-            var orderDate = DateTime.Parse(reader["OrderDate"].ToString());
-            orderDate = orderDate.AddDays(-1); //Split should be happened before sell
-
-            var stock = StockItems[int.Parse(reader["Stock_ID"].ToString())];
-
             //Import
             var cmd = new TransactionSplitCommand(
                 Guid.NewGuid(),

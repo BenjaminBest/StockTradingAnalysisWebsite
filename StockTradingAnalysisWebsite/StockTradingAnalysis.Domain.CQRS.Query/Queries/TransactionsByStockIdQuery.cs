@@ -9,7 +9,7 @@ namespace StockTradingAnalysis.Domain.CQRS.Query.Queries
     /// The query TransactionsByStockIdQuery returns all transactions for a given stock id and orders them by OrderDate descending.
     /// </summary>
     /// <seealso cref="Interfaces.Queries.IQuery{ITransaction}" />
-    public class TransactionsByStockIdQuery : IQuery<IEnumerable<ITransaction>>
+    public class TransactionByStockIdQuery : IQuery<IEnumerable<ITransaction>>
     {
         /// <summary>
         /// Gets the identifier.
@@ -20,10 +20,10 @@ namespace StockTradingAnalysis.Domain.CQRS.Query.Queries
         public Guid Id { get; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="TransactionsByStockIdQuery"/> class.
+        /// Initializes a new instance of the <see cref="TransactionByStockIdQuery"/> class.
         /// </summary>
         /// <param name="id">The identifier.</param>
-        public TransactionsByStockIdQuery(Guid id)
+        public TransactionByStockIdQuery(Guid id)
         {
             Id = id;
         }

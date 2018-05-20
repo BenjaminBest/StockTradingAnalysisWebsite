@@ -8,22 +8,15 @@ namespace StockTradingAnalysis.Core.Common
     /// </summary>
     public class DependencyResolver
     {
+        /// <summary>
+        /// The kernel
+        /// </summary>
         private static IKernel _kernel;
 
-        //static DependencyResolver()
-        //{
-        //    _kernel = new StandardKernel();
-        //    try
-        //    {
-        //        _kernel.Load("StockTradingAnalysis.Web.dll"); //TODO: Load from configuration
-        //    }
-        //    catch
-        //    {
-        //        _kernel.Dispose();
-        //        throw;
-        //    }
-        //}
-
+        /// <summary>
+        /// Sets the kernel.
+        /// </summary>
+        /// <param name="kernel">The kernel.</param>
         public static void SetKernel(IKernel kernel)
         {
             _kernel = kernel;

@@ -38,12 +38,31 @@ namespace StockTradingAnalysis.Domain.Events.Domain
         public decimal PositionSize { get; set; }
 
         /// <summary>
+        /// Gets or sets the order costs.
+        /// </summary>
+        /// <value>
+        /// The order costs.
+        /// </value>
+        public decimal OrderCosts { get; set; }
+
+        /// <summary>
         /// Initializes this object
         /// </summary>
         /// <param name="productId">The id of the product</param>
         public OpenPosition(Guid productId)
         {
             ProductId = productId;
+        }
+
+        /// <summary>
+        /// Returns a <see cref="System.String" /> that represents this instance.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="System.String" /> that represents this instance.
+        /// </returns>
+        public override string ToString()
+        {
+            return $"[{ProductId}] {Shares} * {PricePerShare} + {OrderCosts}= {PositionSize}";
         }
     }
 }

@@ -19,7 +19,7 @@ namespace StockTradingAnalysis.Domain.CQRS.Query.Queries
         public Guid Id { get; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="TransactionsByStockIdQuery"/> class.
+        /// Initializes a new instance of the <see cref="TransactionByStockIdQuery"/> class.
         /// </summary>
         /// <param name="id">The identifier.</param>
         public AverageBuyingPricesByStockIdQuery(Guid id)

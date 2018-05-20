@@ -9,14 +9,6 @@ namespace StockTradingAnalysis.Domain.Events.Domain
     public class DividendTransaction : IDividendTransaction
     {
         /// <summary>
-        /// Initializes this object
-        /// </summary>
-        public DividendTransaction(Guid id)
-        {
-            Id = id;
-        }
-
-        /// <summary>
         /// Gets/sets the id
         /// </summary>
         public Guid Id { get; set; }
@@ -80,5 +72,24 @@ namespace StockTradingAnalysis.Domain.Events.Domain
         /// Gets/sets the taxes paid
         /// </summary>
         public decimal Taxes { get; set; }
+
+        /// <summary>
+        /// Initializes this object
+        /// </summary>
+        public DividendTransaction(Guid id)
+        {
+            Id = id;
+        }
+
+        /// <summary>
+        /// Returns a <see cref="string" /> that represents this instance.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="string" /> that represents this instance.
+        /// </returns>
+        public override string ToString()
+        {
+            return $"Dividend [{Stock.Name}] {Shares} * {PricePerShare} on {OrderDate}";
+        }
     }
 }

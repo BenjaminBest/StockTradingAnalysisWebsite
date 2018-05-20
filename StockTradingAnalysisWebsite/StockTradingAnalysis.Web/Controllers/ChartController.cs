@@ -62,7 +62,7 @@ namespace StockTradingAnalysis.Web.Controllers
         [HttpGet]
         public ActionResult CandlestickChartTransactionDataByStockId(Guid id)
         {
-            return Json(_queryDispatcher.Execute(new TransactionsByStockIdQuery(id)).Select(
+            return Json(_queryDispatcher.Execute(new TransactionByStockIdQuery(id)).Select(
                 t => new
                 {
                     x = _dateCalculationService.ConvertToEpochTimeInMilliseconds(t.OrderDate),

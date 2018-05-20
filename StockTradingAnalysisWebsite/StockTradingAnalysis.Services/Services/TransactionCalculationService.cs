@@ -256,8 +256,8 @@ namespace StockTradingAnalysis.Services.Services
             var calculateProfit = new Func<IOpenPosition, IQuotation, IProfit>((pos, quote) =>
                 _transactionPerformanceService.GetProfit(
                     pos.Shares * pos.PricePerShare,
-                    pos.PositionSize - pos.PricePerShare * pos.Shares,
-                    pos.Shares * quote.Close,
+                    pos.OrderCosts,
+                    pos.Shares * (quote?.Close ?? 0),
                     0m,
                     0m));
 
@@ -275,7 +275,8 @@ namespace StockTradingAnalysis.Services.Services
                             PositionSize = pos.PositionSize,
                             Shares = pos.Shares,
                             CurrentQuotation = quote,
-                            Profit = calculateProfit(pos, quote)
+                            Profit = calculateProfit(pos, quote),
+                            OrderCosts = pos.OrderCosts
                         };
                     }).ToList()
             };
