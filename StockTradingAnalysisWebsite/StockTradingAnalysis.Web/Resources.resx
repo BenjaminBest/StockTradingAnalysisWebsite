@@ -1380,4 +1380,7 @@
   <data name="Display_ViewModelOpenPositionProfit" xml:space="preserve">
     <value>Profit</value>
   </data>
+  <data name="ViewTextCapitalExpenditurePositions" xml:space="preserve">
+    <value>Positionen</value>
+  </data>
 </root>

@@ -8,19 +8,19 @@ namespace StockTradingAnalysis.Interfaces.Domain
     public interface IDetailedOpenPositionOverview
     {
         /// <summary>
-        /// Gets the capital expenditure / the amount of capital in the market.
-        /// </summary>
-        /// <value>
-        /// The capital expenditure.
-        /// </value>
-        decimal CapitalExpenditure { get; }
-
-        /// <summary>
         /// Gets the open positions.
         /// </summary>
         /// <value>
         /// The open positions.
         /// </value>
         IEnumerable<IDetailedOpenPosition> OpenPositions { get; }
+
+        /// <summary>
+        /// Gets the summary.
+        /// </summary>
+        /// <value>
+        /// The summary.
+        /// </value>
+        IDetailedOpenPositionSummary Summary { get; }
     }
 }

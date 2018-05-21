@@ -281,7 +281,16 @@ namespace StockTradingAnalysis.Services.Services
                     }).ToList()
             };
 
-            result.CapitalExpenditure = result.OpenPositions.Sum(o => o.PositionSize);
+            result.Summary = new DetailedOpenPositionSummary
+            {
+                PositionSize = result.OpenPositions.Sum(o => o.PositionSize),
+                Profit = _transactionPerformanceService.GetProfit(
+                    result.OpenPositions.Sum(o => o.PositionSize),
+                    0m,
+                    result.OpenPositions.Sum(o => (o.CurrentQuotation?.Close ?? 0) * o.Shares),
+                    0m,
+                    0m)
+            };
 
             return result;
         }

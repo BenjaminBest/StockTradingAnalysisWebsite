@@ -2410,6 +2410,15 @@ namespace StockTradingAnalysis.Web {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Positionen.
+        /// </summary>
+        public static string ViewTextCapitalExpenditurePositions {
+            get {
+                return ResourceManager.GetString("ViewTextCapitalExpenditurePositions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Passwort ändern.
         /// </summary>
         public static string ViewTextChangePassword {

@@ -18,7 +18,6 @@ namespace StockTradingAnalysis.Web.AutoMapperProfiles
         protected override void Configure()
         {
             Mapper.CreateMap<IDetailedOpenPositionOverview, OpenPositionsViewModel>()
-                .ForMember(t => t.CapitalExpenditure, source => source.MapFrom(s => s.CapitalExpenditure))
                 .ForMember(t => t.OpenPositions, source => source.MapFrom(s => s.OpenPositions));
 
             Mapper.CreateMap<IDetailedOpenPosition, OpenPositionViewModel>()
@@ -30,6 +29,10 @@ namespace StockTradingAnalysis.Web.AutoMapperProfiles
                 .ForMember(t => t.Shares, source => source.MapFrom(s => s.Shares))
                 .ForMember(t => t.PositionSize, source => source.MapFrom(s => s.PositionSize))
                 .ForMember(t => t.CurrentQuotation, source => source.MapFrom(s => s.CurrentQuotation))
+                .ForMember(t => t.Profit, source => source.MapFrom(s => s.Profit));
+
+            Mapper.CreateMap<IDetailedOpenPositionSummary, OpenPositionSummaryViewModel>()
+                .ForMember(t => t.PositionSize, source => source.MapFrom(s => s.PositionSize))
                 .ForMember(t => t.Profit, source => source.MapFrom(s => s.Profit));
 
             Mapper.CreateMap<IProfit, ProfitViewModel>()

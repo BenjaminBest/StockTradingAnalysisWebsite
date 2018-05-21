@@ -369,6 +369,7 @@
     <Compile Include="Models\DashboardViewModel.cs" />
     <Compile Include="Models\FeedbackProportionViewModel.cs" />
     <Compile Include="Models\OpenPositionsViewModel.cs" />
+    <Compile Include="Models\OpenPositionSummaryViewModel.cs" />
     <Compile Include="Models\OpenPositionViewModel.cs" />
     <Compile Include="Models\ProfitViewModel.cs" />
     <Compile Include="Models\QuoteViewModel.cs" />

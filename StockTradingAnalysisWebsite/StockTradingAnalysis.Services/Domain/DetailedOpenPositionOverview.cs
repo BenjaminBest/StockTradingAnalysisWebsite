@@ -10,20 +10,20 @@ namespace StockTradingAnalysis.Services.Domain
     public class DetailedOpenPositionOverview : IDetailedOpenPositionOverview
     {
         /// <summary>
-        /// Gets the capital expenditure / the amount of capital in the market.
-        /// </summary>
-        /// <value>
-        /// The capital expenditure.
-        /// </value>
-        public decimal CapitalExpenditure { get; set; }
-
-        /// <summary>
         /// Gets the open positions.
         /// </summary>
         /// <value>
         /// The open positions.
         /// </value>
         public IEnumerable<IDetailedOpenPosition> OpenPositions { get; set; }
+
+        /// <summary>
+        /// Gets the summary.
+        /// </summary>
+        /// <value>
+        /// The summary.
+        /// </value>
+        public IDetailedOpenPositionSummary Summary { get; set; }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="DetailedOpenPositionOverview"/> class.

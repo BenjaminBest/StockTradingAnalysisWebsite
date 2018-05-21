@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Domain\AverageBuyingPrice.cs" />
+    <Compile Include="Domain\DetailedOpenPositionSummary.cs" />
     <Compile Include="Domain\DetailedOpenPosition.cs" />
     <Compile Include="Domain\DetailedOpenPositionOverview.cs" />
     <Compile Include="Domain\MonthTimeSlice.cs" />

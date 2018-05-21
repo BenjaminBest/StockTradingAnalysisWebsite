@@ -3,8 +3,7 @@
 namespace StockTradingAnalysis.Interfaces.Domain
 {
     /// <summary>
-    /// The interface IAggregatedOpenPosition defines aggregated information for all open positions of a security. 
-    /// In contrary to <see cref="IOpenPosition"/> it contains average prices etc., so all buyings are combined.
+    /// The interface IAggregatedOpenPosition defines aggregated information for all open positions of a security.
     /// </summary>
     public interface IDetailedOpenPosition
     {
