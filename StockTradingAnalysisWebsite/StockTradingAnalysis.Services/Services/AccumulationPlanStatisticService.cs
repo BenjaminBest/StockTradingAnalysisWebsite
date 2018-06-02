@@ -78,7 +78,7 @@ namespace StockTradingAnalysis.Services.Services
 
                 //Time period
                 var start = _dateCalculationService.GetStartAndEndDateOfYear(new DateTime(year, 1, 1), out DateTime end);
-                var lastYearEnd = new DateTime(years[0] - 1, 1, 1);
+                var lastYearEnd = _dateCalculationService.GetEndDateOfYear(new DateTime(years[0] - 1, 1, 1));
 
                 //Only this year
                 var actualPeriodResult = CalculateCurrentPeriod(start, end, tag);
@@ -87,7 +87,7 @@ namespace StockTradingAnalysis.Services.Services
                 period.SumDividends = actualPeriodResult.SumDividends;
 
                 //Accumulated till this end of year                
-                var periodResult = CalculateOverallPeriod(_dateCalculationService.GetEndDateOfYear(lastYearEnd), end, tag);
+                var periodResult = CalculateOverallPeriod(lastYearEnd, end, tag);
 
                 period.SumOrderCostsPercentage = periodResult.SumOrderCostsPercentage;
                 period.SumOrderCosts = periodResult.SumOrderCosts;

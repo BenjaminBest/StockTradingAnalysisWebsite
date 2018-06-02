@@ -214,7 +214,7 @@ namespace StockTradingAnalysis.Services.Services
             var buyingCosts = buyingPositionSize + buyingOrderCosts;
             var sell = sellingPositionSize - (sellingOrderCosts + taxes);
             var profit = decimal.Round(sell - buyingCosts, 2);
-            var percentage = decimal.Round((profit / buyingCosts) * 100, 2);
+            var percentage = decimal.Round(profit / buyingCosts * 100, 2);
 
             return new Profit(profit, percentage);
         }

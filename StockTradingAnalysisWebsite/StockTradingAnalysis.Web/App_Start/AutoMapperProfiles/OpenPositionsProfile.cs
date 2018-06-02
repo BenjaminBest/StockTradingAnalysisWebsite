@@ -29,7 +29,8 @@ namespace StockTradingAnalysis.Web.AutoMapperProfiles
                 .ForMember(t => t.Shares, source => source.MapFrom(s => s.Shares))
                 .ForMember(t => t.PositionSize, source => source.MapFrom(s => s.PositionSize))
                 .ForMember(t => t.CurrentQuotation, source => source.MapFrom(s => s.CurrentQuotation))
-                .ForMember(t => t.Profit, source => source.MapFrom(s => s.Profit));
+                .ForMember(t => t.Profit, source => source.MapFrom(s => s.Profit))
+                .ForMember(t => t.YearToDateProfit, source => source.MapFrom(s => s.YearToDateProfit));
 
             Mapper.CreateMap<IDetailedOpenPositionSummary, OpenPositionSummaryViewModel>()
                 .ForMember(t => t.PositionSize, source => source.MapFrom(s => s.PositionSize))

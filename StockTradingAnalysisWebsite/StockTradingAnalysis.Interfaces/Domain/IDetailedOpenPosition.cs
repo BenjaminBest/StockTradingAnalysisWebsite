@@ -58,5 +58,13 @@ namespace StockTradingAnalysis.Interfaces.Domain
         /// The profit.
         /// </value>
         IProfit Profit { get; }
+
+        /// <summary>
+        /// Gets or sets the current years profit.
+        /// </summary>
+        /// <value>
+        /// The current year profit.
+        /// </value>
+        IProfit YearToDateProfit { get; }
     }
 }

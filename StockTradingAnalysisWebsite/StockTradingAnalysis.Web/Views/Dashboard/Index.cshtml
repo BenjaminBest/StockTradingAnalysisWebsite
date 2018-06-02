@@ -34,6 +34,9 @@
                             @Html.LabelFor(modelItem => Model.OpenPositions.OpenPositions.FirstOrDefault().CurrentQuotation)
                         </th>
                         <th>
+                            @Html.LabelFor(modelItem => Model.OpenPositions.OpenPositions.FirstOrDefault().YearToDateProfit)
+                        </th>
+                        <th>
                             @Html.LabelFor(modelItem => Model.OpenPositions.OpenPositions.FirstOrDefault().Profit)
                         </th>
                     </tr>
@@ -61,6 +64,9 @@
                                 @Html.DisplayFor(modelItem => position.CurrentQuotation)
                             </td>
                             <td>
+                                @Html.DisplayFor(modelItem => position.YearToDateProfit)
+                            </td>
+                            <td>
                                 @Html.DisplayFor(modelItem => position.Profit)
                             </td>
                         </tr>
@@ -71,6 +77,7 @@
                         <td></td>
                         <td></td>
                         <td>@Html.DisplayFor(model => model.OpenPositions.Summary.PositionSize)</td>
+                        <td></td>
                         <td></td>
                         <td></td>
                         <td></td>

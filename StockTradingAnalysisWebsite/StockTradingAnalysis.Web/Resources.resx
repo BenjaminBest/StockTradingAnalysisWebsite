@@ -607,7 +607,7 @@
     <value>Prositionsgröße</value>
   </data>
   <data name="Display_ViewModelOpenTransactionPricePerUnit" xml:space="preserve">
-    <value>Preis</value>
+    <value>Ø Preis</value>
   </data>
   <data name="Display_ViewModelOpenTransactionsCapitalExpenditure" xml:space="preserve">
     <value>Akt. Kapitaleinsatz</value>
@@ -1382,5 +1382,8 @@
   </data>
   <data name="ViewTextCapitalExpenditurePositions" xml:space="preserve">
     <value>Positionen</value>
+  </data>
+  <data name="Display_ViewModelOpenPositionYTDProfit" xml:space="preserve">
+    <value>Lfd. Jahr Profit</value>
   </data>
 </root>

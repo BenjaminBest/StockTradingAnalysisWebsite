@@ -1627,6 +1627,15 @@ namespace StockTradingAnalysis.Web {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Lfd. Jahr Profit.
+        /// </summary>
+        public static string Display_ViewModelOpenPositionYTDProfit {
+            get {
+                return ResourceManager.GetString("Display_ViewModelOpenPositionYTDProfit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Erstes Kaufdatum.
         /// </summary>
         public static string Display_ViewModelOpenTransactionMinOrderDate {
@@ -1654,7 +1663,7 @@ namespace StockTradingAnalysis.Web {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Preis.
+        ///   Looks up a localized string similar to Ø Preis.
         /// </summary>
         public static string Display_ViewModelOpenTransactionPricePerUnit {
             get {

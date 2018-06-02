@@ -45,6 +45,7 @@
     <Compile Include="Exceptions\ModelRepositoryUpdateException.cs" />
     <Compile Include="Filter\TransactionDividendFilter.cs" />
     <Compile Include="Filter\TransactionEndDateFilter.cs" />
+    <Compile Include="Filter\TransactionStockFilter.cs" />
     <Compile Include="Filter\TransactionStartDateFilter.cs" />
     <Compile Include="Filter\TransactionStockTypeFilter.cs" />
     <Compile Include="Filter\TransactionTagFilter.cs" />

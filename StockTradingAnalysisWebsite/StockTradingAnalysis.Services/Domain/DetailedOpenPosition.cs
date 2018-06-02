@@ -62,6 +62,14 @@ namespace StockTradingAnalysis.Services.Domain
         public IProfit Profit { get; set; }
 
         /// <summary>
+        /// Gets or sets the current years profit.
+        /// </summary>
+        /// <value>
+        /// The current year profit.
+        /// </value>
+        public IProfit YearToDateProfit { get; set; }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="DetailedOpenPosition"/> class.
         /// </summary>
         /// <param name="stock">The stock.</param>

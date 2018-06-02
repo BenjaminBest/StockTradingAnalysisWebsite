@@ -84,5 +84,15 @@ namespace StockTradingAnalysis.Web.Models
         [Display(Name = "Display_ViewModelOpenPositionProfit", ResourceType = typeof(Resources))]
         [UIHint("Profit")]
         public ProfitViewModel Profit { get; set; }
+
+        /// <summary>
+        /// Gets or sets the profit.
+        /// </summary>
+        /// <value>
+        /// The profit.
+        /// </value>
+        [Display(Name = "Display_ViewModelOpenPositionYTDProfit", ResourceType = typeof(Resources))]
+        [UIHint("Profit")]
+        public ProfitViewModel YearToDateProfit { get; set; }
     }
 }
