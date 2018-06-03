@@ -51,7 +51,8 @@ Features
 --------------
 * Dashboard
   * Savings plan based on assigned categories for transactions
-  * Open positions  
+  * Open positions
+    * Security Name, first buying date, position size, shares, average price, quote, YTD profit, overall profit
   * KPIs
     * Amount of trades
     * Amount of winning/losing trades
@@ -72,6 +73,7 @@ Features
     * Exit/Entry efficiency  
 * Transactions
   * Buy, sell, dividend, split/reverse split
+  * Filter by time range and asset type
 * Security
   * Add, edit, delete, update quotes
   * Aggregated absolute profit per security

@@ -269,21 +269,31 @@ namespace StockTradingAnalysis.Services.Services
                     0m,
                     0m));
 
-            var calculateYtdProfit = new Func<IOpenPosition, IQuotation, IProfit>((pos, quote) =>
-            {
-                var buyingQuote =
-                    _queryDispatcher.Execute(new StockQuotationsLastBeforeDateByIdQuery(pos.ProductId, beginOfYear));
+            var calculateYtdProfit = new Func<IOpenPosition, IStock, IQuotation, IProfit>((pos, stock, quote) =>
+             {
+                 var buyingQuote =
+                     _queryDispatcher.Execute(new StockQuotationsLastBeforeDateByIdQuery(stock.Id, beginOfYear));
 
-                if (buyingQuote == null || quote == null)
-                    return new Profit(0, 0);
+                 if (buyingQuote == null || quote == null)
+                     return new Profit(0, 0);
 
-                return _transactionPerformanceService.GetProfit(
-                    pos.Shares * buyingQuote.Close,
-                    pos.OrderCosts,
-                    pos.Shares * quote.Close,
-                    0m,
-                    0m);
-            });
+                 //Add dividend revenue
+                 var query = new TransactionAllQuery()
+                     .Register(new TransactionStartDateFilter(beginOfYear))
+                     .Register(new TransactionEndDateFilter(DateTime.Now))
+                     .Register(new TransactionStockFilter(stock))
+                     .Register(new TransactionDividendFilter(true));
+
+                 var dividends = _queryDispatcher.Execute(query)
+                     .OfType<IDividendTransaction>().Sum(t => t.PositionSize - t.Taxes - t.OrderCosts);
+
+                 return _transactionPerformanceService.GetProfit(
+                     pos.Shares * buyingQuote.Close,
+                     pos.OrderCosts,
+                     pos.Shares * quote.Close + dividends,
+                     0m,
+                     0m);
+             });
 
             var result = new DetailedOpenPositionOverview
             {
@@ -301,7 +311,7 @@ namespace StockTradingAnalysis.Services.Services
                             Shares = pos.Shares,
                             CurrentQuotation = quote,
                             Profit = calculateProfit(pos, quote),
-                            YearToDateProfit = calculateYtdProfit(pos, quote),
+                            YearToDateProfit = calculateYtdProfit(pos, stock, quote),
                             OrderCosts = pos.OrderCosts
                         };
                     }).ToList()
