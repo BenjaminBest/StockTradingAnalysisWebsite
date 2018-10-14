@@ -1,4 +1,6 @@
-﻿using StockTradingAnalysis.Domain.CQRS.Query.Queries;
+﻿using System.Collections.Generic;
+using System.Linq;
+using StockTradingAnalysis.Domain.CQRS.Query.Queries;
 using StockTradingAnalysis.Interfaces.Domain;
 using StockTradingAnalysis.Interfaces.Queries;
 using StockTradingAnalysis.Interfaces.ReadModel;
@@ -9,7 +11,7 @@ namespace StockTradingAnalysis.Domain.CQRS.Query.QueryHandler
     /// The StatisticByTimeSliceQueryHandler returns all statistic information
     /// </summary>
     /// <seealso cref="Interfaces.Queries.IQueryHandler{StatisticsByTimeSliceQuery, IEnumerable{IStatistic}}" />
-    public class StatisticByTimeSliceQueryHandler : IQueryHandler<StatisticsByTimeSliceQuery, IStatistic>
+    public class StatisticsByTimeSliceQueryHandler : IQueryHandler<StatisticsByTimeSliceQuery, IEnumerable<IStatistic>>
     {
         private readonly ITimeSliceModelReaderRepository<IStatistic> _modelReaderRepository;
 
@@ -17,7 +19,7 @@ namespace StockTradingAnalysis.Domain.CQRS.Query.QueryHandler
         /// Initializes this object
         /// </summary>
         /// <param name="modelReaderRepository">The model repository to read from</param>
-        public StatisticByTimeSliceQueryHandler(ITimeSliceModelReaderRepository<IStatistic> modelReaderRepository)
+        public StatisticsByTimeSliceQueryHandler(ITimeSliceModelReaderRepository<IStatistic> modelReaderRepository)
         {
             _modelReaderRepository = modelReaderRepository;
         }
@@ -27,9 +29,12 @@ namespace StockTradingAnalysis.Domain.CQRS.Query.QueryHandler
         /// </summary>
         /// <param name="query">The query.</param>
         /// <returns></returns>
-        public IStatistic Execute(StatisticsByTimeSliceQuery query)
+        public IEnumerable<IStatistic> Execute(StatisticsByTimeSliceQuery query)
         {
-            return _modelReaderRepository.GetById(query.TimeRange);
+	        return query.TimeRange.GetAllSlices()
+		        .Where(t => t.Type.Equals(query.TimeSliceFilter))
+		        .Select(t => _modelReaderRepository.GetById(t))
+		        .Where(statistic => statistic != null);
         }
     }
 }

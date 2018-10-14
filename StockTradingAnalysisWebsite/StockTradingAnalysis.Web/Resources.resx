@@ -360,20 +360,20 @@
   <data name="Display_StatisticsAmountIntradayTrades" xml:space="preserve">
     <value>Intraday</value>
   </data>
-  <data name="Display_StatisticsAmountOfLossTransactions" xml:space="preserve">
+  <data name="Display_PerformanceAmountOfLossTransactions" xml:space="preserve">
     <value>Anzahl Verlust-Trades</value>
   </data>
-  <data name="Display_StatisticsAmountOfProfitTransactions" xml:space="preserve">
+  <data name="Display_PerformanceAmountOfProfitTransactions" xml:space="preserve">
     <value>Anzahl Gewinn-Trades</value>
   </data>
-  <data name="Display_StatisticsAmountOfTransactions" xml:space="preserve">
+  <data name="Display_PerformanceAmountOfTransactions" xml:space="preserve">
     <value>Anzahl Trades</value>
   </data>
   <data name="Display_StatisticsAmountPositionTrades" xml:space="preserve">
     <value>Position</value>
   </data>
-  <data name="Display_StatisticsAverageBuyVolume" xml:space="preserve">
-    <value>AVG Buy Volume</value>
+  <data name="Display_PerformanceAverageBuyVolume" xml:space="preserve">
+    <value>Ø Buy Volume</value>
   </data>
   <data name="Display_StatisticsAvgEntryEfficiency" xml:space="preserve">
     <value>Ø Entry Efficiency</value>
@@ -381,10 +381,10 @@
   <data name="Display_StatisticsAvgExitEfficiency" xml:space="preserve">
     <value>Ø Exit Efficiency</value>
   </data>
-  <data name="Display_StatisticsAvgHoldingPeriodIntradayTrades" xml:space="preserve">
+  <data name="Display_PerformanceAvgHoldingPeriodIntradayTrades" xml:space="preserve">
     <value>AVG Haltedauer Intraday</value>
   </data>
-  <data name="Display_StatisticsAvgHoldingPeriodPositionTrades" xml:space="preserve">
+  <data name="Display_PerformanceAvgHoldingPeriodPositionTrades" xml:space="preserve">
     <value>AVG Haltedauer Positionen</value>
   </data>
   <data name="Display_StatisticsAvgMAEAbsolute" xml:space="preserve">
@@ -438,16 +438,13 @@
   <data name="Display_StatisticsMostConsecutiveWins" xml:space="preserve">
     <value>Max. aufeinanderf. Gewinne</value>
   </data>
-  <data name="Display_StatisticsPayOffRatio" xml:space="preserve">
+  <data name="Display_PerformancePayOffRatio" xml:space="preserve">
     <value>Pay-Off-Ratio</value>
   </data>
-  <data name="Display_StatisticsPayOffRatioDescription" xml:space="preserve">
-    <value>Payoff-Ratio Bewertung</value>
-  </data>
-  <data name="Display_StatisticsPercentageOfLossTransactions" xml:space="preserve">
+  <data name="Display_PerformancePercentageOfLossTransactions" xml:space="preserve">
     <value>Verlust-Trades</value>
   </data>
-  <data name="Display_StatisticsPercentageOfProfitTransactions" xml:space="preserve">
+  <data name="Display_PerformancePercentageOfProfitTransactions" xml:space="preserve">
     <value>Gewinn-Trades</value>
   </data>
   <data name="Display_StatisticsProfitAbsolute" xml:space="preserve">
@@ -468,11 +465,8 @@
   <data name="Display_StatisticsR" xml:space="preserve">
     <value>R</value>
   </data>
-  <data name="Display_StatisticsSQN" xml:space="preserve">
+  <data name="Display_PerformanceSQN" xml:space="preserve">
     <value>SQN</value>
-  </data>
-  <data name="Display_StatisticsSQNDescription" xml:space="preserve">
-    <value>SQN Bewertung</value>
   </data>
   <data name="Display_StatisticsStrategyName" xml:space="preserve">
     <value>Strategie</value>
@@ -1385,5 +1379,20 @@
   </data>
   <data name="Display_ViewModelOpenPositionYTDProfit" xml:space="preserve">
     <value>Lfd. Jahr Profit</value>
+  </data>
+  <data name="Display_PerformanceExpectedTradeAverage" xml:space="preserve">
+    <value>Erwartungswert</value>
+  </data>
+  <data name="Display_PerformanceProfit" xml:space="preserve">
+    <value>G/V</value>
+  </data>
+  <data name="ViewTextPerformanceNotAvailable" xml:space="preserve">
+    <value>Es sind keine Erträge im Portfolio über den gesamten Zeitraum vorhanden, es kann keine Gewinn-/Verlust-Aufstellung berechnet werden.</value>
+  </data>
+  <data name="ViewTextPerformanceNotAvailableTitle" xml:space="preserve">
+    <value>Erträge sind nicht vorhanden</value>
+  </data>
+  <data name="ViewTextPerformanceTitle" xml:space="preserve">
+    <value>Erträge</value>
   </data>
 </root>

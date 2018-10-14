@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 using AutoMapper;
 using StockTradingAnalysis.Domain.CQRS.Query.Queries;
+using StockTradingAnalysis.Interfaces.Enumerations;
 using StockTradingAnalysis.Interfaces.Queries;
 using StockTradingAnalysis.Interfaces.Services.Domain;
 using StockTradingAnalysis.Web.Common.Interfaces;
@@ -67,10 +69,11 @@ namespace StockTradingAnalysis.Web.Controllers
         {
             var model = new DashboardViewModel();
 
-            var statistic =
-                _queryDispatcher.Execute(new StatisticsByTimeSliceQuery(_timeSliceCreationService.CreateTimeSlices()));
+            var statistics =
+                _queryDispatcher.Execute(new StatisticsByTimeSliceQuery(_timeSliceCreationService.CreateTimeSlices(),TimeSliceType.All));
 
-            model.Cards = _statisticCardConverterRepository.ConvertStatistic(statistic);
+            model.Cards = _statisticCardConverterRepository.ConvertStatistic(statistics.FirstOrDefault(s=>s.TimeSlice.Type.Equals(TimeSliceType.All)));
+
             //NOTE: Cache disabled because of IQuotation overrides Equals and only date is taken into account
             model.OpenPositions = Mapper.Map<OpenPositionsViewModel>(_transactionCalculationService.CalculateOpenPositions(), o => o.DisableCache = true);
 
@@ -90,6 +93,19 @@ namespace StockTradingAnalysis.Web.Controllers
 
                 model.Add(Mapper.Map<SavingsPlanViewModel>(_accumulationPlanStatisticService.CalculateSavingsPlan(tag)));
             }
+
+            return View(model);
+        }
+
+        //
+        // GET: /Dashboard/Performance
+        public ActionResult Performance()
+        {
+            var model = new List<PerformanceViewModel>();
+
+	        var statistics =
+		        _queryDispatcher.Execute(new StatisticsByTimeSliceQuery(_timeSliceCreationService.CreateTimeSlices(),TimeSliceType.Year));			
+
 
             return View(model);
         }

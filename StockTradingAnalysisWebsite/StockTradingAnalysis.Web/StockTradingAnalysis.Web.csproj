@@ -371,6 +371,9 @@
     <Compile Include="Models\OpenPositionsViewModel.cs" />
     <Compile Include="Models\OpenPositionSummaryViewModel.cs" />
     <Compile Include="Models\OpenPositionViewModel.cs" />
+    <Compile Include="Models\SqnViewModel.cs" />
+    <Compile Include="Models\PayOffRatioViewModel.cs" />
+    <Compile Include="Models\PerformanceViewModel.cs" />
     <Compile Include="Models\ProfitViewModel.cs" />
     <Compile Include="Models\QuoteViewModel.cs" />
     <Compile Include="Models\SelectionViewModel.cs" />
@@ -454,6 +457,9 @@
     <Content Include="Views\Shared\DisplayTemplates\Cards.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\Quotation.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\Profit.cshtml" />
+    <Content Include="Views\Dashboard\Performance.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\PayOffRatio.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\Sqn.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -277,6 +277,8 @@ namespace StockTradingAnalysis.Services.Services
                  if (buyingQuote == null || quote == null)
                      return new Profit(0, 0);
 
+                 //TODO: Check if earnings from sellings should also be incorporated
+
                  //Add dividend revenue
                  var query = new TransactionAllQuery()
                      .Register(new TransactionStartDateFilter(beginOfYear))

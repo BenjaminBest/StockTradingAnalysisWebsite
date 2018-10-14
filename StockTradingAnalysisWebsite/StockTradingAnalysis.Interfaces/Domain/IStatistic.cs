@@ -208,7 +208,7 @@ namespace StockTradingAnalysis.Interfaces.Domain
         /// System Quality Number (SQN)
         /// </summary>
         /// <remarks>
-        /// Root-square(amount of trades)*propability/stdev(R)
+        /// Root-square(amount of trades)*probability/stdev(R)
         /// </remarks>
         decimal Sqn { get; }
 

@@ -619,6 +619,114 @@ namespace StockTradingAnalysis.Web {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Anzahl Verlust-Trades.
+        /// </summary>
+        public static string Display_PerformanceAmountOfLossTransactions {
+            get {
+                return ResourceManager.GetString("Display_PerformanceAmountOfLossTransactions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Anzahl Gewinn-Trades.
+        /// </summary>
+        public static string Display_PerformanceAmountOfProfitTransactions {
+            get {
+                return ResourceManager.GetString("Display_PerformanceAmountOfProfitTransactions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Anzahl Trades.
+        /// </summary>
+        public static string Display_PerformanceAmountOfTransactions {
+            get {
+                return ResourceManager.GetString("Display_PerformanceAmountOfTransactions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ø Buy Volume.
+        /// </summary>
+        public static string Display_PerformanceAverageBuyVolume {
+            get {
+                return ResourceManager.GetString("Display_PerformanceAverageBuyVolume", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AVG Haltedauer Intraday.
+        /// </summary>
+        public static string Display_PerformanceAvgHoldingPeriodIntradayTrades {
+            get {
+                return ResourceManager.GetString("Display_PerformanceAvgHoldingPeriodIntradayTrades", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to AVG Haltedauer Positionen.
+        /// </summary>
+        public static string Display_PerformanceAvgHoldingPeriodPositionTrades {
+            get {
+                return ResourceManager.GetString("Display_PerformanceAvgHoldingPeriodPositionTrades", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Erwartungswert.
+        /// </summary>
+        public static string Display_PerformanceExpectedTradeAverage {
+            get {
+                return ResourceManager.GetString("Display_PerformanceExpectedTradeAverage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pay-Off-Ratio.
+        /// </summary>
+        public static string Display_PerformancePayOffRatio {
+            get {
+                return ResourceManager.GetString("Display_PerformancePayOffRatio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Verlust-Trades.
+        /// </summary>
+        public static string Display_PerformancePercentageOfLossTransactions {
+            get {
+                return ResourceManager.GetString("Display_PerformancePercentageOfLossTransactions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gewinn-Trades.
+        /// </summary>
+        public static string Display_PerformancePercentageOfProfitTransactions {
+            get {
+                return ResourceManager.GetString("Display_PerformancePercentageOfProfitTransactions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to G/V.
+        /// </summary>
+        public static string Display_PerformanceProfit {
+            get {
+                return ResourceManager.GetString("Display_PerformanceProfit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SQN.
+        /// </summary>
+        public static string Display_PerformanceSQN {
+            get {
+                return ResourceManager.GetString("Display_PerformanceSQN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Kurs.
         /// </summary>
         public static string Display_Quotation {
@@ -817,47 +925,11 @@ namespace StockTradingAnalysis.Web {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Anzahl Verlust-Trades.
-        /// </summary>
-        public static string Display_StatisticsAmountOfLossTransactions {
-            get {
-                return ResourceManager.GetString("Display_StatisticsAmountOfLossTransactions", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Anzahl Gewinn-Trades.
-        /// </summary>
-        public static string Display_StatisticsAmountOfProfitTransactions {
-            get {
-                return ResourceManager.GetString("Display_StatisticsAmountOfProfitTransactions", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Anzahl Trades.
-        /// </summary>
-        public static string Display_StatisticsAmountOfTransactions {
-            get {
-                return ResourceManager.GetString("Display_StatisticsAmountOfTransactions", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Position.
         /// </summary>
         public static string Display_StatisticsAmountPositionTrades {
             get {
                 return ResourceManager.GetString("Display_StatisticsAmountPositionTrades", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to AVG Buy Volume.
-        /// </summary>
-        public static string Display_StatisticsAverageBuyVolume {
-            get {
-                return ResourceManager.GetString("Display_StatisticsAverageBuyVolume", resourceCulture);
             }
         }
         
@@ -876,24 +948,6 @@ namespace StockTradingAnalysis.Web {
         public static string Display_StatisticsAvgExitEfficiency {
             get {
                 return ResourceManager.GetString("Display_StatisticsAvgExitEfficiency", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to AVG Haltedauer Intraday.
-        /// </summary>
-        public static string Display_StatisticsAvgHoldingPeriodIntradayTrades {
-            get {
-                return ResourceManager.GetString("Display_StatisticsAvgHoldingPeriodIntradayTrades", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to AVG Haltedauer Positionen.
-        /// </summary>
-        public static string Display_StatisticsAvgHoldingPeriodPositionTrades {
-            get {
-                return ResourceManager.GetString("Display_StatisticsAvgHoldingPeriodPositionTrades", resourceCulture);
             }
         }
         
@@ -1051,42 +1105,6 @@ namespace StockTradingAnalysis.Web {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Pay-Off-Ratio.
-        /// </summary>
-        public static string Display_StatisticsPayOffRatio {
-            get {
-                return ResourceManager.GetString("Display_StatisticsPayOffRatio", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Payoff-Ratio Bewertung.
-        /// </summary>
-        public static string Display_StatisticsPayOffRatioDescription {
-            get {
-                return ResourceManager.GetString("Display_StatisticsPayOffRatioDescription", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Verlust-Trades.
-        /// </summary>
-        public static string Display_StatisticsPercentageOfLossTransactions {
-            get {
-                return ResourceManager.GetString("Display_StatisticsPercentageOfLossTransactions", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Gewinn-Trades.
-        /// </summary>
-        public static string Display_StatisticsPercentageOfProfitTransactions {
-            get {
-                return ResourceManager.GetString("Display_StatisticsPercentageOfProfitTransactions", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Profit.
         /// </summary>
         public static string Display_StatisticsProfitAbsolute {
@@ -1137,24 +1155,6 @@ namespace StockTradingAnalysis.Web {
         public static string Display_StatisticsR {
             get {
                 return ResourceManager.GetString("Display_StatisticsR", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to SQN.
-        /// </summary>
-        public static string Display_StatisticsSQN {
-            get {
-                return ResourceManager.GetString("Display_StatisticsSQN", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to SQN Bewertung.
-        /// </summary>
-        public static string Display_StatisticsSQNDescription {
-            get {
-                return ResourceManager.GetString("Display_StatisticsSQNDescription", resourceCulture);
             }
         }
         
@@ -3463,11 +3463,38 @@ namespace StockTradingAnalysis.Web {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Es sind keine Erträge im Portfolio über den gesamten Zeitraum vorhanden, es kann keine Gewinn-/Verlust-Aufstellung berechnet werden..
+        /// </summary>
+        public static string ViewTextPerformanceNotAvailable {
+            get {
+                return ResourceManager.GetString("ViewTextPerformanceNotAvailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Erträge sind nicht vorhanden.
+        /// </summary>
+        public static string ViewTextPerformanceNotAvailableTitle {
+            get {
+                return ResourceManager.GetString("ViewTextPerformanceNotAvailableTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Performance Statistiken.
         /// </summary>
         public static string ViewTextPerformanceStatistics {
             get {
                 return ResourceManager.GetString("ViewTextPerformanceStatistics", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Erträge.
+        /// </summary>
+        public static string ViewTextPerformanceTitle {
+            get {
+                return ResourceManager.GetString("ViewTextPerformanceTitle", resourceCulture);
             }
         }
         

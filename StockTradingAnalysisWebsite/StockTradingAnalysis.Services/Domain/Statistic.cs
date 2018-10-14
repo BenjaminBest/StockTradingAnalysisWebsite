@@ -330,5 +330,9 @@ namespace StockTradingAnalysis.Services.Domain
                 return (Start.GetHashCode() * 397) ^ End.GetHashCode();
             }
         }
-    }
+	    public override string ToString()
+	    {
+		    return $"{TimeSlice.Type} [{Start.Date}-{End.Date}]";
+	    }
+	}
 }

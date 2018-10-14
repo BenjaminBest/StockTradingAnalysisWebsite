@@ -10,9 +10,10 @@
                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">@Resources.ViewTextMainDashboard <span class="caret"></span></a>
                 <div class="dropdown-menu">
                     @Html.ActionLink(Resources.ViewTextMainDashboard, "Index", "Dashboard", null, new { @class = "dropdown-item" })
-                    @*<div class="dropdown-divider"></div>
-                    @Html.ActionLink(Resources.ViewTextInfoStatisticsOverTrades, "StatisticsOverTrades", "Dashboard", null, new { @class = "dropdown-item" })
-                    @Html.ActionLink(Resources.ViewTextInfoPerformancePerStocktype, "PerformancePerStocktype", "Dashboard", null, new { @class = "dropdown-item" })
+	                <div class="dropdown-divider"></div>
+	                @Html.ActionLink(Resources.ViewTextStatistics, "Performance", "Dashboard", null, new { @class = "dropdown-item" })
+	                @*@Html.ActionLink(Resources.ViewTextInfoStatisticsOverTrades, "StatisticsOverTrades", "Dashboard", null, new { @class = "dropdown-item" })
+	                @Html.ActionLink(Resources.ViewTextInfoPerformancePerStocktype, "PerformancePerStocktype", "Dashboard", null, new { @class = "dropdown-item" })
                     @Html.ActionLink(Resources.ViewTextInfoPerformancePerLongShort, "PerformancePerLongShort", "Dashboard", null, new { @class = "dropdown-item" })
                     @Html.ActionLink(Resources.ViewTextInfoPerformancePerStrategy, "PerformancePerStrategy", "Dashboard", null, new { @class = "dropdown-item" })
                     @Html.ActionLink(Resources.ViewTextInfoTradeAveragePerMonth, "TradeAveragePerMonth", "Dashboard", null, new { @class = "dropdown-item" })
@@ -93,12 +94,6 @@
                     @Html.ActionLink(Resources.ViewTextNew, "Create", "Calculation", null, new { @class = "dropdown-item" })
                 </div>
             </li>
-
-            @*<ul class="nav navbar-nav ml-auto">
-                <li class="nav-item">
-                    @Html.ActionLink(Resources.ViewTextStatistics, "Index", "Statistics", null, new { @class = "nav-link" })
-                </li>
-            </ul>*@
 
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">@Resources.ViewTextAdministration <span class="caret"></span></a>

@@ -69,6 +69,7 @@ namespace StockTradingAnalysis.Services.Services
         /// </summary>
         /// <param name="slice">The slice.</param>
         /// <param name="date">The minimum date. Any date earlier that this will not be incorporated if not affected.</param>
+        //TODO: Add option to skip quarters and months for performance when used for example on performance dashboard
         private void CreateYears(AllTimeSlice slice, DateTime date)
         {
             foreach (var year in _dateCalculationService.GetInvolvedYears(slice.Start, slice.End))
