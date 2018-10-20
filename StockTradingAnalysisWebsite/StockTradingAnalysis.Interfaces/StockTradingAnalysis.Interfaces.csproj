@@ -140,6 +140,7 @@
     <Compile Include="ReadModel\IModelRepositoryItem.cs" />
     <Compile Include="ReadModel\IModelWriterRepository.cs" />
     <Compile Include="ReadModel\IModelRepository.cs" />
+    <Compile Include="Scheduler\IScheduledJob.cs" />
     <Compile Include="Services\Core\IDateCalculationService.cs" />
     <Compile Include="Services\Core\IDependencyService.cs" />
     <Compile Include="Services\Core\ISerializerService.cs" />

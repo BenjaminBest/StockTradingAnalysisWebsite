@@ -3553,6 +3553,15 @@ namespace StockTradingAnalysis.Web {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Scheduler.
+        /// </summary>
+        public static string ViewTextScheduler {
+            get {
+                return ResourceManager.GetString("ViewTextScheduler", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Verkauf.
         /// </summary>
         public static string ViewTextSell {

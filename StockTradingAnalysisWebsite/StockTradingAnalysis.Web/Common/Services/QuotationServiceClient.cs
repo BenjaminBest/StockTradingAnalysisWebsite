@@ -47,7 +47,18 @@ namespace StockTradingAnalysis.Web.Common.Services
             return _stockQuoteExternalService.Get(_queryDispatcher.Execute(new StockByIdQuery(stockId)).Wkn);
         }
 
-        /// <summary>
+	    /// <summary>
+	    /// Gets all quotations for the given <paramref name="stockId"/>
+	    /// </summary>
+	    /// <param name="stockId">The stock.</param>
+	    /// <param name="since">The date for which quotations should be downloaded (including)</param>
+	    /// <returns></returns>
+	    public IEnumerable<IQuotation> Get(Guid stockId, DateTime since)
+	    {
+			return _stockQuoteExternalService.Get(_queryDispatcher.Execute(new StockByIdQuery(stockId)).Wkn);
+		}
+
+	    /// <summary>
         /// Determines whether this instance is online.
         /// </summary>
         /// <returns>

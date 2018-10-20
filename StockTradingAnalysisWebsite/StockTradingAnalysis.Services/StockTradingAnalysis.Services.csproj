@@ -78,9 +78,7 @@
     <Compile Include="Services\TransactionCalculationService.cs" />
     <Compile Include="Services\TransactionPerformanceService.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Common\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\StockTradingAnalysis.Core\StockTradingAnalysis.Core.csproj">
       <Project>{2D924BA2-EBFC-4675-B435-D346F20A77D1}</Project>

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Ninject;
 
 namespace StockTradingAnalysis.Core.Common
@@ -39,7 +40,7 @@ namespace StockTradingAnalysis.Core.Common
         /// <returns>The requested services.</returns>
         public static IEnumerable<TType> GetServices<TType>()
         {
-            return (IEnumerable<TType>)_kernel.GetAll(typeof(TType));
+            return (IEnumerable<TType>)_kernel.GetAll(typeof(TType)).Cast<TType>().ToList();
         }
     }
 }

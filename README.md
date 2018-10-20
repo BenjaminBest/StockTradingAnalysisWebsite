@@ -12,9 +12,12 @@ The project `StockTradingAnalysis.Web.Migration` is used to load the data from t
 Setup project with MSSQL ([RavenDB](https://ravendb.net/) exists as well)
 --------------
 1. Create a new database
-2. Execute the script `StockTradingAnalysis.Data.MSSQL.Scripts.Create_DataStore_Table.sql`
-3. Run multiple projects (`StockTradingAnalysis.Web` and `StockTradingAnalysis.Services.StockQuoteService`). Can be done by right-click on the solution in Visual Studio and go to "Set Startup Projects".
-4. Open Administration in the GUI and generate test data
+2. Update connection strings in `Web.config`
+3. Execute the script `StockTradingAnalysis.Data.MSSQL.Scripts.Create_DataStore_Table.sql`
+4. If RavenDB shall be used then bindings in `\StockTradingAnalysis.Web\App_Start\BindingModules\EventSourcingBindingModule.cs` need to be changed
+5. Hangfire currently needs an SQl database and uses the MSSQL connection string, see `Startup.cs`
+6. Run project `StockTradingAnalysis.Web`
+7. Open Administration in the GUI and generate test data
 
 Technologies & Approaches
 --------------
@@ -26,6 +29,7 @@ Technologies & Approaches
 6. [ReactJs.NET](https://reactjs.net/])
 7. [Axios](https://github.com/axios/axios)
 8. [Automapper](http://automapper.org/)
+9. [Hangfire](https://www.hangfire.io/)
 
 Application architecture
 --------------
@@ -46,6 +50,12 @@ On the read side, the _MVC controllers_ for example asking the _query dispatcher
 For Web Sockets the [SignalR](https://www.asp.net/signalr) _hub_ retrieves the data also from the query dispatcher and sends it to the frontend.  
 
 ![architecture](https://user-images.githubusercontent.com/29073072/36641270-43c14cd2-1a2d-11e8-8cf6-d13aff801738.png)
+
+Logging/Monitoring
+--------------
+[log4net](https://logging.apache.org/log4net/) is configured to write to files and [Application Insights](https://azure.microsoft.com/de-de/services/monitor/) uses log4net to send monitoring data to Azure.
+
+The instrumentation key is configured in `\StockTradingAnalysis.Web\Views\Shared\_Layout.cshtml` and `\StockTradingAnalysis.Web\ApplicationInsights.config` which needs to be replaced to send to the correct Application Insights node.
 
 Features
 --------------
@@ -89,6 +99,7 @@ Features
   * Historical/daily basis quotes can be downloaded (if stock with WKN was configured)
 * Administration
   * Test data generation
+  * Scheduler for the background jobs which are downloading quotes
 
 Features (not yet migrated)
 --------------

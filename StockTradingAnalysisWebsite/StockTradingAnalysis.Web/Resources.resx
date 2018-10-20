@@ -1395,4 +1395,7 @@
   <data name="ViewTextPerformanceTitle" xml:space="preserve">
     <value>Erträge</value>
   </data>
+  <data name="ViewTextScheduler" xml:space="preserve">
+    <value>Scheduler</value>
+  </data>
 </root>
