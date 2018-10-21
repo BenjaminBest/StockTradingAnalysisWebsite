@@ -9,85 +9,85 @@ using StockTradingAnalysis.Web.Models;
 
 namespace StockTradingAnalysis.Web.AutoMapperProfiles
 {
-    /// <summary>
-    /// The StockProfile cotains the automapper configuration for <see cref="IStock"/>.
-    /// </summary>
-    /// <seealso cref="Profile" />
-    public class StockProfile : Profile
-    {
-        /// <summary>
-        /// Override this method in a derived class and call the CreateMap method to associate that map with this profile.
-        /// Avoid calling the <see cref="T:AutoMapper.Mapper" /> class from this method.
-        /// </summary>
-        protected override void Configure()
-        {
-            Mapper.CreateMap<IStock, StockViewModel>()
-                .ForMember(t => t.Id, source => source.MapFrom(s => s.Id))
-                .ForMember(t => t.OriginalVersion, source => source.MapFrom(s => s.OriginalVersion))
-                .ForMember(t => t.StocksDescription, source => source.MapFrom(s => s.StocksDescription))
-                .ForMember(t => t.StocksShortDescription, source => source.MapFrom(s => s.StocksShortDescription))
-                .ForMember(t => t.Name, source => source.MapFrom(s => s.Name))
-                .ForMember(t => t.Wkn, source => source.MapFrom(s => s.Wkn))
-                .ForMember(t => t.Type, source => source.MapFrom(s => s.Type))
-                .ForMember(t => t.LongShort, source => source.MapFrom(s => s.LongShort))
-                .ForMember(t => t.Performance, source => source.ResolveUsing(ResolvePerformance))
-                .ForMember(t => t.TransactionHistory, source => source.ResolveUsing(ResolveTransactionHistory))
-                .ForMember(t => t.LastestQuote, source => source.ResolveUsing(ResolveLatestQuote));
+	/// <summary>
+	/// The StockProfile cotains the automapper configuration for <see cref="IStock"/>.
+	/// </summary>
+	/// <seealso cref="Profile" />
+	public class StockProfile : Profile
+	{
+		/// <summary>
+		/// Initializes a new instance of the <see cref="StockProfile"/> class.
+		/// </summary>
+		public StockProfile()
+		{
+			CreateMap<IStock, StockViewModel>()
+				.ForMember(t => t.Id, source => source.MapFrom(s => s.Id))
+				.ForMember(t => t.OriginalVersion, source => source.MapFrom(s => s.OriginalVersion))
+				.ForMember(t => t.StocksDescription, source => source.MapFrom(s => s.StocksDescription))
+				.ForMember(t => t.StocksShortDescription, source => source.MapFrom(s => s.StocksShortDescription))
+				.ForMember(t => t.Name, source => source.MapFrom(s => s.Name))
+				.ForMember(t => t.Wkn, source => source.MapFrom(s => s.Wkn))
+				.ForMember(t => t.Type, source => source.MapFrom(s => s.Type))
+				.ForMember(t => t.LongShort, source => source.MapFrom(s => s.LongShort))
+				.ForMember(t => t.Performance, source => source.ResolveUsing(ResolvePerformance))
+				.ForMember(t => t.TransactionHistory, source => source.ResolveUsing(ResolveTransactionHistory))
+				.ForMember(t => t.LastestQuote, source => source.ResolveUsing(ResolveLatestQuote));
 
-            Mapper.CreateMap<IStock, SelectionViewModel>()
-                .ForMember(t => t.Id, source => source.MapFrom(s => s.Id))
-                .ForMember(t => t.Text, source => source.MapFrom(s => s.StocksShortDescription));
-        }
+			CreateMap<IStock, SelectionViewModel>()
+				.ForMember(t => t.Id, source => source.MapFrom(s => s.Id))
+				.ForMember(t => t.Text, source => source.MapFrom(s => s.StocksShortDescription));
 
-        /// <summary>
-        /// Resolves the performance for the given <paramref name="stock"/>
-        /// </summary>
-        /// <param name="stock">The stock.</param>
-        /// <returns>Performance</returns>
-        private object ResolvePerformance(IStock stock)
-        {
-            if (stock == null)
-                return null;
+		}
 
-            var modelRepository = DependencyResolver.Current.GetService<IModelReaderRepository<IStockStatistics>>();
+		/// <summary>
+		/// Resolves the performance for the given <paramref name="stock"/>
+		/// </summary>
+		/// <param name="stock">The stock.</param>
+		/// <returns>Performance</returns>
+		private object ResolvePerformance(IStock stock)
+		{
+			if (stock == null)
+				return null;
 
-            var model = modelRepository.GetById(stock.Id);
+			var modelRepository = DependencyResolver.Current.GetService<IModelReaderRepository<IStockStatistics>>();
 
-            return model?.Performance ?? default(decimal);
-        }
+			var model = modelRepository.GetById(stock.Id);
 
-        /// <summary>
-        /// Resolves the transaction history for the given <paramref name="stock"/>
-        /// </summary>
-        /// <param name="stock">The stock.</param>
-        /// <returns>Transaction history</returns>
-        private object ResolveTransactionHistory(IStock stock)
-        {
-            if (stock == null)
-                return Enumerable.Empty<TransactionHistoryViewModel>();
+			return model?.Performance ?? default(decimal);
+		}
 
-            var queryDispatcher = DependencyResolver.Current.GetService<IQueryDispatcher>();
+		/// <summary>
+		/// Resolves the transaction history for the given <paramref name="stock"/>
+		/// </summary>
+		/// <param name="stock">The stock.</param>
+		/// <returns>Transaction history</returns>
+		private object ResolveTransactionHistory(IStock stock)
+		{
+			if (stock == null)
+				return Enumerable.Empty<TransactionHistoryViewModel>();
 
-            var transactions = queryDispatcher.Execute(new TransactionByStockIdQuery(stock.Id));
+			var queryDispatcher = DependencyResolver.Current.GetService<IQueryDispatcher>();
 
-            return transactions ?? Enumerable.Empty<ITransaction>();
-        }
+			var transactions = queryDispatcher.Execute(new TransactionByStockIdQuery(stock.Id));
 
-        /// <summary>
-        /// Resolves the latest quote for the given <paramref name="stock"/>
-        /// </summary>
-        /// <param name="stock">The stock.</param>
-        /// <returns>Latest quote</returns>
-        private object ResolveLatestQuote(IStock stock)
-        {
-            if (stock == null)
-                return null;
+			return transactions ?? Enumerable.Empty<ITransaction>();
+		}
 
-            var queryDispatcher = DependencyResolver.Current.GetService<IQueryDispatcher>();
+		/// <summary>
+		/// Resolves the latest quote for the given <paramref name="stock"/>
+		/// </summary>
+		/// <param name="stock">The stock.</param>
+		/// <returns>Latest quote</returns>
+		private object ResolveLatestQuote(IStock stock)
+		{
+			if (stock == null)
+				return null;
 
-            var quote = queryDispatcher.Execute(new StockQuotationsLatestByIdQuery(stock.Id));
+			var queryDispatcher = DependencyResolver.Current.GetService<IQueryDispatcher>();
 
-            return quote;
-        }
-    }
+			var quote = queryDispatcher.Execute(new StockQuotationsLatestByIdQuery(stock.Id));
+
+			return quote;
+		}
+	}
 }
