@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Hangfire;
 using StockTradingAnalysis.Core.Common;
 using StockTradingAnalysis.Domain.CQRS.Cmd.Commands;
@@ -66,7 +67,7 @@ namespace StockTradingAnalysis.Web.Common.Scheduler
 
 			foreach (var stock in _queryDispatcher.Execute(new StockAllQuery()))
 			{
-				var latestUpdate = stock.Quotations.Max(q => q.Changed);
+				var latestUpdate = stock.Quotations != null && stock.Quotations.Any() ? stock.Quotations.Max(q => q.Changed) : DateTime.MinValue;
 
 				var quotations = _quotationServiceClient.Get(stock.Id, latestUpdate.Date).ToList();
 

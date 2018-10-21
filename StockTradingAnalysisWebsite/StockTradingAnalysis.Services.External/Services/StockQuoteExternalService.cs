@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using StockTradingAnalysis.Core.Common;
 using StockTradingAnalysis.Interfaces.Common;
 using StockTradingAnalysis.Interfaces.Domain;
@@ -46,20 +47,27 @@ namespace StockTradingAnalysis.Services.External.Services
 		/// <returns></returns>
 		public IEnumerable<IQuotation> Get(string wkn, DateTime since)
 		{
-			IEnumerable<IQuotation> result;
+			var result = Enumerable.Empty<IQuotation>();
 
-			long msec = 0;
-			using (new TimeMeasure(t => msec = t))
+			try
 			{
-				var provider = new QuotationDownloadBoerseDuesseldorf();
+				long msec = 0;
+				using (new TimeMeasure(t => msec = t))
+				{
+					var provider = new QuotationDownloadBoerseDuesseldorf();
 
-				result = provider
-					.Initialize(wkn, $"http://www.boerse-duesseldorf.de/aktien/wkn/{wkn}/historische_kurse")
-					.Download()
-					.ExtractInformation(since);
+					result = provider
+						.Initialize(wkn, $"http://www.boerse-duesseldorf.de/aktien/wkn/{wkn}/historische_kurse")
+						.Download()
+						.ExtractInformation(since);
+				}
+
+				_loggingService.Debug($"Downloaded quotes for {wkn} in {msec / 1000} seconds");
 			}
-
-			_loggingService.Debug($"Downloaded quotes for {wkn} in {msec / 1000} seconds");
+			catch (Exception ex)
+			{
+				_loggingService.Error($"Download of quotes for {wkn} failed with message '{ex.Message}'");
+			}
 
 			return result;
 		}
