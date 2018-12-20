@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockTradingAnalysis.Web", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockTradingAnalysis.Web.Tests", "StockTradingAnalysis.Web.Tests\StockTradingAnalysis.Web.Tests.csproj", "{5FCE34E6-B5A6-49C4-AA2A-AB55769DBEAD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockTradingAnalysis.Core", "StockTradingAnalysis.Core\StockTradingAnalysis.Core.csproj", "{2D924BA2-EBFC-4675-B435-D346F20A77D1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockTradingAnalysis.Core", "StockTradingAnalysis.Core\StockTradingAnalysis.Core.csproj", "{2D924BA2-EBFC-4675-B435-D346F20A77D1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockTradingAnalysis.Interfaces", "StockTradingAnalysis.Interfaces\StockTradingAnalysis.Interfaces.csproj", "{3694CF79-FB2D-4F79-8236-A4975A30924D}"
 EndProject
@@ -50,6 +50,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockTradingAnalysis.Domain.Process", "StockTradingAnalysis.Domain.Process\StockTradingAnalysis.Domain.Process.csproj", "{D6E4B418-70B2-4FE6-987D-8FF0F272C281}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockTradingAnalysis.Services.External", "StockTradingAnalysis.Services.External\StockTradingAnalysis.Services.External.csproj", "{7234CB2E-D129-46B2-99A4-1162E4C4A2B1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockTradingAnalysis.Data.RavenDb.Tests", "StockTradingAnalysis.Data.RavenDb.Tests\StockTradingAnalysis.Data.RavenDb.Tests.csproj", "{BD78CA1C-34CE-411F-9E58-61B30F9424CB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -149,6 +151,10 @@ Global
 		{7234CB2E-D129-46B2-99A4-1162E4C4A2B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7234CB2E-D129-46B2-99A4-1162E4C4A2B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7234CB2E-D129-46B2-99A4-1162E4C4A2B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD78CA1C-34CE-411F-9E58-61B30F9424CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD78CA1C-34CE-411F-9E58-61B30F9424CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD78CA1C-34CE-411F-9E58-61B30F9424CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD78CA1C-34CE-411F-9E58-61B30F9424CB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
