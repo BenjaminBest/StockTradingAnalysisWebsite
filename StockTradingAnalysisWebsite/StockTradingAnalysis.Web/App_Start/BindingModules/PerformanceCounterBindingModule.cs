@@ -7,32 +7,32 @@ using StockTradingAnalysis.Interfaces.Services.Core;
 
 namespace StockTradingAnalysis.Web.BindingModules
 {
-    /// <summary>
-    /// Binding module for performance counters.
-    /// </summary>
-    /// <seealso cref="NinjectModule" />
-    public class PerformanceCounterBindingModule : NinjectModule
-    {
-        /// <summary>
-        /// Loads the module into the kernel.
-        /// </summary>
-        public override void Load()
-        {
-            //Performance counter-templates
-            Bind<IPerformanceRegistry>().ToMethod((context) =>
-            {
-                var registry = new PerformanceRegistry();
+	/// <summary>
+	/// Binding module for performance counters.
+	/// </summary>
+	/// <seealso cref="NinjectModule" />
+	public class PerformanceCounterBindingModule : NinjectModule
+	{
+		/// <summary>
+		/// Loads the module into the kernel.
+		/// </summary>
+		public override void Load()
+		{
+			//Performance counter-templates
+			Bind<IPerformanceRegistry>().ToMethod((context) =>
+			{
+				var registry = new PerformanceRegistry();
 
-                registry.Register<PerformanceCounterNumberOfItems>(PerformanceType.NumberOfItems);
-                registry.Register<PerformanceCounterRatePerSecond>(PerformanceType.RateOfCountsPerMillisecond);
-                registry.Register<PerformanceCounterAverageTimer>(PerformanceType.AverageTimer);
+				registry.Register<PerformanceCounterNumberOfItems>(PerformanceType.NumberOfItems);
+				registry.Register<PerformanceCounterRatePerSecond>(PerformanceType.RateOfCountsPerMillisecond);
+				registry.Register<PerformanceCounterAverageTimer>(PerformanceType.AverageTimer);
 
-                return registry;
+				return registry;
 
-            }).InSingletonScope();
+			}).InSingletonScope();
 
-            //Service
-            Bind<IPerformanceMeasurementService>().To<PerformanceMeasurementService>().InSingletonScope();
-        }
-    }
+			//Service
+			Bind<IPerformanceMeasurementService>().To<PerformanceMeasurementService>().InSingletonScope();
+		}
+	}
 }

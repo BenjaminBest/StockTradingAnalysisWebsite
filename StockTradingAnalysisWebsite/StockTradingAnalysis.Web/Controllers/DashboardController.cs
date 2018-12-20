@@ -73,8 +73,6 @@ namespace StockTradingAnalysis.Web.Controllers
 				_queryDispatcher.Execute(new StatisticsByTimeSliceQuery(_timeSliceCreationService.CreateTimeSlices(), TimeSliceType.All));
 
 			model.Cards = _statisticCardConverterRepository.ConvertStatistic(statistics.FirstOrDefault(s => s.TimeSlice.Type.Equals(TimeSliceType.All)));
-
-			//NOTE: Cache disabled because of IQuotation overrides Equals and only date is taken into account
 			model.OpenPositions = Mapper.Map<OpenPositionsViewModel>(_transactionCalculationService.CalculateOpenPositions());
 
 			return View(model);

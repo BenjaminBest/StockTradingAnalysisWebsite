@@ -467,6 +467,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Common\Authorization\HangfireAuthorizationFilter.cs" />
     <Compile Include="Common\Deletion\DataDeletionCoordinator.cs" />
+    <Compile Include="Common\Interfaces\IImageService.cs" />
     <Compile Include="Common\Interfaces\IStyleTypeBuilder.cs" />
     <Compile Include="Common\Interfaces\IStyleTypeBuilderThreshold.cs" />
     <Compile Include="Common\Formatting\StyleTypeBuilder.cs" />
@@ -517,6 +518,7 @@
     <Compile Include="Common\Interfaces\ISelectItemResolverRegistry.cs" />
     <Compile Include="Common\ModelBinders\ImageViewModelBinder.cs" />
     <Compile Include="Common\Scheduler\UpdateQuotationsScheduledJob.cs" />
+    <Compile Include="Common\Services\ImageService.cs" />
     <Compile Include="Common\Services\QuotationServiceClient.cs" />
     <Compile Include="Controllers\ChartController.cs" />
     <Compile Include="Controllers\TestDataController.cs" />
