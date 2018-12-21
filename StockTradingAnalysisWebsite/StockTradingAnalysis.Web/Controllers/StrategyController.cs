@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web.Mvc;
 using AutoMapper;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using StockTradingAnalysis.Domain.CQRS.Cmd.Commands;
 using StockTradingAnalysis.Domain.CQRS.Cmd.Exceptions;
 using StockTradingAnalysis.Domain.CQRS.Query.Queries;
@@ -32,31 +33,26 @@ namespace StockTradingAnalysis.Web.Controllers
 		}
 
 		// GET: Strategy
-		public ActionResult Index()
+		public IActionResult Index()
 		{
 			return View(Mapper.Map<IEnumerable<StrategyViewModel>>(_queryDispatcher.Execute(new StrategyAllQuery())));
 		}
 
 		// GET: Strategy/Create
-		public ActionResult Create()
+		public IActionResult Create()
 		{
 			return View();
 		}
 
 		// POST: Strategy/Create
 		[HttpPost]
-		public ActionResult Create(StrategyViewModel model, FormCollection collection)
+		public IActionResult Create(StrategyViewModel model, FormCollection collection)
 		{
 			var id = Guid.NewGuid();
 
 			try
 			{
-				IImage image = null;
-
-				if (Request.Files["Image"] != null && Request.Files["Image"].ContentLength != 0)
-				{
-					image = _imageService.GetImage(Request.Files["Image"], collection["image.Description"], id);
-				}
+				IImage image = _imageService.GetImage(Request.Form.Files.GetFile("Image"), collection["image.Description"], id);
 
 				_commandDispatcher.Execute(new StrategyAddCommand(id, model.OriginalVersion, model.Name,
 					model.Description, image));
@@ -72,22 +68,22 @@ namespace StockTradingAnalysis.Web.Controllers
 		}
 
 		// GET: Strategy/Edit/5
-		public ActionResult Edit(Guid id)
+		public IActionResult Edit(Guid id)
 		{
 			return View(Mapper.Map<StrategyViewModel>(_queryDispatcher.Execute(new StrategyByIdQuery(id))));
 		}
 
 		// POST: Strategy/Edit/5
 		[HttpPost]
-		public ActionResult Edit(Guid id, StrategyViewModel model, FormCollection collection)
+		public IActionResult Edit(Guid id, StrategyViewModel model, FormCollection collection)
 		{
 			try
 			{
 				IImage image = null;
 
-				if (Request.Files["Image"] != null && Request.Files["Image"].ContentLength != 0)
+				if (Request.Form.Files["Image"] != null && Request.Form.Files["Image"].Length != 0)
 				{
-					image = _imageService.GetImage(Request.Files["Image"], collection["image.Description"], id);
+					image = _imageService.GetImage(Request.Form.Files.GetFile("Image"), collection["image.Description"], id);
 				}
 				else if (string.IsNullOrEmpty(collection["deleteImage"]))
 				{
@@ -110,14 +106,14 @@ namespace StockTradingAnalysis.Web.Controllers
 		}
 
 		// GET: Strategy/Delete/5
-		public ActionResult Delete(Guid id)
+		public IActionResult Delete(Guid id)
 		{
 			return View(Mapper.Map<StrategyViewModel>(_queryDispatcher.Execute(new StrategyByIdQuery(id))));
 		}
 
 		// POST: Strategy/Delete/5
 		[HttpPost]
-		public ActionResult Delete(Guid id, StrategyViewModel model)
+		public IActionResult Delete(Guid id, StrategyViewModel model)
 		{
 			try
 			{
@@ -138,11 +134,11 @@ namespace StockTradingAnalysis.Web.Controllers
 		/// </summary>
 		/// <param name="term">Search text</param>
 		/// <returns></returns>
-		public JsonResult GetStrategyName(string term)
+		public IActionResult GetStrategyName(string term)
 		{
 			var items = _queryDispatcher.Execute(new StrategyNameSearchQuery(term));
 
-			return Json(items.Take(10), JsonRequestBehavior.AllowGet);
+			return Json(items.Take(10));
 		}
 
 		/// <summary>
@@ -150,7 +146,7 @@ namespace StockTradingAnalysis.Web.Controllers
 		/// </summary>
 		/// <param name="id">Image ID</param>
 		/// <returns>Image</returns>
-		public ActionResult GetImage(Guid id)
+		public IActionResult GetImage(Guid id)
 		{
 			var image = _queryDispatcher.Execute(new StrategyImageByIdQuery(id));
 

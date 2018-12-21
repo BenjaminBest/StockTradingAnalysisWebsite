@@ -1,0 +1,42 @@
+﻿@model DateTime?
+
+@{
+    var isWriteProtected = (bool?)ViewData["readonly"] ?? false;
+    var id = Guid.NewGuid();
+}
+
+<div class="form-group">
+    <div class='input-group date' id='@id'>
+        <div class="input-group-prepend input-group-addon">
+            <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+        </div>
+
+        @if (isWriteProtected)
+        {
+            @Html.TextBox("", String.Format("{0:dd.MM.yyyy HH:mm}", Model.Value), new { @class = "form-control", @readonly = "" })
+        }
+        else
+        {
+            if (@Model.HasValue)
+            {
+                @Html.TextBox("", String.Format("{0:dd.MM.yyyy HH:mm}", Model.Value), new { @class = "form-control" })
+
+            }
+            else
+            {
+                @Html.TextBox("", String.Format("{0:dd.MM.yyyy HH:mm}", DateTime.Now), new { @class = "form-control"})
+            }
+        }
+    </div>
+</div>
+
+@if (!isWriteProtected)
+{
+    <script type="text/javascript">
+        $(function() {
+            $('#@id').datetimepicker({
+                locale: 'de'
+            });
+        });
+    </script>
+}

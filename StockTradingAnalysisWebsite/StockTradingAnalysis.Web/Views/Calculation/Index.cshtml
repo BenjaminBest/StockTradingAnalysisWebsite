@@ -1,4 +1,5 @@
-﻿@using StockTradingAnalysis.Web.Common.Extensions
+﻿@using StockTradingAnalysis.Web
+@using StockTradingAnalysis.Web.Common.Extensions
 @model IEnumerable<StockTradingAnalysis.Web.Models.CalculationViewModel>
 
 @{
@@ -49,7 +50,7 @@
             <tbody>
                 @foreach (var item in Model)
                 {
-                    <tr class="clickableRow" href='@Html.PlainLink("Edit", "Calculation", new {id = item.Id})'>
+                    <tr class="clickableRow" href='@Html.PlainLink("Edit", "Calculation", new { id = item.Id })'>
                         <td>
                             @Html.DisplayFor(modelItem => item.Name)
                         </td>

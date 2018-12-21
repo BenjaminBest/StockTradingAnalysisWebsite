@@ -1,0 +1,90 @@
+﻿@using StockTradingAnalysis.Web.Common.Extensions
+@model StockTradingAnalysis.Web.Models.DashboardViewModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        @Html.Partial("DisplayTemplates/Cards", Model.Cards)
+
+        <div class="col-12 mt-5">
+            <strong>@Resources.ViewTextCapitalExpenditurePositions</strong>
+            <table class="table table-sm table-hover table-striped table-responsive-lg">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.LabelFor(modelItem => Model.OpenPositions.OpenPositions.FirstOrDefault().StockName)
+                        </th>
+                        <th>
+                            @Html.LabelFor(modelItem => Model.OpenPositions.OpenPositions.FirstOrDefault().FirstOrderDate)
+                        </th>
+                        <th>
+                            @Html.LabelFor(modelItem => Model.OpenPositions.OpenPositions.FirstOrDefault().PositionSize)
+                        </th>
+                        <th>
+                            @Html.LabelFor(modelItem => Model.OpenPositions.OpenPositions.FirstOrDefault().Shares)
+                        </th>
+                        <th>
+                            @Html.LabelFor(modelItem => Model.OpenPositions.OpenPositions.FirstOrDefault().AveragePricePerShare)
+                        </th>
+                        <th>
+                            @Html.LabelFor(modelItem => Model.OpenPositions.OpenPositions.FirstOrDefault().CurrentQuotation)
+                        </th>
+                        <th>
+                            @Html.LabelFor(modelItem => Model.OpenPositions.OpenPositions.FirstOrDefault().YearToDateProfit)
+                        </th>
+                        <th>
+                            @Html.LabelFor(modelItem => Model.OpenPositions.OpenPositions.FirstOrDefault().Profit)
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var position in Model.OpenPositions.OpenPositions)
+                    {
+                        <tr class="clickableRow" href='@Html.PlainLink("Edit", "Stock", new {id = position.StockId})'>
+                            <td>
+                                <span class="text-info">@Html.DisplayFor(modelItem => position.StockName)</span>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => position.FirstOrderDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => position.PositionSize)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => position.Shares)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => position.AveragePricePerShare)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => position.CurrentQuotation)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => position.YearToDateProfit)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => position.Profit)
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td>@Html.DisplayFor(model => model.OpenPositions.Summary.PositionSize)</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>@Html.DisplayFor(model => model.OpenPositions.Summary.Profit)</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>

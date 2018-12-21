@@ -1,0 +1,13 @@
+﻿@model StockTradingAnalysis.Web.Models.UpdateQuotationStatusViewModel
+
+@if (Model != null)
+{
+    if (Model.Successfull)
+    {
+        <span class="badge badge-success">@Model.TimeStamp</span> @Model.Message
+    }
+    else
+    {
+        <span class="badge badge-warning">@Model.TimeStamp</span> @Model.Message
+    }
+}

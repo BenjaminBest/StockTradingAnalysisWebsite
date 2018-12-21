@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web.Mvc;
 using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using StockTradingAnalysis.Domain.CQRS.Cmd.Commands;
 using StockTradingAnalysis.Domain.CQRS.Cmd.Exceptions;
 using StockTradingAnalysis.Domain.CQRS.Query.Queries;
@@ -30,20 +30,20 @@ namespace StockTradingAnalysis.Web.Controllers
 		}
 
 		// GET: Stock
-		public ActionResult Index()
+		public IActionResult Index()
 		{
 			return View(Mapper.Map<IEnumerable<StockViewModel>>(_queryDispatcher.Execute(new StockAllQuery())));
 		}
 
 		// GET: Stock/Create
-		public ActionResult Create()
+		public IActionResult Create()
 		{
 			return View();
 		}
 
 		// POST: Stock/Create
 		[HttpPost]
-		public ActionResult Create(StockViewModel model)
+		public IActionResult Create(StockViewModel model)
 		{
 			var id = Guid.NewGuid();
 
@@ -63,14 +63,14 @@ namespace StockTradingAnalysis.Web.Controllers
 		}
 
 		// GET: Stock/Edit/5
-		public ActionResult Edit(Guid id)
+		public IActionResult Edit(Guid id)
 		{
 			return View(Mapper.Map<StockViewModel>(_queryDispatcher.Execute(new StockByIdQuery(id))));
 		}
 
 		// POST: Stock/Edit/5
 		[HttpPost]
-		public ActionResult Edit(Guid id, StockViewModel model)
+		public IActionResult Edit(Guid id, StockViewModel model)
 		{
 			try
 			{
@@ -88,14 +88,14 @@ namespace StockTradingAnalysis.Web.Controllers
 		}
 
 		// GET: Stock/Delete/5
-		public ActionResult Delete(Guid id)
+		public IActionResult Delete(Guid id)
 		{
 			return View(Mapper.Map<StockViewModel>(_queryDispatcher.Execute(new StockByIdQuery(id))));
 		}
 
 		// POST: Stock/Delete/5
 		[HttpPost]
-		public ActionResult Delete(Guid id, StockViewModel model)
+		public IActionResult Delete(Guid id, StockViewModel model)
 		{
 			try
 			{
@@ -112,7 +112,7 @@ namespace StockTradingAnalysis.Web.Controllers
 		}
 
 		// GET: Stock/UpdateQuotations
-		public ActionResult UpdateQuotations()
+		public IActionResult UpdateQuotations()
 		{
 			var model = new UpdateQuotationsViewModel
 			{
@@ -124,7 +124,7 @@ namespace StockTradingAnalysis.Web.Controllers
 		}
 
 		// GET: Stock/UpdateQuotation/5
-		public ActionResult UpdateQuotation(Guid id)
+		public IActionResult UpdateQuotation(Guid id)
 		{
 			//TODO: Duplicate code, see QuotationController.UpdateQuotation
 			var stock = _queryDispatcher.Execute(new StockByIdQuery(id));
@@ -169,11 +169,11 @@ namespace StockTradingAnalysis.Web.Controllers
 		/// </summary>
 		/// <param name="term"></param>
 		/// <returns></returns>
-		public JsonResult GetStockName(string term)
+		public IActionResult GetStockName(string term)
 		{
 			var items = _queryDispatcher.Execute(new StockNameSearchQuery(term));
 
-			return Json(items.Take(10), JsonRequestBehavior.AllowGet);
+			return Json(items.Take(10));
 		}
 
 		/// <summary>
@@ -181,11 +181,11 @@ namespace StockTradingAnalysis.Web.Controllers
 		/// </summary>
 		/// <param name="term"></param>
 		/// <returns></returns>
-		public JsonResult GetStockWkn(string term)
+		public IActionResult GetStockWkn(string term)
 		{
 			var items = _queryDispatcher.Execute(new StockWknSearchQuery(term));
 
-			return Json(items.Take(10), JsonRequestBehavior.AllowGet);
+			return Json(items.Take(10));
 		}
 
 		/// <summary>
@@ -193,11 +193,11 @@ namespace StockTradingAnalysis.Web.Controllers
 		/// </summary>
 		/// <param name="term"></param>
 		/// <returns></returns>
-		public JsonResult GetStockType(string term)
+		public IActionResult GetStockType(string term)
 		{
 			var items = _queryDispatcher.Execute(new StockTypeSearchQuery(term));
 
-			return Json(items.Take(10), JsonRequestBehavior.AllowGet);
+			return Json(items.Take(10));
 		}
 	}
 }

@@ -1,0 +1,1401 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="ChartViewTextDashboardPositionNr" xml:space="preserve">
+    <value>Position Nr.</value>
+  </data>
+  <data name="DisplayTooltipDays" xml:space="preserve">
+    <value>Tage</value>
+  </data>
+  <data name="DisplayTooltipMinutes" xml:space="preserve">
+    <value>Minuten</value>
+  </data>
+  <data name="Display_CalculationDescription" xml:space="preserve">
+    <value>Notizen</value>
+  </data>
+  <data name="Display_CalculationInitialSL" xml:space="preserve">
+    <value>Initialer SL</value>
+  </data>
+  <data name="Display_CalculationInitialTP" xml:space="preserve">
+    <value>Initiales TP</value>
+  </data>
+  <data name="Display_CalculationIsLong" xml:space="preserve">
+    <value>Long</value>
+  </data>
+  <data name="Display_CalculationMultiplier" xml:space="preserve">
+    <value>Bezugsverhältnis</value>
+  </data>
+  <data name="Display_CalculationName" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Display_CalculationOrderCosts" xml:space="preserve">
+    <value>Gebühren</value>
+  </data>
+  <data name="Display_CalculationPricePerUnit" xml:space="preserve">
+    <value>Preis</value>
+  </data>
+  <data name="Display_CalculationResultATR" xml:space="preserve">
+    <value>ATR</value>
+  </data>
+  <data name="Display_CalculationResultCRV" xml:space="preserve">
+    <value>CRV</value>
+  </data>
+  <data name="Display_CalculationResultPointsToBE" xml:space="preserve">
+    <value>BE</value>
+  </data>
+  <data name="Display_CalculationResultPointsToSL" xml:space="preserve">
+    <value>SL</value>
+  </data>
+  <data name="Display_CalculationResultPointsToTP" xml:space="preserve">
+    <value>TP</value>
+  </data>
+  <data name="Display_CalculationResultPositionSize" xml:space="preserve">
+    <value>Positionsgröße</value>
+  </data>
+  <data name="Display_CalculationResultWKN" xml:space="preserve">
+    <value>WKN</value>
+  </data>
+  <data name="Display_CalculationStrikePrice" xml:space="preserve">
+    <value>Basispreis</value>
+  </data>
+  <data name="Display_CalculationUnderlying" xml:space="preserve">
+    <value>Underlying</value>
+  </data>
+  <data name="Display_CalculationUnits" xml:space="preserve">
+    <value>Anz</value>
+  </data>
+  <data name="Display_CalculationWKN" xml:space="preserve">
+    <value>WKN</value>
+  </data>
+  <data name="Display_ClusterAmount" xml:space="preserve">
+    <value>Anzahl</value>
+  </data>
+  <data name="Display_ClusterIsProfitMade" xml:space="preserve">
+    <value>Gewinne</value>
+  </data>
+  <data name="Display_ClusterMax" xml:space="preserve">
+    <value>Max</value>
+  </data>
+  <data name="Display_ClusterMidPrice" xml:space="preserve">
+    <value>Mittelwert</value>
+  </data>
+  <data name="Display_ClusterMin" xml:space="preserve">
+    <value>Min</value>
+  </data>
+  <data name="Display_ClusterPriceRange" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Display_ClusterPropability" xml:space="preserve">
+    <value>Anteil</value>
+  </data>
+  <data name="Display_ClusterSum" xml:space="preserve">
+    <value>Summe</value>
+  </data>
+  <data name="Display_ExportAction" xml:space="preserve">
+    <value>Art</value>
+  </data>
+  <data name="Display_ExportCRV" xml:space="preserve">
+    <value>CRV</value>
+  </data>
+  <data name="Display_ExportHoldingPeriod" xml:space="preserve">
+    <value>Haltedauer</value>
+  </data>
+  <data name="Display_ExportInitialSL" xml:space="preserve">
+    <value>SL</value>
+  </data>
+  <data name="Display_ExportInitialTP" xml:space="preserve">
+    <value>TP</value>
+  </data>
+  <data name="Display_ExportIntradayTrade" xml:space="preserve">
+    <value>Intraday</value>
+  </data>
+  <data name="Display_ExportLongShort" xml:space="preserve">
+    <value>L/S</value>
+  </data>
+  <data name="Display_ExportMAE" xml:space="preserve">
+    <value>MAE</value>
+  </data>
+  <data name="Display_ExportMFE" xml:space="preserve">
+    <value>MFE</value>
+  </data>
+  <data name="Display_ExportOrderCosts" xml:space="preserve">
+    <value>Gebühren</value>
+  </data>
+  <data name="Display_ExportOrderDate" xml:space="preserve">
+    <value>Datum</value>
+  </data>
+  <data name="Display_ExportPositionSize" xml:space="preserve">
+    <value>Positionsgröße</value>
+  </data>
+  <data name="Display_ExportPricePerUnit" xml:space="preserve">
+    <value>Preis</value>
+  </data>
+  <data name="Display_ExportProfitAbsolute" xml:space="preserve">
+    <value>Profit</value>
+  </data>
+  <data name="Display_ExportProfitMade" xml:space="preserve">
+    <value>Gewinner</value>
+  </data>
+  <data name="Display_ExportProfitPercentage" xml:space="preserve">
+    <value>Profit (%)</value>
+  </data>
+  <data name="Display_ExportR" xml:space="preserve">
+    <value>Risiko</value>
+  </data>
+  <data name="Display_ExportStockName" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Display_ExportStockWKN" xml:space="preserve">
+    <value>WKN</value>
+  </data>
+  <data name="Display_ExportTaxes" xml:space="preserve">
+    <value>Steuern</value>
+  </data>
+  <data name="Display_ExportTotalCumulatedPL" xml:space="preserve">
+    <value>P/L</value>
+  </data>
+  <data name="Display_ExportUnits" xml:space="preserve">
+    <value>Anzahl</value>
+  </data>
+  <data name="Display_FeedbackDescription" xml:space="preserve">
+    <value>Beschreibung</value>
+  </data>
+  <data name="Display_FeedbackName" xml:space="preserve">
+    <value>Bezeichnung</value>
+  </data>
+  <data name="Display_ImageContentType" xml:space="preserve">
+    <value>Content-Typ</value>
+  </data>
+  <data name="Display_ImageDeleteImage" xml:space="preserve">
+    <value>Bild löschen</value>
+  </data>
+  <data name="Display_ImageDescription" xml:space="preserve">
+    <value>Beschreibung</value>
+  </data>
+  <data name="Display_ImageOriginalName" xml:space="preserve">
+    <value>Dateiname</value>
+  </data>
+  <data name="Display_IsDividend" xml:space="preserve">
+    <value>Dividendengutschrift</value>
+  </data>
+  <data name="Display_KpiFormat" xml:space="preserve">
+    <value>Einheit</value>
+  </data>
+  <data name="Display_KpiName" xml:space="preserve">
+    <value>KPI</value>
+  </data>
+  <data name="Display_KpiValue" xml:space="preserve">
+    <value>Wert</value>
+  </data>
+  <data name="Display_Link" xml:space="preserve">
+    <value>Webseite</value>
+  </data>
+  <data name="Display_LongShort" xml:space="preserve">
+    <value>Long/Short</value>
+  </data>
+  <data name="Display_Quotation" xml:space="preserve">
+    <value>Kurs</value>
+  </data>
+  <data name="Display_QuotationPLAbsolute" xml:space="preserve">
+    <value>P&amp;L</value>
+  </data>
+  <data name="Display_QuotationPLPercentage" xml:space="preserve">
+    <value>P&amp;L (%)</value>
+  </data>
+  <data name="Display_QuotationUnderlying" xml:space="preserve">
+    <value>Basiswert</value>
+  </data>
+  <data name="Display_SQN0" xml:space="preserve">
+    <value>Undefiniert</value>
+  </data>
+  <data name="Display_SQN1" xml:space="preserve">
+    <value>Viele Verluste</value>
+  </data>
+  <data name="Display_SQN2" xml:space="preserve">
+    <value>Wenige Verluste</value>
+  </data>
+  <data name="Display_SQN3" xml:space="preserve">
+    <value>Nullsummenspiel</value>
+  </data>
+  <data name="Display_SQN4" xml:space="preserve">
+    <value>Handelbar</value>
+  </data>
+  <data name="Display_SQN5" xml:space="preserve">
+    <value>Durchschnitt</value>
+  </data>
+  <data name="Display_SQN6" xml:space="preserve">
+    <value>Gut</value>
+  </data>
+  <data name="Display_SQN7" xml:space="preserve">
+    <value>Sehr gut</value>
+  </data>
+  <data name="Display_SQN8" xml:space="preserve">
+    <value>Exzellent</value>
+  </data>
+  <data name="Display_SQN9" xml:space="preserve">
+    <value>Heiliger Gral</value>
+  </data>
+  <data name="Display_StatisticsAbsoluteProfitPerTradingType" xml:space="preserve">
+    <value>Abs Profit per Type</value>
+  </data>
+  <data name="Display_StatisticsAbsoluteProfitPerWeekDay" xml:space="preserve">
+    <value>Abs Profit per Wochentag</value>
+  </data>
+  <data name="Display_StatisticsAmountIntradayTrades" xml:space="preserve">
+    <value>Intraday</value>
+  </data>
+  <data name="Display_PerformanceAmountOfLossTransactions" xml:space="preserve">
+    <value>Anzahl Verlust-Trades</value>
+  </data>
+  <data name="Display_PerformanceAmountOfProfitTransactions" xml:space="preserve">
+    <value>Anzahl Gewinn-Trades</value>
+  </data>
+  <data name="Display_PerformanceAmountOfTransactions" xml:space="preserve">
+    <value>Anzahl Trades</value>
+  </data>
+  <data name="Display_StatisticsAmountPositionTrades" xml:space="preserve">
+    <value>Position</value>
+  </data>
+  <data name="Display_PerformanceAverageBuyVolume" xml:space="preserve">
+    <value>Ø Buy Volume</value>
+  </data>
+  <data name="Display_StatisticsAvgEntryEfficiency" xml:space="preserve">
+    <value>Ø Entry Efficiency</value>
+  </data>
+  <data name="Display_StatisticsAvgExitEfficiency" xml:space="preserve">
+    <value>Ø Exit Efficiency</value>
+  </data>
+  <data name="Display_PerformanceAvgHoldingPeriodIntradayTrades" xml:space="preserve">
+    <value>AVG Haltedauer Intraday</value>
+  </data>
+  <data name="Display_PerformanceAvgHoldingPeriodPositionTrades" xml:space="preserve">
+    <value>AVG Haltedauer Positionen</value>
+  </data>
+  <data name="Display_StatisticsAvgMAEAbsolute" xml:space="preserve">
+    <value>Ø MAE abs.</value>
+  </data>
+  <data name="Display_StatisticsAvgMFEAbsolute" xml:space="preserve">
+    <value>Ø MFE abs.</value>
+  </data>
+  <data name="Display_StatisticsCaption" xml:space="preserve">
+    <value>Information</value>
+  </data>
+  <data name="Display_StatisticsCRV" xml:space="preserve">
+    <value>CRV</value>
+  </data>
+  <data name="Display_StatisticsDateMax" xml:space="preserve">
+    <value>Bis</value>
+  </data>
+  <data name="Display_StatisticsDateMin" xml:space="preserve">
+    <value>Von</value>
+  </data>
+  <data name="Display_StatisticsEntryEfficiency" xml:space="preserve">
+    <value>Entry Efficiency</value>
+  </data>
+  <data name="Display_StatisticsExitEfficiency" xml:space="preserve">
+    <value>Exit Efficiency</value>
+  </data>
+  <data name="Display_StatisticsFeedbackTop10" xml:space="preserve">
+    <value>Häufigste Fehler</value>
+  </data>
+  <data name="Display_StatisticsHoldingPeriod" xml:space="preserve">
+    <value>Haltedauer</value>
+  </data>
+  <data name="Display_StatisticsIsIntraDayTrade" xml:space="preserve">
+    <value>Intraday Trade</value>
+  </data>
+  <data name="Display_StatisticsLossAbsolute" xml:space="preserve">
+    <value>Loss</value>
+  </data>
+  <data name="Display_StatisticsLossAverage" xml:space="preserve">
+    <value>Loss</value>
+  </data>
+  <data name="Display_StatisticsLossAveragePercentage" xml:space="preserve">
+    <value>Ø(%)</value>
+  </data>
+  <data name="Display_StatisticsMaxDrawdown" xml:space="preserve">
+    <value>Max. Drawdown</value>
+  </data>
+  <data name="Display_StatisticsMostConsecutiveLosses" xml:space="preserve">
+    <value>Max. aufeinanderf. Verluste</value>
+  </data>
+  <data name="Display_StatisticsMostConsecutiveWins" xml:space="preserve">
+    <value>Max. aufeinanderf. Gewinne</value>
+  </data>
+  <data name="Display_PerformancePayOffRatio" xml:space="preserve">
+    <value>Pay-Off-Ratio</value>
+  </data>
+  <data name="Display_PerformancePercentageOfLossTransactions" xml:space="preserve">
+    <value>Verlust-Trades</value>
+  </data>
+  <data name="Display_PerformancePercentageOfProfitTransactions" xml:space="preserve">
+    <value>Gewinn-Trades</value>
+  </data>
+  <data name="Display_StatisticsProfitAbsolute" xml:space="preserve">
+    <value>Profit</value>
+  </data>
+  <data name="Display_StatisticsProfitAverage" xml:space="preserve">
+    <value>Profit</value>
+  </data>
+  <data name="Display_StatisticsProfitAveragePercentage" xml:space="preserve">
+    <value>Ø(%)</value>
+  </data>
+  <data name="Display_StatisticsProfitPercentage" xml:space="preserve">
+    <value>%</value>
+  </data>
+  <data name="Display_StatisticsProfitVsLoss" xml:space="preserve">
+    <value>Profit/Loss Ratio</value>
+  </data>
+  <data name="Display_StatisticsR" xml:space="preserve">
+    <value>R</value>
+  </data>
+  <data name="Display_PerformanceSQN" xml:space="preserve">
+    <value>SQN</value>
+  </data>
+  <data name="Display_StatisticsStrategyName" xml:space="preserve">
+    <value>Strategie</value>
+  </data>
+  <data name="Display_StatisticsTimeRange" xml:space="preserve">
+    <value>Zeitbereich</value>
+  </data>
+  <data name="Display_StatisticsTotalCumulatedPL" xml:space="preserve">
+    <value>Total P&amp;L</value>
+  </data>
+  <data name="Display_StatisticsTradeAbsolute" xml:space="preserve">
+    <value>Overall</value>
+  </data>
+  <data name="Display_StatisticsTradeAverage" xml:space="preserve">
+    <value>Overall</value>
+  </data>
+  <data name="Display_StatisticsTradeAveragePercentage" xml:space="preserve">
+    <value>Ø(%)</value>
+  </data>
+  <data name="Display_StockName" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Display_StockType" xml:space="preserve">
+    <value>Typ</value>
+  </data>
+  <data name="Display_StockUpdateStatus" xml:space="preserve">
+    <value>Status der Aktualisierung</value>
+  </data>
+  <data name="Display_StockWKN" xml:space="preserve">
+    <value>WKN</value>
+  </data>
+  <data name="Display_StrategyDescription" xml:space="preserve">
+    <value>Beschreibung</value>
+  </data>
+  <data name="Display_StrategyName" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Display_TagDividends" xml:space="preserve">
+    <value>Dividenden p.a.</value>
+  </data>
+  <data name="Display_TagOverallDividendsPercentage" xml:space="preserve">
+    <value>Dividenden (%) akkumuliert</value>
+  </data>
+  <data name="Display_TagPerformanceActualPeriodPercentage" xml:space="preserve">
+    <value>Rendite p.a.</value>
+  </data>
+  <data name="Display_TagPerformanceOverallPeriodPercentage" xml:space="preserve">
+    <value>Gesamtrendite p.a.</value>
+  </data>
+  <data name="Display_TagPeriodSumCapital" xml:space="preserve">
+    <value>Kapital</value>
+  </data>
+  <data name="Display_TagPeriodSumInpayment" xml:space="preserve">
+    <value>Einzahlungen</value>
+  </data>
+  <data name="Display_TagPeriodSumOrderCosts" xml:space="preserve">
+    <value>Gebühren</value>
+  </data>
+  <data name="Display_TagPeriodYear" xml:space="preserve">
+    <value>Jahr</value>
+  </data>
+  <data name="Display_TooltipInitialSL" xml:space="preserve">
+    <value>SL</value>
+  </data>
+  <data name="Display_TooltipInitialTP" xml:space="preserve">
+    <value>TP</value>
+  </data>
+  <data name="Display_TooltipMAE" xml:space="preserve">
+    <value>Maximum Adverse Excursion</value>
+  </data>
+  <data name="Display_TooltipMAEAbsolute" xml:space="preserve">
+    <value>MAE Gesamt (inkl. Gebühren)</value>
+  </data>
+  <data name="Display_TooltipMFE" xml:space="preserve">
+    <value>Maximum Favorable Excursion</value>
+  </data>
+  <data name="Display_TooltipMFEAbsolute" xml:space="preserve">
+    <value>MFE Gesamt (inkl. Gebühren)</value>
+  </data>
+  <data name="Display_TransactionsClosingTransaction" xml:space="preserve">
+    <value>Transaktion</value>
+  </data>
+  <data name="Display_TransactionsDescription" xml:space="preserve">
+    <value>Notizen</value>
+  </data>
+  <data name="Display_TransactionsInitialSL" xml:space="preserve">
+    <value>Initialer SL</value>
+  </data>
+  <data name="Display_TransactionsInitialTP" xml:space="preserve">
+    <value>Initialer TP</value>
+  </data>
+  <data name="Display_TransactionsMAE" xml:space="preserve">
+    <value>Maximum Adverse Excursion</value>
+  </data>
+  <data name="Display_TransactionsMAEAbsolute" xml:space="preserve">
+    <value>MAE Gesamt</value>
+  </data>
+  <data name="Display_TransactionsMFE" xml:space="preserve">
+    <value>Maximum Favorable Excursion</value>
+  </data>
+  <data name="Display_TransactionsMFEAbsolute" xml:space="preserve">
+    <value>MFE Gesamt</value>
+  </data>
+  <data name="Display_TransactionsOrderCosts" xml:space="preserve">
+    <value>Gebühren</value>
+  </data>
+  <data name="Display_TransactionsOrderDate" xml:space="preserve">
+    <value>Datum</value>
+  </data>
+  <data name="Display_TransactionsPositionSize" xml:space="preserve">
+    <value>Pos-Gr.</value>
+  </data>
+  <data name="Display_TransactionsPricePerUnit" xml:space="preserve">
+    <value>Preis</value>
+  </data>
+  <data name="Display_TransactionsTag" xml:space="preserve">
+    <value>Kategorie</value>
+  </data>
+  <data name="Display_TransactionsTaxes" xml:space="preserve">
+    <value>Steuern</value>
+  </data>
+  <data name="Display_TransactionsUnits" xml:space="preserve">
+    <value>Anz</value>
+  </data>
+  <data name="Display_ViewModelOpenTransactionMinOrderDate" xml:space="preserve">
+    <value>Erstes Kaufdatum</value>
+  </data>
+  <data name="Display_ViewModelOpenTransactionOrderCosts" xml:space="preserve">
+    <value>Gebühren</value>
+  </data>
+  <data name="Display_ViewModelOpenTransactionPositionSize" xml:space="preserve">
+    <value>Prositionsgröße</value>
+  </data>
+  <data name="Display_ViewModelOpenTransactionPricePerUnit" xml:space="preserve">
+    <value>Ø Preis</value>
+  </data>
+  <data name="Display_ViewModelOpenTransactionsCapitalExpenditure" xml:space="preserve">
+    <value>Akt. Kapitaleinsatz</value>
+  </data>
+  <data name="Display_ViewModelOpenTransactionSL" xml:space="preserve">
+    <value>SL</value>
+  </data>
+  <data name="Display_ViewModelOpenTransactionsMaximumRisk" xml:space="preserve">
+    <value>Risko</value>
+  </data>
+  <data name="Display_ViewModelOpenTransactionStocksName" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="Display_ViewModelOpenTransactionUnits" xml:space="preserve">
+    <value>Anzahl</value>
+  </data>
+  <data name="ExceptionEmptyProfitNotAllowed" xml:space="preserve">
+    <value>Es wurde kein Profit übergeben</value>
+  </data>
+  <data name="ExceptionNoStatisticsForTransaction" xml:space="preserve">
+    <value>Es wurden keine Statistiken zur Transaktion gefunden</value>
+  </data>
+  <data name="HoldingPeriod" xml:space="preserve">
+    <value>Haltedauer</value>
+  </data>
+  <data name="MaximumRisk" xml:space="preserve">
+    <value>Risko</value>
+  </data>
+  <data name="MonthChartFormat" xml:space="preserve">
+    <value>MM\\yyyy</value>
+  </data>
+  <data name="NoSuchStock" xml:space="preserve">
+    <value>Das Finanzprodukt konnte nicht gefunden werden, bitte überprüfen Sie die ID, WKN oder ISIN.</value>
+  </data>
+  <data name="StatusOK" xml:space="preserve">
+    <value />
+  </data>
+  <data name="StatusQuotations" xml:space="preserve">
+    <value>Insgesamt sind {0} Tagesendkurse in der Datenbank gespeichern. Neu hinzugefügt wurden  {1} Kursdatensätze.</value>
+  </data>
+  <data name="TagsInpaymentVsOutpayment" xml:space="preserve">
+    <value>Einzahlung vs Auszahlung</value>
+  </data>
+  <data name="TimeRangeAll" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TimeRangeDay" xml:space="preserve">
+    <value>dd.MM.yyyy</value>
+  </data>
+  <data name="TimeRangeMonth" xml:space="preserve">
+    <value>y</value>
+  </data>
+  <data name="TimeRangeQuarter" xml:space="preserve">
+    <value>Q{0}/{1}</value>
+  </data>
+  <data name="TimeRangeWeek" xml:space="preserve">
+    <value>{0:dd.MM.yyyy} bis {1:dd.MM.yyyy}</value>
+  </data>
+  <data name="TimeRangeYear" xml:space="preserve">
+    <value>yyyy</value>
+  </data>
+  <data name="UrlNotFound" xml:space="preserve">
+    <value>Url konnte nicht extrahiert werden</value>
+  </data>
+  <data name="Validation_CalculationInitialSLRequired" xml:space="preserve">
+    <value>Die Angabe des SL ist erforderlich</value>
+  </data>
+  <data name="Validation_CalculationInitialTPRequired" xml:space="preserve">
+    <value>Die Angabe des TP ist erforderlich</value>
+  </data>
+  <data name="Validation_CalculationIsLongRequired" xml:space="preserve">
+    <value>Die Angabe ob Long oder Short ist erforderlich</value>
+  </data>
+  <data name="Validation_CalculationMultiplierRequired" xml:space="preserve">
+    <value>Die Angabe des Bezugsverhältnisses ist erforderlich</value>
+  </data>
+  <data name="Validation_CalculationNameRequired" xml:space="preserve">
+    <value>Die Angabe des Namens ist erforderlich</value>
+  </data>
+  <data name="Validation_CalculationOrderCostsRequired" xml:space="preserve">
+    <value>Die Angabe der Gebühren ist erforderlich</value>
+  </data>
+  <data name="Validation_CalculationPricePerUnitRequired" xml:space="preserve">
+    <value>Die Angabe des Preises ist erforderlich</value>
+  </data>
+  <data name="Validation_CalculationStrikePriceRequired" xml:space="preserve">
+    <value>Die Angabe des Basispreises ist erforderlich</value>
+  </data>
+  <data name="Validation_CalculationUnderlyingRequired" xml:space="preserve">
+    <value>Die Angabe des Underlying ist erforderlich</value>
+  </data>
+  <data name="Validation_CalculationUnitsRequired" xml:space="preserve">
+    <value>Die Angabe der Anzahl ist erforderlich</value>
+  </data>
+  <data name="Validation_CalculationWKNRequired" xml:space="preserve">
+    <value>Die Angabe der WKN ist erforderlich</value>
+  </data>
+  <data name="Validation_FeedbackDescriptionRequired" xml:space="preserve">
+    <value>Die Angabe der Beschreibung ist erforderlich</value>
+  </data>
+  <data name="Validation_FeedbackNameRequired" xml:space="preserve">
+    <value>Die Angabe der Bezeichnung ist erforderlich</value>
+  </data>
+  <data name="Validation_ImageContentTypeRequired" xml:space="preserve">
+    <value>Die Angabe des Content-Typs ist erforderlich</value>
+  </data>
+  <data name="Validation_ImageDescriptionRequired" xml:space="preserve">
+    <value>Die Angabe der Beschreibung ist erforderlich</value>
+  </data>
+  <data name="Validation_ImageOriginalNameRequired" xml:space="preserve">
+    <value>Die Angabe des Dateinames ist erforderlich</value>
+  </data>
+  <data name="Validation_StockIsDividendRequired" xml:space="preserve">
+    <value>Die Angabe ob das Produkt eine Dividende darstellt ist erforderlich</value>
+  </data>
+  <data name="Validation_StockLongShortRequired" xml:space="preserve">
+    <value>Die Angabe von Long/Short ist erforderlich</value>
+  </data>
+  <data name="Validation_StockNameExists" xml:space="preserve">
+    <value>Es existiert bereits ein Finanzprodukt mit dem angegebenen Namen</value>
+  </data>
+  <data name="Validation_StockNameRequired" xml:space="preserve">
+    <value>Die Angabe des Names ist erforderlich</value>
+  </data>
+  <data name="Validation_StockTypeIDRequired" xml:space="preserve">
+    <value>Die Angabe des Typs ist erforderlich</value>
+  </data>
+  <data name="Validation_StockWKNRequired" xml:space="preserve">
+    <value>Die Angabe der WKN ist erforderlich</value>
+  </data>
+  <data name="Validation_StrategyDescriptionRequired" xml:space="preserve">
+    <value>Die Angabe der Beschreibung ist erforderlich</value>
+  </data>
+  <data name="Validation_StrategyNameRequired" xml:space="preserve">
+    <value>Die Angabe des Namens ist erforderlich</value>
+  </data>
+  <data name="Validation_TransactionNoStartingTransaction" xml:space="preserve">
+    <value>Es existiert keine Transaction, die mit dieser geschlossen werden könnte.</value>
+  </data>
+  <data name="Validation_TransactionsClosingTransactionRequired" xml:space="preserve">
+    <value>Die Angabe des Transaktionstyps ist erforderlich</value>
+  </data>
+  <data name="Validation_TransactionsInitialSLRequired" xml:space="preserve">
+    <value>Die Angabe des initialen Stop Losses ist erforderlich</value>
+  </data>
+  <data name="Validation_TransactionsInitialTPRequired" xml:space="preserve">
+    <value>Die Angabe des initialen Take Profits ist erforderlich</value>
+  </data>
+  <data name="Validation_TransactionsOrderCostsRequired" xml:space="preserve">
+    <value>Die Angabe der Gebühr ist erforderlich</value>
+  </data>
+  <data name="Validation_TransactionsOrderDateMustBeHigher" xml:space="preserve">
+    <value>Das Auftragsdatum der abschließenden Transaktion müss größer als das der startenden sein.</value>
+  </data>
+  <data name="Validation_TransactionsOrderDateRequired" xml:space="preserve">
+    <value>Die Angabe des Datums ist erforderlich</value>
+  </data>
+  <data name="Validation_TransactionsPricePerUnitRequired" xml:space="preserve">
+    <value>Die Angabe des Stückpreises ist erforderlich</value>
+  </data>
+  <data name="Validation_TransactionsTaxesRequired" xml:space="preserve">
+    <value>Die Angabe der Steuern ist erforderlich</value>
+  </data>
+  <data name="Validation_TransactionsUnitsRequired" xml:space="preserve">
+    <value>Die Angabe der Anzahl ist erforderlich</value>
+  </data>
+  <data name="Validation_TransactionUndefinedCase" xml:space="preserve">
+    <value>Es konnte keine Bestimmung der Transaktionszugehörigkeit stattfinden, da die Konstellation aus Transaktion undefiniert ist.</value>
+  </data>
+  <data name="ViewTextAbsProfit" xml:space="preserve">
+    <value>Abs Profit</value>
+  </data>
+  <data name="ViewTextAction" xml:space="preserve">
+    <value>Aktionen</value>
+  </data>
+  <data name="ViewTextAdd" xml:space="preserve">
+    <value>Hinzufügen</value>
+  </data>
+  <data name="ViewTextAll" xml:space="preserve">
+    <value>Alle</value>
+  </data>
+  <data name="ViewTextBack" xml:space="preserve">
+    <value>Zurück</value>
+  </data>
+  <data name="ViewTextBuy" xml:space="preserve">
+    <value>Kauf</value>
+  </data>
+  <data name="ViewTextCalculation" xml:space="preserve">
+    <value>Kalkulation</value>
+  </data>
+  <data name="ViewTextCalculationTitle" xml:space="preserve">
+    <value>Kalkulationen</value>
+  </data>
+  <data name="ViewTextCalculationUnderlyingCalc" xml:space="preserve">
+    <value>Umrechnung Underlying</value>
+  </data>
+  <data name="ViewTextCapitalExpenditure" xml:space="preserve">
+    <value>Eingesetztes Kapital (offenes Risiko)</value>
+  </data>
+  <data name="ViewTextChangePassword" xml:space="preserve">
+    <value>Passwort ändern</value>
+  </data>
+  <data name="ViewTextChartStockQuotations" xml:space="preserve">
+    <value>Kursverlauf für {0} ({1})</value>
+  </data>
+  <data name="ViewTextCopy" xml:space="preserve">
+    <value>Kopieren</value>
+  </data>
+  <data name="ViewTextCRV" xml:space="preserve">
+    <value>CRV</value>
+  </data>
+  <data name="ViewTextCurrentQuotation" xml:space="preserve">
+    <value>Akt. Kurs</value>
+  </data>
+  <data name="ViewTextCurrentQuotationChange" xml:space="preserve">
+    <value>Kurs heute (%)</value>
+  </data>
+  <data name="ViewTextDashboardChartDepotSumPL" xml:space="preserve">
+    <value>P&amp;L kumuliert</value>
+  </data>
+  <data name="ViewTextDashboardChartExpectedEarningsPerTrade" xml:space="preserve">
+    <value>Abs. Erwartungswert je Trade</value>
+  </data>
+  <data name="ViewTextDashboardChartExpectedEarningsPerTradePercentage" xml:space="preserve">
+    <value>Proz. Erwartungswert je Trade</value>
+  </data>
+  <data name="ViewTextDashboardChartGVDistribution" xml:space="preserve">
+    <value>Sortierte Größenverteilung der Trades über Gewinn/Verlust (abs.)</value>
+  </data>
+  <data name="ViewTextDashboardChartMAE" xml:space="preserve">
+    <value>Profit/Loss in € vs maximaler Drawdown (MAE)</value>
+  </data>
+  <data name="ViewTextDashboardChartMAELoss" xml:space="preserve">
+    <value>Verlust-Trades</value>
+  </data>
+  <data name="ViewTextDashboardChartMAEWin" xml:space="preserve">
+    <value>Gewinn-Trades</value>
+  </data>
+  <data name="ViewTextDashboardChartMFE" xml:space="preserve">
+    <value>Profit/Loss in € vs maximaler theoretischer Profit.</value>
+  </data>
+  <data name="ViewTextDashboardChartMFELoss" xml:space="preserve">
+    <value>Verlust Trades</value>
+  </data>
+  <data name="ViewTextDashboardChartMFEWin" xml:space="preserve">
+    <value>Gewinn Trades</value>
+  </data>
+  <data name="ViewTextDashboardChartProfitLossTradesPerDay" xml:space="preserve">
+    <value>Zeitreihe über die Anzahl Gewinn/Verlust Trades für {0}</value>
+  </data>
+  <data name="ViewTextDashboardChartTagInpaymentVsValue" xml:space="preserve">
+    <value>Einzahlungen vs. Wert für {0} ohne Dividenden</value>
+  </data>
+  <data name="ViewTextDashboardChartTagsProductsInpaymentVsOutpayment" xml:space="preserve">
+    <value>Durchschnittl. Kaufpreis vs. Kursverlauf für {0} ({1})</value>
+  </data>
+  <data name="ViewTextDashboardChartTradePerformancePercentagePerMonth" xml:space="preserve">
+    <value>Prozentuale Performance pro Monat für {0}</value>
+  </data>
+  <data name="ViewTextDashboardChartTradePerformancePerMonth" xml:space="preserve">
+    <value>Performance pro Monat für {0}</value>
+  </data>
+  <data name="ViewTextDashboardChartTradeStability" xml:space="preserve">
+    <value>Trade Stabilität P&amp;L % über alle Trades</value>
+  </data>
+  <data name="ViewTextDashboardChartTradeStabilityAbs" xml:space="preserve">
+    <value>Trade Stabilität P&amp;L über alle Trades</value>
+  </data>
+  <data name="ViewTextDashboardTitle" xml:space="preserve">
+    <value>Dashboard</value>
+  </data>
+  <data name="ViewTextDelete" xml:space="preserve">
+    <value>Löschen</value>
+  </data>
+  <data name="ViewTextDetails" xml:space="preserve">
+    <value>Details</value>
+  </data>
+  <data name="ViewTextDividend" xml:space="preserve">
+    <value>Dividende</value>
+  </data>
+  <data name="ViewTextEdit" xml:space="preserve">
+    <value>Ändern</value>
+  </data>
+  <data name="ViewTextExportExcel" xml:space="preserve">
+    <value>Export nach Excel</value>
+  </data>
+  <data name="ViewTextFeedback" xml:space="preserve">
+    <value>Bewertungsmodell</value>
+  </data>
+  <data name="ViewTextFeedbackPercentage" xml:space="preserve">
+    <value>Prozentualer Anteil</value>
+  </data>
+  <data name="ViewTextFeedbackTitle" xml:space="preserve">
+    <value>Bewertung</value>
+  </data>
+  <data name="ViewTextFilter2Months" xml:space="preserve">
+    <value>2 Monate</value>
+  </data>
+  <data name="ViewTextFilter2Weeks" xml:space="preserve">
+    <value>Letzte zwei Wochen</value>
+  </data>
+  <data name="ViewTextFilter3Months" xml:space="preserve">
+    <value>3 Monate</value>
+  </data>
+  <data name="ViewTextFilterAll" xml:space="preserve">
+    <value>Alle</value>
+  </data>
+  <data name="ViewTextFilterClosedTransactions" xml:space="preserve">
+    <value>Filter über Transaktionen</value>
+  </data>
+  <data name="ViewTextFilterCurrentWeek" xml:space="preserve">
+    <value>Diese Woche</value>
+  </data>
+  <data name="ViewTextFilterDays" xml:space="preserve">
+    <value>Tage</value>
+  </data>
+  <data name="ViewTextFilterLastYear" xml:space="preserve">
+    <value>Letztes Jahr</value>
+  </data>
+  <data name="ViewTextFilterLong" xml:space="preserve">
+    <value>Long</value>
+  </data>
+  <data name="ViewTextFilterLongShort" xml:space="preserve">
+    <value>Long/Short</value>
+  </data>
+  <data name="ViewTextFilterMonth" xml:space="preserve">
+    <value>Aktueller Monat</value>
+  </data>
+  <data name="ViewTextFilterMonths" xml:space="preserve">
+    <value>Monate</value>
+  </data>
+  <data name="ViewTextFilterQuarter" xml:space="preserve">
+    <value>Dieses Quartal</value>
+  </data>
+  <data name="ViewTextFilterQuarters" xml:space="preserve">
+    <value>Quartale</value>
+  </data>
+  <data name="ViewTextFilterShort" xml:space="preserve">
+    <value>Short</value>
+  </data>
+  <data name="ViewTextFilterStockType" xml:space="preserve">
+    <value>Filter über Assettyp</value>
+  </data>
+  <data name="ViewTextFilterTime" xml:space="preserve">
+    <value>Filter über Zeit</value>
+  </data>
+  <data name="ViewTextFilterWeeks" xml:space="preserve">
+    <value>Wochen</value>
+  </data>
+  <data name="ViewTextFilterYear" xml:space="preserve">
+    <value>Dieses Jahr</value>
+  </data>
+  <data name="ViewTextInfoClusterAnalysis" xml:space="preserve">
+    <value>P&amp;L Clusteranalyse</value>
+  </data>
+  <data name="ViewTextInfoExpectedEarningsPerTrade" xml:space="preserve">
+    <value>Erwahrtungswert pro Trade</value>
+  </data>
+  <data name="ViewTextInfoGVDistribution" xml:space="preserve">
+    <value>G/V-Größenverteilung</value>
+  </data>
+  <data name="ViewTextInfoMAE" xml:space="preserve">
+    <value>MAE</value>
+  </data>
+  <data name="ViewTextInfoMFE" xml:space="preserve">
+    <value>MFE</value>
+  </data>
+  <data name="ViewTextInfoMonteCarloSimulation" xml:space="preserve">
+    <value>Monte-Carlo-Simulation</value>
+  </data>
+  <data name="ViewTextInfoPerformancePerLongShort" xml:space="preserve">
+    <value>Performance über Long/Short</value>
+  </data>
+  <data name="ViewTextInfoPerformancePerStocktype" xml:space="preserve">
+    <value>Performance über Assettyp</value>
+  </data>
+  <data name="ViewTextInfoPerformancePerStrategy" xml:space="preserve">
+    <value>Performance über Strategien</value>
+  </data>
+  <data name="ViewTextInfoPerformanceProfitLossTrades" xml:space="preserve">
+    <value>Trefferquote</value>
+  </data>
+  <data name="ViewTextInfoStaticticsSavingsPlanExportExcel" xml:space="preserve">
+    <value>Export nach Excel</value>
+  </data>
+  <data name="ViewTextInfoStatisticsOverTrades" xml:space="preserve">
+    <value>Statistiken</value>
+  </data>
+  <data name="ViewTextInfoStatisticsProducts" xml:space="preserve">
+    <value>Produkte</value>
+  </data>
+  <data name="ViewTextInfoStatisticsSavingsPlan" xml:space="preserve">
+    <value>Sparplan Hochrechnung</value>
+  </data>
+  <data name="ViewTextInfoSumPL" xml:space="preserve">
+    <value>Depot P&amp;L</value>
+  </data>
+  <data name="ViewTextInfoTradeAveragePerDay" xml:space="preserve">
+    <value>Kumulierter Profit/Loss per Day</value>
+  </data>
+  <data name="ViewTextInfoTradeAveragePerMonth" xml:space="preserve">
+    <value>Monatliche Performance</value>
+  </data>
+  <data name="ViewTextInfoTradeKPIs" xml:space="preserve">
+    <value>KPIs</value>
+  </data>
+  <data name="ViewTextInfoTradeStability" xml:space="preserve">
+    <value>Trade Stabilität</value>
+  </data>
+  <data name="ViewTextKpiAmountIntradayTrades" xml:space="preserve">
+    <value># Intraday Trades</value>
+  </data>
+  <data name="ViewTextKpiAmountOfLossTrades" xml:space="preserve">
+    <value># Verlust-Tades</value>
+  </data>
+  <data name="ViewTextKpiAmountOfProfitTrades" xml:space="preserve">
+    <value># Gewinn-Tades</value>
+  </data>
+  <data name="ViewTextKpiAmountOfTrades" xml:space="preserve">
+    <value>Anzahl Trades</value>
+  </data>
+  <data name="ViewTextKpiAmountOfTransactionsPerMonth" xml:space="preserve">
+    <value># Trades pro Monat</value>
+  </data>
+  <data name="ViewTextKpiAmountOfTransactionsPerWeek" xml:space="preserve">
+    <value># Trades pro Woche</value>
+  </data>
+  <data name="ViewTextKpiAmountOfTransactionsPerYear" xml:space="preserve">
+    <value># Trades pro Jahr</value>
+  </data>
+  <data name="ViewTextKpiAmountPositionTrades" xml:space="preserve">
+    <value># Positionen Trades</value>
+  </data>
+  <data name="ViewTextKpiAverageBuyVolume" xml:space="preserve">
+    <value>Ø Buying Volume</value>
+  </data>
+  <data name="ViewTextKpiAverageCRV" xml:space="preserve">
+    <value>CRV</value>
+  </data>
+  <data name="ViewTextKpiAvgEntryEfficiency" xml:space="preserve">
+    <value>Ø Entry Efficiency</value>
+  </data>
+  <data name="ViewTextKpiAvgExitEfficiency" xml:space="preserve">
+    <value>Ø Exit Efficiency</value>
+  </data>
+  <data name="ViewTextKpiAvgHoldingPeriodIntradayTrades" xml:space="preserve">
+    <value>Ø Haltedauer Intraday</value>
+  </data>
+  <data name="ViewTextKpiAvgHoldingPeriodPositionTrades" xml:space="preserve">
+    <value>Ø Haltedauer Positionen</value>
+  </data>
+  <data name="ViewTextKpiBestAsset" xml:space="preserve">
+    <value>Bestes Finanzprodukt</value>
+  </data>
+  <data name="ViewTextKpiBestAssetClass" xml:space="preserve">
+    <value>Beste Assetklasse</value>
+  </data>
+  <data name="ViewTextKpiLossAverage" xml:space="preserve">
+    <value>Ø Verlust</value>
+  </data>
+  <data name="ViewTextKpiLossMaximum" xml:space="preserve">
+    <value>Maximaler Verlust</value>
+  </data>
+  <data name="ViewTextKpiMaxDrawdown" xml:space="preserve">
+    <value>Max. Drawdown</value>
+  </data>
+  <data name="ViewTextKpiMostConsecutiveLosses" xml:space="preserve">
+    <value>Max. ff. Verlierer</value>
+  </data>
+  <data name="ViewTextKpiMostConsecutiveWins" xml:space="preserve">
+    <value>Max. ff. Gewinner</value>
+  </data>
+  <data name="ViewTextKpiOrderCosts" xml:space="preserve">
+    <value>Orderkosten</value>
+  </data>
+  <data name="ViewTextKpiPayOffRatio" xml:space="preserve">
+    <value>Pay-Off-Ratio</value>
+  </data>
+  <data name="ViewTextKpiProfitAverage" xml:space="preserve">
+    <value>Ø Gewinn</value>
+  </data>
+  <data name="ViewTextKpiProfitMaximum" xml:space="preserve">
+    <value>Maximaler Gewinn</value>
+  </data>
+  <data name="ViewTextKpiSQN" xml:space="preserve">
+    <value>SQN</value>
+  </data>
+  <data name="ViewTextKpiTaxes" xml:space="preserve">
+    <value>Steuern</value>
+  </data>
+  <data name="ViewTextKpiTradeAverage" xml:space="preserve">
+    <value>Erwahrtungswert</value>
+  </data>
+  <data name="ViewTextLayoutTitle" xml:space="preserve">
+    <value>Aktien Analyse</value>
+  </data>
+  <data name="ViewTextLayoutUser" xml:space="preserve">
+    <value>Willkommen {0}</value>
+  </data>
+  <data name="ViewTextLogout" xml:space="preserve">
+    <value>Abmelden</value>
+  </data>
+  <data name="ViewTextLongShort" xml:space="preserve">
+    <value>L/S</value>
+  </data>
+  <data name="ViewTextLoser" xml:space="preserve">
+    <value>Verlierer</value>
+  </data>
+  <data name="ViewTextMainDashboard" xml:space="preserve">
+    <value>Dashboard</value>
+  </data>
+  <data name="ViewTextMainDashboardGV" xml:space="preserve">
+    <value>G/V</value>
+  </data>
+  <data name="ViewTextMainDashboardPerformance" xml:space="preserve">
+    <value>Performance</value>
+  </data>
+  <data name="ViewTextMainDashboardPotential" xml:space="preserve">
+    <value>Potential</value>
+  </data>
+  <data name="ViewTextMainDashboardSavingsPlan" xml:space="preserve">
+    <value>Sparplan</value>
+  </data>
+  <data name="ViewTextMainDashboardRisk" xml:space="preserve">
+    <value>Risiko</value>
+  </data>
+  <data name="ViewTextMonteCarloSimStandard" xml:space="preserve">
+    <value>Simulation basierend auf allen Trades</value>
+  </data>
+  <data name="ViewTextNew" xml:space="preserve">
+    <value>Hinzufügen</value>
+  </data>
+  <data name="ViewTextPercentage" xml:space="preserve">
+    <value>%</value>
+  </data>
+  <data name="ViewTextPerformanceStatistics" xml:space="preserve">
+    <value>Performance Statistiken</value>
+  </data>
+  <data name="ViewTextQuotation" xml:space="preserve">
+    <value>Akt. Kurs</value>
+  </data>
+  <data name="ViewTextRefresh" xml:space="preserve">
+    <value>Aktualisieren</value>
+  </data>
+  <data name="ViewTextRMultiple" xml:space="preserve">
+    <value>R-Multiple</value>
+  </data>
+  <data name="ViewTextSave" xml:space="preserve">
+    <value>Speichern</value>
+  </data>
+  <data name="ViewTextSell" xml:space="preserve">
+    <value>Verkauf</value>
+  </data>
+  <data name="ViewTextStatistics" xml:space="preserve">
+    <value>Performance</value>
+  </data>
+  <data name="ViewTextStatisticsOverAllTrades" xml:space="preserve">
+    <value>Alle</value>
+  </data>
+  <data name="ViewTextStatisticsOverNumberOfTrades" xml:space="preserve">
+    <value>Letzte {0} Trades</value>
+  </data>
+  <data name="ViewTextStatisticsSavingsPlanForcast" xml:space="preserve">
+    <value>* Forecast aufgrund der durchschnittlichen historischen Werte bis maximal 35 Jahre in die Zukunft / ** Kapital/Dividenden des aktuellen Jahres entsprechen dem Ist-Stand mit heutigem Datum / *** Einzahlungen enthalten nicht die Gebühren /**** IZF Methode</value>
+  </data>
+  <data name="ViewTextStatisticsTagsMoneyWeighted" xml:space="preserve">
+    <value>Geldgewichtet p.a.</value>
+  </data>
+  <data name="ViewTextStatisticsTagsProductsTitle" xml:space="preserve">
+    <value>{0} Stand: {1}</value>
+  </data>
+  <data name="ViewTextStatisticsSavingsPlanTitle" xml:space="preserve">
+    <value>{0} Stand: {1:dd.MM.yyyy}</value>
+  </data>
+  <data name="ViewTextStatisticsTitle" xml:space="preserve">
+    <value>Performance Statistiken</value>
+  </data>
+  <data name="ViewTextStock" xml:space="preserve">
+    <value>Finanzprodukte</value>
+  </data>
+  <data name="ViewTextStocksQuotations" xml:space="preserve">
+    <value>Kursdaten</value>
+  </data>
+  <data name="ViewTextStocksQuotationsCertificates" xml:space="preserve">
+    <value>Optionsscheine</value>
+  </data>
+  <data name="ViewTextStocksQuotationsETF" xml:space="preserve">
+    <value>ETFs</value>
+  </data>
+  <data name="ViewTextStocksQuotationsIndex" xml:space="preserve">
+    <value>Indizes</value>
+  </data>
+  <data name="ViewTextStocksQuotationsPerAssetclass" xml:space="preserve">
+    <value>Kursdaten für die Assetklasse {0}</value>
+  </data>
+  <data name="ViewTextStocksQuotationsStocks" xml:space="preserve">
+    <value>Aktien</value>
+  </data>
+  <data name="ViewTextStocksUpdate" xml:space="preserve">
+    <value>Aktualisierung</value>
+  </data>
+  <data name="ViewTextStockTitle" xml:space="preserve">
+    <value>Finanzprodukte</value>
+  </data>
+  <data name="ViewTextStrategy" xml:space="preserve">
+    <value>Strategien</value>
+  </data>
+  <data name="ViewTextStrategyTitle" xml:space="preserve">
+    <value>Strategien</value>
+  </data>
+  <data name="ViewTextTransactionDeleteInformation" xml:space="preserve">
+    <value>Vorsicht: Beim Löschen einer Transaktion werden alle damit verbundenen Verkaufs-Transaktionen ebenfalls gelöscht.</value>
+  </data>
+  <data name="ViewTextTransactions" xml:space="preserve">
+    <value>Transaktionen</value>
+  </data>
+  <data name="ViewTextTransactionsAddImage" xml:space="preserve">
+    <value>Bild hinzufügen</value>
+  </data>
+  <data name="ViewTextTransactionsImage" xml:space="preserve">
+    <value>Bild</value>
+  </data>
+  <data name="ViewTextTransactionsImageFile" xml:space="preserve">
+    <value>Datei hochladen</value>
+  </data>
+  <data name="ViewTextTransactionsIndex" xml:space="preserve">
+    <value>Transaktionen</value>
+  </data>
+  <data name="ViewTextTransactionsTitle" xml:space="preserve">
+    <value>Transaktionen</value>
+  </data>
+  <data name="ViewTextWinner" xml:space="preserve">
+    <value>Gewinner</value>
+  </data>
+  <data name="ViewTextYears" xml:space="preserve">
+    <value>Jahre</value>
+  </data>
+  <data name="Display_TransactionsFeedback" xml:space="preserve">
+    <value>Feedback</value>
+  </data>
+  <data name="Display_TransactionsStock" xml:space="preserve">
+    <value>Aktie</value>
+  </data>
+  <data name="Display_TransactionsStrategy" xml:space="preserve">
+    <value>Strategie</value>
+  </data>
+  <data name="Display_TransactionsAction" xml:space="preserve">
+    <value>Aktion</value>
+  </data>
+  <data name="ViewTextSplit" xml:space="preserve">
+    <value>Split/Reverse Split</value>
+  </data>
+  <data name="ViewTextWarning" xml:space="preserve">
+    <value>Warning!</value>
+  </data>
+  <data name="ViewTextUpdateQuotationsServiceOffline" xml:space="preserve">
+    <value>The stock quotations service seems to be &lt;strong&gt;offline&lt;/strong&gt;. Quotations cannot be updated!</value>
+  </data>
+  <data name="ViewTextUpdateQuotationsServiceOnline" xml:space="preserve">
+    <value>The stock quotation service is &lt;strong&gt;online&lt;/string&gt;. Quotations will be updated.</value>
+  </data>
+  <data name="ViewTextSavingsPlanNotAvailable" xml:space="preserve">
+    <value>Der Sparplan ist nicht verfügbar bzw. es konnten keine Daten gefunden werden. Bitte weisen Sie Transaktionen eine Kategorie zu, diese wird dann hier ausgewertet.</value>
+  </data>
+  <data name="ViewTextSavingsPlanNotAvailableTitle" xml:space="preserve">
+    <value>Sparplanhochrechnung nicht verfügbar</value>
+  </data>
+  <data name="Display_TagOverallDividends" xml:space="preserve">
+    <value>Dividenden akkumuliert</value>
+  </data>
+  <data name="ViewTextStatisticsSavingsPlanInformation" xml:space="preserve">
+    <value>Die Rendite beinhaltet die Kursgewinne (nach Steuer) und Dividenden. Die Qualität der Hochrechnung steigt mit aktuellen Kursdaten.</value>
+  </data>
+  <data name="ViewTextAdministration" xml:space="preserve">
+    <value>Administration</value>
+  </data>
+  <data name="ViewTextAdministrationGenerateTestData" xml:space="preserve">
+    <value>Testdaten Generierung</value>
+  </data>
+  <data name="ViewTextAdministrationGenerateTestDataInfo" xml:space="preserve">
+    <value>Generierung von einigen Testdaten, inklusive Produkte, Transaktionen, Strategien, Bewertungsmodellen &amp; Kalkulationen.</value>
+  </data>
+  <data name="ViewTextAdministrationGenerateTestDataLost" xml:space="preserve">
+    <value>Alle Daten der Datenbank und Caches werden gelöscht.</value>
+  </data>
+  <data name="Display_StockLastestQuote" xml:space="preserve">
+    <value>Letzer Kurs</value>
+  </data>
+  <data name="Display_StockTransactionHistory" xml:space="preserve">
+    <value>Transaktionshistorie</value>
+  </data>
+  <data name="ViewTextTestDataControllerErase" xml:space="preserve">
+    <value>Datenbank und Caches wurden geleert, Bewertungen &amp; Strategien erstellt</value>
+  </data>
+  <data name="ViewTextTestDataControllerSecurityCreated" xml:space="preserve">
+    <value>Wertpapier und Transaktionen für {0} wurden erstellt</value>
+  </data>
+  <data name="Display_QuoteClose" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="Display_QuoteDate" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="Display_QuoteHigh" xml:space="preserve">
+    <value>High</value>
+  </data>
+  <data name="Display_QuoteLow" xml:space="preserve">
+    <value>Low</value>
+  </data>
+  <data name="Display_QuoteOpen" xml:space="preserve">
+    <value>Open</value>
+  </data>
+  <data name="ViewText_StockLastestQuoteNotAvailable" xml:space="preserve">
+    <value>Es konnten keine Kursdaten gefunden werden</value>
+  </data>
+  <data name="ViewTextCandleStickChartData" xml:space="preserve">
+    <value>Kursdaten</value>
+  </data>
+  <data name="ViewTextHighChartDay" xml:space="preserve">
+    <value>Tag</value>
+  </data>
+  <data name="ViewTextHighChartMonth" xml:space="preserve">
+    <value>Monat</value>
+  </data>
+  <data name="ViewTextHighChartWeek" xml:space="preserve">
+    <value>Woche</value>
+  </data>
+  <data name="ViewTextCandleStickChartToolTipBuy" xml:space="preserve">
+    <value>Kauf von {0} für {1}€ am {2}</value>
+  </data>
+  <data name="ViewTextCandleStickChartToolTipBuyShortCut" xml:space="preserve">
+    <value>K</value>
+  </data>
+  <data name="ViewTextCandleStickChartToolTipDividend" xml:space="preserve">
+    <value>Dividende von {0} für {1}€ am {2}</value>
+  </data>
+  <data name="ViewTextCandleStickChartToolTipDividendShortCut" xml:space="preserve">
+    <value>D</value>
+  </data>
+  <data name="ViewTextCandleStickChartToolTipSell" xml:space="preserve">
+    <value>Verkauf von {0} für {1}€ am {2}</value>
+  </data>
+  <data name="ViewTextCandleStickChartToolTipSellShortCut" xml:space="preserve">
+    <value>V</value>
+  </data>
+  <data name="ViewTextCandleStickChartToolTipSplit" xml:space="preserve">
+    <value>Split/Reverse Split von {0} für {1}€ am {2}</value>
+  </data>
+  <data name="ViewTextCandleStickChartToolTipSplitShortCut" xml:space="preserve">
+    <value>S</value>
+  </data>
+  <data name="ViewTextStockEditCharts" xml:space="preserve">
+    <value>Kurse und Charts</value>
+  </data>
+  <data name="ViewTextStockEditMain" xml:space="preserve">
+    <value>Informationen</value>
+  </data>
+  <data name="ViewTextAverageBuyingPrice" xml:space="preserve">
+    <value>Durchschnittl. Kaufpreis</value>
+  </data>
+  <data name="Display_ViewModelOpenPositionAbsoluteProfit" xml:space="preserve">
+    <value>Profit</value>
+  </data>
+  <data name="Display_ViewModelOpenPositionCurrentQuotation" xml:space="preserve">
+    <value>Aktueller Kurs</value>
+  </data>
+  <data name="Display_ViewModelOpenPositionPercentageProfit" xml:space="preserve">
+    <value>Profit (%)</value>
+  </data>
+  <data name="Display_ViewModelOpenPositionProfit" xml:space="preserve">
+    <value>Profit</value>
+  </data>
+  <data name="ViewTextCapitalExpenditurePositions" xml:space="preserve">
+    <value>Positionen</value>
+  </data>
+  <data name="Display_ViewModelOpenPositionYTDProfit" xml:space="preserve">
+    <value>Lfd. Jahr Profit</value>
+  </data>
+  <data name="Display_PerformanceExpectedTradeAverage" xml:space="preserve">
+    <value>Erwartungswert</value>
+  </data>
+  <data name="Display_PerformanceProfit" xml:space="preserve">
+    <value>G/V</value>
+  </data>
+  <data name="ViewTextPerformanceNotAvailable" xml:space="preserve">
+    <value>Es sind keine Erträge im Portfolio über den gesamten Zeitraum vorhanden, es kann keine Gewinn-/Verlust-Aufstellung berechnet werden.</value>
+  </data>
+  <data name="ViewTextPerformanceNotAvailableTitle" xml:space="preserve">
+    <value>Erträge sind nicht vorhanden</value>
+  </data>
+  <data name="ViewTextPerformanceTitle" xml:space="preserve">
+    <value>Erträge</value>
+  </data>
+  <data name="ViewTextScheduler" xml:space="preserve">
+    <value>Scheduler</value>
+  </data>
+</root>

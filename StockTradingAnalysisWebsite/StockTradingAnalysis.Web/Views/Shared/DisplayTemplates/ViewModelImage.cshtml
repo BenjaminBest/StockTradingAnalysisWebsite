@@ -1,15 +1,16 @@
-﻿@model StockTradingAnalysis.Web.Models.ImageViewModel
+﻿@using StockTradingAnalysis.Web
+@model StockTradingAnalysis.Web.Models.ImageViewModel
 
 <div class="form-group">
     @if (Model != null)
     {
         if (string.IsNullOrEmpty(Model.Description))
         {
-                @Resources.ViewTextTransactionsImage
+            @Resources.ViewTextTransactionsImage
         }
         else
         {
-                @Model.Description
+            @Model.Description
         }
         <br />
         <img src="@string.Format("../GetImage/{0}", Model.Id)" style="width: 100%" />

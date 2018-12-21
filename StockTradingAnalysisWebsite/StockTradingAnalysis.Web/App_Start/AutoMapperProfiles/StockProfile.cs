@@ -1,6 +1,6 @@
 ﻿using System.Linq;
-using System.Web.Mvc;
 using AutoMapper;
+using StockTradingAnalysis.Core.Common;
 using StockTradingAnalysis.Domain.CQRS.Query.Queries;
 using StockTradingAnalysis.Interfaces.Domain;
 using StockTradingAnalysis.Interfaces.Queries;
@@ -49,7 +49,7 @@ namespace StockTradingAnalysis.Web.AutoMapperProfiles
 			if (stock == null)
 				return null;
 
-			var modelRepository = DependencyResolver.Current.GetService<IModelReaderRepository<IStockStatistics>>();
+			var modelRepository = DependencyResolver.GetService<IModelReaderRepository<IStockStatistics>>();
 
 			var model = modelRepository.GetById(stock.Id);
 
@@ -66,7 +66,7 @@ namespace StockTradingAnalysis.Web.AutoMapperProfiles
 			if (stock == null)
 				return Enumerable.Empty<TransactionHistoryViewModel>();
 
-			var queryDispatcher = DependencyResolver.Current.GetService<IQueryDispatcher>();
+			var queryDispatcher = DependencyResolver.GetService<IQueryDispatcher>();
 
 			var transactions = queryDispatcher.Execute(new TransactionByStockIdQuery(stock.Id));
 
@@ -83,7 +83,7 @@ namespace StockTradingAnalysis.Web.AutoMapperProfiles
 			if (stock == null)
 				return null;
 
-			var queryDispatcher = DependencyResolver.Current.GetService<IQueryDispatcher>();
+			var queryDispatcher = DependencyResolver.GetService<IQueryDispatcher>();
 
 			var quote = queryDispatcher.Execute(new StockQuotationsLatestByIdQuery(stock.Id));
 

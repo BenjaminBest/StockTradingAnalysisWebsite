@@ -1,6 +1,4 @@
 ﻿using Hangfire.Dashboard;
-using Microsoft.Owin;
-using Microsoft.Owin.Security.Provider;
 
 namespace StockTradingAnalysis.Web.Common.Authorization
 {
@@ -8,7 +6,7 @@ namespace StockTradingAnalysis.Web.Common.Authorization
 	/// The HangfireAuthorizationFilter authorizes access from localhost or authenticated users.
 	/// </summary>
 	/// <seealso cref="Hangfire.Dashboard.IDashboardAuthorizationFilter" />
-	public class HangfireAuthorizationFilter: IDashboardAuthorizationFilter
+	public class HangfireAuthorizationFilter : IDashboardAuthorizationFilter
 	{
 		/// <summary>
 		/// Authorizes the specified context.
@@ -17,12 +15,10 @@ namespace StockTradingAnalysis.Web.Common.Authorization
 		/// <returns></returns>
 		public bool Authorize(DashboardContext context)
 		{
-			// In case you need an OWIN context, use the next line, `OwinContext` class
-			// is the part of the `Microsoft.Owin` package.
-			var owinContext = new OwinContext(context.GetOwinEnvironment());
+			var httpContext = context.GetHttpContext();
 
 			// Allow all authenticated users to see the Dashboard (potentially dangerous).
-			return owinContext.Authentication.User.Identity.IsAuthenticated || IsLocalhost(context);
+			return httpContext.User.Identity.IsAuthenticated || IsLocalhost(context);
 		}
 
 		/// <summary>

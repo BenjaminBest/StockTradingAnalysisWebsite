@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web;
+using Microsoft.AspNetCore.Http;
 using StockTradingAnalysis.Interfaces.Domain;
 
 namespace StockTradingAnalysis.Web.Common.Interfaces
@@ -16,7 +17,7 @@ namespace StockTradingAnalysis.Web.Common.Interfaces
 		/// <param name="description">The description</param>
 		/// <param name="id">The id of the image</param>
 		/// <returns><c>True</c>if an image was found</returns>
-		IImage GetImage(HttpPostedFileBase file, string description, Guid id);
+		IImage GetImage(IFormFile file, string description, Guid id);
 
 		/// <summary>
 		/// Returns the image as byte array and meta information

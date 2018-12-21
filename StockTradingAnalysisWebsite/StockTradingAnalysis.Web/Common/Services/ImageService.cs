@@ -1,5 +1,7 @@
 ﻿using System;
+using System.IO;
 using System.Web;
+using Microsoft.AspNetCore.Http;
 using StockTradingAnalysis.Core.Types;
 using StockTradingAnalysis.Interfaces.Domain;
 using StockTradingAnalysis.Interfaces.Services.Core;
@@ -19,21 +21,22 @@ namespace StockTradingAnalysis.Web.Common.Services
 		/// <param name="description">The description</param>
 		/// <param name="id">The id of the image</param>
 		/// <returns><c>True</c>if an image was found</returns>
-		public IImage GetImage(HttpPostedFileBase file, string description, Guid id)
+		public IImage GetImage(IFormFile file, string description, Guid id)
 		{
 			var image = new Image(id);
 
-			if (file == null || file.ContentLength == 0)
+			if (file == null || file.Length == 0)
 				return null;
 
 			image.OriginalName = file.FileName;
 			image.ContentType = file.ContentType;
 			image.Description = description;
 
-			var length = file.ContentLength;
-			var tempImage = new byte[length];
-			file.InputStream.Read(tempImage, 0, length);
-			image.Data = tempImage;
+			using (var ms = new MemoryStream())
+			{
+				file.CopyTo(ms);
+				image.Data = ms.ToArray();
+			}
 
 			return image;
 		}

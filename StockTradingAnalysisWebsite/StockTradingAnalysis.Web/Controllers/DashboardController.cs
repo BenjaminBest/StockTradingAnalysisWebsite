@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web.Mvc;
 using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using StockTradingAnalysis.Domain.CQRS.Query.Queries;
 using StockTradingAnalysis.Interfaces.Enumerations;
 using StockTradingAnalysis.Interfaces.Queries;
@@ -14,7 +14,7 @@ namespace StockTradingAnalysis.Web.Controllers
 	/// <summary>
 	/// The DashboardController gathers all information which is needed to render a dashboard with KPIs.
 	/// </summary>
-	/// <seealso cref="System.Web.Mvc.Controller" />
+	/// <seealso cref="Controller" />
 	public class DashboardController : Controller
 	{
 		/// <summary>
@@ -65,7 +65,7 @@ namespace StockTradingAnalysis.Web.Controllers
 		}
 
 		// GET: Dashboard
-		public ActionResult Index()
+		public IActionResult Index()
 		{
 			var model = new DashboardViewModel();
 
@@ -80,7 +80,7 @@ namespace StockTradingAnalysis.Web.Controllers
 
 		//
 		// GET: /Dashboard/SavingsPlan
-		public ActionResult SavingsPlan()
+		public IActionResult SavingsPlan()
 		{
 			var model = new List<SavingsPlanViewModel>();
 
@@ -97,7 +97,7 @@ namespace StockTradingAnalysis.Web.Controllers
 
 		//
 		// GET: /Dashboard/Performance
-		public ActionResult Performance()
+		public IActionResult Performance()
 		{
 			var model = new List<PerformanceViewModel>();
 

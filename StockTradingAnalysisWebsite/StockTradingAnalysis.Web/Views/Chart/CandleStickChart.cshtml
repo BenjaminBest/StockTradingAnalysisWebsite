@@ -1,6 +1,7 @@
-﻿@model StockTradingAnalysis.Web.Models.CandleStickChartViewModel
+﻿@using StockTradingAnalysis.Web
+@model StockTradingAnalysis.Web.Models.CandleStickChartViewModel
 
-@Scripts.Render("~/bundles/highchart/js")
+<script src="~/js/highchart.js"></script>
 
 <div id="container"></div>
 <script>

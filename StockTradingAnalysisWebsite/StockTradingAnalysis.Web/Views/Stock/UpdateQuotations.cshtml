@@ -1,4 +1,5 @@
-﻿@using StockTradingAnalysis.Web.Common.Extensions
+﻿@using StockTradingAnalysis.Web
+@using StockTradingAnalysis.Web.Common.Extensions
 @model StockTradingAnalysis.Web.Models.UpdateQuotationsViewModel
 
 @{
@@ -8,7 +9,7 @@
     var cssClass = Model.IsServiceAvailable ? "alert-success" : "alert-danger";
 }
 
-@Scripts.Render("~/bundles/custom")
+@*@Scripts.Render("~/bundles/custom") //TODO: Was not in the bundles.config*@
 
 <div class="container-fluid">
     <div class="row">

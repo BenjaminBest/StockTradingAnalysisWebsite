@@ -1,4 +1,5 @@
-﻿@model StockTradingAnalysis.Web.Models.StrategyViewModel
+﻿@using StockTradingAnalysis.Web
+@model StockTradingAnalysis.Web.Models.StrategyViewModel
 
 @{
     ViewBag.Title = Resources.ViewTextStrategyTitle;
@@ -46,6 +47,6 @@
 
         <input type="submit" value="@Resources.ViewTextAdd" class="btn btn-success" />
         @Html.ActionLink(Resources.ViewTextBack, "Index", null, new { @class = "btn btn-info" })
-        
+
     </div>
-    }
+}

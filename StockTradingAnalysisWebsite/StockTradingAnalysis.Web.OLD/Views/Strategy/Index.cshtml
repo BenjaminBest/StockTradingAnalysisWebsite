@@ -1,0 +1,41 @@
+﻿@using StockTradingAnalysis.Web.Common.Extensions
+@model IEnumerable<StockTradingAnalysis.Web.Models.StrategyViewModel>
+
+@{
+    ViewBag.Title = Resources.ViewTextStrategyTitle;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <table class="table table-hover table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.LabelFor(modelItem => Model.FirstOrDefault().Name)
+                    </th>
+                    <th>
+                        @Html.LabelFor(modelItem => Model.FirstOrDefault().Description)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr class="clickableRow" href='@Html.PlainLink("Edit", "Strategy", new { id = item.Id })'>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </td>
+                        <td>
+                            @Html.ActionLink(Resources.ViewTextDelete, "Delete", new { id = item.Id }, new { @class = "btn btn-danger btn-sm" })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

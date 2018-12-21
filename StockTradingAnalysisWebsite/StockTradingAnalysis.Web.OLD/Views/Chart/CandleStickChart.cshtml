@@ -1,0 +1,105 @@
+﻿@model StockTradingAnalysis.Web.Models.CandleStickChartViewModel
+
+@Scripts.Render("~/bundles/highchart/js")
+
+<div id="container"></div>
+<script>
+    axios.get('@string.Format("/Chart/CandlestickChartQuoteDataByStockId/{0}", Model.StockId)')
+        .then(function(res) {
+
+            // create the chart
+            Highcharts.stockChart('container',
+                {
+                    chart: {
+                        height: @Model.Height
+                    },
+
+                    rangeSelector: {
+                        allButtonsEnabled: true,
+                        buttons: [
+                            {
+                                type: 'month',
+                                count: 3,
+                                text: '@Resources.ViewTextHighChartDay',
+                                dataGrouping: {
+                                    forced: true,
+                                    units: [['day', [1]]]
+                                }
+                            }, {
+                                type: 'year',
+                                count: 1,
+                                text: '@Resources.ViewTextHighChartWeek',
+                                dataGrouping: {
+                                    forced: true,
+                                    units: [['week', [1]]]
+                                }
+                            }, {
+                                type: 'all',
+                                text: '@Resources.ViewTextHighChartMonth',
+                                dataGrouping: {
+                                    forced: true,
+                                    units: [['month', [1]]]
+                                }
+                            }
+                        ],
+                        buttonTheme: {
+                            width: 60
+                        },
+                        selected: 2
+                    },
+
+                    title: {
+                        text: '@Model.Title'
+                    },
+
+                    series: [
+                        {
+                            type: 'candlestick',
+                            id: 'quotes',
+                            name: '@Resources.ViewTextCandleStickChartData',
+                            data: res.data,
+                            dataGrouping: {
+                                units: [
+                                    [
+                                        'week', // unit name
+                                        [1] // allowed multiples
+                                    ], [
+                                        'month',
+                                        [1, 2, 3, 4, 6]
+                                    ]
+                                ]
+                            }
+                        }
+                    ]
+                });
+        })
+        .then(function() {
+            axios.get('@string.Format("/Chart/CandlestickChartTransactionDataByStockId/{0}",Model.StockId)')
+                .then(function (res) {
+                    var chart = $('#container').highcharts();
+
+                    chart.addSeries({
+                        type: 'flags',
+                        data: res.data,
+                        shape: 'squarepin'
+                    });
+                });
+        })
+        .then(function() {
+            axios.get('@string.Format("/Chart/CandlestickChartAverageBuyingPriceByStockId/{0}", Model.StockId)')
+                .then(function (res) {
+                    var chart = $('#container').highcharts();
+
+                    chart.addSeries({
+                        type: 'line',
+                        name: '@Resources.ViewTextAverageBuyingPrice',
+                        data: res.data,
+                        color: '#62c462',
+                        marker: {
+                            enabled: true
+                            }
+                    });
+                });
+        });
+
+</script>

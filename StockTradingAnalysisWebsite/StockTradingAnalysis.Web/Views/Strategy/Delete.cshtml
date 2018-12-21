@@ -1,4 +1,5 @@
-﻿@model StockTradingAnalysis.Web.Models.StrategyViewModel
+﻿@using StockTradingAnalysis.Web
+@model StockTradingAnalysis.Web.Models.StrategyViewModel
 
 @{
     ViewBag.Title = Resources.ViewTextStrategyTitle;
@@ -6,13 +7,13 @@
 }
 
 <div class="container-fluid">
-<div class="row">
-    <div class="col-lg-12">
-        <div class="alert alert-dismissible alert-success">
-            @Resources.ViewTextStrategy
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="alert alert-dismissible alert-success">
+                @Resources.ViewTextStrategy
+            </div>
         </div>
     </div>
-</div>
 </div>
 
 <div class="container-fluid">
@@ -41,5 +42,5 @@
         <input type="submit" value="@Resources.ViewTextDelete" class="btn btn-danger" />
         @Html.ActionLink(Resources.ViewTextBack, "Index", null, new { @class = "btn btn-info" })
     }
-    
-    </div>
+
+</div>

@@ -1,11 +1,12 @@
-﻿@{
+﻿@using StockTradingAnalysis.Web
+@{
     ViewBag.Title = Resources.ViewTextAdministrationGenerateTestData;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 @section scripts
-{
-    @Scripts.Render("~/bundles/jsx")
+    {
+    <script src="~/jsx/react.jsx"></script>
 }
 
 <div class="jumbotron">

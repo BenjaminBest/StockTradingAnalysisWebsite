@@ -1,0 +1,137 @@
+﻿@using StockTradingAnalysis.Web.Common.Extensions
+@using StockTradingAnalysis.Web.Models
+@model IEnumerable<TransactionIndexViewModel>
+@{
+    var performance = (Dictionary<Guid, TransactionPerformanceViewModel>)ViewBag.Performance;
+}
+
+@{
+    ViewBag.Title = Resources.ViewTextTransactionsTitle;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        <table class="table table-hover table-striped">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.LabelFor(modelItem => Model.FirstOrDefault().AccountBalance)
+                    </th>
+                    <th>
+                        @Html.LabelFor(modelItem => Model.FirstOrDefault().OrderDate)
+                    </th>
+                    <th>
+                        @Html.LabelFor(modelItem => Model.FirstOrDefault().Action)
+                    </th>
+                    <th>
+                        @Html.LabelFor(modelItem => Model.FirstOrDefault().Units)
+                    </th>
+                    <th>
+                        @Html.LabelFor(modelItem => Model.FirstOrDefault().PricePerUnit)
+                    </th>
+                    <th>
+                        @Html.LabelFor(modelItem => Model.FirstOrDefault().OrderCosts)
+                    </th>
+                    <th>
+                        @Html.LabelFor(modelItem => Model.FirstOrDefault().PositionSize)
+                    </th>
+                    <th>
+                        @Html.LabelFor(modelItem => Model.FirstOrDefault().Stock.Name)
+                    </th>
+                    <th></th>
+                    <th>
+                        @Html.LabelFor(m => performance.FirstOrDefault().Value.R)
+                    </th>
+                    <th>
+                        <label>@Resources.ViewTextLongShort</label>
+                    </th>
+                    <th>
+                        @Html.LabelFor(m => performance.FirstOrDefault().Value.ProfitAbsolute)
+                    </th>
+                    <th>
+                        @Html.LabelFor(m => performance.FirstOrDefault().Value.ProfitPercentage)
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr class="clickableRow" scope="row" id="@item.Id" href='@Html.PlainLink("Edit", "Transaction", new { id = item.Id })'>
+                        <td>
+                            @if (item.AccountBalance != decimal.Zero)
+                            {
+                                @Html.DisplayFor(modelItem => item.AccountBalance)
+                            }
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.OrderDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Action)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Units)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PricePerUnit)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.OrderCosts)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PositionSize)
+                        </td>
+                        <td>
+                            @Html.ActionLink(item.Stock.StocksShortDescription, "Edit", "Stock", new { id = item.Stock.Id }, null)
+                        </td>
+                        <td>
+                            @Html.ActionLink(Resources.ViewTextDelete, "Delete", new { id = item.Id }, new { @class = "btn btn-danger btn-sm" })
+                        </td>
+                        <td>
+                            @if (performance.ContainsKey(item.Id))
+                            {
+                                @Html.DisplayFor(m => performance[item.Id].R)
+                            }
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Stock.LongShort)
+                        </td>
+                        @if (performance.ContainsKey(item.Id))
+                        {
+                            <td>@Html.DisplayFor(m => performance[item.Id].ProfitAbsolute)</td>
+                            <td>@Html.DisplayFor(m => performance[item.Id].ProfitPercentage)</td>
+                        }
+                        else
+                        {
+                            <td></td>
+                            <td></td>
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@using (Html.BeginForm())
+{
+    <table class="table-sm table-info fixed-bottom" style="opacity: 0.8">
+        <tr>
+            <td>
+                <span>@Resources.ViewTextFilterTime</span>
+            </td>
+            <td>
+                <span>@Resources.ViewTextFilterStockType</span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DropDownList("TimeFilter", (List<SelectListItem>)ViewBag.TimeFilter, new { onchange = "this.form.submit();", @class = "custom-select" })
+            </td>
+            <td>
+                @Html.DropDownList("StockTypeFilter", (List<SelectListItem>)ViewBag.StockTypeFilter, new { onchange = "this.form.submit();", @class = "custom-select" })
+            </td>
+        </tr>
+    </table>
+}

@@ -1,4 +1,5 @@
-﻿@using StockTradingAnalysis.Web.Models
+﻿@using StockTradingAnalysis.Web
+@using StockTradingAnalysis.Web.Models
 @model IEnumerable<SavingsPlanViewModel>
 @{
     ViewBag.Title = Resources.ViewTextDashboardTitle;
@@ -58,7 +59,7 @@
                 </thead>
                 <tbody>
                     @foreach (SavingsPlanPeriodViewModel period in item.Periods)
-                    {                        
+                    {
                         var highlightedRow = period.IsCurrentYear ? "table-dark" : "";
 
                         <tr class="@highlightedRow">

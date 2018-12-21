@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web.Mvc;
 using AutoMapper;
-using Raven.Abstractions.Extensions;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using StockTradingAnalysis.Domain.CQRS.Cmd.Commands;
 using StockTradingAnalysis.Domain.CQRS.Cmd.Exceptions;
 using StockTradingAnalysis.Domain.CQRS.Query.Queries;
@@ -11,8 +11,6 @@ using StockTradingAnalysis.Interfaces.Commands;
 using StockTradingAnalysis.Interfaces.Domain;
 using StockTradingAnalysis.Interfaces.Filter;
 using StockTradingAnalysis.Interfaces.Queries;
-using StockTradingAnalysis.Interfaces.Services;
-using StockTradingAnalysis.Interfaces.Services.Core;
 using StockTradingAnalysis.Web.Common;
 using StockTradingAnalysis.Web.Common.Interfaces;
 using StockTradingAnalysis.Web.Common.ItemResolvers;
@@ -40,7 +38,7 @@ namespace StockTradingAnalysis.Web.Controllers
 		}
 
 		// GET: Transaction
-		public ActionResult Index(string timeFilter, string stockTypeFilter)
+		public IActionResult Index(string timeFilter, string stockTypeFilter)
 		{
 			ViewBag.TimeFilter = _selectItemResolverRegistry.GetItems("TimePeriodRelative");
 			ViewBag.StockTypeFilter = _selectItemResolverRegistry.GetItems("StockType");
@@ -60,7 +58,7 @@ namespace StockTradingAnalysis.Web.Controllers
 		}
 
 		// GET: Transaction/Buy
-		public ActionResult Buy()
+		public IActionResult Buy()
 		{
 			ViewBag.Stocks = _selectItemResolverRegistry.GetItems("Stock");
 			ViewBag.Strategies = _selectItemResolverRegistry.GetItems("Strategy");
@@ -70,18 +68,13 @@ namespace StockTradingAnalysis.Web.Controllers
 
 		// POST: Transaction/Buy
 		[HttpPost]
-		public ActionResult Buy(TransactionBuyingViewModel model, FormCollection collection)
+		public IActionResult Buy(TransactionBuyingViewModel model, FormCollection collection)
 		{
 			var id = Guid.NewGuid();
 
 			try
 			{
-				IImage image = null;
-
-				if (Request.Files["Image"] != null && Request.Files["Image"].ContentLength != 0)
-				{
-					image = _imageService.GetImage(Request.Files["Image"], collection["image.Description"], id);
-				}
+				IImage image = _imageService.GetImage(Request.Form.Files["Image"], collection["image.Description"], id);
 
 				_commandDispatcher.Execute(new TransactionBuyCommand(id, model.OriginalVersion, model.OrderDate, model.Units,
 					model.PricePerUnit, model.OrderCosts, model.Description, model.Tag, image, model.InitialSL, model.InitialTP, model.Stock.Id, model.Strategy.Id));
@@ -101,7 +94,7 @@ namespace StockTradingAnalysis.Web.Controllers
 		}
 
 		// GET: Transaction/Sell
-		public ActionResult Sell()
+		public IActionResult Sell()
 		{
 			ViewBag.Stocks = _selectItemResolverRegistry.GetItems("Stock");
 			ViewBag.Feedbacks = _selectItemResolverRegistry.GetItems("Feedback");
@@ -111,18 +104,13 @@ namespace StockTradingAnalysis.Web.Controllers
 
 		// POST: Transaction/Sell
 		[HttpPost]
-		public ActionResult Sell(TransactionSellingViewModel model, FormCollection collection)
+		public IActionResult Sell(TransactionSellingViewModel model, FormCollection collection)
 		{
 			var id = Guid.NewGuid();
 
 			try
 			{
-				IImage image = null;
-
-				if (Request.Files["Image"] != null && Request.Files["Image"].ContentLength != 0)
-				{
-					image = _imageService.GetImage(Request.Files["Image"], collection["image.Description"], id);
-				}
+				var image = _imageService.GetImage(Request.Form.Files["Image"], collection["image.Description"], id);
 
 				var feedback = model.Feedback?.Select(f => f.Id) ?? new List<Guid>();
 
@@ -144,7 +132,7 @@ namespace StockTradingAnalysis.Web.Controllers
 		}
 
 		// GET: Transaction/Dividend
-		public ActionResult Dividend()
+		public IActionResult Dividend()
 		{
 			ViewBag.Stocks = _selectItemResolverRegistry.GetItems("Stock");
 			ViewBag.Feedbacks = _selectItemResolverRegistry.GetItems("Feedback");
@@ -154,18 +142,13 @@ namespace StockTradingAnalysis.Web.Controllers
 
 		// POST: Transaction/Dividend
 		[HttpPost]
-		public ActionResult Dividend(TransactionSellingViewModel model, FormCollection collection)
+		public IActionResult Dividend(TransactionSellingViewModel model, FormCollection collection)
 		{
 			var id = Guid.NewGuid();
 
 			try
 			{
-				IImage image = null;
-
-				if (Request.Files["Image"] != null && Request.Files["Image"].ContentLength != 0)
-				{
-					image = _imageService.GetImage(Request.Files["Image"], collection["image.Description"], id);
-				}
+				IImage image = _imageService.GetImage(Request.Form.Files["Image"], collection["image.Description"], id);
 
 				_commandDispatcher.Execute(new TransactionDividendCommand(id, model.OriginalVersion, model.OrderDate, model.Units, model.PricePerUnit, model.OrderCosts,
 					model.Description, model.Tag, image, model.Stock.Id, model.Taxes));
@@ -184,7 +167,7 @@ namespace StockTradingAnalysis.Web.Controllers
 		}
 
 		// GET: Transaction/Split
-		public ActionResult Split()
+		public IActionResult Split()
 		{
 			ViewBag.Stocks = _selectItemResolverRegistry.GetItems("Stock");
 
@@ -193,7 +176,7 @@ namespace StockTradingAnalysis.Web.Controllers
 
 		// POST: Transaction/Split
 		[HttpPost]
-		public ActionResult Split(TransactionSplitViewModel model, FormCollection collection)
+		public IActionResult Split(TransactionSplitViewModel model, FormCollection collection)
 		{
 			var id = Guid.NewGuid();
 
@@ -214,7 +197,7 @@ namespace StockTradingAnalysis.Web.Controllers
 		}
 
 		// GET: Transaction/Edit/5
-		public ActionResult Edit(Guid id)
+		public IActionResult Edit(Guid id)
 		{
 			ViewBag.Stocks = _selectItemResolverRegistry.GetItems("Stock");
 			ViewBag.Strategies = _selectItemResolverRegistry.GetItems("Strategy");
@@ -225,17 +208,13 @@ namespace StockTradingAnalysis.Web.Controllers
 
 		// POST: Transaction/Edit/5
 		[HttpPost]
-		public ActionResult Edit(Guid id, TransactionViewModel model, FormCollection collection)
+		public IActionResult Edit(Guid id, TransactionViewModel model, FormCollection collection)
 		{
 			try
 			{
-				IImage image = null;
+				var image = _imageService.GetImage(Request.Form.Files["Image"], collection["image.Description"], id);
 
-				if (Request.Files["Image"] != null && Request.Files["Image"].ContentLength != 0)
-				{
-					image = _imageService.GetImage(Request.Files["Image"], collection["image.Description"], id);
-				}
-				else if (string.IsNullOrEmpty(collection["deleteImage"]))
+				if (string.IsNullOrEmpty(collection["deleteImage"]))
 				{
 					image = _imageService.GetImage(model.Image.Data, model.Image.OriginalName, model.Image.ContentType,
 						model.Image.Description,
@@ -255,14 +234,14 @@ namespace StockTradingAnalysis.Web.Controllers
 		}
 
 		// GET: Transaction/Delete/5
-		public ActionResult Delete(Guid id)
+		public IActionResult Delete(Guid id)
 		{
 			return View(GetTransaction(id));
 		}
 
 		// POST: Transaction/Delete/5
 		[HttpPost]
-		public ActionResult Delete(Guid id, TransactionViewModel model)
+		public IActionResult Delete(Guid id, TransactionViewModel model)
 		{
 			try
 			{
@@ -283,11 +262,11 @@ namespace StockTradingAnalysis.Web.Controllers
 		/// </summary>
 		/// <param name="term">Search text</param>
 		/// <returns></returns>
-		public JsonResult GetTags(string term)
+		public IActionResult GetTags(string term)
 		{
 			var items = _queryDispatcher.Execute(new TransactionTagSearchQuery(term));
 
-			return Json(items.Take(10), JsonRequestBehavior.AllowGet);
+			return Json(items.Take(10));
 		}
 
 		/// <summary>
@@ -295,7 +274,7 @@ namespace StockTradingAnalysis.Web.Controllers
 		/// </summary>
 		/// <param name="id">Image ID</param>
 		/// <returns>Image</returns>
-		public ActionResult GetImage(Guid id)
+		public IActionResult GetImage(Guid id)
 		{
 			var image = _queryDispatcher.Execute(new TransactionImageByIdQuery(id));
 
@@ -335,8 +314,10 @@ namespace StockTradingAnalysis.Web.Controllers
 
 			var query = new TransactionAllQuery();
 
-			if (filters.Any())
-				filters.ForEach(f => query.Register(f));
+			foreach (var filter in filters)
+			{
+				query.Register(filter);
+			}
 
 			var models = Mapper.Map<IEnumerable<TransactionIndexViewModel>>(_queryDispatcher.Execute(query)).ToList();
 
