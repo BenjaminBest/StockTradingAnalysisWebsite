@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="7.0.1" />
+    <PackageReference Include="AutoMapper" Version="8.0.0" />
     <PackageReference Include="BuildBundlerMinifier" Version="2.8.391" />
     <PackageReference Include="Hangfire" Version="1.6.21" />
     <PackageReference Include="Hangfire.Core" Version="1.6.21" />
@@ -19,14 +19,13 @@
     <PackageReference Include="Microsoft.AspNetCore.Owin" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
     <PackageReference Include="React.AspNet" Version="3.4.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\StockTradingAnalysis.CQRS\StockTradingAnalysis.CQRS.csproj" />
     <ProjectReference Include="..\StockTradingAnalysis.Data.MSSQL\StockTradingAnalysis.Data.MSSQL.csproj" />
-    <ProjectReference Include="..\StockTradingAnalysis.Data.RavenDb\StockTradingAnalysis.Data.RavenDb.csproj" />
     <ProjectReference Include="..\StockTradingAnalysis.Domain.CQRS.Cmd\StockTradingAnalysis.Domain.CQRS.Cmd.csproj" />
     <ProjectReference Include="..\StockTradingAnalysis.Domain.CQRS.Query\StockTradingAnalysis.Domain.CQRS.Query.csproj" />
     <ProjectReference Include="..\StockTradingAnalysis.Domain.Process\StockTradingAnalysis.Domain.Process.csproj" />
@@ -53,6 +52,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <DotNetCliToolReference  Include="BundlerMinifier.Core" Version="2.8.391" />
+    <DotNetCliToolReference Include="BundlerMinifier.Core" Version="2.8.391" />
   </ItemGroup>
 </Project>

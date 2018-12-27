@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using AutoMapper;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using StockTradingAnalysis.Domain.CQRS.Cmd.Commands;
@@ -15,6 +12,9 @@ using StockTradingAnalysis.Web.Common;
 using StockTradingAnalysis.Web.Common.Interfaces;
 using StockTradingAnalysis.Web.Common.ItemResolvers;
 using StockTradingAnalysis.Web.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace StockTradingAnalysis.Web.Controllers
 {
@@ -68,7 +68,7 @@ namespace StockTradingAnalysis.Web.Controllers
 
 		// POST: Transaction/Buy
 		[HttpPost]
-		public IActionResult Buy(TransactionBuyingViewModel model, FormCollection collection)
+		public IActionResult Buy(TransactionBuyingViewModel model, IFormCollection collection)
 		{
 			var id = Guid.NewGuid();
 
@@ -104,7 +104,7 @@ namespace StockTradingAnalysis.Web.Controllers
 
 		// POST: Transaction/Sell
 		[HttpPost]
-		public IActionResult Sell(TransactionSellingViewModel model, FormCollection collection)
+		public IActionResult Sell(TransactionSellingViewModel model, IFormCollection collection)
 		{
 			var id = Guid.NewGuid();
 
@@ -142,7 +142,7 @@ namespace StockTradingAnalysis.Web.Controllers
 
 		// POST: Transaction/Dividend
 		[HttpPost]
-		public IActionResult Dividend(TransactionSellingViewModel model, FormCollection collection)
+		public IActionResult Dividend(TransactionSellingViewModel model, IFormCollection collection)
 		{
 			var id = Guid.NewGuid();
 
@@ -176,7 +176,7 @@ namespace StockTradingAnalysis.Web.Controllers
 
 		// POST: Transaction/Split
 		[HttpPost]
-		public IActionResult Split(TransactionSplitViewModel model, FormCollection collection)
+		public IActionResult Split(TransactionSplitViewModel model, IFormCollection collection)
 		{
 			var id = Guid.NewGuid();
 
@@ -208,13 +208,13 @@ namespace StockTradingAnalysis.Web.Controllers
 
 		// POST: Transaction/Edit/5
 		[HttpPost]
-		public IActionResult Edit(Guid id, TransactionViewModel model, FormCollection collection)
+		public IActionResult Edit(Guid id, TransactionViewModel model, IFormCollection collection)
 		{
 			try
 			{
 				var image = _imageService.GetImage(Request.Form.Files["Image"], collection["image.Description"], id);
 
-				if (string.IsNullOrEmpty(collection["deleteImage"]))
+				if (image != null && string.IsNullOrEmpty(collection["deleteImage"]))
 				{
 					image = _imageService.GetImage(model.Image.Data, model.Image.OriginalName, model.Image.ContentType,
 						model.Image.Description,

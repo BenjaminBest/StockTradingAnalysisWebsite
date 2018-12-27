@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using AutoMapper;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using StockTradingAnalysis.Domain.CQRS.Cmd.Commands;
@@ -13,6 +10,9 @@ using StockTradingAnalysis.Interfaces.Queries;
 using StockTradingAnalysis.Web.Common;
 using StockTradingAnalysis.Web.Common.Interfaces;
 using StockTradingAnalysis.Web.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace StockTradingAnalysis.Web.Controllers
 {
@@ -46,7 +46,7 @@ namespace StockTradingAnalysis.Web.Controllers
 
 		// POST: Strategy/Create
 		[HttpPost]
-		public IActionResult Create(StrategyViewModel model, FormCollection collection)
+		public IActionResult Create(StrategyViewModel model, IFormCollection collection)
 		{
 			var id = Guid.NewGuid();
 
@@ -75,7 +75,7 @@ namespace StockTradingAnalysis.Web.Controllers
 
 		// POST: Strategy/Edit/5
 		[HttpPost]
-		public IActionResult Edit(Guid id, StrategyViewModel model, FormCollection collection)
+		public IActionResult Edit(Guid id, StrategyViewModel model, IFormCollection collection)
 		{
 			try
 			{

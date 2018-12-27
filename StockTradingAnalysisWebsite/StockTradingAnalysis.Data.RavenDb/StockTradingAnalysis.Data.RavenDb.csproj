@@ -7,10 +7,15 @@
     <PackageProjectUrl>https://github.com/BenjaminBest/StockTradingAnalysisWebsite</PackageProjectUrl>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="RavenDB.Client" Version="3.5.7" />
-    <PackageReference Include="RavenDB.Database" Version="3.5.7" />
+    <PackageReference Include="RavenDB.Client" Version="4.1.3" />
+    <PackageReference Include="RavenDB.Embedded" Version="4.1.3" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\StockTradingAnalysis.Interfaces\StockTradingAnalysis.Interfaces.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Raven.Client.Lightweight">
+      <HintPath>C:\Users\Benjamin\.nuget\packages\ravendb.client\3.5.7\lib\netstandard1.3\Raven.Client.Lightweight.dll</HintPath>
+    </Reference>
   </ItemGroup>
 </Project>

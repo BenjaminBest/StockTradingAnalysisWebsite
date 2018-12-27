@@ -1,6 +1,4 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Raven.Abstractions.Extensions;
-using StockTradingAnalysis.Core.Common;
 using StockTradingAnalysis.Domain.Process.Finders;
 using StockTradingAnalysis.Domain.Process.Locator;
 using StockTradingAnalysis.Domain.Process.ProcessManagers;

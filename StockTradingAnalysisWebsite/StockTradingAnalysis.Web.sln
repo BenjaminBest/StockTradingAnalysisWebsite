@@ -5,53 +5,49 @@ VisualStudioVersion = 15.0.27130.2036
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0A32E031-BAA3-4899-BA2E-839B4227A698}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockTradingAnalysis.Web.Tests", "StockTradingAnalysis.Web.Tests\StockTradingAnalysis.Web.Tests.csproj", "{5FCE34E6-B5A6-49C4-AA2A-AB55769DBEAD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockTradingAnalysis.Web.Tests", "StockTradingAnalysis.Web.Tests\StockTradingAnalysis.Web.Tests.csproj", "{5FCE34E6-B5A6-49C4-AA2A-AB55769DBEAD}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockTradingAnalysis.Core", "StockTradingAnalysis.Core\StockTradingAnalysis.Core.csproj", "{2D924BA2-EBFC-4675-B435-D346F20A77D1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockTradingAnalysis.Interfaces", "StockTradingAnalysis.Interfaces\StockTradingAnalysis.Interfaces.csproj", "{3694CF79-FB2D-4F79-8236-A4975A30924D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockTradingAnalysis.Interfaces", "StockTradingAnalysis.Interfaces\StockTradingAnalysis.Interfaces.csproj", "{3694CF79-FB2D-4F79-8236-A4975A30924D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockTradingAnalysis.CQRS", "StockTradingAnalysis.CQRS\StockTradingAnalysis.CQRS.csproj", "{C751F0D4-4505-4F46-B4DA-405A9149DC2D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockTradingAnalysis.CQRS", "StockTradingAnalysis.CQRS\StockTradingAnalysis.CQRS.csproj", "{C751F0D4-4505-4F46-B4DA-405A9149DC2D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockTradingAnalysis.EventSourcing", "StockTradingAnalysis.EventSourcing\StockTradingAnalysis.EventSourcing.csproj", "{1B0942AD-C3E8-4837-B7E4-AFA9769BF97E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockTradingAnalysis.EventSourcing", "StockTradingAnalysis.EventSourcing\StockTradingAnalysis.EventSourcing.csproj", "{1B0942AD-C3E8-4837-B7E4-AFA9769BF97E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockTradingAnalysis.Domain.Events", "StockTradingAnalysis.Domain.Events\StockTradingAnalysis.Domain.Events.csproj", "{07D3490F-B18E-4FA5-804A-7FBB647BE184}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockTradingAnalysis.Domain.Events", "StockTradingAnalysis.Domain.Events\StockTradingAnalysis.Domain.Events.csproj", "{07D3490F-B18E-4FA5-804A-7FBB647BE184}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockTradingAnalysis.Domain.CQRS.Query", "StockTradingAnalysis.Domain.CQRS.Query\StockTradingAnalysis.Domain.CQRS.Query.csproj", "{A6038DBF-FC06-4372-BEB0-3FEB9AB8264F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockTradingAnalysis.Domain.CQRS.Query", "StockTradingAnalysis.Domain.CQRS.Query\StockTradingAnalysis.Domain.CQRS.Query.csproj", "{A6038DBF-FC06-4372-BEB0-3FEB9AB8264F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockTradingAnalysis.Domain.CQRS.Cmd", "StockTradingAnalysis.Domain.CQRS.Cmd\StockTradingAnalysis.Domain.CQRS.Cmd.csproj", "{AAFAA64B-EBE9-44C3-AD11-ED9070E55374}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockTradingAnalysis.Domain.CQRS.Cmd", "StockTradingAnalysis.Domain.CQRS.Cmd\StockTradingAnalysis.Domain.CQRS.Cmd.csproj", "{AAFAA64B-EBE9-44C3-AD11-ED9070E55374}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockTradingAnalysis.Services", "StockTradingAnalysis.Services\StockTradingAnalysis.Services.csproj", "{23347637-C67A-4826-A8C3-83D19EC1E2FB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockTradingAnalysis.Services", "StockTradingAnalysis.Services\StockTradingAnalysis.Services.csproj", "{23347637-C67A-4826-A8C3-83D19EC1E2FB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockTradingAnalysis.Data.RavenDb", "StockTradingAnalysis.Data.RavenDb\StockTradingAnalysis.Data.RavenDb.csproj", "{89E94A65-6CA3-4433-8E2B-C13C5FE1EFC2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockTradingAnalysis.Web.Migration", "StockTradingAnalysis.Web.Migration\StockTradingAnalysis.Web.Migration.csproj", "{2E792087-482E-4950-AF0B-6D81FD61821C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockTradingAnalysis.Web.Migration", "StockTradingAnalysis.Web.Migration\StockTradingAnalysis.Web.Migration.csproj", "{2E792087-482E-4950-AF0B-6D81FD61821C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockTradingAnalysis.EventSourcing.Tests", "StockTradingAnalysis.EventSourcing.Tests\StockTradingAnalysis.EventSourcing.Tests.csproj", "{C242F449-799C-4E2F-B411-5B3264A1DF3F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockTradingAnalysis.EventSourcing.Tests", "StockTradingAnalysis.EventSourcing.Tests\StockTradingAnalysis.EventSourcing.Tests.csproj", "{C242F449-799C-4E2F-B411-5B3264A1DF3F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockTradingAnalysis.CQRS.Tests", "StockTradingAnalysis.CQRS.Tests\StockTradingAnalysis.CQRS.Tests.csproj", "{B830037B-CE85-4AA6-AF6F-6FC7EDB87AC1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockTradingAnalysis.CQRS.Tests", "StockTradingAnalysis.CQRS.Tests\StockTradingAnalysis.CQRS.Tests.csproj", "{B830037B-CE85-4AA6-AF6F-6FC7EDB87AC1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockTradingAnalysis.Services.Tests", "StockTradingAnalysis.Services.Tests\StockTradingAnalysis.Services.Tests.csproj", "{B98ED78E-E009-42A4-812D-F61F3D32DD68}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockTradingAnalysis.Services.Tests", "StockTradingAnalysis.Services.Tests\StockTradingAnalysis.Services.Tests.csproj", "{B98ED78E-E009-42A4-812D-F61F3D32DD68}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockTradingAnalysis.Core.Tests", "StockTradingAnalysis.Core.Tests\StockTradingAnalysis.Core.Tests.csproj", "{A3BDF266-9C56-4AEA-B5AD-7413581BC11D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockTradingAnalysis.Core.Tests", "StockTradingAnalysis.Core.Tests\StockTradingAnalysis.Core.Tests.csproj", "{A3BDF266-9C56-4AEA-B5AD-7413581BC11D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockTradingAnalysis.Domain.Events.Tests", "StockTradingAnalysis.Domain.Events.Tests\StockTradingAnalysis.Domain.Events.Tests.csproj", "{D5A9A8AC-BBBF-41FE-B4A5-F32E5E21AC2F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockTradingAnalysis.Domain.Events.Tests", "StockTradingAnalysis.Domain.Events.Tests\StockTradingAnalysis.Domain.Events.Tests.csproj", "{D5A9A8AC-BBBF-41FE-B4A5-F32E5E21AC2F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockTradingAnalysis.Domain.CQRS.Query.Tests", "StockTradingAnalysis.Domain.CQRS.Query.Tests\StockTradingAnalysis.Domain.CQRS.Query.Tests.csproj", "{C8C9A8F9-23AC-46C3-A90C-946FD8E82649}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockTradingAnalysis.Domain.CQRS.Query.Tests", "StockTradingAnalysis.Domain.CQRS.Query.Tests\StockTradingAnalysis.Domain.CQRS.Query.Tests.csproj", "{C8C9A8F9-23AC-46C3-A90C-946FD8E82649}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockTradingAnalysis.Domain.CQRS.Cmd.Tests", "StockTradingAnalysis.Domain.CQRS.Cmd.Tests\StockTradingAnalysis.Domain.CQRS.Cmd.Tests.csproj", "{F3DE396B-622E-4C04-AF42-BBBEF780B642}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockTradingAnalysis.Domain.CQRS.Cmd.Tests", "StockTradingAnalysis.Domain.CQRS.Cmd.Tests\StockTradingAnalysis.Domain.CQRS.Cmd.Tests.csproj", "{F3DE396B-622E-4C04-AF42-BBBEF780B642}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockTradingAnalysis.Data.MSSQL", "StockTradingAnalysis.Data.MSSQL\StockTradingAnalysis.Data.MSSQL.csproj", "{93318023-91CB-49B1-9985-9BB3609646A0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockTradingAnalysis.Data.MSSQL", "StockTradingAnalysis.Data.MSSQL\StockTradingAnalysis.Data.MSSQL.csproj", "{93318023-91CB-49B1-9985-9BB3609646A0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockTradingAnalysis.Data.MSSQL.Tests", "StockTradingAnalysis.Data.MSSQL.Tests\StockTradingAnalysis.Data.MSSQL.Tests.csproj", "{8563BC55-9C54-44D1-8D52-7E73652C95BF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockTradingAnalysis.Data.MSSQL.Tests", "StockTradingAnalysis.Data.MSSQL.Tests\StockTradingAnalysis.Data.MSSQL.Tests.csproj", "{8563BC55-9C54-44D1-8D52-7E73652C95BF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockTradingAnalysis.Domain.Process", "StockTradingAnalysis.Domain.Process\StockTradingAnalysis.Domain.Process.csproj", "{D6E4B418-70B2-4FE6-987D-8FF0F272C281}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockTradingAnalysis.Domain.Process", "StockTradingAnalysis.Domain.Process\StockTradingAnalysis.Domain.Process.csproj", "{D6E4B418-70B2-4FE6-987D-8FF0F272C281}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockTradingAnalysis.Services.External", "StockTradingAnalysis.Services.External\StockTradingAnalysis.Services.External.csproj", "{7234CB2E-D129-46B2-99A4-1162E4C4A2B1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockTradingAnalysis.Services.External", "StockTradingAnalysis.Services.External\StockTradingAnalysis.Services.External.csproj", "{7234CB2E-D129-46B2-99A4-1162E4C4A2B1}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockTradingAnalysis.Data.RavenDb.Tests", "StockTradingAnalysis.Data.RavenDb.Tests\StockTradingAnalysis.Data.RavenDb.Tests.csproj", "{BD78CA1C-34CE-411F-9E58-61B30F9424CB}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockTradingAnalysis.Web", "StockTradingAnalysis.Web\StockTradingAnalysis.Web.csproj", "{A0322867-066A-4A8B-8E00-F8003068942B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockTradingAnalysis.Web", "StockTradingAnalysis.Web\StockTradingAnalysis.Web.csproj", "{A0322867-066A-4A8B-8E00-F8003068942B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -95,10 +91,6 @@ Global
 		{23347637-C67A-4826-A8C3-83D19EC1E2FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{23347637-C67A-4826-A8C3-83D19EC1E2FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{23347637-C67A-4826-A8C3-83D19EC1E2FB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{89E94A65-6CA3-4433-8E2B-C13C5FE1EFC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{89E94A65-6CA3-4433-8E2B-C13C5FE1EFC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{89E94A65-6CA3-4433-8E2B-C13C5FE1EFC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{89E94A65-6CA3-4433-8E2B-C13C5FE1EFC2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2E792087-482E-4950-AF0B-6D81FD61821C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2E792087-482E-4950-AF0B-6D81FD61821C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2E792087-482E-4950-AF0B-6D81FD61821C}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -147,10 +139,6 @@ Global
 		{7234CB2E-D129-46B2-99A4-1162E4C4A2B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7234CB2E-D129-46B2-99A4-1162E4C4A2B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7234CB2E-D129-46B2-99A4-1162E4C4A2B1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BD78CA1C-34CE-411F-9E58-61B30F9424CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BD78CA1C-34CE-411F-9E58-61B30F9424CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BD78CA1C-34CE-411F-9E58-61B30F9424CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BD78CA1C-34CE-411F-9E58-61B30F9424CB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A0322867-066A-4A8B-8E00-F8003068942B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A0322867-066A-4A8B-8E00-F8003068942B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A0322867-066A-4A8B-8E00-F8003068942B}.Release|Any CPU.ActiveCfg = Release|Any CPU

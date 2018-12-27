@@ -14,8 +14,4 @@
     <PackageReference Include="Moq" Version="4.10.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\StockTradingAnalysis.Data.RavenDb\StockTradingAnalysis.Data.RavenDb.csproj" />
-  </ItemGroup>
-
 </Project>

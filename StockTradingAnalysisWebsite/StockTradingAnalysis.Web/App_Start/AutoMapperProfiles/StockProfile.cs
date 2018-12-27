@@ -1,11 +1,11 @@
-﻿using System.Linq;
-using AutoMapper;
+﻿using AutoMapper;
 using StockTradingAnalysis.Core.Common;
 using StockTradingAnalysis.Domain.CQRS.Query.Queries;
 using StockTradingAnalysis.Interfaces.Domain;
 using StockTradingAnalysis.Interfaces.Queries;
 using StockTradingAnalysis.Interfaces.ReadModel;
 using StockTradingAnalysis.Web.Models;
+using System.Linq;
 
 namespace StockTradingAnalysis.Web.AutoMapperProfiles
 {
@@ -29,9 +29,9 @@ namespace StockTradingAnalysis.Web.AutoMapperProfiles
 				.ForMember(t => t.Wkn, source => source.MapFrom(s => s.Wkn))
 				.ForMember(t => t.Type, source => source.MapFrom(s => s.Type))
 				.ForMember(t => t.LongShort, source => source.MapFrom(s => s.LongShort))
-				.ForMember(t => t.Performance, source => source.ResolveUsing(ResolvePerformance))
-				.ForMember(t => t.TransactionHistory, source => source.ResolveUsing(ResolveTransactionHistory))
-				.ForMember(t => t.LastestQuote, source => source.ResolveUsing(ResolveLatestQuote));
+				.ForMember(t => t.Performance, source => source.MapFrom(s => ResolvePerformance(s)))
+				.ForMember(t => t.TransactionHistory, source => source.MapFrom(s => ResolveTransactionHistory(s)))
+				.ForMember(t => t.LastestQuote, source => source.MapFrom(s => ResolveLatestQuote(s)));
 
 			CreateMap<IStock, SelectionViewModel>()
 				.ForMember(t => t.Id, source => source.MapFrom(s => s.Id))
@@ -44,10 +44,10 @@ namespace StockTradingAnalysis.Web.AutoMapperProfiles
 		/// </summary>
 		/// <param name="stock">The stock.</param>
 		/// <returns>Performance</returns>
-		private object ResolvePerformance(IStock stock)
+		private decimal ResolvePerformance(IStock stock)
 		{
 			if (stock == null)
-				return null;
+				return default(decimal);
 
 			var modelRepository = DependencyResolver.Current.GetService<IModelReaderRepository<IStockStatistics>>();
 
@@ -78,7 +78,7 @@ namespace StockTradingAnalysis.Web.AutoMapperProfiles
 		/// </summary>
 		/// <param name="stock">The stock.</param>
 		/// <returns>Latest quote</returns>
-		private object ResolveLatestQuote(IStock stock)
+		private IQuotation ResolveLatestQuote(IStock stock)
 		{
 			if (stock == null)
 				return null;
