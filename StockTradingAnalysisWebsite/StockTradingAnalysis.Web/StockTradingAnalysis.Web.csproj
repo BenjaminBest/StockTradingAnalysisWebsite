@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="7.0.1" />
+    <PackageReference Include="BuildBundlerMinifier" Version="2.8.391" />
     <PackageReference Include="Hangfire" Version="1.6.21" />
     <PackageReference Include="Hangfire.Core" Version="1.6.21" />
     <PackageReference Include="Hangfire.SqlServer" Version="1.6.21" />
@@ -49,5 +50,9 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <DotNetCliToolReference  Include="BundlerMinifier.Core" Version="2.8.391" />
   </ItemGroup>
 </Project>

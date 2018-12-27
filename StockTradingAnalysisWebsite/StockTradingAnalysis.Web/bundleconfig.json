@@ -1,6 +1,6 @@
 [
   {
-    "outputFileName": "bundles/css/site.css",
+    "outputFileName": "wwwroot/bundles/css/site.css",
     "inputFiles": [
       "wwwroot/css/bootstrap.css", //https://bootswatch.com/slate/
       "wwwroot/css/site.css",
@@ -9,7 +9,7 @@
     ]
   },
   {
-    "outputFileName": "wwwroot/js/site.js",
+    "outputFileName": "wwwroot/bundles/js/site.js",
     "inputFiles": [
       "wwwroot/js/custom.js",
       "wwwroot/js/bootstrap.js",
@@ -19,7 +19,7 @@
     ]
   },
   {
-    "outputFileName": "wwwroot/js/highchart.js",
+    "outputFileName": "wwwroot/bundles/js/highchart.js",
     "inputFiles": [
       "wwwroot/js/highstock.js", //https://www.highcharts.com/
       "wwwroot/js/highchart-theme.js", //https://github.com/highcharts/highcharts/tree/master/js/themes
@@ -27,7 +27,7 @@
     ]
   },
   {
-    "outputFileName": "wwwroot/js/validation.js",
+    "outputFileName": "wwwroot/bundles/js/validation.js",
     "inputFiles": [
       "wwwroot/scripts/jquery.validate.min.js",
       "wwwroot/scripts/jquery.validate.unobtrusive.min.js",
@@ -35,31 +35,42 @@
     ]
   },
   {
-    "outputFileName": "wwwroot/js/react.js",
+    "outputFileName": "wwwroot/bundles/js/react.js",
     "inputFiles": [
       "https://cdnjs.cloudflare.com/ajax/libs/react/16.4.0/umd/react.development.js",
       "https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.4.0/umd/react-dom.development.js"
     ]
   },
   {
-    "outputFileName": "wwwroot/jsx/react.js",
+    "outputFileName": "wwwroot/bundles/jsx/react.js",
     "inputFiles": [
       "wwwroot/jsx/Popup.jsx",
       "wwwroot/jsx/UpdateQuotationsButton.jsx",
       "wwwroot/jsx/GenerateTestDataButtonProgressBar.jsx"
+    ],
+    "minify": {
+      "enabled": false,
+      "renameLocals": false
+    },
+    "sourceMap": false
+  },
+  {
+    "outputFileName": "wwwroot/bundles/js/jquery.js",
+    "inputFiles": [
+      "wwwroot/scripts/jquery-3.3.1.js",
+      "wwwroot/scripts/jquery-ui-1.12.1.js"
     ]
   },
   {
-    "outputFileName": "wwwroot/js/jquery.js",
+    "outputFileName": "wwwroot/bundles/js/signalr.js",
     "inputFiles": [
-      "wwwroot/scripts/jquery-{version}.js",
-      "wwwroot/scripts/jquery-ui-{version}.js"
+      "wwwroot/scripts/jquery.signalR-2.3.0.js"
     ]
   },
   {
-    "outputFileName": "wwwroot/js/signalr.js",
+    "outputFileName": "wwwroot/bundles/js/calculation.js",
     "inputFiles": [
-      "wwwroot/js/jquery.signalR-{version}.js"
+      "wwwroot/js/calculation.js"
     ]
   }
 ]

@@ -9,7 +9,7 @@
 
 @section scripts
     {
-    <script src="~/jsx/react.jsx"></script>
+    <script src="~/bundles/jsx/react.js"></script>
 }
 
 <script type="text/javascript">
@@ -77,10 +77,10 @@
 
                 </div>
                 <div class="col-lg-5">
-                    @Html.PartialAsync("TransactionHistory", Model.TransactionHistory)
+                    @Html.Partial("TransactionHistory", Model.TransactionHistory)
                 </div>
                 <div class="col-lg-2">
-                    @Html.PartialAsync("LatestQuote", Model.LastestQuote)
+                    @Html.Partial("LatestQuote", Model.LastestQuote)
                 </div>
             </div>
         </div>
@@ -89,7 +89,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-7">
-                    @Html.PartialAsync("~/Views/Chart/CandleStickChart.cshtml", new CandleStickChartViewModel(Model.Id, Model.Name, 700))
+                    @Html.Partial("~/Views/Chart/CandleStickChart.cshtml", new CandleStickChartViewModel(Model.Id, Model.Name, 700))
                 </div>
             </div>
         </div>
