@@ -1,21 +1,11 @@
 [
   {
-    "outputFileName": "wwwroot/css/site.css",
+    "outputFileName": "bundles/css/site.css",
     "inputFiles": [
       "wwwroot/css/bootstrap.css", //https://bootswatch.com/slate/
       "wwwroot/css/site.css",
       "wwwroot/css/font-awesome.min.css",
       "wwwroot/css/bootstrap-datetimepicker.min.css"
-    ]
-  },
-  {
-    "outputFileName": "wwwroot/js/site.js",
-    "inputFiles": [
-      "wwwroot/js/custom.js",
-      "wwwroot/js/bootstrap.js",
-      "wwwroot/js/moment-with-locales.js",
-      "wwwroot/js/bootstrap-datetimepicker.min.js",
-      "wwwroot/js/axios.min.js" //https://github.com/axios/axios
     ]
   },
   {

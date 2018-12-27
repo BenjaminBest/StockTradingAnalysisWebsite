@@ -5,27 +5,27 @@ using StockTradingAnalysis.Interfaces.Services.Core;
 
 namespace StockTradingAnalysis.Web.Migration.Common
 {
-    public class PerformanceStats
-    {
-        public static void Reset()
-        {
-            var performanceMeasurementService = DependencyResolver.GetService<IPerformanceMeasurementService>();
+	public class PerformanceStats
+	{
+		public static void Reset()
+		{
+			var performanceMeasurementService = DependencyResolver.Current.GetService<IPerformanceMeasurementService>();
 
-            performanceMeasurementService.Reset();
-        }
+			performanceMeasurementService.Reset();
+		}
 
-        public static void WriteToConsole()
-        {
-            var performanceMeasurementService = DependencyResolver.GetService<IPerformanceMeasurementService>();
-            var loggingService = DependencyResolver.GetService<ILoggingService>();
+		public static void WriteToConsole()
+		{
+			var performanceMeasurementService = DependencyResolver.Current.GetService<IPerformanceMeasurementService>();
+			var loggingService = DependencyResolver.Current.GetService<ILoggingService>();
 
 
-            var results = performanceMeasurementService.GetResults();
+			var results = performanceMeasurementService.GetResults();
 
-            foreach (var result in results)
-            {
-                loggingService.Info(result.Display);
-            }
-        }
-    }
+			foreach (var result in results)
+			{
+				loggingService.Info(result.Display);
+			}
+		}
+	}
 }

@@ -1,39 +1,36 @@
-﻿using Ninject.Extensions.Conventions;
-using Ninject.Modules;
-using StockTradingAnalysis.Core.Extensions;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Raven.Abstractions.Extensions;
+using StockTradingAnalysis.Core.Common;
 using StockTradingAnalysis.Domain.Process.Finders;
 using StockTradingAnalysis.Domain.Process.Locator;
 using StockTradingAnalysis.Domain.Process.ProcessManagers;
 using StockTradingAnalysis.Domain.Process.Repository;
 using StockTradingAnalysis.Interfaces.Events;
+using StockTradingAnalysis.Web.Common.Binding;
+using StockTradingAnalysis.Web.Common.Interfaces;
 
 namespace StockTradingAnalysis.Web.BindingModules
 {
 	/// <summary>
 	/// Binding module for process managers.
 	/// </summary>
-	/// <seealso cref="NinjectModule" />
-	public class ProcessBindingModule : NinjectModule
+	public class ProcessBindingModule : IBindingModule
 	{
 		/// <summary>
-		/// Loads the module into the kernel.
+		/// Loads the binding configuration.
 		/// </summary>
-		public override void Load()
+		/// <param name="serviceCollection">The service collection.</param>
+		public void Load(IServiceCollection serviceCollection)
 		{
-			Bind<IProcessManagerRepository>().To<ProcessManagerRepository>().InSingletonScope();
-			Bind<IProcessManagerCoordinator>().To<ProcessManagerCoordinator>().InSingletonScope();
-			Bind<IProcessManagerFinderRepository>().To<ProcessManagerFinderRepository>().InSingletonScope();
+			serviceCollection.AddTransientForAllInterfaces(typeof(IStartedByMessage<>));
+			serviceCollection.AddTransientForAllInterfaces(typeof(IMessageCorrelationIdCreator<>));
 
-			Bind<IProcessManager>().To<TransactionProcessManager>();
-			Bind<IProcessManager>().To<StatisticsProcessManager>();
+			serviceCollection.AddSingleton<IProcessManagerRepository, ProcessManagerRepository>();
+			serviceCollection.AddSingleton<IProcessManagerCoordinator, ProcessManagerCoordinator>();
+			serviceCollection.AddSingleton<IProcessManagerFinderRepository, ProcessManagerFinderRepository>();
 
-			Kernel.Bind(i => i
-				.FindAllInterfacesOfType("StockTradingAnalysis.*.dll", typeof(IStartedByMessage<>))
-				.BindAllInterfaces());
-
-			Kernel.Bind(i => i
-				.FindAllInterfacesOfType("StockTradingAnalysis.*.dll", typeof(IMessageCorrelationIdCreator<>))
-				.BindAllInterfaces());
+			serviceCollection.AddTransient<IProcessManager, TransactionProcessManager>();
+			serviceCollection.AddTransient<IProcessManager, StatisticsProcessManager>();
 		}
 	}
 }

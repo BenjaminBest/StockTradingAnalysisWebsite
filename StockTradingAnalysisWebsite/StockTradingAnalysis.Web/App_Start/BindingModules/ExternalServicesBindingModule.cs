@@ -1,22 +1,23 @@
-﻿using Ninject.Modules;
+﻿using Microsoft.Extensions.DependencyInjection;
 using StockTradingAnalysis.Services.External.Interfaces;
 using StockTradingAnalysis.Services.External.Services;
+using StockTradingAnalysis.Web.Common.Interfaces;
 
 namespace StockTradingAnalysis.Web.BindingModules
 {
-    /// <summary>
-    /// Binding module for the external services
-    /// </summary>
-    /// <seealso cref="NinjectModule" />
-    public class ExternalServicesBindingModule : NinjectModule
-    {
-        /// <summary>
-        /// Loads the module into the kernel.
-        /// </summary>
-        public override void Load()
-        {
-            //Services
-            Bind<IStockQuoteExternalService>().To<StockQuoteExternalService>().InSingletonScope();
-        }
-    }
+	/// <summary>
+	/// Binding module for the external services
+	/// </summary>
+	public class ExternalServicesBindingModule : IBindingModule
+	{
+		/// <summary>
+		/// Loads the binding configuration.
+		/// </summary>
+		/// <param name="serviceCollection">The service collection.</param>
+		public void Load(IServiceCollection serviceCollection)
+		{
+			//Services
+			serviceCollection.AddSingleton<IStockQuoteExternalService, StockQuoteExternalService>();
+		}
+	}
 }

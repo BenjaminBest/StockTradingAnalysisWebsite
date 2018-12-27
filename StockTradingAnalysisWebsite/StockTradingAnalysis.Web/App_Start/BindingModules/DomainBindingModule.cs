@@ -1,73 +1,109 @@
-﻿using Ninject.Modules;
-using StockTradingAnalysis.Core.Extensions;
+﻿using Microsoft.Extensions.DependencyInjection;
+using StockTradingAnalysis.Core.Common;
 using StockTradingAnalysis.Domain.CQRS.Query.ReadModel;
 using StockTradingAnalysis.Domain.Events.Domain;
+using StockTradingAnalysis.EventSourcing.DomainContext;
 using StockTradingAnalysis.Interfaces.Domain;
 using StockTradingAnalysis.Interfaces.DomainContext;
 using StockTradingAnalysis.Interfaces.ReadModel;
 using StockTradingAnalysis.Interfaces.Services.Domain;
 using StockTradingAnalysis.Services.Services;
 using StockTradingAnalysis.Web.Common.Deletion;
+using StockTradingAnalysis.Web.Common.Interfaces;
 
 namespace StockTradingAnalysis.Web.BindingModules
 {
-    /// <summary>
-    /// Binding module for the domain
-    /// </summary>
-    /// <seealso cref="NinjectModule" />
-    public class DomainBindingModule : NinjectModule
-    {
-        /// <summary>
-        /// Loads the module into the kernel.
-        /// </summary>
-        public override void Load()
-        {
-            //Services
-            Bind<IPriceCalculatorService>().To<PriceCalculatorService>().InSingletonScope();
-            Bind<IStockQuoteService>().To<StockQuoteService>().InSingletonScope();
-            Bind<ITransactionPerformanceService>().To<TransactionPerformanceService>().InSingletonScope();
-            Bind<ITransactionBook>().To<TransactionBook>().InSingletonScope();
-            Bind<IAccumulationPlanStatisticService>().To<AccumulationPlanStatisticService>().InSingletonScope();
-            Bind<IInterestRateCalculatorService>().To<InterestRateCalculatorService>();
-            Bind<ITransactionCalculationService>().To<TransactionCalculationService>();
-            Bind<ITimeSliceCreationService>().To<TimeSliceCreationService>();
-            Bind<IStatisticService>().To<StatisticService>();
+	/// <summary>
+	/// Binding module for the domain
+	/// </summary>
+	public class DomainBindingModule : IBindingModule
+	{
+		/// <summary>
+		/// Loads the binding configuration.
+		/// </summary>
+		/// <param name="serviceCollection">The service collection.</param>
+		public void Load(IServiceCollection serviceCollection)
+		{
+			//Services
+			serviceCollection.AddSingleton<IPriceCalculatorService, PriceCalculatorService>();
+			serviceCollection.AddSingleton<IStockQuoteService, StockQuoteService>();
+			serviceCollection.AddSingleton<ITransactionPerformanceService, TransactionPerformanceService>();
+			serviceCollection.AddSingleton<ITransactionBook, TransactionBook>();
+			serviceCollection.AddSingleton<IAccumulationPlanStatisticService, AccumulationPlanStatisticService>();
+			serviceCollection.AddTransient<IInterestRateCalculatorService, InterestRateCalculatorService>();
+			serviceCollection.AddTransient<ITransactionCalculationService, TransactionCalculationService>();
+			serviceCollection.AddTransient<ITimeSliceCreationService, TimeSliceCreationService>();
+			serviceCollection.AddTransient<IStatisticService, StatisticService>();
 
-            //Model repositories
-            Bind<IModelRepositoryDeletionCoordinator>().To<ModelRepositoryDeletionCoordinator>();
+			//Model repositories
+			serviceCollection.AddTransient<IModelRepositoryDeletionCoordinator, ModelRepositoryDeletionCoordinator>();
 
-            Bind<IModelReaderRepository<IStock>, IModelWriterRepository<IStock>, IModelRepository<IStock>, ISupportsDataDeletion>()
-                .To<StockModelRepository>().InSingletonScope();
+			var stockModelRepository = new StockModelRepository();
+			serviceCollection.AddSingleton<IModelRepository<IStock>>(s => stockModelRepository);
+			serviceCollection.AddSingleton<IModelWriterRepository<IStock>>(s => stockModelRepository);
+			serviceCollection.AddSingleton<IModelReaderRepository<IStock>>(s => stockModelRepository);
+			serviceCollection.AddSingleton<ISupportsDataDeletion>(s => stockModelRepository);
 
-            Bind<IModelReaderRepository<IFeedback>, IModelWriterRepository<IFeedback>, IModelRepository<IFeedback>, ISupportsDataDeletion>()
-                .To<FeedbackModelRepository>().InSingletonScope();
+			var feedbackModelRepository = new FeedbackModelRepository();
+			serviceCollection.AddSingleton<IModelRepository<IFeedback>>(s => feedbackModelRepository);
+			serviceCollection.AddSingleton<IModelWriterRepository<IFeedback>>(s => feedbackModelRepository);
+			serviceCollection.AddSingleton<IModelReaderRepository<IFeedback>>(s => feedbackModelRepository);
+			serviceCollection.AddSingleton<ISupportsDataDeletion>(s => feedbackModelRepository);
 
-            Bind<IModelReaderRepository<ICalculation>, IModelWriterRepository<ICalculation>, IModelRepository<ICalculation>, ISupportsDataDeletion>()
-                .To<CalculationModelRepository>().InSingletonScope();
+			var calculationModelRepository = new CalculationModelRepository();
+			serviceCollection.AddSingleton<IModelRepository<ICalculation>>(s => calculationModelRepository);
+			serviceCollection.AddSingleton<IModelWriterRepository<ICalculation>>(s => calculationModelRepository);
+			serviceCollection.AddSingleton<IModelReaderRepository<ICalculation>>(s => calculationModelRepository);
+			serviceCollection.AddSingleton<ISupportsDataDeletion>(s => calculationModelRepository);
 
-            Bind<IModelReaderRepository<IStrategy>, IModelWriterRepository<IStrategy>, IModelRepository<IStrategy>, ISupportsDataDeletion>()
-                .To<StrategyModelRepository>().InSingletonScope();
+			var strategyModelRepository = new StrategyModelRepository();
+			serviceCollection.AddSingleton<IModelRepository<IStrategy>>(s => strategyModelRepository);
+			serviceCollection.AddSingleton<IModelWriterRepository<IStrategy>>(s => strategyModelRepository);
+			serviceCollection.AddSingleton<IModelReaderRepository<IStrategy>>(s => strategyModelRepository);
+			serviceCollection.AddSingleton<ISupportsDataDeletion>(s => strategyModelRepository);
 
-            Bind<IModelReaderRepository<ITransaction>, IModelWriterRepository<ITransaction>, IModelRepository<ITransaction>, ISupportsDataDeletion>()
-                .To<TransactionModelRepository>().InSingletonScope();
+			var transactionModelRepository = new TransactionModelRepository();
+			serviceCollection.AddSingleton<IModelRepository<ITransaction>>(s => transactionModelRepository);
+			serviceCollection.AddSingleton<IModelWriterRepository<ITransaction>>(s => transactionModelRepository);
+			serviceCollection.AddSingleton<IModelReaderRepository<ITransaction>>(s => transactionModelRepository);
+			serviceCollection.AddSingleton<ISupportsDataDeletion>(s => transactionModelRepository);
 
-            Bind<IModelReaderRepository<ITransactionPerformance>, IModelWriterRepository<ITransactionPerformance>, IModelRepository<ITransactionPerformance>, ISupportsDataDeletion>()
-                .To<TransactionPerformanceModelRepository>().InSingletonScope();
+			var transactionPerformanceModelRepository = new TransactionPerformanceModelRepository();
+			serviceCollection.AddSingleton<IModelRepository<ITransactionPerformance>>(s => transactionPerformanceModelRepository);
+			serviceCollection.AddSingleton<IModelWriterRepository<ITransactionPerformance>>(s => transactionPerformanceModelRepository);
+			serviceCollection.AddSingleton<IModelReaderRepository<ITransactionPerformance>>(s => transactionPerformanceModelRepository);
+			serviceCollection.AddSingleton<ISupportsDataDeletion>(s => transactionPerformanceModelRepository);
 
-            Bind<IModelReaderRepository<IAccountBalance>, IModelWriterRepository<IAccountBalance>, IModelRepository<IAccountBalance>, ISupportsDataDeletion>()
-                .To<AccountBalanceModelRepository>().InSingletonScope();
+			var accountBalanceModelRepository = new AccountBalanceModelRepository();
+			serviceCollection.AddSingleton<IModelRepository<IAccountBalance>>(s => accountBalanceModelRepository);
+			serviceCollection.AddSingleton<IModelWriterRepository<IAccountBalance>>(s => accountBalanceModelRepository);
+			serviceCollection.AddSingleton<IModelReaderRepository<IAccountBalance>>(s => accountBalanceModelRepository);
+			serviceCollection.AddSingleton<ISupportsDataDeletion>(s => accountBalanceModelRepository);
 
-            Bind<IModelReaderRepository<IFeedbackProportion>, IModelWriterRepository<IFeedbackProportion>, IModelRepository<IFeedbackProportion>, ISupportsDataDeletion>()
-                .To<FeedbackProportionModelRepository>().InSingletonScope();
+			var feedbackProportionModelRepository = new FeedbackProportionModelRepository();
+			serviceCollection.AddSingleton<IModelRepository<IFeedbackProportion>>(s => feedbackProportionModelRepository);
+			serviceCollection.AddSingleton<IModelWriterRepository<IFeedbackProportion>>(s => feedbackProportionModelRepository);
+			serviceCollection.AddSingleton<IModelReaderRepository<IFeedbackProportion>>(s => feedbackProportionModelRepository);
+			serviceCollection.AddSingleton<ISupportsDataDeletion>(s => feedbackProportionModelRepository);
 
-            Bind<IModelReaderRepository<IStockStatistics>, IModelWriterRepository<IStockStatistics>, IModelRepository<IStockStatistics>, ISupportsDataDeletion>()
-                .To<StockStatisticsModelRepository>().InSingletonScope();
+			var stockStatisticsModelRepository = new StockStatisticsModelRepository();
+			serviceCollection.AddSingleton<IModelRepository<IStockStatistics>>(s => stockStatisticsModelRepository);
+			serviceCollection.AddSingleton<IModelReaderRepository<IStockStatistics>>(s => stockStatisticsModelRepository);
+			serviceCollection.AddSingleton<IModelWriterRepository<IStockStatistics>>(s => stockStatisticsModelRepository);
+			serviceCollection.AddSingleton<ISupportsDataDeletion>(s => stockStatisticsModelRepository);
 
-            Bind<ITimeSliceModelRepository<IStatistic>, ITimeSliceModelReaderRepository<IStatistic>, ITimeSliceModelWriterRepository<IStatistic>>()
-                .To<TimeSliceModelRepository<IStatistic>>().InSingletonScope();
+			serviceCollection
+				.AddSingleton<ITimeSliceModelRepository<IStatistic>, TimeSliceModelRepository<IStatistic>>();
+			serviceCollection.AddSingleton<ITimeSliceModelReaderRepository<IStatistic>>(s =>
+				s.GetService<ITimeSliceModelRepository<IStatistic>>());
+			serviceCollection.AddSingleton<ITimeSliceModelWriterRepository<IStatistic>>(s =>
+				s.GetService<ITimeSliceModelRepository<IStatistic>>());
 
-            //Repository
-            Kernel.FindAllInterfacesOfType("StockTradingAnalysis.*.dll", typeof(IAggregateRepository<>));
-        }
-    }
+			//Aggregates Repositories
+			foreach (var type in TypeHelper.FindNonAbstractTypes("StockTradingAnalysis.", typeof(IAggregateRoot)))
+			{
+				serviceCollection.AddTransient(typeof(IAggregateRepository<>).MakeGenericType(type), typeof(AggregateRepository<>).MakeGenericType(type));
+			}
+		}
+	}
 }

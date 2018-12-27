@@ -1,13 +1,12 @@
-﻿using System;
-using System.Linq;
-using Hangfire;
-using StockTradingAnalysis.Core.Common;
+﻿using Hangfire;
 using StockTradingAnalysis.Domain.CQRS.Cmd.Commands;
 using StockTradingAnalysis.Domain.CQRS.Query.Queries;
 using StockTradingAnalysis.Interfaces.Commands;
 using StockTradingAnalysis.Interfaces.Queries;
 using StockTradingAnalysis.Interfaces.Scheduler;
 using StockTradingAnalysis.Web.Common.Interfaces;
+using System;
+using System.Linq;
 
 namespace StockTradingAnalysis.Web.Common.Scheduler
 {
@@ -50,12 +49,18 @@ namespace StockTradingAnalysis.Web.Common.Scheduler
 
 		/// <summary>
 		/// Initializes a new instance of the <see cref="UpdateQuotationsScheduledJob" /> class.
-		/// </summary>		
-		public UpdateQuotationsScheduledJob()
+		/// </summary>
+		/// <param name="queryDispatcher">The query dispatcher.</param>
+		/// <param name="commandDispatcher">The command dispatcher.</param>
+		/// <param name="quotationServiceClient">The quotation service client.</param>
+		public UpdateQuotationsScheduledJob(
+			IQueryDispatcher queryDispatcher,
+			ICommandDispatcher commandDispatcher,
+			IQuotationServiceClient quotationServiceClient)
 		{
-			_queryDispatcher = DependencyResolver.GetService<IQueryDispatcher>();
-			_commandDispatcher = DependencyResolver.GetService<ICommandDispatcher>(); ;
-			_quotationServiceClient = DependencyResolver.GetService<IQuotationServiceClient>(); ;
+			_queryDispatcher = queryDispatcher;
+			_commandDispatcher = commandDispatcher;
+			_quotationServiceClient = quotationServiceClient;
 		}
 
 		/// <summary>

@@ -17,12 +17,12 @@ namespace StockTradingAnalysis.Web.Tests
 		[Description("The eventstore should save every event that comes to the internal storage")]
 		public void EventStoreShouldSaveEventToInternalStorage()
 		{
-			var handlers = new List<DependencyDescriptor>
+			DependencyServiceMock.SetMock(new List<DependencyDescriptor>
 			{
 				new DependencyDescriptor(typeof (IEventHandler<TestEvent>), new TestEventHandler())
-			};
+			});
 
-			var eventBus = new EventBus(DependencyServiceMock.GetMock(handlers));
+			var eventBus = new EventBus();
 			var eventStore = new EventStore(eventBus, new InMemoryEventStore(), PerformanceCounterMock.GetMock());
 
 			var events = new List<IDomainEvent>() { new TestEvent(Guid.NewGuid()) };
@@ -35,12 +35,12 @@ namespace StockTradingAnalysis.Web.Tests
 		[Description("The eventstore GetEventsByAggregateId method should apply the filter correctly")]
 		public void EventStoreShouldApplyTheFilterCorrectly()
 		{
-			var handlers = new List<DependencyDescriptor>
+			DependencyServiceMock.SetMock(new List<DependencyDescriptor>
 			{
 				new DependencyDescriptor(typeof (IEventHandler<TestEvent>), new TestEventHandler())
-			};
+			});
 
-			var eventBus = new EventBus(DependencyServiceMock.GetMock(handlers));
+			var eventBus = new EventBus();
 			var eventStore = new EventStore(eventBus, new InMemoryEventStore(), PerformanceCounterMock.GetMock());
 
 			var aggregateId = Guid.NewGuid();
@@ -59,14 +59,14 @@ namespace StockTradingAnalysis.Web.Tests
 		[Description("The eventstore should publish all incoming events to the event bus")]
 		public void EventStoreShouldPublishAllSavedEventsToTheEventBus()
 		{
-			var result = String.Empty;
+			var result = string.Empty;
 
-			var handlers = new List<DependencyDescriptor>
+			DependencyServiceMock.SetMock(new List<DependencyDescriptor>
 			{
 				new DependencyDescriptor(typeof (IEventHandler<TestEvent>), new TestEventHandler((name) => result = name))
-			};
+			});
 
-			var eventBus = new EventBus(DependencyServiceMock.GetMock(handlers));
+			var eventBus = new EventBus();
 			var eventStore = new EventStore(eventBus, new InMemoryEventStore(), PerformanceCounterMock.GetMock());
 
 			var events = new List<IDomainEvent>() { new TestEvent(Guid.NewGuid()) };
@@ -80,12 +80,12 @@ namespace StockTradingAnalysis.Web.Tests
 			)]
 		public void EventStoreShouldNotThrowExceptionWhenFilterIsUsedOnEmptyEventList()
 		{
-			var handlers = new List<DependencyDescriptor>
+			DependencyServiceMock.SetMock(new List<DependencyDescriptor>
 			{
 				new DependencyDescriptor(typeof (IEventHandler<TestEvent>), new TestEventHandler())
-			};
+			});
 
-			var eventBus = new EventBus(DependencyServiceMock.GetMock(handlers));
+			var eventBus = new EventBus();
 			var eventStore = new EventStore(eventBus, new InMemoryEventStore(), PerformanceCounterMock.GetMock());
 
 			Action act = () => eventStore.GetEventsByAggregateId(Guid.NewGuid());
@@ -96,14 +96,14 @@ namespace StockTradingAnalysis.Web.Tests
 		[Description("The eventstore should process 20.000 events in one second")]
 		public void EventStoreShouldProcess20000EventsInLessThan1Second()
 		{
-			var result = String.Empty;
+			var result = string.Empty;
 
-			var handlers = new List<DependencyDescriptor>
+			DependencyServiceMock.SetMock(new List<DependencyDescriptor>
 			{
 				new DependencyDescriptor(typeof (IEventHandler<TestEvent>), new TestEventHandler((name) => result += "0"))
-			};
+			});
 
-			var eventBus = new EventBus(DependencyServiceMock.GetMock(handlers));
+			var eventBus = new EventBus();
 			var eventStore = new EventStore(eventBus, new InMemoryEventStore(), PerformanceCounterMock.GetMock());
 
 			Action act = () =>

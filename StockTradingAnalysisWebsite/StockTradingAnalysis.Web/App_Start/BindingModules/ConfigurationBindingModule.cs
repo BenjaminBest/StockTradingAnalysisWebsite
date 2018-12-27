@@ -1,34 +1,39 @@
-﻿using System.Configuration;
-using Microsoft.Extensions.Configuration;
-using Ninject.Modules;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using StockTradingAnalysis.Core.Common;
 using StockTradingAnalysis.Core.Configuration;
 using StockTradingAnalysis.Interfaces.Configuration;
+using StockTradingAnalysis.Web.Common.Interfaces;
 
 namespace StockTradingAnalysis.Web.BindingModules
 {
 	/// <summary>
 	/// Binding module for configuration
 	/// </summary>
-	/// <seealso cref="NinjectModule" />
-	public class ConfigurationBindingModule : NinjectModule
+	public class ConfigurationBindingModule : IBindingModule
 	{
 		/// <summary>
-		/// Loads the module into the kernel.
+		/// Loads the binding configuration.
 		/// </summary>
-		public override void Load()
+		/// <param name="serviceCollection">The service collection.</param>
+		public void Load(IServiceCollection serviceCollection)
 		{
 			//Configuration Registry
-			Bind<IConfigurationRegistry>().ToMethod(context =>
+			serviceCollection.AddSingleton<IConfigurationRegistry>(context =>
 			{
 				var registry = new ConfigurationRegistry();
 
-				registry.AddValue("StockTradingAnalysis_MSSQL", DependencyResolver.GetService<IConfiguration>().GetConnectionString("StockTradingAnalysis_MSSQL"));
-				registry.AddValue("StockTradingAnalysis_RavenDB", DependencyResolver.GetService<IConfiguration>().GetConnectionString("StockTradingAnalysis_RavenDB"));
+				registry.AddValue("StockTradingAnalysis_MSSQL",
+					DependencyResolver.Current.GetService<IConfiguration>()
+						.GetConnectionString("StockTradingAnalysis_MSSQL"));
+
+				registry.AddValue("StockTradingAnalysis_RavenDB",
+					DependencyResolver.Current.GetService<IConfiguration>()
+						.GetConnectionString("StockTradingAnalysis_RavenDB"));
 
 				return registry;
 
-			}).InSingletonScope();
+			});
 		}
 	}
 }

@@ -55,7 +55,7 @@ namespace StockTradingAnalysis.Web.Common.ItemResolvers
 			if (itemValue.Equals("FilterAll"))
 				return Enumerable.Empty<ITransactionFilter>();
 
-			var dateService = DependencyResolver.GetService<IDateCalculationService>();
+			var dateService = DependencyResolver.Current.GetService<IDateCalculationService>();
 
 			var startDate = DateTime.MinValue;
 			var endDate = DateTime.MaxValue;

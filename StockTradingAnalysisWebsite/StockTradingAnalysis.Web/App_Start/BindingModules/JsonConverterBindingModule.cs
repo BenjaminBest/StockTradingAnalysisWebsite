@@ -1,22 +1,23 @@
-﻿using Newtonsoft.Json;
-using Ninject.Modules;
+﻿using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json;
 using StockTradingAnalysis.Web.Common.Converters;
+using StockTradingAnalysis.Web.Common.Interfaces;
 
 namespace StockTradingAnalysis.Web.BindingModules
 {
 	/// <summary>
 	/// Binding module for json converters.
 	/// </summary>
-	/// <seealso cref="NinjectModule" />
-	public class JsonConverterBindingModule : NinjectModule
+	public class JsonConverterBindingModule : IBindingModule
 	{
 		/// <summary>
-		/// Loads the module into the kernel.
+		/// Loads the binding configuration.
 		/// </summary>
-		public override void Load()
+		/// <param name="serviceCollection">The service collection.</param>
+		public void Load(IServiceCollection serviceCollection)
 		{
 			//Services
-			Bind<JsonConverter>().To<QuotationJsonConverter>();
+			serviceCollection.AddTransient<JsonConverter, QuotationJsonConverter>();
 		}
 	}
 }

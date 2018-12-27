@@ -1,21 +1,24 @@
-﻿using Ninject.Modules;
-using StockTradingAnalysis.Core.Extensions;
+﻿using System.Linq;
+using Microsoft.Extensions.DependencyInjection;
+using StockTradingAnalysis.Core.Common;
 using StockTradingAnalysis.Interfaces.Common;
+using StockTradingAnalysis.Web.Common.Binding;
+using StockTradingAnalysis.Web.Common.Interfaces;
 
 namespace StockTradingAnalysis.Web.BindingModules
 {
-    /// <summary>
-    /// Binding module for boot modules
-    /// </summary>
-    /// <seealso cref="NinjectModule" />
-    public class BootModulesBindingModule : NinjectModule
-    {
-        /// <summary>
-        /// Loads the module into the kernel.
-        /// </summary>
-        public override void Load()
-        {
-            Kernel.FindAllInterfacesOfType("StockTradingAnalysis.*.dll", typeof(IBootModule));
-        }
-    }
+	/// <summary>
+	/// Binding module for boot modules
+	/// </summary>
+	public class BootModulesBindingModule : IBindingModule
+	{
+		/// <summary>
+		/// Loads the binding configuration.
+		/// </summary>
+		/// <param name="serviceCollection">The service collection.</param>
+		public void Load(IServiceCollection serviceCollection)
+		{
+			serviceCollection.AddTransientForAllInterfaces<IBootModule>();
+		}
+	}
 }

@@ -1,8 +1,5 @@
-﻿using System.Linq;
-using Microsoft.AspNetCore;
+﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
-using StockTradingAnalysis.Core.Common;
-using StockTradingAnalysis.Interfaces.Common;
 
 namespace StockTradingAnalysis.Web
 {
@@ -10,18 +7,12 @@ namespace StockTradingAnalysis.Web
 	{
 		public static void Main(string[] args)
 		{
-			//Booting configuration modules
-			var bootModules = DependencyResolver.GetServices<IBootModule>()
-				.OrderByDescending(m => m.Priority);
-			var bootManager = new BootManager(bootModules);
-			bootManager.Boot();
-
-			CreateWebHostBuilder(args).Build().Run();
+			BuildWebHost(args).Run();
 		}
 
-		public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
+		public static IWebHost BuildWebHost(string[] args) =>
 			WebHost.CreateDefaultBuilder(args)
 				.UseStartup<Startup>()
-				.UseApplicationInsights();
+				.UseApplicationInsights().Build();
 	}
 }

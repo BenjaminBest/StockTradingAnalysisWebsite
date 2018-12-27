@@ -1,4 +1,0 @@
-﻿@using StockTradingAnalysis.Web.Common.Formatting
-@model decimal?
-
-<span class="text-@Model.Value.StyleTypeForCurrency().CssClass()"><strong>@string.Format("{0:c}", Model.Value)</strong></span>

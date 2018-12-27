@@ -3,6 +3,8 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
+    <RazorCompileOnBuild>false</RazorCompileOnBuild>
+    <RazorCompileOnPublish>false</RazorCompileOnPublish>
   </PropertyGroup>
 
   <ItemGroup>
@@ -23,6 +25,7 @@
   <ItemGroup>
     <ProjectReference Include="..\StockTradingAnalysis.CQRS\StockTradingAnalysis.CQRS.csproj" />
     <ProjectReference Include="..\StockTradingAnalysis.Data.MSSQL\StockTradingAnalysis.Data.MSSQL.csproj" />
+    <ProjectReference Include="..\StockTradingAnalysis.Data.RavenDb\StockTradingAnalysis.Data.RavenDb.csproj" />
     <ProjectReference Include="..\StockTradingAnalysis.Domain.CQRS.Cmd\StockTradingAnalysis.Domain.CQRS.Cmd.csproj" />
     <ProjectReference Include="..\StockTradingAnalysis.Domain.CQRS.Query\StockTradingAnalysis.Domain.CQRS.Query.csproj" />
     <ProjectReference Include="..\StockTradingAnalysis.Domain.Process\StockTradingAnalysis.Domain.Process.csproj" />
@@ -47,5 +50,4 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
-
 </Project>

@@ -26,7 +26,7 @@ namespace StockTradingAnalysis.Web.Hubs
 		/// </summary>
 		public QuotationHub()
 		{
-			_quotationServiceClient = DependencyResolver.GetService<IQuotationServiceClient>();
+			_quotationServiceClient = DependencyResolver.Current.GetService<IQuotationServiceClient>();
 
 			BroadcastQuotationServiceStatus();
 		}

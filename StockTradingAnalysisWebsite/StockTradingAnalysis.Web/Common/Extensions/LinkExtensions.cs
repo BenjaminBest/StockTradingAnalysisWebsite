@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Html;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.AspNetCore.Mvc.Routing;
+using Microsoft.AspNetCore.Routing;
+using StockTradingAnalysis.Core.Common;
 
 namespace StockTradingAnalysis.Web.Common.Extensions
 {
@@ -25,8 +21,13 @@ namespace StockTradingAnalysis.Web.Common.Extensions
 		public static IHtmlContent PlainLink(this IHtmlHelper htmlHelper, string action, string controller,
 			object parameters)
 		{
-			var helper = new UrlHelper(htmlHelper.ViewContext);
-			var url = helper.Action(action, controller, parameters);
+			var linkGenerator = DependencyResolver.Current.GetService<LinkGenerator>();
+
+			var url = linkGenerator.GetPathByAction(action, controller, parameters);
+
+			//var helper = new UrlHelper(htmlHelper.ViewContext);
+
+			//var url = helper.Action(action, controller, parameters);
 
 			return new HtmlString(url);
 		}

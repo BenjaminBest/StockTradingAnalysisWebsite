@@ -18,11 +18,10 @@ namespace StockTradingAnalysis.Web.Tests
 		{
 			var resultObj = new Test(Guid.NewGuid());
 
-			var dispatcher =
-				new QueryDispatcher(
-					DependencyServiceMock.GetMock(new DependencyDescriptor(typeof(IQueryHandler<TestQuery, Test>),
-						QueryHandlerMock.GetMock(resultObj))),
-						PerformanceCounterMock.GetMock());
+			DependencyServiceMock.SetMock(new DependencyDescriptor(typeof(IQueryHandler<TestQuery, Test>),
+				QueryHandlerMock.GetMock(resultObj)));
+
+			var dispatcher = new QueryDispatcher(PerformanceCounterMock.GetMock());
 			var result = dispatcher.Execute(new TestQuery());
 
 			result.Should().Equals(resultObj);
@@ -32,10 +31,9 @@ namespace StockTradingAnalysis.Web.Tests
 		[Description("Query dispatcher should throw QueryDispatcherException when handler not found")]
 		public void QueryDispatcherShouldThrowExceptionIfHandlerNotFound()
 		{
-			var dispatcher =
-				new QueryDispatcher(
-					DependencyServiceMock.GetMock(new DependencyDescriptor(typeof(IQueryHandler<TestQuery, Test>), null)),
-					PerformanceCounterMock.GetMock());
+			DependencyServiceMock.SetMock(new DependencyDescriptor(typeof(IQueryHandler<TestQuery, Test>), null));
+
+			var dispatcher = new QueryDispatcher(PerformanceCounterMock.GetMock());
 
 			Action act = () => dispatcher.Execute(new TestQuery());
 			act.Should().Throw<QueryDispatcherException>();

@@ -16,10 +16,9 @@ namespace StockTradingAnalysis.Web.Tests
 		[Description("Command dispatcher should throw CommandDispatcherException when handler not found")]
 		public void CommandDispatcherShouldThrowExceptionIfHandlerNotFound()
 		{
-			var dispatcher =
-				new CommandDispatcher(
-					DependencyServiceMock.GetMock(new DependencyDescriptor(typeof(ICommandHandler<TestCommand>), null)),
-					PerformanceCounterMock.GetMock());
+			DependencyServiceMock.SetMock(new DependencyDescriptor(typeof(ICommandHandler<TestCommand>), null));
+
+			var dispatcher = new CommandDispatcher(PerformanceCounterMock.GetMock());
 
 			Action act = () => dispatcher.Execute(new TestCommand());
 			act.Should().Throw<CommandDispatcherException>();

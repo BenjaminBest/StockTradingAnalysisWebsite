@@ -7,21 +7,21 @@ using StockTradingAnalysis.Interfaces.Queries;
 
 namespace StockTradingAnalysis.Web.Migration.Common
 {
-    public class ImportBase
-    {
-        protected readonly ILoggingService LoggingService;
-        protected readonly ICommandDispatcher CommandDispatcher;
-        protected readonly IQueryDispatcher QueryDispatcher;
-        protected readonly IConfigurationRegistry Configuration;
-        protected readonly JsonSerializerService SerializerService;
+	public class ImportBase
+	{
+		protected readonly ILoggingService LoggingService;
+		protected readonly ICommandDispatcher CommandDispatcher;
+		protected readonly IQueryDispatcher QueryDispatcher;
+		protected readonly IConfigurationRegistry Configuration;
+		protected readonly JsonSerializerService SerializerService;
 
-        public ImportBase()
-        {
-            LoggingService = DependencyResolver.GetService<ILoggingService>();
-            CommandDispatcher = DependencyResolver.GetService<ICommandDispatcher>();
-            QueryDispatcher = DependencyResolver.GetService<IQueryDispatcher>();
-            Configuration = DependencyResolver.GetService<IConfigurationRegistry>();
-            SerializerService = new JsonSerializerService();
-        }
-    }
+		public ImportBase()
+		{
+			LoggingService = DependencyResolver.Current.GetService<ILoggingService>();
+			CommandDispatcher = DependencyResolver.Current.GetService<ICommandDispatcher>();
+			QueryDispatcher = DependencyResolver.Current.GetService<IQueryDispatcher>();
+			Configuration = DependencyResolver.Current.GetService<IConfigurationRegistry>();
+			SerializerService = new JsonSerializerService();
+		}
+	}
 }

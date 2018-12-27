@@ -9,79 +9,81 @@ using StockTradingAnalysis.Web.Tests.Objects;
 
 namespace StockTradingAnalysis.Web.Tests
 {
-    [TestClass]
-    public class EventBusTests
-    {
-        [TestMethod]
-        [Description("The event bus should call an registered event handler")]
-        public void EventBusShouldCallTheRegisteredEventHandler()
-        {
-            var result = String.Empty;
+	[TestClass]
+	public class EventBusTests
+	{
+		[TestMethod]
+		[Description("The event bus should call an registered event handler")]
+		public void EventBusShouldCallTheRegisteredEventHandler()
+		{
+			var result = string.Empty;
 
-            var handlers = new List<DependencyDescriptor>
-            {
-                new DependencyDescriptor(typeof (IEventHandler<TestEvent>), new TestEventHandler((name) => result = name))
-            };
+			DependencyServiceMock.SetMock(new List<DependencyDescriptor>
+			{
+				new DependencyDescriptor(typeof (IEventHandler<TestEvent>), new TestEventHandler((name) => result = name))
+			});
 
-            var eventBus = new EventBus(DependencyServiceMock.GetMock(handlers));
+			var eventBus = new EventBus();
 
-            eventBus.Publish(new TestEvent(Guid.NewGuid()));
+			eventBus.Publish(new TestEvent(Guid.NewGuid()));
 
-            result.Should().Be("TestEvent");
-        }
+			result.Should().Be("TestEvent");
+		}
 
-        [TestMethod]
-        [Description("The event bus should not throw an exeption in no registered event handler is available")]
-        public void EventBusShouldNotThrowAnExceptionWhenNoEventHandlerAvailable()
-        {
-            var result = String.Empty;
+		[TestMethod]
+		[Description("The event bus should not throw an exeption in no registered event handler is available")]
+		public void EventBusShouldNotThrowAnExceptionWhenNoEventHandlerAvailable()
+		{
+			var result = string.Empty;
+			DependencyServiceMock.SetMock(new List<DependencyDescriptor>());
 
-            var eventBus = new EventBus(DependencyServiceMock.GetMock(new List<DependencyDescriptor>()));
 
-            eventBus.Publish(new TestEvent(Guid.NewGuid()));
+			var eventBus = new EventBus();
 
-            result.Should().Be("");
-        }
+			eventBus.Publish(new TestEvent(Guid.NewGuid()));
 
-        [TestMethod]
-        [Description("The event bus should call the right event handler based on the event")]
-        public void EventBusShouldCallTheRightEventHandler()
-        {
-            var result = String.Empty;
+			result.Should().Be("");
+		}
 
-            var handlers = new List<DependencyDescriptor>
-            {
-                new DependencyDescriptor(typeof (IEventHandler<TestEvent>), new TestEventHandler((name) => result += name)),
-                new DependencyDescriptor(typeof (IEventHandler<TestAlternativeEvent>),
-                    new TestAlternativeEventHandler((name) => result += name))
-            };
+		[TestMethod]
+		[Description("The event bus should call the right event handler based on the event")]
+		public void EventBusShouldCallTheRightEventHandler()
+		{
+			var result = string.Empty;
 
-            var eventBus = new EventBus(DependencyServiceMock.GetMock(handlers));
+			DependencyServiceMock.SetMock(new List<DependencyDescriptor>
+			{
+				new DependencyDescriptor(typeof (IEventHandler<TestEvent>), new TestEventHandler((name) => result += name)),
+				new DependencyDescriptor(typeof (IEventHandler<TestAlternativeEvent>),
+					new TestAlternativeEventHandler((name) => result += name))
+			});
 
-            eventBus.Publish(new TestAlternativeEvent(Guid.NewGuid()));
+			var eventBus = new EventBus();
 
-            result.Should().Be("TestAlternativeEvent");
-        }
+			eventBus.Publish(new TestAlternativeEvent(Guid.NewGuid()));
 
-        [TestMethod]
-        [Description("The event bus should call an event handler which receives multiple specific events")]
-        public void EventBusShouldCallAnEventHandlerWhichReceivesSpecificEvents()
-        {
-            var result = String.Empty;
+			result.Should().Be("TestAlternativeEvent");
+		}
 
-            var handlers = new List<DependencyDescriptor>
-            {
-                new DependencyDescriptor(typeof (IEventHandler<TestEvent>), new TestAllSpecificEventHandler((name) => result += name)),
-                new DependencyDescriptor(typeof (IEventHandler<TestAlternativeEvent>),
-                    new TestAllSpecificEventHandler((name) => result += name))
-            };
+		[TestMethod]
+		[Description("The event bus should call an event handler which receives multiple specific events")]
+		public void EventBusShouldCallAnEventHandlerWhichReceivesSpecificEvents()
+		{
+			var result = string.Empty;
 
-            var eventBus = new EventBus(DependencyServiceMock.GetMock(handlers));
+			DependencyServiceMock.SetMock(new List<DependencyDescriptor>
+			{
+				new DependencyDescriptor(typeof (IEventHandler<TestEvent>), new TestAllSpecificEventHandler((name) => result += name)),
+				new DependencyDescriptor(typeof (IEventHandler<TestAlternativeEvent>),
+					new TestAllSpecificEventHandler(name => result += name))
+			});
 
-            eventBus.Publish(new TestAlternativeEvent(Guid.NewGuid()));
-            eventBus.Publish(new TestEvent(Guid.NewGuid()));
+			var eventBus = new EventBus();
 
-            result.Should().Be("TestAlternativeEventTestEvent");
-        }
-    }
+			eventBus.Publish(new TestAlternativeEvent(Guid.NewGuid()));
+			eventBus.Publish(new TestEvent(Guid.NewGuid()));
+
+			result.Should().Be("TestAlternativeEventTestEvent");
+		}
+	}
 }

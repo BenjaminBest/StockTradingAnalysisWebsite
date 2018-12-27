@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using AutoMapper;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using StockTradingAnalysis.Domain.CQRS.Cmd.Commands;
 using StockTradingAnalysis.Domain.CQRS.Cmd.Exceptions;
@@ -10,6 +7,9 @@ using StockTradingAnalysis.Interfaces.Commands;
 using StockTradingAnalysis.Interfaces.Queries;
 using StockTradingAnalysis.Web.Common.Interfaces;
 using StockTradingAnalysis.Web.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace StockTradingAnalysis.Web.Controllers
 {

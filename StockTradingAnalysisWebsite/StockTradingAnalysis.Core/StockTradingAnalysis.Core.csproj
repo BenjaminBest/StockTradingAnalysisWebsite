@@ -8,10 +8,8 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="log4net" Version="2.0.8" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="2.2.0" />
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
-    <PackageReference Include="Ninject" Version="3.3.4" />
-    <PackageReference Include="Ninject.Extensions.Conventions" Version="3.3.0" />
-    <PackageReference Include="Ninject.Web.Common" Version="3.3.1" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\StockTradingAnalysis.Interfaces\StockTradingAnalysis.Interfaces.csproj" />

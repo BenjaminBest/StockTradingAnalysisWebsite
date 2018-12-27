@@ -1,25 +1,26 @@
-﻿using Ninject.Modules;
+﻿using Microsoft.Extensions.DependencyInjection;
 using StockTradingAnalysis.Core.Performance;
 using StockTradingAnalysis.Core.Services;
 using StockTradingAnalysis.Interfaces.Common;
 using StockTradingAnalysis.Interfaces.Enumerations;
 using StockTradingAnalysis.Interfaces.Services.Core;
+using StockTradingAnalysis.Web.Common.Interfaces;
 
 namespace StockTradingAnalysis.Web.BindingModules
 {
 	/// <summary>
 	/// Binding module for performance counters.
 	/// </summary>
-	/// <seealso cref="NinjectModule" />
-	public class PerformanceCounterBindingModule : NinjectModule
+	public class PerformanceCounterBindingModule : IBindingModule
 	{
 		/// <summary>
-		/// Loads the module into the kernel.
+		/// Loads the binding configuration.
 		/// </summary>
-		public override void Load()
+		/// <param name="serviceCollection">The service collection.</param>
+		public void Load(IServiceCollection serviceCollection)
 		{
 			//Performance counter-templates
-			Bind<IPerformanceRegistry>().ToMethod((context) =>
+			serviceCollection.AddSingleton<IPerformanceRegistry>(context =>
 			{
 				var registry = new PerformanceRegistry();
 
@@ -29,10 +30,10 @@ namespace StockTradingAnalysis.Web.BindingModules
 
 				return registry;
 
-			}).InSingletonScope();
+			});
 
 			//Service
-			Bind<IPerformanceMeasurementService>().To<PerformanceMeasurementService>().InSingletonScope();
+			serviceCollection.AddSingleton<IPerformanceMeasurementService, PerformanceMeasurementService>();
 		}
 	}
 }

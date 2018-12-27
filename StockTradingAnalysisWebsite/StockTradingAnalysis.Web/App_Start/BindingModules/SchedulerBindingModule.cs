@@ -1,27 +1,22 @@
-﻿using Ninject.Modules;
-using StockTradingAnalysis.Interfaces.Common;
+﻿using Microsoft.Extensions.DependencyInjection;
 using StockTradingAnalysis.Interfaces.Scheduler;
-using StockTradingAnalysis.Interfaces.Services;
-using StockTradingAnalysis.Interfaces.Services.Core;
 using StockTradingAnalysis.Web.Common.Interfaces;
-using StockTradingAnalysis.Web.Common.ItemResolvers;
 using StockTradingAnalysis.Web.Common.Scheduler;
-using StockTradingAnalysis.Web.Common.Services;
 
 namespace StockTradingAnalysis.Web.BindingModules
 {
 	/// <summary>
 	/// Binding module for schedules jobs.
 	/// </summary>
-	/// <seealso cref="NinjectModule" />
-	public class SchedulerBindingModule : NinjectModule
+	public class SchedulerBindingModule : IBindingModule
 	{
 		/// <summary>
-		/// Loads the module into the kernel.
+		/// Loads the binding configuration.
 		/// </summary>
-		public override void Load()
+		/// <param name="serviceCollection">The service collection.</param>
+		public void Load(IServiceCollection serviceCollection)
 		{
-			Bind<IScheduledJob>().To<UpdateQuotationsScheduledJob>();
+			serviceCollection.AddTransient<IScheduledJob, UpdateQuotationsScheduledJob>();
 		}
 	}
 }
