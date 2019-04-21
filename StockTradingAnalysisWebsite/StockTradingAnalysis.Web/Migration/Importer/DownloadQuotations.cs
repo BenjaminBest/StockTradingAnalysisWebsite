@@ -11,7 +11,6 @@ namespace StockTradingAnalysis.Web.Migration.Importer
     {
         public void Start()
         {
-
             //Import            
             LoggingService.Info("Download Quotations ");
 

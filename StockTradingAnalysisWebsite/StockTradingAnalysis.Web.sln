@@ -23,8 +23,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockTradingAnalysis.Domain
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockTradingAnalysis.Services", "StockTradingAnalysis.Services\StockTradingAnalysis.Services.csproj", "{23347637-C67A-4826-A8C3-83D19EC1E2FB}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockTradingAnalysis.Web.Migration", "StockTradingAnalysis.Web.Migration\StockTradingAnalysis.Web.Migration.csproj", "{2E792087-482E-4950-AF0B-6D81FD61821C}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockTradingAnalysis.EventSourcing.Tests", "StockTradingAnalysis.EventSourcing.Tests\StockTradingAnalysis.EventSourcing.Tests.csproj", "{C242F449-799C-4E2F-B411-5B3264A1DF3F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StockTradingAnalysis.CQRS.Tests", "StockTradingAnalysis.CQRS.Tests\StockTradingAnalysis.CQRS.Tests.csproj", "{B830037B-CE85-4AA6-AF6F-6FC7EDB87AC1}"
@@ -91,10 +89,6 @@ Global
 		{23347637-C67A-4826-A8C3-83D19EC1E2FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{23347637-C67A-4826-A8C3-83D19EC1E2FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{23347637-C67A-4826-A8C3-83D19EC1E2FB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2E792087-482E-4950-AF0B-6D81FD61821C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2E792087-482E-4950-AF0B-6D81FD61821C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2E792087-482E-4950-AF0B-6D81FD61821C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2E792087-482E-4950-AF0B-6D81FD61821C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C242F449-799C-4E2F-B411-5B3264A1DF3F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C242F449-799C-4E2F-B411-5B3264A1DF3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C242F449-799C-4E2F-B411-5B3264A1DF3F}.Release|Any CPU.ActiveCfg = Release|Any CPU

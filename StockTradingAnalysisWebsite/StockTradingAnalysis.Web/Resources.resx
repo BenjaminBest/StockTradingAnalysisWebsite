@@ -1398,4 +1398,7 @@
   <data name="ViewTextScheduler" xml:space="preserve">
     <value>Scheduler</value>
   </data>
+  <data name="DisplayGenerateTestData" xml:space="preserve">
+    <value>Testdaten Generierung!</value>
+  </data>
 </root>

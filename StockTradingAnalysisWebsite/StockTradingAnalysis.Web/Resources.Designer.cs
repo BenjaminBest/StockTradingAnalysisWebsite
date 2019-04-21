@@ -1717,6 +1717,15 @@ namespace StockTradingAnalysis.Web {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Testdaten Generierung!.
+        /// </summary>
+        public static string DisplayGenerateTestData {
+            get {
+                return ResourceManager.GetString("DisplayGenerateTestData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tage.
         /// </summary>
         public static string DisplayTooltipDays {
