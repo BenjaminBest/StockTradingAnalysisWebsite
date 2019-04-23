@@ -42,19 +42,6 @@
     ]
   },
   {
-    "outputFileName": "wwwroot/bundles/jsx/react.js",
-    "inputFiles": [
-      "wwwroot/jsx/Popup.jsx",
-      "wwwroot/jsx/UpdateQuotationsButton.jsx",
-      "wwwroot/jsx/GenerateTestDataButtonProgressBar.jsx"
-    ],
-    "minify": {
-      "enabled": false,
-      "renameLocals": false
-    },
-    "sourceMap": false
-  },
-  {
     "outputFileName": "wwwroot/bundles/js/jquery.js",
     "inputFiles": [
       "wwwroot/scripts/jquery-3.3.1.js",
