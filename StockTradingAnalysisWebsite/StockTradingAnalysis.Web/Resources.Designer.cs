@@ -2275,6 +2275,15 @@ namespace StockTradingAnalysis.Web {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Migration.
+        /// </summary>
+        public static string ViewTextAdministrationStartMigration {
+            get {
+                return ResourceManager.GetString("ViewTextAdministrationStartMigration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Alle.
         /// </summary>
         public static string ViewTextAll {

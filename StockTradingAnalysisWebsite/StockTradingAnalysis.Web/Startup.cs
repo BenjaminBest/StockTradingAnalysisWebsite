@@ -13,6 +13,7 @@ using StockTradingAnalysis.Interfaces.Common;
 using StockTradingAnalysis.Interfaces.Scheduler;
 using StockTradingAnalysis.Web.Common.Authorization;
 using StockTradingAnalysis.Web.Common.Binding;
+using StockTradingAnalysis.Web.Hubs;
 using System;
 using System.Linq;
 
@@ -98,6 +99,12 @@ namespace StockTradingAnalysis.Web
 
             app.UseStaticFiles();
             app.UseCookiePolicy();
+
+            //
+            app.UseSignalR(routes =>
+            {
+                routes.MapHub<QuotationHub>("/quotationHub");
+            });
 
             app.UseHangfireDashboard("/scheduler", new DashboardOptions
             {

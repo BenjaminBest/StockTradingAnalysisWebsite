@@ -51,8 +51,13 @@
   {
     "outputFileName": "wwwroot/bundles/js/signalr.js",
     "inputFiles": [
-      "wwwroot/scripts/jquery.signalR-2.3.0.js"
-    ]
+      "wwwroot/lib/signalr/dist/browser/signalr.js"
+    ],
+    "minify": {
+      "enabled": false,
+      "renameLocals": false
+    },
+    "sourceMap": false
   },
   {
     "outputFileName": "wwwroot/bundles/js/calculation.js",

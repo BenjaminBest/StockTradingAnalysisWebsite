@@ -1401,4 +1401,7 @@
   <data name="DisplayGenerateTestData" xml:space="preserve">
     <value>Testdaten Generierung!</value>
   </data>
+  <data name="ViewTextAdministrationStartMigration" xml:space="preserve">
+    <value>Migration</value>
+  </data>
 </root>
