@@ -1404,4 +1404,16 @@
   <data name="ViewTextAdministrationStartMigration" xml:space="preserve">
     <value>Migration</value>
   </data>
+  <data name="DisplayMigration" xml:space="preserve">
+    <value>Migration der Daten aus alter Anwendung</value>
+  </data>
+  <data name="ViewTextMigrationTitle" xml:space="preserve">
+    <value>Migration</value>
+  </data>
+  <data name="ViewTextAdministrationMigrationDataLost" xml:space="preserve">
+    <value>Alle alten Daten in der Zieldatenbank werden gelöscht</value>
+  </data>
+  <data name="ViewTextAdministrationMigrationInfo" xml:space="preserve">
+    <value>Migration der Produkte, Transaktionen, Strategien, Kurse, Strategien etc. Der Vorgang kann mehrere Minuten dauern.</value>
+  </data>
 </root>

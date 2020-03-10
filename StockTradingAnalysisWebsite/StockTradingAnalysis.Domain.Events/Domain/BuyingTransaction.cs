@@ -6,6 +6,7 @@ namespace StockTradingAnalysis.Domain.Events.Domain
     /// <summary>
     /// Defines a buying transaction (opening)
     /// </summary>
+    [Serializable]
     public class BuyingTransaction : IBuyingTransaction
     {
         /// <summary>

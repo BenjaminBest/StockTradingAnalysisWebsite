@@ -97,7 +97,7 @@ namespace StockTradingAnalysis.Services.Domain
         /// <returns></returns>
         protected bool Equals(ITimeSlice other)
         {
-            return Start.Equals(other.Start) && End.Equals(other.End);
+            return Start.Equals(other.Start) && End.Equals(other.End) && Type.Equals(other.Type);
         }
 
         /// <summary>Determines whether the specified object is equal to the current object.</summary>
@@ -135,7 +135,7 @@ namespace StockTradingAnalysis.Services.Domain
             if (other == null)
                 return false;
 
-            return Start == other.Start && End == other.End;
+            return Start == other.Start && End == other.End && Type.Equals(other.Type);
         }
     }
 }

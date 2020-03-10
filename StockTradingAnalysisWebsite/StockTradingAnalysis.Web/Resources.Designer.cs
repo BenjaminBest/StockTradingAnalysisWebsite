@@ -1726,6 +1726,15 @@ namespace StockTradingAnalysis.Web {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Migration der Daten aus alter Anwendung.
+        /// </summary>
+        public static string DisplayMigration {
+            get {
+                return ResourceManager.GetString("DisplayMigration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Tage.
         /// </summary>
         public static string DisplayTooltipDays {
@@ -2271,6 +2280,24 @@ namespace StockTradingAnalysis.Web {
         public static string ViewTextAdministrationGenerateTestDataLost {
             get {
                 return ResourceManager.GetString("ViewTextAdministrationGenerateTestDataLost", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Alle alten Daten in der Zieldatenbank werden gelöscht.
+        /// </summary>
+        public static string ViewTextAdministrationMigrationDataLost {
+            get {
+                return ResourceManager.GetString("ViewTextAdministrationMigrationDataLost", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Migration der Produkte, Transaktionen, Strategien, Kurse, Strategien etc. Der Vorgang kann mehrere Minuten dauern..
+        /// </summary>
+        public static string ViewTextAdministrationMigrationInfo {
+            get {
+                return ResourceManager.GetString("ViewTextAdministrationMigrationInfo", resourceCulture);
             }
         }
         
@@ -3450,6 +3477,15 @@ namespace StockTradingAnalysis.Web {
         public static string ViewTextMainDashboardSavingsPlan {
             get {
                 return ResourceManager.GetString("ViewTextMainDashboardSavingsPlan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Migration.
+        /// </summary>
+        public static string ViewTextMigrationTitle {
+            get {
+                return ResourceManager.GetString("ViewTextMigrationTitle", resourceCulture);
             }
         }
         

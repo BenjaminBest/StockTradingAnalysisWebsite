@@ -6,6 +6,7 @@ namespace StockTradingAnalysis.Domain.Events.Domain
     /// <summary>
     /// Defines a strategy
     /// </summary>
+    [Serializable]
     public class Strategy : IStrategy
     {
         /// <summary>

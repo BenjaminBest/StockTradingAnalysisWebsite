@@ -10,10 +10,10 @@ namespace StockTradingAnalysis.Web.Migration.Importer
 {
 	public class TestOpenPositions : ImportBase
 	{
-		public IDictionary<int, StockDto> Stocks { get; set; }
-		public IDictionary<int, ITransactionDto> Transactions { get; set; }
+		public List<StockDto> Stocks { get; set; }
+		public List<ITransactionDto> Transactions { get; set; }
 
-		public TestOpenPositions(IDictionary<int, StockDto> stocks, IDictionary<int, ITransactionDto> transactions)
+		public TestOpenPositions(List<StockDto> stocks, List<ITransactionDto> transactions)
 		{
 			Stocks = stocks;
 			Transactions = transactions;
@@ -45,7 +45,7 @@ namespace StockTradingAnalysis.Web.Migration.Importer
 			}
 		}
 
-		private IDictionary<int, BuyingTransactionDto> GetOpenPositions(IDictionary<int, StockDto> stocks)
+		private IDictionary<int, BuyingTransactionDto> GetOpenPositions(List<StockDto> stocks)
 		{
 			const string queryString = "SELECT T.[ID], T.[OrderCosts], T.[OrderDate], T.[PricePerUnit], T.[Units],T.[Stock_ID] FROM [TransactionManagement].[dbo].[Statistics] S LEFT JOIN [TransactionManagement].[dbo].[Transactions] T ON S.[TransactionStartID] = T.[ID]  WHERE [TransactionEndID] IS NULL ORDER BY T.[OrderDate] ASC";
 

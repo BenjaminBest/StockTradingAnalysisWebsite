@@ -1,4 +1,5 @@
 ﻿using System;
+using StockTradingAnalysis.Interfaces.Enumerations;
 
 namespace StockTradingAnalysis.Interfaces.Domain
 {
@@ -22,5 +23,10 @@ namespace StockTradingAnalysis.Interfaces.Domain
         /// The end.
         /// </value>
         DateTime End { get; }
+
+        /// <summary>
+        /// Gets the timeslice type.
+        /// </summary>
+        TimeSliceType Type { get; }
     }
 }

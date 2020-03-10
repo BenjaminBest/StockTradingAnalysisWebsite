@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using StockTradingAnalysis.Interfaces.Domain;
+using StockTradingAnalysis.Interfaces.Enumerations;
 
 namespace StockTradingAnalysis.Services.Domain
 {
@@ -24,6 +25,11 @@ namespace StockTradingAnalysis.Services.Domain
         /// The end.
         /// </value>
         public DateTime End => TimeSlice.End;
+
+        /// <summary>
+        /// Gets the timeslice type.
+        /// </summary>
+        public TimeSliceType Type => TimeSlice.Type;
 
         /// <summary>
         /// Gets the time slice.
@@ -290,7 +296,7 @@ namespace StockTradingAnalysis.Services.Domain
             if (other == null)
                 return false;
 
-            return Start == other.Start && End == other.End;
+            return Start == other.Start && End == other.End && Type.Equals(other.Type);
         }
 
         /// <summary>Indicates whether the current object is equal to another object of the same type.</summary>
@@ -301,7 +307,7 @@ namespace StockTradingAnalysis.Services.Domain
             if (other == null)
                 return false;
 
-            return Start == other.Start && End == other.End;
+            return Start == other.Start && End == other.End && Type.Equals(other.Type);
         }
 
         /// <summary>Determines whether the specified object is equal to the current object.</summary>

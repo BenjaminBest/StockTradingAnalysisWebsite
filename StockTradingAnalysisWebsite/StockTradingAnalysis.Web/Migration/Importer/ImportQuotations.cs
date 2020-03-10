@@ -14,7 +14,7 @@ namespace StockTradingAnalysis.Web.Migration.Importer
 	{
 		public IDictionary<int, IList<Quotation>> Items { get; } = new Dictionary<int, IList<Quotation>>();
 
-		public IDictionary<int, StockDto> StockItems { get; set; }
+		public List<StockDto> StockItems { get; set; }
 
 		public void Start()
 		{
@@ -65,9 +65,9 @@ namespace StockTradingAnalysis.Web.Migration.Importer
 
 			foreach (var item in Items)
 			{
-				var stockOld = StockItems.FirstOrDefault(s => s.Value.OldId == item.Key).Value;
+				var stockOld = StockItems.FirstOrDefault(s => s.OldId == item.Key);
 
-				if (stockOld.IsDividend)
+				if (stockOld == null || stockOld.IsDividend)
 					continue;
 
 				var stock = QueryDispatcher.Execute(new StockByIdQuery(stockOld.Id));

@@ -7,6 +7,7 @@ namespace StockTradingAnalysis.Domain.Events.Domain
     /// <summary>
     /// Defines a selling transaction (closing)
     /// </summary>
+    [Serializable]
     public class SellingTransaction : ISellingTransaction
     {
         /// <summary>

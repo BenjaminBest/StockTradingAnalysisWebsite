@@ -211,6 +211,9 @@ namespace StockTradingAnalysis.Services.Services
         public IProfit GetProfit(decimal buyingPositionSize, decimal buyingOrderCosts, decimal sellingPositionSize,
             decimal sellingOrderCosts, decimal taxes)
         {
+            if (buyingPositionSize == 0)
+                return new Profit(0, 0);
+
             var buyingCosts = buyingPositionSize + buyingOrderCosts;
             var sell = sellingPositionSize - (sellingOrderCosts + taxes);
             var profit = decimal.Round(sell - buyingCosts, 2);

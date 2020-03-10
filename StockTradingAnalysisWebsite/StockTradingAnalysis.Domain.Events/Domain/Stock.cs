@@ -7,6 +7,7 @@ namespace StockTradingAnalysis.Domain.Events.Domain
     /// <summary>
     /// Defines a stock
     /// </summary>
+    [Serializable]
     public class Stock : IStock
     {
         /// <summary>

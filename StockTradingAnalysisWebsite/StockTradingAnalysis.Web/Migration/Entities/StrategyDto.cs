@@ -3,6 +3,7 @@ using StockTradingAnalysis.Domain.Events.Domain;
 
 namespace StockTradingAnalysis.Web.Migration.Entities
 {
+    [Serializable]
     public class StrategyDto : Strategy
     {
         public int OldId { get; set; }

@@ -1,10 +1,12 @@
 ﻿using StockTradingAnalysis.Interfaces.Domain;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 
 namespace StockTradingAnalysis.Domain.Events.Domain
 {
+    [DebuggerDisplay("Split {Shares} x {PricePerShare} on {OrderDate} of stock {StockId}")]
     public class SplitTransactionBookEntry : TransactionBookEntry, ISplitTransactionBookEntry
     {
         /// <summary>

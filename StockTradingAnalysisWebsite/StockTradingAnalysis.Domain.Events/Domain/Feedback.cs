@@ -6,6 +6,7 @@ namespace StockTradingAnalysis.Domain.Events.Domain
     /// <summary>
     /// Defines a feedback
     /// </summary>
+    [Serializable]
     public class Feedback : IFeedback
     {
         /// <summary>

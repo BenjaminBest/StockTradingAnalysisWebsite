@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Diagnostics;
 using StockTradingAnalysis.Interfaces.Domain;
 
 namespace StockTradingAnalysis.Domain.Events.Domain
 {
+    [DebuggerDisplay("Sell {Shares} x {PricePerShare} on {OrderDate} of stock {StockId}")]
     public class SellingTransactionBookEntry : TransactionBookEntry, ISellingTransactionBookEntry
     {
         /// <summary>

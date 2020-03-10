@@ -10,9 +10,9 @@ namespace StockTradingAnalysis.Web.Migration.Importer
 {
 	public class TestPerformance : ImportBase
 	{
-		public IDictionary<int, ITransactionDto> Transactions { get; set; }
+		public List<ITransactionDto> Transactions { get; set; }
 
-		public TestPerformance(IDictionary<int, ITransactionDto> transactions)
+		public TestPerformance(List<ITransactionDto> transactions)
 		{
 			Transactions = transactions;
 		}

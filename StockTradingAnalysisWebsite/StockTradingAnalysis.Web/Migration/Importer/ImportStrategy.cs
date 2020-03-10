@@ -10,62 +10,71 @@ namespace StockTradingAnalysis.Web.Migration.Importer
 {
 	public class ImportStrategy : ImportBase
 	{
-		public IDictionary<int, StrategyDto> Items { get; } = new Dictionary<int, StrategyDto>();
+        public List<StrategyDto> Items { get; set; }
+
+		public List<StrategyDto> GetItems()
+        {
+            var items = new List<StrategyDto>();
+
+            const string queryString = "SELECT [ID],[Name],[Description] FROM [dbo].[Strategies] ORDER BY [ID] ASC";
+            const string countString = "SELECT COUNT([ID]) AS COUNT FROM [dbo].[Strategies]";
+
+            //Load from db
+            using (var connection = new SqlConnection(SourceConnectionString))
+            {
+                connection.Open();
+
+                using (var command = new SqlCommand(countString, connection))
+                {
+                    var count = (int)command.ExecuteScalar();
+                    LoggingService.Info($" ({count})");
+                }
+
+                using (var command = new SqlCommand(queryString, connection))
+                {
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            var item = new StrategyDto();
+
+                            item.OldId = int.Parse(reader["ID"].ToString());
+                            item.Name = reader["Name"].ToString();
+                            item.Description = reader["Description"].ToString();
+
+                            items.Add(item);
+                        }
+                    }
+                }
+            }
+
+            return items;
+        }
 
 		public void Start()
-		{
-			const string queryString = "SELECT [ID],[Name],[Description] FROM [dbo].[Strategies] ORDER BY [ID] ASC";
-			const string countString = "SELECT COUNT([ID]) AS COUNT FROM [dbo].[Strategies]";
-
-			//Load from db
-			using (var connection = new SqlConnection(SourceConnectionString))
-			{
-				connection.Open();
-
-				using (var command = new SqlCommand(countString, connection))
-				{
-					var count = (int)command.ExecuteScalar();
-					LoggingService.Info($" ({count})");
-				}
-
-				using (var command = new SqlCommand(queryString, connection))
-				{
-					using (var reader = command.ExecuteReader())
-					{
-						while (reader.Read())
-						{
-							var item = new StrategyDto();
-
-							item.OldId = int.Parse(reader["ID"].ToString());
-							item.Name = reader["Name"].ToString();
-							item.Description = reader["Description"].ToString();
-
-							Items.Add(item.OldId, item);
-						}
-					}
-				}
-			}
+        {
+            Items = GetItems();
 
 			//Import
 			foreach (var item in Items)
 			{
 				var cmd = new StrategyAddCommand(
-					item.Value.Id,
+					item.Id,
 					-1,
-					item.Value.Name,
-					item.Value.Description,
+					item.Name,
+					item.Description,
 					null);
 
 				CommandDispatcher.Execute(cmd);
 
 				//Image
-				if (ImportImage(cmd, item.Value.OldId))
+				if (ImportImage(cmd, item.OldId))
 				{
-					LoggingService.Info($"Stock {item.Value.Name} ({item.Value.OldId}) + IMAGE");
+					LoggingService.Info($"Stock {item.Name} ({item.OldId}) + IMAGE");
 				}
 				else
 				{
-					LoggingService.Info($"Stock {item.Value.Name} ({item.Value.OldId})");
+					LoggingService.Info($"Stock {item.Name} ({item.OldId})");
 				}
 			}
 

@@ -1,0 +1,19 @@
+﻿@using StockTradingAnalysis.Web
+@{
+    ViewBag.Title = Resources.ViewTextMigrationTitle;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section scripts
+    {
+    <script src="~/jsx/Popup.jsx"></script>
+    <script src="~/jsx/MigrateButtonProgressBar.jsx"></script>
+}
+
+<div class="jumbotron">
+    <h1 class="display-3">@Resources.DisplayMigration</h1>
+    <p class="lead">@Resources.ViewTextAdministrationMigrationInfo</p>
+    <hr class="my-4">
+    <p class="text-danger">@Resources.ViewTextAdministrationMigrationDataLost</p>
+    <div id="button-migrate"></div>
+</div>

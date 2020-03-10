@@ -6,6 +6,7 @@ namespace StockTradingAnalysis.Domain.Events.Domain
     /// <summary>
     /// Defines a dividend transaction
     /// </summary>
+    [Serializable]
     public class SplitTransaction : ISplitTransaction
     {
         /// <summary>
