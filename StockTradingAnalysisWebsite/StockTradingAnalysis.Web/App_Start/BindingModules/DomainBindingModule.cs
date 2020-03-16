@@ -28,12 +28,16 @@ namespace StockTradingAnalysis.Web.BindingModules
 			serviceCollection.AddSingleton<IPriceCalculatorService, PriceCalculatorService>();
 			serviceCollection.AddSingleton<IStockQuoteService, StockQuoteService>();
 			serviceCollection.AddSingleton<ITransactionPerformanceService, TransactionPerformanceService>();
-			serviceCollection.AddSingleton<ITransactionBook, TransactionBook>();
 			serviceCollection.AddSingleton<IAccumulationPlanStatisticService, AccumulationPlanStatisticService>();
 			serviceCollection.AddTransient<IInterestRateCalculatorService, InterestRateCalculatorService>();
 			serviceCollection.AddTransient<ITransactionCalculationService, TransactionCalculationService>();
 			serviceCollection.AddTransient<ITimeSliceCreationService, TimeSliceCreationService>();
 			serviceCollection.AddTransient<IStatisticService, StatisticService>();
+
+			var transactionBook = new TransactionBook();
+
+			serviceCollection.AddSingleton<ITransactionBook>(s=> transactionBook);
+			serviceCollection.AddSingleton<ISupportsDataDeletion>(s => transactionBook);
 
 			//Model repositories
 			serviceCollection.AddTransient<IModelRepositoryDeletionCoordinator, ModelRepositoryDeletionCoordinator>();

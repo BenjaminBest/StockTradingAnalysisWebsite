@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using StockTradingAnalysis.Core.Common;
 using StockTradingAnalysis.Interfaces.Domain;
+using StockTradingAnalysis.Interfaces.ReadModel;
 
 namespace StockTradingAnalysis.Domain.Events.Domain
 {
@@ -10,7 +11,7 @@ namespace StockTradingAnalysis.Domain.Events.Domain
     /// Defines a bucket for multiple transactions <see cref="ITransactionBookEntry"/> grouped by the stock id
     /// and uses FIFO to calculate the sold shares
     /// </summary>
-    public class TransactionBook : ITransactionBook
+    public class TransactionBook : ITransactionBook, ISupportsDataDeletion
     {
         /// <summary>
         /// All open positions
@@ -177,6 +178,16 @@ namespace StockTradingAnalysis.Domain.Events.Domain
             //Open position was completely sold
             if (position.Shares == 0)
                 _positions.Remove(stockId);
+        }
+
+        /// <summary>
+        /// Deletes all positions.
+        /// </summary>
+        public void DeleteAll()
+        {
+            _positions.Clear();
+            _changedEntries.Clear();
+            _entries.Clear();
         }
     }
 }

@@ -6,6 +6,7 @@ namespace StockTradingAnalysis.Core.Types
     /// <summary>
     /// Defines an image
     /// </summary>
+    [Serializable]
     public class Image : IImage
     {
         /// <summary>

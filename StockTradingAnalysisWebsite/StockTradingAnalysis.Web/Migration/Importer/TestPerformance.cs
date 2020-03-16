@@ -5,6 +5,7 @@ using StockTradingAnalysis.Web.Migration.Entities;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Linq;
 
 namespace StockTradingAnalysis.Web.Migration.Importer
 {
@@ -26,7 +27,7 @@ namespace StockTradingAnalysis.Web.Migration.Importer
 			foreach (var stat in stats)
 			{
 				var statistics = stat.Value;
-				var transaction = Transactions[statistics.OldTransactionEndId];
+				var transaction = Transactions.Where(t=>t.OldId == statistics.OldTransactionEndId);
 
 				var errorOccured = false;
 				ITransactionPerformance query = null;

@@ -47,6 +47,11 @@ namespace StockTradingAnalysis.Web.Common.Scheduler
 		/// </value>
 		public string CronExpression => Cron.Daily();
 
+        /// <summary>
+        /// Status of this job
+        /// </summary>
+        public ScheduledJobStatus Status { get; private set; }
+
 		/// <summary>
 		/// Initializes a new instance of the <see cref="UpdateQuotationsScheduledJob" /> class.
 		/// </summary>
@@ -61,7 +66,8 @@ namespace StockTradingAnalysis.Web.Common.Scheduler
 			_queryDispatcher = queryDispatcher;
 			_commandDispatcher = commandDispatcher;
 			_quotationServiceClient = quotationServiceClient;
-		}
+            Status = ScheduledJobStatus.Stopped;
+        }
 
 		/// <summary>
 		/// Executes this job.
@@ -70,22 +76,32 @@ namespace StockTradingAnalysis.Web.Common.Scheduler
 		{
 			//TODO: Duplicate code, see QuotationController.UpdateQuotation
 
-			foreach (var stock in _queryDispatcher.Execute(new StockAllQuery()))
-			{
-				var latestUpdate = stock.Quotations != null && stock.Quotations.Any() ? stock.Quotations.Max(q => q.Changed) : DateTime.MinValue;
+            Status = ScheduledJobStatus.Running;
 
-				var quotations = _quotationServiceClient.Get(stock.Id, latestUpdate.Date).ToList();
+            try
+            {
 
-				if (quotations.Any())
-				{
-					var cmd = new StockQuotationsAddOrChangeCommand(
-						stock.Id,
-						stock.OriginalVersion,
-						quotations);
+                foreach (var stock in _queryDispatcher.Execute(new StockAllQuery()))
+                {
+                    var latestUpdate = stock.Quotations != null && stock.Quotations.Any() ? stock.Quotations.Max(q => q.Changed) : DateTime.MinValue;
 
-					_commandDispatcher.Execute(cmd);
-				}
+                    var quotations = _quotationServiceClient.Get(stock.Id, latestUpdate.Date).ToList();
+
+                    if (quotations.Any())
+                    {
+                        var cmd = new StockQuotationsAddOrChangeCommand(
+                            stock.Id,
+                            stock.OriginalVersion,
+                            quotations);
+
+                        _commandDispatcher.Execute(cmd);
+                    }
+                }
 			}
-		}
-	}
+            finally
+            {
+                Status = ScheduledJobStatus.Stopped;
+            }
+        }
+    }
 }

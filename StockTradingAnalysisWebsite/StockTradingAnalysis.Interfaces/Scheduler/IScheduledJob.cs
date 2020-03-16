@@ -23,9 +23,14 @@ namespace StockTradingAnalysis.Interfaces.Scheduler
 		/// </value>
 		string CronExpression { get; }
 
+        /// <summary>
+        /// Status of this job
+        /// </summary>
+        ScheduledJobStatus Status { get; }
+
 		/// <summary>
 		/// Executes this job.
 		/// </summary>
 		void Execute();
-	}
+    }
 }

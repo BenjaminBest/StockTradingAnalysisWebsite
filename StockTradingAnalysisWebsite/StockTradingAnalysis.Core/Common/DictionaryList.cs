@@ -77,5 +77,13 @@ namespace StockTradingAnalysis.Core.Common
             if (_items.ContainsKey(key))
                 _items[key].Clear();
         }
+
+        /// <summary>
+        /// Removes all entries
+        /// </summary>
+        public void Clear()
+        {
+            _items.Clear();
+        }
     }
 }

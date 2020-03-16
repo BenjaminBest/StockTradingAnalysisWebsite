@@ -69,7 +69,7 @@ namespace StockTradingAnalysis.Web.Migration.Importer
 							item.PricePerShare = decimal.Parse(reader["PricePerUnit"].ToString());
 							item.OrderDate = DateTime.Parse(reader["OrderDate"].ToString());
 							item.OrderCosts = decimal.Parse(reader["OrderCosts"].ToString());
-							item.Stock = stocks[int.Parse(reader["Stock_ID"].ToString())];
+                            item.Stock = stocks.FirstOrDefault(s => s.OldId == int.Parse(reader["Stock_ID"].ToString()));
 
 							buys.Add(item.OldId, item);
 						}

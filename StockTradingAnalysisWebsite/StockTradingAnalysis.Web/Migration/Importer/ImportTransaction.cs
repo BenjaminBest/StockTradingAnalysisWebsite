@@ -115,6 +115,10 @@ namespace StockTradingAnalysis.Web.Migration.Importer
                 }
                 else if (item is SellingTransactionDto selling)
                 {
+                    //Fix for wrong number of shared of Lambda TD Software, because split was not done
+                    if (selling.OldId == 2487)
+                        selling.Shares = 137;
+
                     ImportSelling(selling);
                 }
                 else

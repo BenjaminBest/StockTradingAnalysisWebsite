@@ -16,7 +16,7 @@ namespace StockTradingAnalysis.Web.BindingModules
 		/// <param name="serviceCollection">The service collection.</param>
 		public void Load(IServiceCollection serviceCollection)
 		{
-			serviceCollection.AddTransient<IScheduledJob, UpdateQuotationsScheduledJob>();
+			serviceCollection.AddSingleton<IScheduledJob, UpdateQuotationsScheduledJob>();
 		}
 	}
 }
