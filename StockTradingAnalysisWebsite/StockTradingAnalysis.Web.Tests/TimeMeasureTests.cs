@@ -10,6 +10,7 @@ namespace StockTradingAnalysis.Web.Tests
     [TestClass]
     public class TimeMeasureTests
     {
+        [Ignore]
         [TestMethod]
         [Description("Time measure should work in conjunction with performance service")]
         public void TimeMeasureShouldWorkInConjunctionWithPerformanceService()
