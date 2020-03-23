@@ -7,12 +7,8 @@
     <PackageProjectUrl>https://github.com/BenjaminBest/StockTradingAnalysisWebsite</PackageProjectUrl>
   </PropertyGroup>
   <ItemGroup>
+    <ProjectReference Include="..\StockTradingAnalysis.Core\StockTradingAnalysis.Core.csproj" />
     <ProjectReference Include="..\StockTradingAnalysis.Domain.CQRS.Query\StockTradingAnalysis.Domain.CQRS.Query.csproj" />
     <ProjectReference Include="..\StockTradingAnalysis.Interfaces\StockTradingAnalysis.Interfaces.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="StockTradingAnalysis.Core">
-      <HintPath>..\StockTradingAnalysis.Core\bin\Debug\StockTradingAnalysis.Core.dll</HintPath>
-    </Reference>
   </ItemGroup>
 </Project>
