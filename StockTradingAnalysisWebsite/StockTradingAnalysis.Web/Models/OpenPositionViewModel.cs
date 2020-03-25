@@ -43,7 +43,7 @@ namespace StockTradingAnalysis.Web.Models
         /// The size of the position.
         /// </value>
         [Display(Name = "Display_ViewModelOpenTransactionPositionSize", ResourceType = typeof(Resources))]
-        [DisplayFormat(DataFormatString = "{0:F2} €")]
+        [UIHint("Currency")]
         public decimal PositionSize { get; set; }
 
         /// <summary>
@@ -62,7 +62,7 @@ namespace StockTradingAnalysis.Web.Models
         /// The average price per share.
         /// </value>
         [Display(Name = "Display_ViewModelOpenTransactionPricePerUnit", ResourceType = typeof(Resources))]
-        [DisplayFormat(DataFormatString = "{0:F2} €")]
+        [UIHint("Currency")]
         public decimal AveragePricePerShare { get; set; }
 
         /// <summary>

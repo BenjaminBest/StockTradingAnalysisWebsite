@@ -9,6 +9,7 @@ namespace StockTradingAnalysis.Web.Models
         /// </summary>
         [Display(Name = "Display_TransactionsInitialSL", ResourceType = typeof(Resources))]
         [DisplayFormat(DataFormatString = "{0:F2} €", ApplyFormatInEditMode = false, NullDisplayText = "0,00 €")]
+        [UIHint("Currency")]
         public decimal InitialSL { get; set; }
 
         /// <summary>
@@ -16,6 +17,7 @@ namespace StockTradingAnalysis.Web.Models
         /// </summary>
         [Display(Name = "Display_TransactionsInitialTP", ResourceType = typeof(Resources))]
         [DisplayFormat(DataFormatString = "{0:F2} €", ApplyFormatInEditMode = false, NullDisplayText = "0,00 €")]
+        [UIHint("Currency")]
         public decimal InitialTP { get; set; }
 
         /// <summary>

@@ -20,28 +20,28 @@ namespace StockTradingAnalysis.Web.Models
         /// Gets/sets the Open
         /// </summary>
         [Display(Name = "Display_QuoteOpen", ResourceType = typeof(Resources))]
-        [DisplayFormat(DataFormatString = "{0:F2} €")]
+        [UIHint("Currency")]
         public decimal Open { get; set; }
 
         /// <summary>
         /// Gets/sets the Close
         /// </summary>
         [Display(Name = "Display_QuoteClose", ResourceType = typeof(Resources))]
-        [DisplayFormat(DataFormatString = "{0:F2} €")]
+        [UIHint("Currency")]
         public decimal Close { get; set; }
 
         /// <summary>
         /// Gets/sets the High
         /// </summary>
         [Display(Name = "Display_QuoteHigh", ResourceType = typeof(Resources))]
-        [DisplayFormat(DataFormatString = "{0:F2} €")]
+        [UIHint("Currency")]
         public decimal High { get; set; }
 
         /// <summary>
         /// Gets/sets the Low
         /// </summary>
         [Display(Name = "Display_QuoteLow", ResourceType = typeof(Resources))]
-        [DisplayFormat(DataFormatString = "{0:F2} €")]
+        [UIHint("Currency")]
         public decimal Low { get; set; }
     }
 }

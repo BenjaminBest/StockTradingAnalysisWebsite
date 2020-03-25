@@ -34,6 +34,7 @@ namespace StockTradingAnalysis.Web.Models
         /// </summary>
         [Display(Name = "Display_CalculationResultPositionSize", ResourceType = typeof(Resources))]
         [DisplayFormat(DataFormatString = "{0:F2} €", ApplyFormatInEditMode = true, NullDisplayText = "0,00 €")]
+        [UIHint("Currency")]
         public decimal PositionSize { get; set; }
 
         /// <summary>

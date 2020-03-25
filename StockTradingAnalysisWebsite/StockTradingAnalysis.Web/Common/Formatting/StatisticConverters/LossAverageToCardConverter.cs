@@ -29,7 +29,7 @@ namespace StockTradingAnalysis.Web.Common.Formatting.StatisticConverters
             {
                 Style = statistic.LossAverage.StyleTypeForCurrency(),
                 Header = Resources.ViewTextKpiLossAverage,
-                Title = $"{statistic.LossAverage:0.00} € ({statistic.LossAveragePercentage} %)"
+                Title = $"{statistic.LossAverage.ToString("C", System.Globalization.CultureInfo.GetCultureInfo("de-de"))} ({statistic.LossAveragePercentage} %)"
             };
         }
     }

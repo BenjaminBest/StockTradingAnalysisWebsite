@@ -29,7 +29,7 @@ namespace StockTradingAnalysis.Web.Common.Formatting.StatisticConverters
             {
                 Style = StyleType.Warning,
                 Header = Resources.ViewTextKpiTaxes,
-                Title = statistic.SumTaxes.ToString("0.00 €")
+                Title = statistic.SumTaxes.ToString("C", System.Globalization.CultureInfo.GetCultureInfo("de-de"))
             };
         }
     }

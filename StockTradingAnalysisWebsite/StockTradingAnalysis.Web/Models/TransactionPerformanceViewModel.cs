@@ -67,6 +67,7 @@ namespace StockTradingAnalysis.Web.Models
         /// </summary>
         [Display(Name = "Display_TooltipMAEAbsolute", ResourceType = typeof(Resources))]
         [DisplayFormat(DataFormatString = "{0:F2} €", ApplyFormatInEditMode = false, NullDisplayText = "0,00 €")]
+        [UIHint("Currency")]
         public decimal MAEAbsolute { get; set; }
 
         /// <summary>
@@ -74,6 +75,7 @@ namespace StockTradingAnalysis.Web.Models
         /// </summary>
         [Display(Name = "Display_TooltipMFEAbsolute", ResourceType = typeof(Resources))]
         [DisplayFormat(DataFormatString = "{0:F2} €", ApplyFormatInEditMode = false, NullDisplayText = "0,00 €")]
+        [UIHint("Currency")]
         public decimal MFEAbsolute { get; set; }
     }
 }

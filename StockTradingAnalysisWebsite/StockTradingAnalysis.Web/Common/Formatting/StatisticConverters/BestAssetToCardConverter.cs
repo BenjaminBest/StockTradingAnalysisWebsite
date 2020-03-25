@@ -29,7 +29,7 @@ namespace StockTradingAnalysis.Web.Common.Formatting.StatisticConverters
             {
                 Style = statistic.BestAssetProfit.StyleTypeForCurrency(),
                 Header = Resources.ViewTextKpiBestAsset,
-                Title = $"{statistic.BestAssetName} ({statistic.BestAssetProfit} €)"
+                Title = $"{statistic.BestAssetName} ({statistic.BestAssetProfit.ToString("C", System.Globalization.CultureInfo.GetCultureInfo("de-de"))})"
             };
         }
     }

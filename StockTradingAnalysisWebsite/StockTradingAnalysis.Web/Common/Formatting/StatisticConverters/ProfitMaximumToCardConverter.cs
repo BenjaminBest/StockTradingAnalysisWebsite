@@ -29,7 +29,7 @@ namespace StockTradingAnalysis.Web.Common.Formatting.StatisticConverters
             {
                 Style = statistic.ProfitMaximum.StyleTypeForCurrency(),
                 Header = Resources.ViewTextKpiProfitMaximum,
-                Title = statistic.ProfitMaximum.ToString("0.00 €")
+                Title = statistic.ProfitMaximum.ToString("C", System.Globalization.CultureInfo.GetCultureInfo("de-de"))
             };
         }
     }

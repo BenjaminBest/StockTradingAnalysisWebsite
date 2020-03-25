@@ -29,7 +29,7 @@ namespace StockTradingAnalysis.Web.Common.Formatting.StatisticConverters
             {
                 Style = statistic.ProfitAverage.StyleTypeForCurrency(),
                 Header = Resources.ViewTextKpiProfitAverage,
-                Title = $"{statistic.ProfitAverage:0.00} € ({statistic.ProfitAveragePercentage} %)"
+                Title = $"{statistic.ProfitAverage.ToString("C", System.Globalization.CultureInfo.GetCultureInfo("de-de"))} ({statistic.ProfitAveragePercentage} %)"
             };
         }
     }

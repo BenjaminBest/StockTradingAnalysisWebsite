@@ -15,6 +15,8 @@ namespace StockTradingAnalysis.Web.Models
         /// The absolute profit.
         /// </value>
         [Display(Name = "Display_ViewModelOpenPositionAbsoluteProfit", ResourceType = typeof(Resources))]
+        [DisplayFormat(DataFormatString = "{0:F2} €")]
+        [UIHint("Currency")]
         [UIHint("PerformanceAbsolute")]
         public decimal AbsoluteProfit { get; set; }
 

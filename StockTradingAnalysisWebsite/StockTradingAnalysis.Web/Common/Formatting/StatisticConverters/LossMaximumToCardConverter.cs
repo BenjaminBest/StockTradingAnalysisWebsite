@@ -29,7 +29,7 @@ namespace StockTradingAnalysis.Web.Common.Formatting.StatisticConverters
             {
                 Style = statistic.LossMaximum.StyleTypeForCurrency(),
                 Header = Resources.ViewTextKpiLossMaximum,
-                Title = statistic.LossMaximum.ToString("0.00 €")
+                Title = statistic.LossMaximum.ToString("C", System.Globalization.CultureInfo.GetCultureInfo("de-de"))
             };
         }
     }

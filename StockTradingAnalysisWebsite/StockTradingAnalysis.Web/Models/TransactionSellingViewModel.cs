@@ -12,6 +12,7 @@ namespace StockTradingAnalysis.Web.Models
             ErrorMessageResourceType = typeof(Resources), AllowEmptyStrings = false)]
         [Display(Name = "Display_TransactionsTaxes", ResourceType = typeof(Resources))]
         [DisplayFormat(DataFormatString = "{0:F2} €", ApplyFormatInEditMode = false, NullDisplayText = "0,00 €")]
+        [UIHint("Currency")]
         public decimal Taxes { get; set; }
 
         /// <summary>
@@ -19,6 +20,7 @@ namespace StockTradingAnalysis.Web.Models
         /// </summary>
         [Display(Name = "Display_TransactionsMAE", ResourceType = typeof(Resources))]
         [DisplayFormat(DataFormatString = "{0:F2} €", ApplyFormatInEditMode = false, NullDisplayText = "0,00 €")]
+        [UIHint("Currency")]
         public decimal? MAE { get; set; }
 
         /// <summary>
@@ -26,6 +28,7 @@ namespace StockTradingAnalysis.Web.Models
         /// </summary>
         [Display(Name = "Display_TransactionsMFE", ResourceType = typeof(Resources))]
         [DisplayFormat(DataFormatString = "{0:F2} €", ApplyFormatInEditMode = false, NullDisplayText = "0,00 €")]
+        [UIHint("Currency")]
         public decimal? MFE { get; set; }
 
         /// <summary>

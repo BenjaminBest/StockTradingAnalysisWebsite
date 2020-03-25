@@ -1,0 +1,4 @@
+﻿@using StockTradingAnalysis.Web.Common.Formatting
+@model decimal?
+
+@Model.Value.ToString("C", System.Globalization.CultureInfo.GetCultureInfo("de-de"))

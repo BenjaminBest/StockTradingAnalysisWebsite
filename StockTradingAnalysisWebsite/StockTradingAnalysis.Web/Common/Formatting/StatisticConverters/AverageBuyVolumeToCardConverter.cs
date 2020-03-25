@@ -29,7 +29,7 @@ namespace StockTradingAnalysis.Web.Common.Formatting.StatisticConverters
             {
                 Style = StyleType.Light,
                 Header = Resources.ViewTextKpiAverageBuyVolume,
-                Title = statistic.AverageBuyVolume.ToString("0.00 €")
+                Title = statistic.AverageBuyVolume.ToString("C", System.Globalization.CultureInfo.GetCultureInfo("de-de"))
             };
         }
     }

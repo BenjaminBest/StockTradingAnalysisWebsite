@@ -45,14 +45,14 @@ namespace StockTradingAnalysis.Web.Models
         /// Gets/sets the price per unit
         /// </summary>
         [Display(Name = "Display_TransactionsPricePerUnit", ResourceType = typeof(Resources))]
-        [DisplayFormat(DataFormatString = "{0:F2} €", ApplyFormatInEditMode = false)]
+        [UIHint("Currency")]
         public decimal PricePerUnit { get; set; }
 
         /// <summary>
         /// Gets the position size (amount of money put in the trade, without transaction costs)
         /// </summary>
         [Display(Name = "Display_TransactionsPositionSize", ResourceType = typeof(Resources))]
-        [DisplayFormat(DataFormatString = "{0:F2} €")]
+        [UIHint("Currency")]
         public decimal PositionSize { get; set; }
     }
 }

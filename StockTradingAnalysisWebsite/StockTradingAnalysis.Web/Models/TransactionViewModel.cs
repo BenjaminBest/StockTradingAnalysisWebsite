@@ -34,7 +34,7 @@ namespace StockTradingAnalysis.Web.Models
         [Required(ErrorMessageResourceName = "Validation_TransactionsPricePerUnitRequired",
             ErrorMessageResourceType = typeof(Resources), AllowEmptyStrings = false)]
         [Display(Name = "Display_TransactionsPricePerUnit", ResourceType = typeof(Resources))]
-        [DisplayFormat(DataFormatString = "{0:F2} €", ApplyFormatInEditMode = false)]
+        [UIHint("Currency")]
         public decimal PricePerUnit { get; set; }
 
         /// <summary>
@@ -43,7 +43,7 @@ namespace StockTradingAnalysis.Web.Models
         [Required(ErrorMessageResourceName = "Validation_TransactionsOrderCostsRequired",
             ErrorMessageResourceType = typeof(Resources), AllowEmptyStrings = false)]
         [Display(Name = "Display_TransactionsOrderCosts", ResourceType = typeof(Resources))]
-        [DisplayFormat(DataFormatString = "{0:F2} €", ApplyFormatInEditMode = false)]
+        [UIHint("Currency")]
         public decimal OrderCosts { get; set; }
 
         /// <summary>

@@ -29,7 +29,7 @@ namespace StockTradingAnalysis.Web.Common.Formatting.StatisticConverters
             {
                 Style = statistic.TradeAverage.StyleTypeForCurrency(),
                 Header = Resources.ViewTextKpiTradeAverage,
-                Title = $"{statistic.TradeAverage:0.00} € ({statistic.TradeAveragePercentage} %)",
+                Title = $"{statistic.TradeAverage.ToString("C", System.Globalization.CultureInfo.GetCultureInfo("de-de"))} ({statistic.TradeAveragePercentage} %)",
                 FilledBackground = true
             };
         }
