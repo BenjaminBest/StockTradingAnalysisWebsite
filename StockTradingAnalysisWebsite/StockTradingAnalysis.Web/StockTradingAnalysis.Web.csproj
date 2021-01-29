@@ -16,7 +16,7 @@
     <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore" Version="3.0.9" />
     <PackageReference Include="JavaScriptEngineSwitcher.ChakraCore.Native.win-x64" Version="3.0.9" />
     <PackageReference Include="JavaScriptEngineSwitcher.Extensions.MsDependencyInjection" Version="3.0.0" />
-    <PackageReference Include="log4net" Version="2.0.8" />
+    <PackageReference Include="log4net" Version="2.0.10" />
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.6.1" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Owin" Version="2.2.0" />
